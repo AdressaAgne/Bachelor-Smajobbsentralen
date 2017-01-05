@@ -10,6 +10,7 @@ Direct::get("/migrate", 'MainController@migrate');
 
 
 Direct::get('/admin', 'AdminController@index');
+
 Direct::get('/list', 'AdminController@route');
 
 Direct::stack('/page', 'PageController');

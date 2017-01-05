@@ -8,7 +8,7 @@ class Controller extends DB{
     public static $site_wide_vars = [
         'user' => null,
         'google_key' => 'AIzaSyC7i0o5mdEYSbG_wqoWAx53tAP1xxTKVQo',
-        'menu' => [],
+        'menu' => null,
     ];
     
     /**
@@ -23,7 +23,7 @@ class Controller extends DB{
             self::$site_wide_vars['user'] = new User($_SESSION['uuid']);
         }
         
-        self::$site_wide_vars['menu'] = $this->select('pages', ['visible' => '1']);
+        self::$site_wide_vars['menu'] = $this->select('pages', ['*'], ['visible' => '1', 'auth' => '0'])->fetchAll();
         
     }
 }

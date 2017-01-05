@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
 
-use View, StackController;
+use View, Direct, StackController;
 
 
 class PageController extends Controller implements StackController{
@@ -42,15 +42,21 @@ class PageController extends Controller implements StackController{
             'visible'   => isset($data['visible']),
         ], ['id' => $data['id']]);
         
-        return ['patch'];
+        return Direct::re('/page/'.$data['permalink']);
     }
     
     public function edit($url){
-        return ['edit'];
+        
+        $page = $this->select('pages', ['*'], ['permalink' => $url['id']], 'Page')->fetch();
+        
+        return View::make('admin.editpage', ['page' => $page]);
     }
     
     public function delete($data){
         // Delete Page
-        return ['del'];
+
+        $this->deleteWhere('pages', 'id', $data['id']);
+        
+        return Direct::re('/admin');
     }
 }

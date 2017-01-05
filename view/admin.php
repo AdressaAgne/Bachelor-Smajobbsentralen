@@ -1,7 +1,7 @@
-@layout('head', ['title' => 'Welcome'])
+@layout('layout.head', ['title' => 'Welcome'])
     <h1>Admin</h1>
     
-    @form('', 'put')
+    @form('page/create', 'put')
        
         <h4>New Page</h4>
         <div class="col-12">
@@ -24,4 +24,4 @@
     
     @formend()
     
-@layout('foot')
+@layout('layout.foot')

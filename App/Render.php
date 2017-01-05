@@ -19,7 +19,8 @@ class Render {
         'form',
         'formend',
         'format',
-        'csrf'
+        'csrf',
+        'sub'
     ];
     private $helpers = [
         'if',
@@ -131,6 +132,10 @@ class Render {
         if(gettype($var) != 'undefined'){
             echo $var;
         }
+    }
+    
+    public static function sub($msg, $sentences = 1){
+    	echo implode(".", array_slice(explode('.', $msg), 0, $sentences));
     }
 
 }

@@ -34,10 +34,24 @@ class Migrations{
             new Row('style', 'var', 'normal'),
         ]);
 
+        self::populate();
         return [$db->tableStatus];
     }
 
     public static function populate(){
-       
+        $db = new DB();
+        $db->insert('pages', [
+           [
+               'permalink'  => 'lorem',
+               'header'     => 'lorem ipsum',
+               'content'    => 'lorem ipsum page cotent',
+               'user_id'    => '1',
+               'auth'       => '0',
+               'visible'    => '1',
+               'parent'     => '0',
+               'style'      => 'normal',
+           ] 
+        ]);
+        
     }
 }

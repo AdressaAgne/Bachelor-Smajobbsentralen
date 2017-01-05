@@ -76,7 +76,7 @@ class Direct extends Route{
         
         //Edit page
         self::patch("$url/edit", "$controller@patch");
-        self::get("$url/edit", "$controller@edit");
+        self::get("$url/edit/{id}", "$controller@edit");
         
         // Update Page
         self::put("$url/create", "$controller@put");
