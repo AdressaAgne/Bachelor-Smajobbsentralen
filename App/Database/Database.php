@@ -114,4 +114,32 @@ class Database extends DBhelpers{
         return self::query($sql, $data);
     }
     
+    /**
+     * update or insert a new setting value
+     * @author Agne *degaard
+     * @param string $name  
+     * @param string $value
+     */
+    public static function setSetting($name, $value){
+        if($this->select('settings', ['value'], ['name' => $name])->rowCount() > 0){
+            $this->update('settings', ['value' => $value], ['name' => $name]);
+        } else {
+            $this->insert('settings', [[
+                'name' => $name,
+                'value' => $value,
+            ]]);
+        }
+    }
+    
+    /**
+     * featch a settings value
+     * @author Agne *degaard
+     * @param  string $name 
+     * @return string
+     */
+    public static function getSetting($name){
+        return $this->select('settings', ['value'], ['name' => $name])->fetch()['value'];
+    }
+    
+    
 }
