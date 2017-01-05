@@ -21,9 +21,10 @@
               </label>
           </div>
           <div class="col-12">
-              <input type="submit" value="create new page">
+              <input type="submit" value="Create new page">
           </div>
         </div>
+
     @formend()
 
 @layout('layout.foot')
