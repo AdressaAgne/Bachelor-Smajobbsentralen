@@ -1,0 +1,19 @@
+@mixin breakpoint($value)
+    @media ($value)
+        @content
+        
+        
+@mixin media-small
+    @include breakpoint('max-width: #{$iron-grid-breakpoint-small}')
+        @content
+        
+        
+@mixin media-medium
+    @include breakpoint('max-width: #{$iron-grid-breakpoint-medium}')
+        @content
+        
+        
+@mixin media-large
+    @include breakpoint('min-width: #{$iron-grid-breakpoint-large}')
+        @content
+        
