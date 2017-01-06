@@ -15,7 +15,7 @@ class PageController extends Controller implements StackController{
         
         $page = $this->select('pages', ['*'], ['permalink' => $url['id']], 'Page')->fetch();
         
-        return View::make('pages.normal', ['page' => $page]);
+        return View::make('index', ['page' => $page]);
         
     }
     

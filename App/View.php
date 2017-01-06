@@ -5,9 +5,9 @@ use Render, BaseController, Account, Direct;
 
 class View {
     
-    public static function make($url, $vars = null){
+    public static function make($url, $vars = null, $theme = ''){
         $url = preg_replace("/\\./uimx", "/", $url);
-        return self::includeFile("view/{$url}.php", $vars);
+        return self::includeFile("view/{$theme}{$url}.php", $vars);
     }
     
     public static function auth($url, $direct = '/login', $vars = null){
