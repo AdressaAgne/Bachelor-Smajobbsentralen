@@ -4,7 +4,6 @@
 
     @form('page/create', 'put')
         <div class="col-6 admin-panel">
-
           <h4>New Page</h4>
           <div class="col-12 form-element">
               <input type="text" placeholder="header" name="header">
@@ -21,9 +20,10 @@
               </label>
           </div>
           <div class="col-12">
-              <input type="submit" value="create new page">
+              <input type="submit" value="Create new page">
           </div>
         </div>
-    @formend()
 
+    @formend()
+@layout('layout.scripts')
 @layout('layout.foot')
