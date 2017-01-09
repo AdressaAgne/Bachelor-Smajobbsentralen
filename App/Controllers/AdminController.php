@@ -13,6 +13,12 @@ class AdminController extends Controller implements NormalController {
         
     }
     
+    public function settings(){
+        
+    }
+    public function themes(){
+        
+    }
     
     public function route(){
         return Route::lists();

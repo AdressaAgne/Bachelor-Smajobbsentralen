@@ -2,6 +2,8 @@
     <h1>Admin <small>Dashboard</small></h1>
     <p>Welcome 'Administrator'</p>
 
+    @layout('layout.admin_menu')
+   
     @form('page/create', 'put')
         <div class="col-6 admin-panel">
           <h4>New Page</h4>

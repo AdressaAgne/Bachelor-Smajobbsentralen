@@ -21,6 +21,10 @@ class Route {
      */
     public static function getCurrentRoute($route){
         
+        if(Config::$debug_mode){
+            self::checkForMissingMethods();
+        }
+        
         /**
         *   Change to switc case, for put, delete and update editions.
         */
@@ -58,6 +62,23 @@ class Route {
         }
     }
     
+    private static function checkForMissingMethods(){
+        $missing = [];
+            
+        foreach(self::$routes as $key => $http){
+            foreach($http as $class){
+                $class = explode('@', $class['callback']);
+                if(!method_exists($class[0], $class[1])){
+                    $missing[] = $class;
+                }
+
+            }
+        }
+        if(!empty($missing)){
+            print_r($missing);
+            die("Missing controllers");
+        }
+    }
     
     public static function method($method, $route){
         

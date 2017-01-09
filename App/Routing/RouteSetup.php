@@ -10,6 +10,8 @@ Direct::get("/migrate", 'MainController@migrate');
 
 
 Direct::get('/admin', 'AdminController@index');
+Direct::get('/admin/settings', 'AdminController@settings');
+Direct::get('/admin/themes', 'AdminController@themes');
 
 Direct::get('/list', 'AdminController@route');
 

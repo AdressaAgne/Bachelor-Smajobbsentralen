@@ -28,4 +28,9 @@ class Controller extends DB{
         self::$site_wide_vars['settings'] = $this->select('pages', ['*'])->fetchAll();
         
     }
+    
+    public function __call($method, $params){
+        die($params[0]['param'] . ": Could not find method <b>$method</b> in <em>".static::class."</em>");
+    }
+    
 }
