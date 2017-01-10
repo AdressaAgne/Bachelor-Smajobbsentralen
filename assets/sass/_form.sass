@@ -18,6 +18,12 @@
     -webkit-transition: opacity 0.35s ease-in-out
     transition: opacity 0.35s ease-in-out
 
+.form-element
+    float: left
+    width: 100%
+    display: block
+    margin: 10px 0px
+
 input[type='text'], textarea
     box-sizing: border-box
     appearance: none
@@ -30,11 +36,11 @@ input[type='text'], textarea
     padding: 4px
     line-height: 20px
     text-indent: 5px
-    transition: all 0.2s ease-in-out
-    box-shadow: inset 0px 0px 0px 0px $theme-color
+    transition: border, box-shadow 0.2s ease-in-out
+    box-shadow: inset 0vw 0px 0px 0px $theme-color
     &:focus
         color: $theme-color-text
-        box-shadow: inset 500px 0px 0px 0px $theme-color
+        box-shadow: inset 100vw 0px 0px 0px $theme-color
 textarea
   resize: none
 
@@ -53,3 +59,17 @@ input[type='submit'], input[type='button'], button, .btn
   border-radius: 2px
   line-height: 20px
   cursor: pointer
+
+
+label.page-select
+    cursor: pointer
+    display: block
+    padding: 10px
+    background-color: $paper-devider-color
+    height: 250px
+    overflow: hidden
+[type='radio'].page-select
+    display: none
+[type='radio']:checked + label.page-select
+    background-color: $accent-color
+        

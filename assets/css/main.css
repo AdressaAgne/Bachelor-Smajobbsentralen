@@ -246,23 +246,29 @@ img {
   -webkit-transition: opacity 0.35s ease-in-out;
   transition: opacity 0.35s ease-in-out; }
 
+.form-element {
+  float: left;
+  width: 100%;
+  display: block;
+  margin: 10px 0px; }
+
 input[type='text'], textarea {
   box-sizing: border-box;
   appearance: none;
   width: 100%;
   border: none;
   margin: 2.5px 0px;
-  border-bottom: 2px solid #4CAF50;
+  border-bottom: 2px solid #607D8B;
   border-radius: 2px;
   font-size: 16px;
   padding: 4px;
   line-height: 20px;
   text-indent: 5px;
-  transition: all 0.2s ease-in-out;
-  box-shadow: inset 0px 0px 0px 0px #4CAF50; }
+  transition: border, box-shadow 0.2s ease-in-out;
+  box-shadow: inset 0vw 0px 0px 0px #607D8B; }
   input[type='text']:focus, textarea:focus {
     color: #f8f8f8;
-    box-shadow: inset 500px 0px 0px 0px #4CAF50; }
+    box-shadow: inset 100vw 0px 0px 0px #607D8B; }
 
 textarea {
   resize: none; }
@@ -272,7 +278,7 @@ input[type='submit'], input[type='button'], button, .btn {
   appearance: none;
   box-sizing: border-box;
   border: none;
-  background-color: #4CAF50;
+  background-color: #607D8B;
   color: white;
   width: 100%;
   border-radius: 2px;
@@ -282,12 +288,26 @@ input[type='submit'], input[type='button'], button, .btn {
   line-height: 20px;
   cursor: pointer; }
 
+label.page-select {
+  cursor: pointer;
+  display: block;
+  padding: 10px;
+  background-color: #E0E0E0;
+  height: 250px;
+  overflow: hidden; }
+
+[type='radio'].page-select {
+  display: none; }
+
+[type='radio']:checked + label.page-select {
+  background-color: #FFC107; }
+
 .nav-admin {
   width: 200px;
   position: absolute;
   left: 0px;
   top: 0px;
-  background-color: #4CAF50;
+  background-color: #607D8B;
   height: 100vh;
   padding-top: 50px; }
   .nav-admin ul li a {
@@ -295,13 +315,16 @@ input[type='submit'], input[type='button'], button, .btn {
     display: block;
     padding: 10px;
     color: #f8f8f8;
-    border-bottom: 1px solid #46a149;
-    border-top: 1px solid #59b75c; }
+    border-bottom: 1px solid #58727f;
+    border-top: 1px solid #688897; }
     .nav-admin ul li a:hover {
-      background-color: #46a149; }
+      background-color: #58727f; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 5px 0px; }
 
 a {
   text-decoration: none;
-  color: #4CAF50; }
+  color: #607D8B; }
   a:hover {
-    color: #5e35a8; }
+    color: #f2b500; }

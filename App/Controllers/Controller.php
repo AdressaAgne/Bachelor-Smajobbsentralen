@@ -9,7 +9,6 @@ class Controller extends DB{
         'user' => null,
         'google_key' => 'AIzaSyC7i0o5mdEYSbG_wqoWAx53tAP1xxTKVQo',
         'menu' => null,
-        'settings' => null,
     ];
     
     /**
@@ -25,7 +24,6 @@ class Controller extends DB{
         }
         
         self::$site_wide_vars['menu'] = $this->select('pages', ['*'], ['visible' => '1', 'auth' => '0'])->fetchAll();
-        self::$site_wide_vars['settings'] = $this->select('pages', ['*'])->fetchAll();
         
     }
     

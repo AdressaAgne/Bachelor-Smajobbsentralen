@@ -11,7 +11,9 @@ Direct::get("/migrate", 'MainController@migrate');
 
 Direct::get('/admin', 'AdminController@index');
 Direct::get('/admin/settings', 'AdminController@settings');
+Direct::patch('/admin/settings', 'AdminController@patch_settings');
 Direct::get('/admin/themes', 'AdminController@themes');
+//Direct::patch('/admin/themes', 'AdminController@patch_themes');
 
 Direct::get('/list', 'AdminController@route');
 
