@@ -252,18 +252,17 @@ input[type='text'], textarea {
   width: 100%;
   border: none;
   margin: 2.5px 0px;
-  border-bottom: 2px solid #009688;
+  border-bottom: 2px solid #4CAF50;
   border-radius: 2px;
   font-size: 16px;
   padding: 4px;
   line-height: 20px;
   text-indent: 5px;
-  transition: border 0.1s ease-in-out; }
-  input[type='text']:hover, textarea:hover {
-    color: #999; }
+  transition: all 0.2s ease-in-out;
+  box-shadow: inset 0px 0px 0px 0px #4CAF50; }
   input[type='text']:focus, textarea:focus {
-    color: #000;
-    border-right: 2px solid #009688; }
+    color: #f8f8f8;
+    box-shadow: inset 500px 0px 0px 0px #4CAF50; }
 
 textarea {
   resize: none; }
@@ -273,7 +272,7 @@ input[type='submit'], input[type='button'], button, .btn {
   appearance: none;
   box-sizing: border-box;
   border: none;
-  background-color: #009688;
+  background-color: #4CAF50;
   color: white;
   width: 100%;
   border-radius: 2px;
@@ -288,7 +287,7 @@ input[type='submit'], input[type='button'], button, .btn {
   position: absolute;
   left: 0px;
   top: 0px;
-  background-color: #009688;
+  background-color: #4CAF50;
   height: 100vh;
   padding-top: 50px; }
   .nav-admin ul li a {
@@ -296,13 +295,13 @@ input[type='submit'], input[type='button'], button, .btn {
     display: block;
     padding: 10px;
     color: #f8f8f8;
-    border-bottom: 1px solid #008276;
-    border-top: 1px solid #00aa9a; }
+    border-bottom: 1px solid #46a149;
+    border-top: 1px solid #59b75c; }
     .nav-admin ul li a:hover {
-      background-color: #008276; }
+      background-color: #46a149; }
 
 a {
   text-decoration: none;
-  color: #009688; }
+  color: #4CAF50; }
   a:hover {
     color: #5e35a8; }

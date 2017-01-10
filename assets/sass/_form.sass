@@ -19,23 +19,22 @@
     transition: opacity 0.35s ease-in-out
 
 input[type='text'], textarea
-  box-sizing: border-box
-  appearance: none
-  width: 100%
-  border: none
-  margin: 2.5px 0px
-  border-bottom: 2px solid $palette-teal
-  border-radius: 2px
-  font-size: 16px
-  padding: 4px
-  line-height: 20px
-  text-indent: 5px
-  transition: border 0.1s ease-in-out
-  &:hover
-    color: #999
-  &:focus
-    color: #000
-    border-right: 2px solid $palette-teal
+    box-sizing: border-box
+    appearance: none
+    width: 100%
+    border: none
+    margin: 2.5px 0px
+    border-bottom: 2px solid $theme-color
+    border-radius: 2px
+    font-size: 16px
+    padding: 4px
+    line-height: 20px
+    text-indent: 5px
+    transition: all 0.2s ease-in-out
+    box-shadow: inset 0px 0px 0px 0px $theme-color
+    &:focus
+        color: $theme-color-text
+        box-shadow: inset 500px 0px 0px 0px $theme-color
 textarea
   resize: none
 
@@ -45,7 +44,7 @@ input[type='submit'], input[type='button'], button, .btn
   appearance: none
   box-sizing: border-box
   border: none
-  background-color: $palette-teal
+  background-color: $theme-color
   color: white
   width: 100%
   border-radius: 2px
