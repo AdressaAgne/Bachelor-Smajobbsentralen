@@ -9,7 +9,9 @@ class AdminController extends Controller implements NormalController {
     
     public function index(){
         
-        return View::make('admin');
+        $types = ['normal', 'blog'];
+        
+        return View::make('admin', ['pagetypes' => $types]);
         
     }
     
@@ -37,6 +39,11 @@ class AdminController extends Controller implements NormalController {
     
     public function themes(){
         return View::make('admin.themes');
+    }
+    
+    public function pages(){
+        $page = $this->select('pages', ['*'], null, 'page');
+        return View::make('admin.pages', ['pages' => $page]);
     }
     
     public function route(){

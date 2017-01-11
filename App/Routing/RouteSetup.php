@@ -14,7 +14,7 @@ Direct::get('/admin/settings', 'AdminController@settings');
 Direct::patch('/admin/settings', 'AdminController@patch_settings');
 Direct::get('/admin/themes', 'AdminController@themes');
 //Direct::patch('/admin/themes', 'AdminController@patch_themes');
-
+Direct::get('/admin/pages', 'AdminController@pages');
 Direct::get('/list', 'AdminController@route');
 
 Direct::stack('/page', 'PageController');

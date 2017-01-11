@@ -42,23 +42,26 @@ input[type='text'], textarea
         color: $theme-color-text
         box-shadow: inset 100vw 0px 0px 0px $theme-color
 textarea
-  resize: none
-
+    resize: none
 
 input[type='submit'], input[type='button'], button, .btn
-  font-weight: 100
-  appearance: none
-  box-sizing: border-box
-  border: none
-  background-color: $theme-color
-  color: white
-  width: 100%
-  border-radius: 2px
-  font-size: 16px
-  padding: 6px
-  border-radius: 2px
-  line-height: 20px
-  cursor: pointer
+    text-align: center
+    font-weight: 100
+    appearance: none
+    box-sizing: border-box !important
+    border: none
+    background-color: $theme-color
+    color: white
+    width: 100%
+    border-radius: 2px
+    font-size: 16px
+    padding: 6px
+    border-radius: 2px
+    font-weight: 300
+    cursor: pointer
+    &:hover
+        background-color: $theme-color-700
+        color: $theme-color-text
 
 
 label.page-select

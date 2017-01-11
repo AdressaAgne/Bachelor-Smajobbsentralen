@@ -13,6 +13,13 @@
               <input type="text" placeholder="/page/..." name="permalink">
           </div>
           <div class="col-12 form-element">
+              <select name="type" id="">
+                    @foreach($pagetypes as $type)
+                        <option value="{{$tyoe}}">{{$type}}</option>
+                    @endforeach
+              </select>
+          </div>
+          <div class="col-12 form-element">
               <textarea name="content" id="" cols="30" rows="10" class="form-control" placeholder="content"></textarea>
           </div>
           <div class="col-12 form-element">

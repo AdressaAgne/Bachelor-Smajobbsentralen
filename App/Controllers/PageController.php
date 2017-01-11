@@ -26,6 +26,7 @@ class PageController extends Controller implements StackController{
             'header'    => $data['header'],
             'content'   => $data['content'],
             'permalink' => $data['permalink'],
+            'type'      => $data['type'],
             'visible'   => isset($data['visible']),
         ]]);
         
