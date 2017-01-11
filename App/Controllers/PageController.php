@@ -26,11 +26,11 @@ class PageController extends Controller implements StackController{
             'header'    => $data['header'],
             'content'   => $data['content'],
             'permalink' => $data['permalink'],
-            'type'      => $data['type'],
+            'style'     => $data['style'],
             'visible'   => isset($data['visible']),
         ]]);
         
-        return View::make('admin');
+        return Direct::re('/admin/pages');
     }
     
     public function patch($data){
@@ -58,6 +58,6 @@ class PageController extends Controller implements StackController{
 
         $this->deleteWhere('pages', 'id', $data['id']);
         
-        return Direct::re('/admin');
+        return Direct::re('/admin/pages');
     }
 }

@@ -14,5 +14,9 @@ class Page extends DB implements Module {
         
     }
     
+    public function children(){
+        return $this->select('pages', ['*'], ['parent' => $this->id], 'page')->fetchAll();
+    }
+    
     
 }

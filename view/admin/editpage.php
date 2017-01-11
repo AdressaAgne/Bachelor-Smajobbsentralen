@@ -24,5 +24,4 @@
         </div>
     
     @formend()
-    
 @layout('layout.foot')
