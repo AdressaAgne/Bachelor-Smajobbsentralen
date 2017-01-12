@@ -15,7 +15,7 @@ class Render {
         'layout',
         'active_page',
         'isLoggedIn',
-        'check',
+        'checked',
         'form',
         'formend',
         'format',
@@ -128,10 +128,8 @@ class Render {
         echo "</form>";
     }
 
-    public static function check($var){
-        if(gettype($var) != 'undefined'){
-            echo $var;
-        }
+    public static function checked($i){
+        if($i) echo 'checked';
     }
     
     public static function sub($msg, $sentences = 1){

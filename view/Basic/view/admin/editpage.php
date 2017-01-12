@@ -13,7 +13,7 @@
         </div>
         <div class="col-12">
             <label for="">
-                Visible in menu: <input type="checkbox" checked name="visible">
+                Visible in menu: <input type="checkbox" @checked($page->visible) name="visible">
             </label>
         </div>
         <div class="col-12">

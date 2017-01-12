@@ -63,25 +63,28 @@ class Migrations{
         $db->insert('settings', [
             [
                 'name' => 'page-title',
-                'value' => 'page',
+                'value' => 'A cms page title',
             ],[
                 'name' => 'sub-header',
                 'value' => 'just another cms',
             ],[
                 'name' => 'theme',
-                'value' => 'basic',
-            ],[
-                'name' => 'meta-author',
-                'value' => 'ball',
-            ],[
-                'name' => 'meta-description',
-                'value' => 'lorem ipsum',
+                'value' => 'Basic',
             ],[
                 'name' => 'frontpage',
                 'value' => '1',
             ],[
                 'name' => 'comments',
                 'value' => '1',
+            ],[
+                'name' => 'meta-application-name',
+                'value' => '',
+            ],[
+                'name' => 'meta-author',
+                'value' => 'Agne Ødegaard',
+            ],[
+                'name' => 'meta-description',
+                'value' => 'This is just another cms page',
             ],
         ]);
         

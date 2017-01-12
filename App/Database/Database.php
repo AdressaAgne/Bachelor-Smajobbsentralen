@@ -134,16 +134,4 @@ class Database extends DBhelpers{
         return self::select('settings', ['value'], ['name' => $name])->fetch()['value'];
     }
     
-    public function settings(){
-        $settings = self::all('settings');
-        
-        foreach($settings as $key => $value){
-            $settings[$value['name']] = $value['value'];
-            unset($settings[$key]);
-        }
-        
-        return $settings;
-    }
-    
-    
 }

@@ -5,7 +5,7 @@
     @form('/admin/themes', 'patch')
         @foreach($themes as $key => $theme)
             <div class="col-4 theme">
-                @if($settings == $theme)
+                @if($settings['theme'] == $theme)
                     <input type="radio" class="page-select" name="theme" id="theme-{{$key}}" checked value="{{$theme}}">
                 @else
                     <input type="radio" class="page-select" name="theme" id="theme-{{$key}}" value="{{$theme}}">

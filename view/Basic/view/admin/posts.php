@@ -1,5 +1,36 @@
 @layout('layout.head', ['title' => 'Edit Page'])
     @layout('layout.admin_menu')
+    <h1>Posts</h1>
+    <div class="row">
+       <h3>Overview</h3>
+        <table>
+            <thead>
+                <tr>
+                    <td>Header</td>
+                    <td>Link</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody>
+            @foreach($posts as $post)
+                <tr>
+                    <td>{{$post->header}}</td>
+                    <td>/page/{{$post->permalink}}</td>
+                    <td><a href="/page/{{$post->permalink}}" class="btn">View</a></td>
+                    <td><a href="/page/edit/{{$post->permalink}}" class="btn">Edit</a></td>
+                    <td>
+                        @form('/page/', 'delete')
+                            <input type="hidden" value="{{$post->id}}" name="id">
+                            <input type="submit" value="Delete">
+                        @formend()
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
     <div class="row">
         <h3>New Post</h3>
         @form('/post/create', 'put')

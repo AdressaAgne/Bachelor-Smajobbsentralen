@@ -12,9 +12,8 @@ class AdminController extends Controller implements NormalController {
     }
     
     public function settings(){
-        $page = $this->select('pages', ['*'], ['parent' => null], 'page');
-        $settings = $this->getSetting('frontpage');
-        return View::make('admin.settings', ['pages' => $page, 'settings' => $settings]);
+        $page = $this->select('pages', ['*'], ['type' => 'page'], 'page');
+        return View::make('admin.settings', ['pages' => $page]);
     }
     
     public function patch_settings($data){
@@ -24,8 +23,7 @@ class AdminController extends Controller implements NormalController {
     
     public function themes(){
         $themes = array_diff(scandir('./view/'), array('.', '..', '.DS_Store'));
-        $settings = $this->getSetting('theme');
-        return View::make('admin.themes', ['themes' => $themes, 'settings' => $settings]);
+        return View::make('admin.themes', ['themes' => $themes]);
     }
     
     public function patch_themes($data){
@@ -36,7 +34,7 @@ class AdminController extends Controller implements NormalController {
     public function pages(){
         $types = $this->getFiles('./view/'.Config::$theme.'/view/pages');
         
-        $page = $this->select('pages', ['*'], null, 'page');
+        $page = $this->select('pages', ['*'], ['type' => 'page'], 'page');
         return View::make('admin.pages', ['pages' => $page, 'pagetypes' => $types]);
     }
     
@@ -44,7 +42,8 @@ class AdminController extends Controller implements NormalController {
         $types = $this->getFiles('./view/'.Config::$theme.'/view/posts');
         
         $blogs = $this->select('pages', ['*'], ['style' => 'blog'], 'page')->fetchAll();
-        return View::make('admin.posts', ['pagetypes' => $types, 'blogs' => $blogs]);
+        $posts = $this->select('pages', ['*'], ['type' => 'post'], 'page')->fetchAll();
+        return View::make('admin.posts', ['pagetypes' => $types, 'blogs' => $blogs, 'posts' => $posts]);
     }
     
     public function getFiles($path){
@@ -62,6 +61,7 @@ class AdminController extends Controller implements NormalController {
             'permalink' => date('d-m-y-', time()).$this->headerToUrl($data['header']),
             'style'     => $data['style'],
             'parent'    => $data['parent'],
+            'type'      => 'post',
             'visible'   => 0,
         ]]);
         
