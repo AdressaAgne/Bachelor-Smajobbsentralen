@@ -27,8 +27,8 @@ class Config {
 
 
     public static $files      = [
-        "original"          => "/assets/userFiles/original/",
-        "compressed"        => "/assets/userFiles/compressed/",
+        "original"          => "/images/original/",
+        "compressed"        => "/images/compressed/",
         "compressedSize"    => 600,
         "compressedSize2"   => 1000,
     ];
@@ -87,6 +87,7 @@ class Config {
         
         '\App\Modules\Page'                 => 'Page',
         '\App\Modules\User'                 => 'User',
+        '\App\Modules\Image'                => 'Image',
         
     ];
 

@@ -10,6 +10,6 @@
 </head>
 <body>
 
-    @layout('layout.menu')
+@layout('layout.menu')
 
 <div class="container">

@@ -344,6 +344,403 @@ table {
     table thead tr {
       background-color: #58727f !important; }
 
+.pie-chart > circle.front {
+  stroke: #607D8B;
+  stroke-linecap: round;
+  fill: none;
+  stroke-width: 10;
+  stroke-dasharray: 380;
+  -webkit-animation: run 1.5s ease forwards;
+          animation: run 1.5s ease forwards; }
+
+[data-percent="0"] {
+  stroke-dashoffset: 380; }
+
+[data-percent="1"] {
+  stroke-dashoffset: 376.2; }
+
+[data-percent="2"] {
+  stroke-dashoffset: 372.4; }
+
+[data-percent="3"] {
+  stroke-dashoffset: 368.6; }
+
+[data-percent="4"] {
+  stroke-dashoffset: 364.8; }
+
+[data-percent="5"] {
+  stroke-dashoffset: 361; }
+
+[data-percent="6"] {
+  stroke-dashoffset: 357.2; }
+
+[data-percent="7"] {
+  stroke-dashoffset: 353.4; }
+
+[data-percent="8"] {
+  stroke-dashoffset: 349.6; }
+
+[data-percent="9"] {
+  stroke-dashoffset: 345.8; }
+
+[data-percent="10"] {
+  stroke-dashoffset: 342; }
+
+[data-percent="11"] {
+  stroke-dashoffset: 338.2; }
+
+[data-percent="12"] {
+  stroke-dashoffset: 334.4; }
+
+[data-percent="13"] {
+  stroke-dashoffset: 330.6; }
+
+[data-percent="14"] {
+  stroke-dashoffset: 326.8; }
+
+[data-percent="15"] {
+  stroke-dashoffset: 323; }
+
+[data-percent="16"] {
+  stroke-dashoffset: 319.2; }
+
+[data-percent="17"] {
+  stroke-dashoffset: 315.4; }
+
+[data-percent="18"] {
+  stroke-dashoffset: 311.6; }
+
+[data-percent="19"] {
+  stroke-dashoffset: 307.8; }
+
+[data-percent="20"] {
+  stroke-dashoffset: 304; }
+
+[data-percent="21"] {
+  stroke-dashoffset: 300.2; }
+
+[data-percent="22"] {
+  stroke-dashoffset: 296.4; }
+
+[data-percent="23"] {
+  stroke-dashoffset: 292.6; }
+
+[data-percent="24"] {
+  stroke-dashoffset: 288.8; }
+
+[data-percent="25"] {
+  stroke-dashoffset: 285; }
+
+[data-percent="26"] {
+  stroke-dashoffset: 281.2; }
+
+[data-percent="27"] {
+  stroke-dashoffset: 277.4; }
+
+[data-percent="28"] {
+  stroke-dashoffset: 273.6; }
+
+[data-percent="29"] {
+  stroke-dashoffset: 269.8; }
+
+[data-percent="30"] {
+  stroke-dashoffset: 266; }
+
+[data-percent="31"] {
+  stroke-dashoffset: 262.2; }
+
+[data-percent="32"] {
+  stroke-dashoffset: 258.4; }
+
+[data-percent="33"] {
+  stroke-dashoffset: 254.6; }
+
+[data-percent="34"] {
+  stroke-dashoffset: 250.8; }
+
+[data-percent="35"] {
+  stroke-dashoffset: 247; }
+
+[data-percent="36"] {
+  stroke-dashoffset: 243.2; }
+
+[data-percent="37"] {
+  stroke-dashoffset: 239.4; }
+
+[data-percent="38"] {
+  stroke-dashoffset: 235.6; }
+
+[data-percent="39"] {
+  stroke-dashoffset: 231.8; }
+
+[data-percent="40"] {
+  stroke-dashoffset: 228; }
+
+[data-percent="41"] {
+  stroke-dashoffset: 224.2; }
+
+[data-percent="42"] {
+  stroke-dashoffset: 220.4; }
+
+[data-percent="43"] {
+  stroke-dashoffset: 216.6; }
+
+[data-percent="44"] {
+  stroke-dashoffset: 212.8; }
+
+[data-percent="45"] {
+  stroke-dashoffset: 209; }
+
+[data-percent="46"] {
+  stroke-dashoffset: 205.2; }
+
+[data-percent="47"] {
+  stroke-dashoffset: 201.4; }
+
+[data-percent="48"] {
+  stroke-dashoffset: 197.6; }
+
+[data-percent="49"] {
+  stroke-dashoffset: 193.8; }
+
+[data-percent="50"] {
+  stroke-dashoffset: 190; }
+
+[data-percent="51"] {
+  stroke-dashoffset: 186.2; }
+
+[data-percent="52"] {
+  stroke-dashoffset: 182.4; }
+
+[data-percent="53"] {
+  stroke-dashoffset: 178.6; }
+
+[data-percent="54"] {
+  stroke-dashoffset: 174.8; }
+
+[data-percent="55"] {
+  stroke-dashoffset: 171; }
+
+[data-percent="56"] {
+  stroke-dashoffset: 167.2; }
+
+[data-percent="57"] {
+  stroke-dashoffset: 163.4; }
+
+[data-percent="58"] {
+  stroke-dashoffset: 159.6; }
+
+[data-percent="59"] {
+  stroke-dashoffset: 155.8; }
+
+[data-percent="60"] {
+  stroke-dashoffset: 152; }
+
+[data-percent="61"] {
+  stroke-dashoffset: 148.2; }
+
+[data-percent="62"] {
+  stroke-dashoffset: 144.4; }
+
+[data-percent="63"] {
+  stroke-dashoffset: 140.6; }
+
+[data-percent="64"] {
+  stroke-dashoffset: 136.8; }
+
+[data-percent="65"] {
+  stroke-dashoffset: 133; }
+
+[data-percent="66"] {
+  stroke-dashoffset: 129.2; }
+
+[data-percent="67"] {
+  stroke-dashoffset: 125.4; }
+
+[data-percent="68"] {
+  stroke-dashoffset: 121.6; }
+
+[data-percent="69"] {
+  stroke-dashoffset: 117.8; }
+
+[data-percent="70"] {
+  stroke-dashoffset: 114; }
+
+[data-percent="71"] {
+  stroke-dashoffset: 110.2; }
+
+[data-percent="72"] {
+  stroke-dashoffset: 106.4; }
+
+[data-percent="73"] {
+  stroke-dashoffset: 102.6; }
+
+[data-percent="74"] {
+  stroke-dashoffset: 98.8; }
+
+[data-percent="75"] {
+  stroke-dashoffset: 95; }
+
+[data-percent="76"] {
+  stroke-dashoffset: 91.2; }
+
+[data-percent="77"] {
+  stroke-dashoffset: 87.4; }
+
+[data-percent="78"] {
+  stroke-dashoffset: 83.6; }
+
+[data-percent="79"] {
+  stroke-dashoffset: 79.8; }
+
+[data-percent="80"] {
+  stroke-dashoffset: 76; }
+
+[data-percent="81"] {
+  stroke-dashoffset: 72.2; }
+
+[data-percent="82"] {
+  stroke-dashoffset: 68.4; }
+
+[data-percent="83"] {
+  stroke-dashoffset: 64.6; }
+
+[data-percent="84"] {
+  stroke-dashoffset: 60.8; }
+
+[data-percent="85"] {
+  stroke-dashoffset: 57; }
+
+[data-percent="86"] {
+  stroke-dashoffset: 53.2; }
+
+[data-percent="87"] {
+  stroke-dashoffset: 49.4; }
+
+[data-percent="88"] {
+  stroke-dashoffset: 45.6; }
+
+[data-percent="89"] {
+  stroke-dashoffset: 41.8; }
+
+[data-percent="90"] {
+  stroke-dashoffset: 38; }
+
+[data-percent="91"] {
+  stroke-dashoffset: 34.2; }
+
+[data-percent="92"] {
+  stroke-dashoffset: 30.4; }
+
+[data-percent="93"] {
+  stroke-dashoffset: 26.6; }
+
+[data-percent="94"] {
+  stroke-dashoffset: 22.8; }
+
+[data-percent="95"] {
+  stroke-dashoffset: 19; }
+
+[data-percent="96"] {
+  stroke-dashoffset: 15.2; }
+
+[data-percent="97"] {
+  stroke-dashoffset: 11.4; }
+
+[data-percent="98"] {
+  stroke-dashoffset: 7.6; }
+
+[data-percent="99"] {
+  stroke-dashoffset: 3.8; }
+
+.pie-chart > circle.behind {
+  stroke: #cccccc;
+  stroke-linecap: round;
+  fill: none;
+  stroke-width: 10; }
+
+.pie-chart {
+  text-align: center; }
+
+.pie-chart > text {
+  fill: #607D8B;
+  font-family: verdana; }
+
+.info-text {
+  color: #607D8B;
+  display: block; }
+
+.pie-chart > text {
+  fill: #607D8B; }
+
+.pie-chart > circle.front {
+  stroke: #607D8B; }
+
+@-webkit-keyframes run {
+  from {
+    stroke-dashoffset: 380; }
+  to {
+    stroke-dashoffset: auto; } }
+
+@keyframes run {
+  from {
+    stroke-dashoffset: 380; }
+  to {
+    stroke-dashoffset: auto; } }
+
+.drop, .circle-drop {
+  background-color: #efefef;
+  padding: 50px;
+  margin: 0px auto;
+  text-align: center;
+  box-sizing: border-box;
+  background-size: cover;
+  background-position: center center;
+  display: block;
+  cursor: pointer; }
+
+.circle-drop {
+  padding: 25px 0px;
+  border-radius: 100px;
+  width: 200px;
+  height: 200px; }
+
+.drop:hover {
+  background-color: #e6e6e6; }
+
+.drop.active, .drop:active {
+  background-color: #e2e2e2;
+  border: 1px solid #d6d6d6; }
+
+.user-image-margin {
+  margin-bottom: 25px; }
+
+.pie-chart.processing > circle.front {
+  -webkit-animation-name: processing;
+          animation-name: processing;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite; }
+
+@-webkit-keyframes processing {
+  0% {
+    stroke-dasharray: 95;
+    stroke-dashoffset: 95; }
+  100% {
+    stroke-dasharray: 95;
+    stroke-dashoffset: 280; } }
+
+@keyframes processing {
+  0% {
+    stroke-dasharray: 95;
+    stroke-dashoffset: 95; }
+  100% {
+    stroke-dasharray: 95;
+    stroke-dashoffset: 280; } }
+
 h1, h2, h3, h4, h5, h6 {
   margin: 5px 0px; }
 

@@ -1,4 +1,4 @@
-@layout('layout.head', ['title' => 'Edit Page'])
+@layout('layout.head', ['title' => 'Settings'])
     @layout('layout.admin_menu')
     <h1>Settings</h1>
     

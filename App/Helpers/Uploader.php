@@ -57,7 +57,7 @@ class Uploader {
         
         $this->tmp_path = $file['tmp_name'];
         $this->size     = $file['size'];
-        $this->filename =  strtolower(uniqid(basename($file['name'])).".".explode('/', $file['type'])[1]);
+        $this->filename =  strtolower(uniqid().".".explode('/', $file['type'])[1]);
         
         foreach($this->allowed_files as $type){
           if(strtolower($file["type"]) == strtolower('image/'.$type)){
@@ -81,11 +81,11 @@ class Uploader {
                 
                 $id = (isset($_SESSION['uuid']) ? $_SESSION['uuid'] : 0);
                 
-                $id = DB::do()->insert([[
+                $id = DB::insert('image', [[
                     'user_id' => $id,
                     'small' => $small,
                     'big' => $big,
-                ]], 'image');
+                ]]);
 
               return ['id' => $id, 'folder' => $big];
             }

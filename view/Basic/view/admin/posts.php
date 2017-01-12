@@ -1,4 +1,4 @@
-@layout('layout.head', ['title' => 'Edit Page'])
+@layout('layout.head', ['title' => 'Posts'])
     @layout('layout.admin_menu')
     <h1>Posts</h1>
     <div class="row">

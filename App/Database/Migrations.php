@@ -40,6 +40,14 @@ class Migrations{
             new Row('name', 'var'),
             new Row('value', 'var'),
         ]);
+        
+         $db->createTable('image', [
+            new PID(),
+            new Row('user_id', 'int'),
+            new Row('small', 'varchar'),
+            new Row('big', 'varchar'),
+            new Timestamp(),
+        ]);
 
         self::populate();
         return [$db->tableStatus];

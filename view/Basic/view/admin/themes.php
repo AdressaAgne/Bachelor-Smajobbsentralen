@@ -1,4 +1,4 @@
-@layout('layout.head', ['title' => 'Edit Page'])
+@layout('layout.head', ['title' => 'Themes'])
     @layout('layout.admin_menu')
     <h1>Themes</h1>
     
