@@ -54,7 +54,7 @@ class Migrations{
                'content'    => 'This is the homepage of your site, you can edit this or make a new page in the admin panel',
                'user_id'    => '1',
                'auth'       => '0',
-               'visible'    => '1',
+               'visible'    => '0',
                'parent'     => '0',
                'style'      => 'normal',
            ] 
