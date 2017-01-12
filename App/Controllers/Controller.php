@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controllers;
-use DB, Account, User;
+use DB, Account, User, Config;
 
 class Controller extends DB{
     
@@ -9,6 +9,7 @@ class Controller extends DB{
         'user' => null,
         'google_key' => 'AIzaSyC7i0o5mdEYSbG_wqoWAx53tAP1xxTKVQo',
         'menu' => null,
+        'assets' => null,
     ];
     
     /**
@@ -19,6 +20,8 @@ class Controller extends DB{
     public function __construct(){
         parent::__construct();
         
+        Config::$theme = $this->getSetting('theme');
+        self::$site_wide_vars['assets'] = '/view/'.Config::$theme.'/assets';
         if(Account::isLoggedIn()){
             self::$site_wide_vars['user'] = new User($_SESSION['uuid']);
         }

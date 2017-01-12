@@ -35,30 +35,31 @@
         <h3>New Page</h3>
         @form('page/create', 'put')
             <div class="admin-panel">
-              <div class="form-element">
-                  <input type="text" placeholder="header" name="header">
-              </div>
-              <div class="form-element">
-                  <input type="text" placeholder="/page/..." name="permalink">
-              </div>
-              <div class="form-element">
-                  <select name="style" id="">
+                <div class="form-element">
+                    <input type="text" placeholder="Header" name="header">
+                </div>
+                <div class="form-element">
+                    <input type="text" placeholder="Url" name="permalink">
+                </div>
+                <div class="form-element">
+                    <h4>Select page style</h4>
+                    <select name="style" id="">
                         @foreach($pagetypes as $style)
                             <option value="{{$style}}">{{$style}}</option>
                         @endforeach
-                  </select>
-              </div>
-              <div class="form-element">
-                  <textarea name="content" id="" cols="30" rows="10" class="form-control" placeholder="content"></textarea>
-              </div>
-              <div class="form-element">
-                  <label for="">
-                      Visible in menu: <input type="checkbox" checked name="visible">
-                  </label>
-              </div>
-              <div class="form-element">
-                  <input type="submit" value="Create new page">
-              </div>
+                    </select>
+                </div>
+                <div class="form-element">
+                    <textarea name="content" id="" cols="30" rows="10" class="form-control" placeholder="Content"></textarea>
+                </div>
+                <div class="form-element">
+                    <label for="">
+                        Visible in menu: <input type="checkbox" checked name="visible">
+                    </label>
+                </div>
+                <div class="form-element">
+                    <input type="submit" value="Create new page">
+                </div>
             </div>
         @formend()
     </div>

@@ -112,7 +112,7 @@ class DBhelpers{
     /**
      * covert variables types to sql variable types
      * @author Agne *degaard
-     * @param  string $type [[Description]]
+     * @param  string $type
      * @return string string
      */
     protected static function types($type){

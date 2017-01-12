@@ -1,8 +1,6 @@
 @layout('layout.head', ['title' => 'Edit Page'])
     <h1>Edit {{ $page->header }}</h1>
-    
     @form('', 'patch')
-       
         <h4>Edit Page</h4>
         <div class="col-12">
             <input type="text" placeholder="header" name="header" value="{{ $page->header }}">
@@ -22,6 +20,5 @@
             <input type="hidden" value="{{$page->id}}" name="id">
             <input type="submit" value="edit page">
         </div>
-    
     @formend()
 @layout('layout.foot')

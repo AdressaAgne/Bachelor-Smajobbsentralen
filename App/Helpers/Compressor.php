@@ -43,8 +43,6 @@ class Compressor {
         return new Compressor($file);
     }
 
-
-
     public function resizeAuto($size) {
       if($this->width > $this->height) return $this->resizeWidth($size);
       return $this->resizeHeight($size);

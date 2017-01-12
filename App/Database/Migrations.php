@@ -32,6 +32,7 @@ class Migrations{
             new Row('visible', 'bool'),
             new Row('parent', 'int', '0'),
             new Row('style', 'var', 'normal'),
+            new Row('type', 'var', 'page'),
         ]);
         
         $db->createTable('settings', [

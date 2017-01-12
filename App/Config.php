@@ -23,16 +23,18 @@ class Config {
 
     public static $cookie_time = 86400 * 30;
     public static $cache_time = 3600;
-    public static $cache_folder = 'assets/cache/';
+    public static $cache_folder = 'cache/';
 
 
     public static $files      = [
-        "original" => "/assets/userFiles/original/",
-        "compressed" => "/assets/userFiles/compressed/",
-        "compressedSize" => 600,
-        "compressedSize2" => 1000,
+        "original"          => "/assets/userFiles/original/",
+        "compressed"        => "/assets/userFiles/compressed/",
+        "compressedSize"    => 600,
+        "compressedSize2"   => 1000,
     ];
 
+    public static $theme = 'basic';
+    
     /**
     *   Namespace for controllers
     */

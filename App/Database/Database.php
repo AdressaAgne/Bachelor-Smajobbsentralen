@@ -121,14 +121,7 @@ class Database extends DBhelpers{
      * @param string $value
      */
     public static function setSetting($name, $value){
-        if(self::select('settings', ['value'], ['name' => $name])->rowCount() > 0){
-            self::update('settings', ['value' => $value], ['name' => $name]);
-        } else {
-            self::insert('settings', [[
-                'name' => $name,
-                'value' => $value,
-            ]]);
-        }
+        self::updateWhere('settings', ['value' => $value], ['name' => $name]);
     }
     
     /**
@@ -139,6 +132,17 @@ class Database extends DBhelpers{
      */
     public static function getSetting($name){
         return self::select('settings', ['value'], ['name' => $name])->fetch()['value'];
+    }
+    
+    public function settings(){
+        $settings = self::all('settings');
+        
+        foreach($settings as $key => $value){
+            $settings[$value['name']] = $value['value'];
+            unset($settings[$key]);
+        }
+        
+        return $settings;
     }
     
     

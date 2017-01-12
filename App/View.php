@@ -7,7 +7,7 @@ class View {
     
     public static function make($url, $vars = null, $theme = ''){
         $url = preg_replace("/\\./uimx", "/", $url);
-        return self::includeFile("view/{$theme}{$url}.php", $vars);
+        return self::includeFile("view/".Config::$theme."/view/{$url}.php", $vars);
     }
     
     public static function auth($url, $direct = '/login', $vars = null){

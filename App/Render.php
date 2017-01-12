@@ -77,7 +77,7 @@ class Render {
      * @param array  [$vars         = null] variables to carrie over to file
      */
     public static function layout($page, $vars = null){
-        echo View::includeFile('view/'.preg_replace("/\\./uimx", "/", $page).'.php', $vars);
+        echo View::includeFile('view/'.Config::$theme.'/view/'.preg_replace("/\\./uimx", "/", $page).'.php', $vars);
     }
 
     /**

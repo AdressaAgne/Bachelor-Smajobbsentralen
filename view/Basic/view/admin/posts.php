@@ -27,7 +27,7 @@
                   <textarea name="content" id="" cols="30" rows="10" class="form-control" placeholder="content"></textarea>
               </div>
               <div class="form-element">
-                  <input type="submit" value="Create new page">
+                  <input type="submit" value="Create new post">
               </div>
             </div>
         @formend()

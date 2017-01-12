@@ -1,58 +1,61 @@
 <?php
 namespace App\Controllers;
 
-use View, Direct, NormalController, Route;
+use View, Direct, NormalController, Route, Config;
 
 
 class AdminController extends Controller implements NormalController {
 
     
     public function index(){
-        
         return View::make('admin');
-        
     }
     
     public function settings(){
-        $settings = $this->all('settings');
-        
-        foreach($settings as $key => $value){
-            $settings[$value['name']] = $value['value'];
-            unset($settings[$key]);
-        }
-        
         $page = $this->select('pages', ['*'], ['parent' => null], 'page');
-        
-        return View::make('admin.settings', ['pages' => $page,
-                                             'settings' => $settings]);
+        $settings = $this->getSetting('frontpage');
+        return View::make('admin.settings', ['pages' => $page, 'settings' => $settings]);
     }
     
     public function patch_settings($data){
-        
-        $this->updateWhere('settings', ['value' => $data['frontpage']], ['name' => 'frontpage']);
-        
+        $this->setSetting('frontpage', $data['frontpage']);
         return Direct::re('/admin/settings');
-        
     }
     
     public function themes(){
-        return View::make('admin.themes');
+        $themes = array_diff(scandir('./view/'), array('.', '..', '.DS_Store'));
+        $settings = $this->getSetting('theme');
+        return View::make('admin.themes', ['themes' => $themes, 'settings' => $settings]);
+    }
+    
+    public function patch_themes($data){
+        $this->setSetting('theme', $data['theme']);
+        return Direct::re('/admin/themes');
     }
     
     public function pages(){
-        $types = ['normal', 'blog'];
+        $types = $this->getFiles('./view/'.Config::$theme.'/view/pages');
+        
         $page = $this->select('pages', ['*'], null, 'page');
         return View::make('admin.pages', ['pages' => $page, 'pagetypes' => $types]);
     }
     
     public function posts(){
-        $types = ['normal'];
+        $types = $this->getFiles('./view/'.Config::$theme.'/view/posts');
+        
         $blogs = $this->select('pages', ['*'], ['style' => 'blog'], 'page')->fetchAll();
         return View::make('admin.posts', ['pagetypes' => $types, 'blogs' => $blogs]);
     }
     
+    public function getFiles($path){
+        $types = array_diff(scandir($path), array('.', '..', '.DS_Store'));
+        foreach($types as $key => $type){
+            $types[$key] = pathinfo($type, PATHINFO_FILENAME);
+        }
+        return $types;
+    }
+    
     public function put_posts($data){
-        
          $this->insert('pages', [[
             'header'    => $data['header'],
             'content'   => $data['content'],
@@ -68,8 +71,6 @@ class AdminController extends Controller implements NormalController {
     public function route(){
         return Route::lists();
     }
-    
-    
     
     public function headerToUrl($str){
         return preg_replace('/([^a-zA-Z0-9-]+)/u', '', preg_replace('/\\s/u', '-', $str));

@@ -9,7 +9,7 @@
         @foreach($pages as $key => $page)
             <div class="col-4">
                 
-                @if($settings['frontpage'] == $page->id)
+                @if($settings == $page->id)
                     <input type="radio" class="page-select" name="frontpage" id="frontpage-{{$key}}" checked value="{{$page->id}}">
                 @else
                     <input type="radio" class="page-select" name="frontpage" id="frontpage-{{$key}}" value="{{$page->id}}">
