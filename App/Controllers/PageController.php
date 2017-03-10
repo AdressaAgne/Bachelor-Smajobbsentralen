@@ -22,7 +22,7 @@ class PageController extends Controller implements StackController{
     public function put($data){
         // New Page
         
-        $this->insert('pages', [[
+        $id = $this->insert('pages', [[
             'header'    => $data['header'],
             'content'   => $data['content'],
             'permalink' => $data['permalink'],
@@ -30,7 +30,7 @@ class PageController extends Controller implements StackController{
             'visible'   => isset($data['visible']),
         ]]);
         
-        return Direct::re('/admin/pages');
+        return Direct::re('/pages/'.$data['permalink']);
     }
     
     public function patch($data){

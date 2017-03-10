@@ -11,7 +11,6 @@ class User extends DB implements Module {
     public function __construct(){
         
         
-        
     }
     
     

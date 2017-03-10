@@ -1,11 +1,11 @@
 <?php
 namespace App;
 
-use \App\Routing\Direct as Direct;
-use \App\Routing\Route as Route;
-use \App\Routing\RouteHandler as RouteHandler;
-use \App\Config as Config;
-use \App\Controllers\ErrorHandling as ErrorHandling;
+use \App\Routing\Direct             as Direct;
+use \App\Routing\Route              as Route;
+use \App\Routing\RouteHandler       as RouteHandler;
+use \App\Config                     as Config;
+use \App\Controllers\ErrorHandling  as ErrorHandling;
 
 // Start a session if it does not exist
 if(!isset($_SESSION)){

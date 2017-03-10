@@ -55,10 +55,12 @@ class AdminController extends Controller implements NormalController {
         
         $blogs = $this->select('pages', ['*'], ['style' => 'blog'], 'page')->fetchAll();
         $posts = $this->select('pages', ['*'], ['type' => 'post'], 'page')->fetchAll();
-        return View::make('admin.posts', ['pagetypes' => $types, 'blogs' => $blogs, 'posts' => $posts]);
+        $media = $this->select('image', ['*'], null, 'Image')->fetchAll();
+        
+        return View::make('admin.posts', ['pagetypes' => $types, 'blogs' => $blogs, 'posts' => $posts, 'media' => $media]);
     }
     
-    public function getFiles($path){
+    private function getFiles($path){
         $types = array_diff(scandir($path), array('.', '..', '.DS_Store'));
         foreach($types as $key => $type){
             $types[$key] = pathinfo($type, PATHINFO_FILENAME);
@@ -75,9 +77,16 @@ class AdminController extends Controller implements NormalController {
             'parent'    => $data['parent'],
             'type'      => 'post',
             'visible'   => 0,
+            'image'     => (isset($data['image']) ? $data['image'] : 1)
         ]]);
         
-        return Direct::re('/admin/pages');
+        return Direct::re('/admin/posts');
+    }
+    
+    public function arrange_blogposts($data){
+        $page = $this->select('pages', ['*'], ['permalink' => $data['page']], 'page')->fetch();
+        
+        return View::make('admin.arrange', ['page' => $page]);
     }
     
     public function route(){

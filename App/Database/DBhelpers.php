@@ -11,13 +11,11 @@ class DBhelpers{
     
     /**
      * Init Database connection
-     * @private
-     * @param string $class Class called that extends Modul in \App\Modul
+     * @public
      */
     public function __construct(){
         try {
             $dns = 'mysql:host='.Config::$host.';dbname='.Config::$database;
-            
             self::$db = new PDO($dns, Config::$username, Config::$password);
             self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
             self::$db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
@@ -30,7 +28,7 @@ class DBhelpers{
 
     /**
      * Bind Values to PDO prepare
-     * @param object   &$query
+     * @param object &$query
      * @param array  &$args
      */
     protected static function arrayBinder(&$query, &$args) {
@@ -42,7 +40,7 @@ class DBhelpers{
     /**
      * Execute a PDO mysql Query
      * @param  string   $sql
-     * @param  array    [$args                 = null]
+     * @param  array    [$args = null]
      * @return object
      */
     public static function query($sql, $args = null, $class = null){

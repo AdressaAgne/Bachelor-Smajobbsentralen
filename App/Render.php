@@ -20,7 +20,8 @@ class Render {
         'formend',
         'format',
         'csrf',
-        'sub'
+        'sub',
+        'assets'
     ];
     private $helpers = [
         'if',
@@ -136,4 +137,8 @@ class Render {
     	echo implode(".", array_slice(explode('.', $msg), 0, $sentences));
     }
 
+    public static function assets($path){
+        echo 'view/'.Config::$theme.'/assets/'.$path;
+    }
+    
 }
