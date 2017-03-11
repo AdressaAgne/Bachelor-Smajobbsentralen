@@ -13,6 +13,7 @@ class Render {
     private $code = null;
     private $shortcuts = [
         'layout',
+        'panel',
         'active_page',
         'isLoggedIn',
         'checked',
@@ -79,6 +80,10 @@ class Render {
      */
     public static function layout($page, $vars = null){
         echo View::includeFile('view/'.Config::$theme.'/view/'.preg_replace("/\\./uimx", "/", $page).'.php', $vars);
+    }
+    
+    public static function panel($page, $vars = null){
+        echo View::includeFile('panel/'.preg_replace("/\\./uimx", "/", $page).'.php', $vars);
     }
 
     /**

@@ -1,4 +1,4 @@
-@layout('layout.head', ['title' => 'Edit Page'])
+@panel('layout.head', ['title' => 'Edit Page'])
    
     <h3>Arrange posts on {{ $page->header }}</h3>
     
@@ -27,4 +27,4 @@
     @endforeach
     </div>
     
-@layout('layout.foot')
+@panel('layout.foot')

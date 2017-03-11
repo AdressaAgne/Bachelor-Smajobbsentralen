@@ -5,8 +5,11 @@ use Render, BaseController, Account, Direct;
 
 class View {
     
-    public static function make($url, $vars = null, $theme = ''){
+    public static function make($url, $vars = null, $admin = false){
         $url = preg_replace("/\\./uimx", "/", $url);
+        
+        if($admin) return self::includeFile("panel/{$url}.php", $vars);
+        
         return self::includeFile("view/".Config::$theme."/view/{$url}.php", $vars);
     }
     
@@ -26,6 +29,7 @@ class View {
      */
     
     public static function includeFile($filename, $vars = null){
+        
         if (is_file($filename)) {
             $code = Render::code(file_get_contents($filename));
             

@@ -6,15 +6,16 @@ use View, Direct, NormalController, Route, Config, Uploader;
 
 class AdminController extends Controller implements NormalController {
 
+    public $admin = true;
     
     public function index(){
-        return View::make('admin');
+        return View::make('admin', null, true);
     }
     
     public function media(){
         $media = $this->select('image', ['*'], null, 'Image')->fetchAll();
         
-        return View::make('admin.media', ['media' => $media]);
+        return View::make('media', ['media' => $media], true);
     }
     public function put_media(){
         
@@ -25,7 +26,7 @@ class AdminController extends Controller implements NormalController {
     
     public function settings(){
         $page = $this->select('pages', ['*'], ['type' => 'page'], 'page');
-        return View::make('admin.settings', ['pages' => $page]);
+        return View::make('settings', ['pages' => $page], true);
     }
     
     public function patch_settings($data){
@@ -35,7 +36,7 @@ class AdminController extends Controller implements NormalController {
     
     public function themes(){
         $themes = array_diff(scandir('./view/'), array('.', '..', '.DS_Store'));
-        return View::make('admin.themes', ['themes' => $themes]);
+        return View::make('themes', ['themes' => $themes], true);
     }
     
     public function patch_themes($data){
@@ -47,7 +48,7 @@ class AdminController extends Controller implements NormalController {
         $types = $this->getFiles('./view/'.Config::$theme.'/view/pages');
         
         $page = $this->select('pages', ['*'], ['type' => 'page'], 'page');
-        return View::make('admin.pages', ['pages' => $page, 'pagetypes' => $types]);
+        return View::make('pages', ['pages' => $page, 'pagetypes' => $types], true);
     }
     
     public function posts(){
@@ -57,7 +58,7 @@ class AdminController extends Controller implements NormalController {
         $posts = $this->select('pages', ['*'], ['type' => 'post'], 'page')->fetchAll();
         $media = $this->select('image', ['*'], null, 'Image')->fetchAll();
         
-        return View::make('admin.posts', ['pagetypes' => $types, 'blogs' => $blogs, 'posts' => $posts, 'media' => $media]);
+        return View::make('posts', ['pagetypes' => $types, 'blogs' => $blogs, 'posts' => $posts, 'media' => $media], true);
     }
     
     private function getFiles($path){
@@ -80,13 +81,13 @@ class AdminController extends Controller implements NormalController {
             'image'     => (isset($data['image']) ? $data['image'] : 1)
         ]]);
         
-        return Direct::re('/admin/posts');
+        return Direct::re('/admin/posts', null, true);
     }
     
     public function arrange_blogposts($data){
         $page = $this->select('pages', ['*'], ['permalink' => $data['page']], 'page')->fetch();
         
-        return View::make('admin.arrange', ['page' => $page]);
+        return View::make('arrange', ['page' => $page], true);
     }
     
     public function route(){

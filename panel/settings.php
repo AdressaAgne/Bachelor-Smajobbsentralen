@@ -1,5 +1,4 @@
-@layout('layout.head', ['title' => 'Settings'])
-    @layout('layout.admin_menu')
+@panel('layout.head', ['title' => 'Settings'])
     <h1>Settings</h1>
     
     <div class="row">
@@ -50,4 +49,4 @@
     </div>
     
     
-@layout('layout.foot')
+@panel('layout.foot')

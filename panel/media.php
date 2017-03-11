@@ -1,5 +1,4 @@
-@layout('layout.head', ['title' => 'Media'])
-    @layout('layout.admin_menu')
+@panel('layout.head', ['title' => 'Media'])
     <h1>Media</h1>
     <div class="row">
         <h3>Upload</h3>
@@ -37,4 +36,4 @@
         
     </div>
 <script src="{{$assets}}/js/min/uploader-min.js"></script>   
-@layout('layout.foot')
+@panel('layout.foot')

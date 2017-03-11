@@ -1,4 +1,4 @@
-@layout('layout.head', ['title' => 'Edit Page'])
+@panel('layout.head', ['title' => 'Edit Page'])
     <h1>Edit {{ $page->header }}</h1>
     @form('', 'patch')
         <h4>Edit Page</h4>
@@ -21,4 +21,4 @@
             <input type="submit" value="edit page">
         </div>
     @formend()
-@layout('layout.foot')
+@panel('layout.foot')

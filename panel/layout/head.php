@@ -10,13 +10,5 @@
 	<link rel="stylesheet" href="{{$assets}}/css/main.css">
 </head>
 <body>
-
-
-  
-<div class="menu">
     <div class="container">
-        @layout('layout.menu')
-    </div>
-</div>
-
-<div class="container">
+        @panel('layout.admin_menu')

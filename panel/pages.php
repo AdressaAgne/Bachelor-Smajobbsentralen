@@ -1,5 +1,4 @@
-@layout('layout.head', ['title' => 'Pages'])
-    @layout('layout.admin_menu')
+@panel('layout.head', ['title' => 'Pages'])
     <h1>Pages</h1>
     
     <div class="row">
@@ -71,4 +70,4 @@
             </tbody>
         </table>
     </div>
-@layout('layout.foot')
+@panel('layout.foot')

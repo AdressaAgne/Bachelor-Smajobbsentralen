@@ -1,5 +1,5 @@
-@layout('layout.head', ['title' => 'Themes'])
-    @layout('layout.admin_menu')
+@panel('layout.head', ['title' => 'Themes'])
+
     <h1>Themes</h1>
     
     @form('/admin/themes', 'patch')
@@ -21,4 +21,4 @@
         </div>
     @formend()
     
-@layout('layout.foot')
+@panel('layout.foot')
