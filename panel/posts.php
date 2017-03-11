@@ -31,7 +31,7 @@
                       
                       <div class="form-element">
                           <h4>Select an image</h4>
-                          @layout('admin.layout.image', ['media' => $media])
+                          @panel('layout.image', ['media' => $media])
                       </div>
                   </div>
               </div>

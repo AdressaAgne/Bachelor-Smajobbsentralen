@@ -22,17 +22,15 @@
     <div class="row">
        
         <h3>Your images</h3>
-        <div class="row">
         @foreach($media as $image)
         
-            <div class="col-3 image">
+            <div class="col-3">
                 
                 <img src="{{$image->small}}" alt="">
                 
             </div>
         
         @endforeach
-        </div>
         
     </div>
 <script src="{{$assets}}/js/min/uploader-min.js"></script>   

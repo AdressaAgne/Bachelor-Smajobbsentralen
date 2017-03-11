@@ -10,5 +10,8 @@
 	<link rel="stylesheet" href="{{$assets}}/css/main.css">
 </head>
 <body>
-    <div class="container">
-        @panel('layout.admin_menu')
+    <div class="container--fluid">
+        <div class="col-2">
+            @panel('layout.admin_menu')
+        </div>
+        <div class="col-9">

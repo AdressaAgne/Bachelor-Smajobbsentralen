@@ -1,3 +1,4 @@
+        </div>
     </div>
     
     @panel('layout.scripts')
