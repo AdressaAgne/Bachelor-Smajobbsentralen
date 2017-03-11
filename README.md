@@ -72,26 +72,26 @@ DB::query("SELECT name, username FROM users WHERE id = :id", ['id' => 3], 'User'
 DB::query("SELECT name, username FROM users", 'User']);
 
 //Select
-DB::select([$rows...], $table, [$where], $join = 'AND');
-DB::select([$rows...], $table, [$where], $class = null);
-DB::select(['name', 'username'], 'users', ['id' => 3, 'id' => 4], 'OR');
-DB::select(['name', 'username'], 'users', ['id' => 3, 'id' => 4], 'Recipe');
+DB::select($table, [$rows...], [$where], $join = 'AND');
+DB::select($table, [$rows...], [$where], $class = null);
+DB::select('users', ['name', 'username'], ['id' => 3, 'id' => 4], 'OR');
+DB::select('users', ['name', 'username'], 'users', ['id' => 3, 'id' => 4], 'Recipe');
 
 // Select everything
-DB::all([$rows], $table);
-DB::all(['name', 'username'], 'users');
+DB::all($table, [$rows]);
+DB::all('users', ['name', 'username']);
 
 //Insert rows
-DB::insert([[$row => $value]], $table);
-DB::insert([['name' => 'Frank'],['name' => 'George']], 'users');
+DB::insert($table, [[$row => $value]]);
+DB::insert('users', [['name' => 'Frank'],['name' => 'George']]);
 
 //Update rows
-DB::update([$rows], $table, [$where], $rowsjoin = '=', $wherejoin = 'AND');
-DB::update(['name' => 'ron'], 'users', ['name' => 'Frank']);
+DB::update($table, [$rows], [$where], $rowsjoin = '=', $wherejoin = 'AND');
+DB::update('users', ['name' => 'ron'], ['name' => 'Frank']);
 
 //Delete a row
-DB::deleteWhere($col = 'id', $val = 0, $table = null);
-DB::deleteWhere('id', 10, 'users');
+DB::deleteWhere($table, $col = 'id', $val = 0);
+DB::deleteWhere('users', 'id', 10);
 ```
 
 ### Creating a table / Migrations (App/Database/Migration)
