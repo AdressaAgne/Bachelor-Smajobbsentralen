@@ -1,4 +1,4 @@
 <article>
-    <h1>{{ $page->header }}</h1>
+    <h3>{{ $page->header }}</h3>
     <p>{{ $page->content }}</p>
 </article>
