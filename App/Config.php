@@ -14,7 +14,7 @@ class Config {
     */
 
     public static $host = 'localhost';
-    public static $database = 'test';
+    public static $database = 'smajobb';
     public static $username = 'root';
     public static $password = 'root';
 

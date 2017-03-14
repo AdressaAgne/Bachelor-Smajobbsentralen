@@ -903,6 +903,9 @@ table {
   .nav__item--burger {
     display: block; } }
 
+p {
+  padding: 5px 0px; }
+
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Poppins', sans-serif;
   margin: 5px 0px; }
@@ -912,3 +915,6 @@ a {
   color: #009688; }
   a:hover {
     color: #ff470e; }
+
+article {
+  padding-top: 70px; }

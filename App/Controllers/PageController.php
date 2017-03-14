@@ -30,7 +30,7 @@ class PageController extends Controller implements StackController{
             'visible'   => isset($data['visible']),
         ]]);
         
-        return Direct::re('/pages/'.$data['permalink']);
+        return Direct::re('/page/'.$data['permalink']);
     }
     
     public function patch($data){

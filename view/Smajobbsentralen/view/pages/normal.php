@@ -1,4 +1,4 @@
 <article>
     <h3>{{ $page->header }}</h3>
-    <p>{{ $page->content }}</p>
+    <p>@format($page->content)</p>
 </article>
