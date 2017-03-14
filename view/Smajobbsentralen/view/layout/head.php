@@ -8,15 +8,16 @@
 	<title>{{ $title }}</title>
 	<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 	<link rel="stylesheet" href="{{$assets}}/css/main.css">
+	<link rel="stylesheet" href="{{$assets}}/css/font-awesome.min.css">
 </head>
 <body>
 
 
-  
+
 <div class="menu">
-    <div class="container">
-        @layout('layout.menu')
-    </div>
+	<div class="container">
+		@layout('layout.menu')
+	</div>
 </div>
 
 <div class="container">
