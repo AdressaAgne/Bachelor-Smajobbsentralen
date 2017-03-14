@@ -19,6 +19,7 @@ Direct::patch('/admin/themes', 'AdminController@patch_themes');
 
 Direct::get('/admin/pages', 'AdminController@pages');
 Direct::get('/page/arrange/{page}', 'AdminController@arrange_blogposts');
+Direct::patch('/page/arrange', 'AdminController@arrange_blogposts_patch');
 
 Direct::get('/admin/posts', 'AdminController@posts');
 Direct::put('/post/create', 'AdminController@put_posts');

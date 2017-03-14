@@ -34,6 +34,7 @@ class Migrations{
             new Row('style', 'var', 'normal'),
             new Row('type', 'var', 'page'),
             new Row('image', 'int', '0'),
+            new Row('arrangement', 'int', '0'),
         ]);
         
         $db->createTable('settings', [

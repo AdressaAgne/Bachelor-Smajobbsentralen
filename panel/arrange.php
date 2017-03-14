@@ -1,30 +1,44 @@
 @panel('layout.head', ['title' => 'Edit Page'])
-   
     <h3>Arrange posts on {{ $page->header }}</h3>
     
     <div class="container">
-    @foreach($page->children() as $key => $post)
-        <div class="row">
-            <div class="col-12">
-                @form('page/arrange/', 'patch')
-                <input type="hidden" name="key" value="{{$key}}">
-                <div class="col-3">
-                    <button>Top</button>
+    @form('/page/arrange/', 'patch')
+        <div id="post-container">
+        @foreach($page->children() as $key => $post)
+            <div class="arrange-post row" clickable>
+                
+                <div class="col-10">
+                    <img src="{{$post->image()->small}}" alt="" width="50px">
+                    <h3>{{$post->header}}</h3>
                 </div>
-               <div class="col-3">
-                     <button>Up</button>
-                </div>
-                <div class="col-3">
-                    <button>Down</button>
-                </div>
-                <div class="col-3">
-                    <button>Bottom</button>
-                </div>
-                @formend()
+                <div class="col-2">{{$post->style}}</div>
+                <input type="hidden" name="posts[]" value="{{$post->id}}">
             </div>
-            @layout('posts.'.$post->style, ['post' => $post])
+        @endforeach
         </div>
-    @endforeach
+        <div class="col-12 post">
+            <input type="hidden" name="page" value="{{$page->permalink}}">
+            <input type="submit" name="" value="Save">
+        </div>
+    @formend()
     </div>
-    
+    <script>
+        var container = document.querySelector('#post-container');
+        var up = document.querySelectorAll('[clickable]');
+        for (var i = 0; i < up.length; i++) {
+            up[i].addEventListener('click', function(e) {
+                e.stopPropagation();
+                this.moveUp();
+            });
+        }
+        
+        
+        Element.prototype.moveUp = function () {
+            this.parentNode.insertBefore(this, this.previousElementSibling);
+        }
+        Element.prototype.moveDown = function () {
+            this.parentNode.insertBefore(this.nextElementSibling, this);
+        }
+        
+    </script>
 @panel('layout.foot')

@@ -69,6 +69,7 @@ class Config {
 
         '\App\Helpers\Uploader'             => 'Uploader',
         '\App\Helpers\Compressor'           => 'Compressor',
+        '\App\Helpers\Sorting'              => 'Sorting',
         '\App\Controllers\Controller'       => 'BaseController',
 
         // Interfaces

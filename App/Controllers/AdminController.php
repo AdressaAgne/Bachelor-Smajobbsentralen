@@ -90,6 +90,13 @@ class AdminController extends Controller implements NormalController {
         return View::make('arrange', ['page' => $page], true);
     }
     
+    public function arrange_blogposts_patch($data){
+        
+        $this->updatePageArray($data['posts']);
+
+        return Direct::re("/page/arrange/".$data['page']);
+    }
+    
     public function route(){
         return Route::lists();
     }

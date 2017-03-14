@@ -244,5 +244,3 @@ todo:
 
 * [ ] Allow custome controllers in a theme.
 * [ ] Admin pages should have a standalone css, that is not depended on the theme.
-* [ ] 
-

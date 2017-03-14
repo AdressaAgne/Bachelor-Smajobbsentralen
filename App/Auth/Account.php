@@ -4,8 +4,7 @@ namespace App\Auth;
 
 use DB, Config, User;
 
-class Account extends DB{
-
+class Account extends DB{  
     /**
      * Login User
      * @param  string  $username
@@ -32,6 +31,7 @@ class Account extends DB{
         return true;
     }
 
+
     /**
      * Register a user
      * @param  string  $username
@@ -43,7 +43,7 @@ class Account extends DB{
     public static function register($username, $pw1, $pw2, $mail){
         if($pw1 != $pw2) return 'passwords does not match';
 
-        
+
         if(DB::select('users', ['username'], ['username' => $username])->rowCount() > 0) return 'Username already taken';
 
         return DB::insert([[
@@ -53,7 +53,7 @@ class Account extends DB{
         ]], 'users');
 
     }
-    
+
     /**
      * Logout a user
      * @author Agne *degaard
@@ -93,18 +93,18 @@ class Account extends DB{
      * Change a users password
      * @author Agne *degaard
      * @param  object User    $user
-     * @param  string $pw     
-     * @param  string $newPw  
+     * @param  string $pw
+     * @param  string $newPw
      * @param  string $newpw2
      * @return string string
      */
     public static function changePassword(User $user, $pw, $newPw, $newpw2){
         if($newPw !== $newpw2) return 'The new password does not match';
-        
+
         if(!password_verify($pw, $user->password)) return 'Old Password is wrong';
-        
+
         $msg = DB::update(['password' => password_hash($newPw, PASSWORD_DEFAULT)], 'users', ['id' => $user->id]);
-        
+
         return $msg;
     }
 

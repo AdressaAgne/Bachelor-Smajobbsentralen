@@ -1,5 +1,5 @@
 <div class="row">
-       @if(!empty($page->header))
+    @if(!empty($page->header))
         <h3>{{$page->header}}</h3>
     @endif
     @if(!empty($page->content))
