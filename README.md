@@ -240,7 +240,26 @@ The admin panel is located at /admin.
 * You can still make custome pages with the MVC backend.
 
 
+# Custome theme Controllers
+
+to add a controller for a page in your theme, add a file with the same name to themefolder/Controllers/name.php
+
+the file should look like this:
+```php
+<?php
+
+class frontpage {
+    private $db;
+    
+    function __construct($db) {
+        $this->db = $db;
+    }
+}
+
+```
+the constructor takes one parameter that is the database class, where you can access the db.
+
+
 todo: 
 
-* [ ] Allow custome controllers in a theme.
 * [ ] Admin pages should have a standalone css, that is not depended on the theme.
