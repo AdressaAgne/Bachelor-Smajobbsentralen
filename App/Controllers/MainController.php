@@ -19,7 +19,7 @@ class MainController extends Controller implements NormalController {
         
         if(file_exists($controller)){
             include_once($controller);
-            return View::make('index', ['page' => $page, 'class' => new $page->style($this)]);
+            return View::make('index', ['page' => $page, 'class' => new $page->style($this, $page)]);
         }
 
         return View::make('index', ['page' => $page]);

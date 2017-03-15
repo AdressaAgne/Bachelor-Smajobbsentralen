@@ -55,6 +55,8 @@ class Config {
         // Database
         '\App\Database\Database'            => 'DB',
         '\App\Database\Row'                 => 'Row',
+        '\App\Database\PID'                 => 'PID',
+        '\App\Database\Timestamp'           => 'Timestamp',
         '\App\Database\Migrations'          => 'Migrations',
         '\App\Auth\Account'                 => 'Account',
 

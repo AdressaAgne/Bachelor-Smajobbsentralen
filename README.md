@@ -20,7 +20,7 @@ class MainController extends Controller {
    }
 }
 ```
-$params is $_GET and $_POST merged together
+$params is _$_GET_ and _$_POST_ merged together
 To make a JSON API just return an array insted of a View.
 
 ## Setup a view - App/Routing/RouteSetup.php
@@ -32,11 +32,11 @@ Direct::get("/", 'MainController@index');
 
 ### Post Requests
 This wil run the submit method in the MainController class when a post request is made to /submit
-it will set two get variables $_GET['mail'] and $_GET['text'] to whatever the url says.
+it will set two get variables _$_GET['mail']_ and _$_GET['text']_ to whatever the url says.
 ```php
 Direct::post("/submit/{mail}/{text}", 'MainController@submit');
 ```
-Or you could just use normal $_POST variables
+Or you could just use normal _$_POST_ variables
 ```php
 Direct::post("/submit", 'MainController@submit');
 ```
@@ -259,6 +259,22 @@ class frontpage {
 ```
 the constructor takes one parameter that is the database class, where you can access the db.
 
+
+# Theme Migration
+
+In your controller folder add a Migrate folder with a migrate.php file, it should look something like this:
+```php
+<?php
+
+$db->createTable('tablename', [
+    new PID(), // Primary ID
+    new Timestamp(),
+    new Row('name', 'varchar'),
+    new Row('icon', 'varchar'),
+]);
+```
+
+This file will run when you run the MigrateTrait on /migrate
 
 todo: 
 

@@ -2,13 +2,19 @@
 
 namespace App\Database;
 
-use DB, Account;
+use DB, Account, Config;
 
 class Migrations{
 
     public static function install(){
         //$name, $type, $default = null, $not_null = true, $auto_increment = false)
         $db = new DB();
+
+        $themeMigrate = './view/'.Config::$theme.'/Controllers/Migration/migrate.php';
+
+        if(file_exists($themeMigrate)){
+            include_once($themeMigrate);
+        }
 
         // User Account
         $db->createTable('users', [
@@ -52,6 +58,7 @@ class Migrations{
         ]);
 
         self::populate();
+        
         return [$db->tableStatus];
     }
 
@@ -79,7 +86,7 @@ class Migrations{
                 'value' => 'just another cms',
             ],[
                 'name' => 'theme',
-                'value' => 'Basic',
+                'value' => Config::$theme,
             ],[
                 'name' => 'frontpage',
                 'value' => '1',
