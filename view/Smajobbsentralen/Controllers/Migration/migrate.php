@@ -18,25 +18,6 @@ class Migrate {
 			new Row('to_time', 'varchar'),
 		]);
 	}
-	$db->deleteTable('users');
-
-	$db->createTable('users', [
-		new PID(),
-		new Timestamp(),
-		new Row('name', 'varchar'),
-		new Row('surname', 'varchar'),
-		new Row('email', 'varchar'),
-		new Row('password', 'varchar'),
-		new Row('approved', 'tinyint'),
-		new Row('visible', 'tinyint'),
-		new Row('dob', 'date'),
-		new Row('mobile_phone', 'int'),
-		new Row('private_phone', 'int'),
-		new Row('car', 'tinyint'),
-		new Row('hitch', 'tinyint'),
-		new Row('occupation', 'varchar'),
-		new Row('other_info', 'varchar')
-	]);
 
 	public function populate($db){
 		$db->insert('kategorier', [
@@ -112,6 +93,27 @@ class Migrate {
 				'arrangement' => '0'
 			]
 		]);
+
+		$db->deleteTable('users');
+
+		$db->createTable('users', [
+			new PID(),
+			new Timestamp(),
+			new Row('name', 'varchar'),
+			new Row('surname', 'varchar'),
+			new Row('email', 'varchar'),
+			new Row('password', 'varchar'),
+			new Row('approved', 'tinyint'),
+			new Row('visible', 'tinyint'),
+			new Row('dob', 'date'),
+			new Row('mobile_phone', 'int'),
+			new Row('private_phone', 'int'),
+			new Row('car', 'tinyint'),
+			new Row('hitch', 'tinyint'),
+			new Row('occupation', 'varchar'),
+			new Row('other_info', 'varchar')
+		]);
+
 
 		$db->insert('users', [
 			[
