@@ -29,10 +29,13 @@ class smajobber {
 
 		return "{$matches[1]} {$matches[2]} {$matches[3]}";
 	}
+/*
+	public function sorting($cat_id){
+		$query = $this->db->query("SELECT u.name, u.surname, u.mobile_phone, u.private_phone
+		FROM users AS u
+		INNER JOIN user_category AS uc ON uc.user_id = u.id
+		INNER JOIN kategorier AS k ON k.id = :id", ['id' => $cat_id], 'User')->fetchAll();
 
-	public function sorting($category){
-		/*$query = $this->db->query("SELECT *
-		FROM users");*/
-		return 0;
-	}
+	}//sorting()
+	*/
 }

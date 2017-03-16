@@ -79,15 +79,6 @@ class Migrations{
 			   'visible'    => '0',
 			   'parent'     => '0',
 			   'style'      => 'normal',
-		   ],[
-			   'permalink'  => 'blismajobber',
-			   'header'     => 'Bli småjobber',
-			   'content'    => 'hablahablahahahaha',
-			   'user_id'    => '1',
-			   'auth'       => '0',
-			   'visible'    => '1',
-			   'parent'     => '0',
-			   'style'      => 'normal',
 		   ]
 		]);
 

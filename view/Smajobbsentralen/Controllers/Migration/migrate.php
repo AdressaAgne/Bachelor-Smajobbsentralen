@@ -81,14 +81,27 @@ class Migrate {
 		$db->insert('pages', [
 			[
 				'permalink' => 'smajobbere',
-				'header' => 'Småjobbere',
+				'header' 	=> 'Småjobbere',
+				'user_id' 	=> '0',
+				'content' 	=> '',
+				'auth' 		=> '0',
+				'visible' 	=> '1',
+				'parent' 	=> '0',
+				'style' 	=> 'smajobber',
+				'type' 		=> 'post',
+				'image' 	=> '0',
+				'arrangement' => '0'
+			],
+			[
+				'permalink' => 'blismajobber',
+				'header' => 'Bli Småjobber',
 				'user_id' => '0',
 				'content' => '',
 				'auth' => '0',
 				'visible' => '1',
 				'parent' => '0',
-				'style' => 'smajobber',
-				'type' => 'post',
+				'type' => 'page',
+				'style' => 'blismajobber',
 				'image' => '0',
 				'arrangement' => '0'
 			]
