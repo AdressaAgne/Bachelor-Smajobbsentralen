@@ -8,13 +8,14 @@ class MainController extends Controller implements NormalController {
     use \MigrateTrait;
     
     public function index(){
-        $theme = '/view/'.Config::$theme;
+        
         
         $id = $this->getSetting('frontpage');
         
         $page = $this->select('pages', ['*'], ['id' => $id], 'page')->fetch();
     
         //check if a designated controller for the view file exists, if so call it and pass it to the file.
+        $theme = '/view/'.Config::$theme;
         $controller = '.'.$theme.'/Controllers/'.$page->style.'.php';
         
         if(file_exists($controller)){
