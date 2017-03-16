@@ -56,7 +56,7 @@ img {
 .col--right {
   float: right; }
 
-.clearfix:after, .row:after, .container--fluid:after, .row--line:after, .nav:after {
+.clearfix:after, .row:after, .container--fluid:after, .row--line:after, footer:after, .nav:after {
   content: ".";
   visibility: hidden;
   display: block;
@@ -851,8 +851,23 @@ table {
     background-color: #009688;
     color: #f8f8f8;
     border: 1px solid #008276; }
-  .smajobbere-list h1 strong {
+  .smajobbere-list h1 strong, .smajobbere-list .vakttlf strong {
     font-size: 2em; }
+
+footer {
+  background-color: #009688;
+  color: #f8f8f8;
+  margin-top: 60px;
+  padding: 20px 20px 80px 20px;
+  width: 100%; }
+  footer p, footer h1, footer h2, footer h3, footer h4, footer h5, footer h6 {
+    color: white;
+    background-color: #009688;
+    margin-top: 0;
+    margin-bottom: 0; }
+
+.vakttlf strong {
+  font-size: 2em; }
 
 .nav {
   width: 100%;
