@@ -16,8 +16,8 @@ class smajobber {
 
 	public function get_smajobbere(){
 		return $this->db->query("SELECT *
-			FROM users as u WHERE u.visible = 1
-			AND u.approved = 1
+			FROM users as u WHERE u.visible >= 1
+			AND u.approved >= 1
 			AND u.id > 0
 			ORDER BY u.name ASC")->fetchAll();
 	}

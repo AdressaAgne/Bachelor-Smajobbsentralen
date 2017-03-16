@@ -96,10 +96,47 @@ class Migrate {
 
 		$db->deleteTable('users');
 
-		$db->insert('');
+		$db->createTable('users', [
+			new PID(),
+			new Timestamp(),
+			new Row('name', 'varchar'),
+			new Row('surname', 'varchar'),
+			new Row('email', 'varchar'),
+			new Row('password', 'varchar'),
+			new Row('approved', 'tinyint'),
+			new Row('visible', 'tinyint'),
+			new Row('dob', 'date'),
+			new Row('mobile_phone', 'int'),
+			new Row('private_phone', 'int'),
+			new Row('car', 'tinyint'),
+			new Row('hitch', 'tinyint'),
+			new Row('occupation', 'varchar'),
+			new Row('other_info', 'varchar')
+		]);
 
+		$db->insert('users', [
+			[
+				'name' => 'admin',
+				'surname' => 'adminsen',
+				'email' => 'admin@admin.admin',
+				'password' => 'admin',
+				'approved' => '1',
+				'visible' => '1',
+				'dob' => '2017-03-16 20:16:28',
+				'mobile_phone' => '47343090',
 
-
+			],
+			[
+				'name' => 'heis',
+				'surname' => 'sann',
+				'email' => 'skji@ss.admin',
+				'password' => '123',
+				'approved' => '1',
+				'visible' => '1',
+				'dob' => '2017-03-16 20:16:28',
+				'mobile_phone' => '12341234',
+			]
+		]);
 	}//populate
 
 

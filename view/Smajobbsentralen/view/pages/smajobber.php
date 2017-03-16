@@ -20,7 +20,7 @@
 		<div class="row smajobbere-list">
 			<div class="col-12">
 				<h1>{{$smajobber['name']}} {{$smajobber['surname']}}</h1>
-				<h1><strong><i class="fa fa-phone"></i> {{$class->format_phonenr($smajobber['mobile'])}}</strong></h1>
+				<h1><strong><i class="fa fa-phone"></i> {{$class->format_phonenr($smajobber['mobile_phone'])}}</strong></h1>
 			</div>
 		</div>
 		@endforeach

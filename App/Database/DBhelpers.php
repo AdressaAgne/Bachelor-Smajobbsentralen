@@ -134,7 +134,7 @@ class DBhelpers{
 	 */
 
 	 public function deleteTable($table){
-		 return self::$db->query('DROP TABLE IF EXISTS users');
+		 return self::$db->query('DROP TABLE IF EXISTS '.$table);
 	 }
 
 }
