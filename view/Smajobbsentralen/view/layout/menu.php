@@ -7,6 +7,7 @@
 		@endforeach
 	</ul>
 	<ul class="nav--right">
+		<li class="nav__item"><a href="/admin">Admin</a></li>
 		<li class="nav__item"><a href=""><span class="liten">A</span>-A</a></li>
 	</ul>
   </div>
