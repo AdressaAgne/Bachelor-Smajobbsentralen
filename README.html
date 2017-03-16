@@ -297,8 +297,38 @@ the constructor takes one parameter that is the database class, where you can ac
 ```php
 &lt;?php</p>
 
-<p>$db-&gt;createTable(&#8216;tablename&#8217;, []);
-```</p>
+<p>class migrate {</p>
+
+<pre><code>public function install(){
+    $db-&gt;createTable('tablename', [
+        new PID(), // Primary ID
+        new Timestamp(),
+        new Row('name', 'varchar'),
+        new Row('icon', 'varchar'),
+    ]);
+}
+
+public function populate(){
+
+    $db-&gt;insert('opningstider', [
+        [
+            'day' =&gt; 2, // tirsdag
+            'from_time' =&gt; '10:00',
+            'to_time' =&gt; '12:00',
+        ],
+        [
+            'day' =&gt; 4, // torsdag
+            'from_time' =&gt; '10:00',
+            'to_time' =&gt; '12:00',
+        ],
+    ]);
+
+}
+</code></pre>
+
+<p>}</p>
+
+<p>```</p>
 
 <p>This file will run when you run the MigrateTrait on /migrate</p>
 

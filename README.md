@@ -280,12 +280,37 @@ In your controller folder add a Migrate folder with a migrate.php file, it shoul
 ```php
 <?php
 
-$db->createTable('tablename', [
-    new PID(), // Primary ID
-    new Timestamp(),
-    new Row('name', 'varchar'),
-    new Row('icon', 'varchar'),
-]);
+class migrate {
+    
+    public function install(){
+        $db->createTable('tablename', [
+            new PID(), // Primary ID
+            new Timestamp(),
+            new Row('name', 'varchar'),
+            new Row('icon', 'varchar'),
+        ]);
+    }
+    
+    public function populate(){
+        
+        $db->insert('opningstider', [
+			[
+				'day' => 2, // tirsdag
+				'from_time' => '10:00',
+				'to_time' => '12:00',
+			],
+			[
+				'day' => 4, // torsdag
+				'from_time' => '10:00',
+				'to_time' => '12:00',
+			],
+		]);
+        
+    }
+    
+}
+
+
 ```
 
 This file will run when you run the MigrateTrait on /migrate

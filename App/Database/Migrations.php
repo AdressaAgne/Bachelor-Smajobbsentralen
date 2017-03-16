@@ -14,6 +14,9 @@ class Migrations{
 
         if(file_exists($themeMigrate)){
             include_once($themeMigrate);
+            $themeClass = new \Migrate();
+
+            $themeClass->install($db);
         }
 
         // User Account
@@ -58,7 +61,9 @@ class Migrations{
         ]);
 
         self::populate();
-        
+        if(file_exists($themeMigrate)){
+            $themeClass->populate($db);    
+        }
         return [$db->tableStatus];
     }
 
