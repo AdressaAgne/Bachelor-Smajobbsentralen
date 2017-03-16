@@ -49,28 +49,52 @@
     <div class="row">
         <h3>Annet</h3>
         <div class="form-element col-6 col-s-12">
-            <label> Disponerer bil?
-                <input type="radio" name="car" value="yes"> Ja<br>
-                <input type="radio" name="car" value="no"> Nei<br>
-            </label>
+            <p>Disponerer bil?</p>
+            <div class="col-12">
+            <input type="radio" name="car" value="caryes">
+            <label class="radio-label" for="caryes">Ja</label><br>
+            </div>
+            <div class="col-12">
+            <input type="radio" name="car" value="no">
+            <label class="radio-label" for="carno">Nei</label><br>
+            </div>
         </div>
         <div class="form-element col-6 col-s-12">
-            <label> Hengerfeste?
-                <input type="radio" name="hitch" value="yes"> Ja<br>
-                <input type="radio" name="hitch" value="no"> Nei<br>
-            </label>
+            <p>Hengerfeste?</p>
+            <div class="col-12">
+                <input type="radio" name="hitch" id="hitchyes">
+                <label class="radio-label" for="hitchyes">Ja</label><br>
+            </div>
+            <div class="col-12">
+            <input type="radio" name="hitch" id="hitchno">
+            <label class="radio-label" for="hitchno">Nei</label><br>
+            </div>
         </div>
         <div class="form-element col-12">
-            <label> Okkupasjon
-                <input type="radio" name="occupation" value="school"> Skoleelev<br>
-                <input type="radio" name="occupation" value="unemployed"> Arbeidsledig<br>
-                <input type="radio" name="occupation" value="pensioner"> Pensjonist<br>
-                <input type="radio" name="occupation" value="disabled"> Uføre<br>
-                <input type="radio" name="occupation" value="other"> Annet<br>
-            </label>
+            <p> Okkupasjon</p>
+            <div class="col-12">
+                <input type="radio" name="occupation" id="school">
+                <label class="radio-label" for="school">Skoleelev</label><br>
+            </div>
+            <div class="col-12">
+                <input type="radio" name="occupation" id="unemployed"> 
+                <label class="radio-label" for="unemployed">Arbeidsledig</label><br>
+            </div>
+            <div class="col-12">
+                <input type="radio" name="occupation" id="pensioner"> 
+                <label class="radio-label" for="pensioner">Pensjonist</label><br>
+            </div>
+            <div class="col-12">
+                <input type="radio" name="occupation" id="disabled"> 
+                <label class="radio-label" for="disabled">Uføre</label><br>
+            </div>
+            <div class="col-12">
+                <input type="radio" name="occupation" id="other"> 
+                <label class="radio-label" for="other">Annet</label><br>
+            </div>
         </div>
         <div class="form-element col-12">
-            <small> Jeg kan jobbe med følgende</small>
+            <p>Jeg kan jobbe med følgende</p>
                     
             @foreach($class->categories() as $cat)
                 <div class="col-6">
@@ -88,15 +112,14 @@
         </div>
     </div>
     <div class="row">
-        <div class="form-element col-12">
-        <label> Taushetserklæring
-            <input type="checkbox" name="work[]" value="repair"> Jeg godtar at opplysninger jeg får kjennskap til hos de jeg jobber for, ikke omtales til andre utenfor frivilligsentralen. Dette gjelder også etter at jeg slutter. Om avtalen brytes kan jeg ikke benyttes på oppdrag lengere.<br>
-        </label>    
+        <div class="form-element col-8">
+        <h3>Taushetserklæring:</h3>
+            <input type="checkbox" name="silence" id="repair">
+            <label class="checkbox" for="repair">Jeg godtar at opplysninger jeg får kjennskap til hos de jeg jobber for, ikke omtales til andre utenfor frivilligsentralen. Dette gjelder også etter at jeg slutter. Om avtalen brytes kan jeg ikke benyttes på oppdrag lengere.
+            </label>  
         </div>
-        <div class="form-element">
-            <label>
-                <input type="submit" value="Send inn søknad">
-            </label>
+        <div class="form-element col-12">
+            <input type="submit" value="Send inn søknad">
         </div>
         
     </div>
