@@ -86,7 +86,6 @@ class Migrate {
 				'content' 	=> '',
 				'auth' 		=> '0',
 				'visible' 	=> '1',
-				'parent' 	=> '0',
 				'style' 	=> 'smajobber',
 				'type' 		=> 'post',
 				'image' 	=> '0',
@@ -99,9 +98,8 @@ class Migrate {
 				'content' => '',
 				'auth' => '0',
 				'visible' => '1',
-				'parent' => '0',
-				'type' => 'page',
 				'style' => 'blismajobber',
+				'type' => 'page',
 				'image' => '0',
 				'arrangement' => '0'
 			]
