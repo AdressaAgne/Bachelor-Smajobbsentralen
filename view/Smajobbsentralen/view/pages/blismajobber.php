@@ -1,9 +1,12 @@
 <article>
-    <h3>{{ $page->header }}</h3>
+    <div class="row">
+    <h1>{{ $page->header }}</h1>
     <p>@format($page->content)</p>
     @form("put")
+    <br/>
+    </div>
     <div class="row">
-       <h2>Generelt</h2>
+       <h3>Generelt</h3>
         <div class="form-element col-6 col-s-12">
             <label> Fornavn
                 <input type="text" name="firstname"/>
@@ -31,7 +34,7 @@
         </div>
     </div>
     <div class="row">
-        <h2>Telefon</h2>
+        <h3>Telefon</h3>
         <div class="form-element col-6 col-s-12">
             <label> Mobil
                 <input type="text" name="mobile"/>
@@ -44,7 +47,7 @@
         </div>
     </div>
     <div class="row">
-        <h2>Annet</h2>
+        <h3>Annet</h3>
         <div class="form-element col-6 col-s-12">
             <label> Disponerer bil?
                 <input type="radio" name="car" value="yes"> Ja<br>
@@ -67,27 +70,51 @@
             </label>
         </div>
         <div class="form-element col-12">
-            <label> Jeg kan jobbe med følgende
-                <input type="checkbox" name="work[]" value="repair"> Småreparasjoner<br>
-                <input type="checkbox" name="work[]" value="driving"> Kjøreoppdrag<br>
-                <input type="checkbox" name="work[]" value="housework"> Husarbeid<br>
-                <input type="checkbox" name="work[]" value="gardenwork"> Hagearbeid<br>
-                <input type="checkbox" name="work[]" value="showeling"> Snømåking<br>
-                <input type="checkbox" name="work[]" value="mowing"> Gressklipping<br>
-                <input type="checkbox" name="work[]" value="painting"> Mindre malearbeid<br>
-                <input type="checkbox" name="work[]" value="moving"> Flytting<br>
-                <input type="checkbox" name="work[]" value="rearranging"> Ommøblering<br>
-                <input type="checkbox" name="work[]" value="other"> Annet<br>
-            </label>
+            <label> Jeg kan jobbe med følgende</label>
+            <input type="checkbox" name="work[]" id="repair">
+            <label class="checkbox" for="repair">Småreparasjoner</label><br>
+            
+            <input type="checkbox" name="work[]" id="driving">
+            <label class="checkbox" for="driving">Kjøreoppdrag</label><br>
+            
+            <input type="checkbox" name="work[]" id="housework">
+            <label class="checkbox" for="housework">Husarbeid</label><br>
+            
+            <input type="checkbox" name="work[]" id="gardenwork">
+            <label class="checkbox" for="gardenwork">Hagearbeid</label><br>
+            
+            <input type="checkbox" name="work[]" id="showeling"> 
+            <label class="checkbox" for="showeling">Snømåking</label><br>
+            
+            <input type="checkbox" name="work[]" id="mowing"> 
+            <label class="checkbox" for="mowing">Gressklipping</label><br>
+            
+            <input type="checkbox" name="work[]" id="painting">
+            <label class="checkbox" for="painting">Mindre malearbeid</label><br>
+            
+            <input type="checkbox" name="work[]" id="moving">
+            <label class="checkbox" for="moving">Flytting</label><br>
+            
+            <input type="checkbox" name="work[]" id="rearranging"> 
+            <label class="checkbox" for="rearranging">Ommøblering</label><br>
+            
+            <input type="checkbox" name="work[]" id="other">
+            <label class="checkbox" for="other">Annet</label><br>
+            
         </div>
         <div class="form-element col-12">
             <label> Annen info
                 <textarea type="text" name="otherinfo" rows="8"></textarea>
                 
             </label>
-            <span>Taushetserklæring: Det innebærer at opplysninger jeg får kjennskap til hos de jeg jobber for, ikke omtaler til andre utenfor frivilligsentralen. Dette gjelder også etter at jeg slutter. Om avtalen brytes kan jeg ikke benyttes på oppdrag lengere.</span>
         </div>
-        
+    </div>
+    <div class="row">
+        <div class="form-element col-12">
+        <label> Taushetserklæring
+            <input type="checkbox" name="work[]" value="repair"> Jeg godtar at opplysninger jeg får kjennskap til hos de jeg jobber for, ikke omtales til andre utenfor frivilligsentralen. Dette gjelder også etter at jeg slutter. Om avtalen brytes kan jeg ikke benyttes på oppdrag lengere.<br>
+        </label>    
+        </div>
         <div class="form-element">
             <label>
                 <input type="submit" value="Send inn søknad">

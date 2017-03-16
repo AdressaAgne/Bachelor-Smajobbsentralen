@@ -256,7 +256,7 @@ img {
   display: block;
   margin: 10px 0px; }
 
-input[type='text'], textarea {
+input[type='text'], input[type='date'], textarea {
   box-sizing: border-box;
   appearance: none;
   width: 100%;
@@ -271,12 +271,35 @@ input[type='text'], textarea {
   border-radius: 3px;
   transition: border, box-shadow 0.2s ease-in-out;
   box-shadow: inset 0vw 0px 0px 0px #009688; }
-  input[type='text']:focus, textarea:focus {
+  input[type='text']:focus, input[type='date']:focus, textarea:focus {
     color: #f8f8f8;
     box-shadow: inset 100vw 0px 0px 0px #009688; }
 
 textarea {
   resize: none; }
+
+input[type="checkbox"] {
+  display: none; }
+  input[type="checkbox"] + .checkbox {
+    position: relative;
+    padding-left: 30px;
+    cursor: pointer; }
+    input[type="checkbox"] + .checkbox:before {
+      content: '';
+      position: absolute;
+      border-radius: 2px;
+      width: 15px;
+      height: 15px;
+      left: 0px;
+      border: 1px solid #E0E0E0; }
+  input[type="checkbox"]:checked + .checkbox:before {
+    border: 1px solid #688897;
+    background-color: #607D8B;
+    box-shadow: inset 2px 2px 0px #f8f8f8, inset -2px -2px 0px #f8f8f8; }
+  input[type="checkbox"]:checked + .checkbox.accent:before {
+    border: 1px solid #00aa9a;
+    background-color: #009688;
+    box-shadow: inset 2px 2px 0px #607D8B, inset -2px -2px 0px #607D8B; }
 
 input[type='submit'], input[type='button'], button, .btn {
   text-align: center;
