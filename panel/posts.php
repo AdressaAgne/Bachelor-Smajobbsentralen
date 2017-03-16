@@ -6,11 +6,11 @@
             <div class="admin-panel">
               <div class="row">
                   <div class="col-6">
-                        <div class="form-element">
+                        <div class="form-element col-12">
                             <h4>Post header</h4>
                             <input type="text" placeholder="header" name="header">
                         </div>
-                        <div class="form-element">
+                        <div class="form-element col-12">
                             <h4>Select a blog</h4>
                             <select name="parent" id="">
                                 @foreach($blogs as $blog)
@@ -18,7 +18,7 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div class="form-element">
+                        <div class="form-element col-12">
                             <h4>Select a post style</h4>
                             <select name="style" id="">
                                 @foreach($pagetypes as $style)
@@ -29,7 +29,7 @@
                   </div>
                   <div class="col-6">
                       
-                      <div class="form-element">
+                      <div class="form-element col-12">
                           <h4>Select an image</h4>
                           @panel('layout.image', ['media' => $media])
                       </div>
@@ -37,10 +37,10 @@
               </div>
               <div class="row">
                  <div class="col-12">
-                      <div class="form-element">
+                      <div class="form-element col-12">
                           <textarea name="content" id="" cols="30" rows="10" class="form-control" placeholder="content"></textarea>
                       </div>
-                      <div class="form-element">
+                      <div class="form-element col-12">
                           <input type="submit" value="Create new post">
                       </div>
                   </div>

@@ -24,6 +24,8 @@ class Config {
     public static $cookie_time = 86400 * 30;
     public static $cache_time = 3600;
     public static $cache_folder = 'cache/';
+    
+    public static $route = '/';
 
 
     public static $files      = [

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controllers;
-use DB, Account, User, Config;
+use DB, Account, User, Config, Direct;
 
 class Controller extends DB{
     
@@ -21,17 +21,23 @@ class Controller extends DB{
     public function __construct(){
         parent::__construct();
 
-        
-        self::$site_wide_vars['settings'] = $this->cms();
-        Config::$theme = self::$site_wide_vars['settings']['theme'];
-        
-        self::$site_wide_vars['assets'] = '/view/'.Config::$theme.'/assets';
-        
-        if(Account::isLoggedIn()){
-            self::$site_wide_vars['user'] = new User($_SESSION['uuid']);
+        if(!@$this->query('SELECT * FROM Settings')){
+            if(Config::$route != '/migrate'){
+                die('Database need to migrate, go to /migrate');
+            }         
+        } else {
+            
+            self::$site_wide_vars['settings'] = $this->cms();
+            Config::$theme = self::$site_wide_vars['settings']['theme'];
+            
+            self::$site_wide_vars['assets'] = '/view/'.Config::$theme.'/assets';
+            
+            if(Account::isLoggedIn()){
+                self::$site_wide_vars['user'] = new User($_SESSION['uuid']);
+            }
+            
+            self::$site_wide_vars['menu'] = $this->select('pages', ['*'], ['visible' => '1', 'auth' => '0'])->fetchAll();
         }
-        
-        self::$site_wide_vars['menu'] = $this->select('pages', ['*'], ['visible' => '1', 'auth' => '0'])->fetchAll();
     }
     
     public function __call($method, $params){

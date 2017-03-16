@@ -21,6 +21,8 @@ class Route {
      */
     public static function getCurrentRoute($route){
         
+        Config::$route = $route;
+        
         if(Config::$debug_mode){
             self::checkForMissingMethods();
         }

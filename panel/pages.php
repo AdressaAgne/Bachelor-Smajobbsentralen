@@ -5,13 +5,13 @@
         <h3>New Page</h3>
         @form('page/create', 'put')
             <div class="admin-panel">
-                <div class="form-element">
+                <div class="form-element col-6">
                     <input type="text" placeholder="Header" name="header">
                 </div>
-                <div class="form-element">
+                <div class="form-element col-6">
                     <input type="text" placeholder="Url" name="permalink">
                 </div>
-                <div class="form-element">
+                <div class="form-element col-6">
                     <h4>Select page style</h4>
                     <select name="style" id="">
                         @foreach($pagetypes as $style)
@@ -19,15 +19,15 @@
                         @endforeach
                     </select>
                 </div>
-                <div class="form-element">
+                <div class="form-element col-12">
                     <textarea name="content" id="" cols="30" rows="10" class="form-control" placeholder="Content"></textarea>
                 </div>
-                <div class="form-element">
+                <div class="form-element col-12">
                     <label for="">
                         Visible in menu: <input type="checkbox" checked name="visible">
                     </label>
                 </div>
-                <div class="form-element">
+                <div class="form-element col-12">
                     <input type="submit" value="Create new page">
                 </div>
             </div>
