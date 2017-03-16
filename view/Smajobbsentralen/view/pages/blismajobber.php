@@ -70,37 +70,15 @@
             </label>
         </div>
         <div class="form-element col-12">
-            <label> Jeg kan jobbe med følgende</label>
-            <input type="checkbox" name="work[]" id="repair">
-            <label class="checkbox" for="repair">Småreparasjoner</label><br>
-            
-            <input type="checkbox" name="work[]" id="driving">
-            <label class="checkbox" for="driving">Kjøreoppdrag</label><br>
-            
-            <input type="checkbox" name="work[]" id="housework">
-            <label class="checkbox" for="housework">Husarbeid</label><br>
-            
-            <input type="checkbox" name="work[]" id="gardenwork">
-            <label class="checkbox" for="gardenwork">Hagearbeid</label><br>
-            
-            <input type="checkbox" name="work[]" id="showeling"> 
-            <label class="checkbox" for="showeling">Snømåking</label><br>
-            
-            <input type="checkbox" name="work[]" id="mowing"> 
-            <label class="checkbox" for="mowing">Gressklipping</label><br>
-            
-            <input type="checkbox" name="work[]" id="painting">
-            <label class="checkbox" for="painting">Mindre malearbeid</label><br>
-            
-            <input type="checkbox" name="work[]" id="moving">
-            <label class="checkbox" for="moving">Flytting</label><br>
-            
-            <input type="checkbox" name="work[]" id="rearranging"> 
-            <label class="checkbox" for="rearranging">Ommøblering</label><br>
-            
-            <input type="checkbox" name="work[]" id="other">
-            <label class="checkbox" for="other">Annet</label><br>
-            
+            <small> Jeg kan jobbe med følgende</small>
+                    
+            @foreach($class->categories() as $cat)
+                <div class="col-6">
+                    <input type="checkbox" name="work[]" id="{{$cat['name']}}">
+                    <label class="checkbox" for="{{$cat['name']}}">{{ucfirst($cat['name'])}}</label>
+                </div>
+            @endforeach
+    
         </div>
         <div class="form-element col-12">
             <label> Annen info
