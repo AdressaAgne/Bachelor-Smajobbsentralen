@@ -34,8 +34,7 @@ img {
   width: 100%;
   clear: both;
   box-sizing: border-box;
-  padding-left: 12px;
-  background-color: #f8f8f8; }
+  padding-left: 12px; }
   .row img, .container--fluid img {
     max-width: 100%; }
   .row--line {
