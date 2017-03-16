@@ -32,7 +32,6 @@ class Controller extends DB{
         }
         
         self::$site_wide_vars['menu'] = $this->select('pages', ['*'], ['visible' => '1', 'auth' => '0'])->fetchAll();
-        
     }
     
     public function __call($method, $params){
