@@ -239,8 +239,22 @@ The admin panel is located at /admin.
 * stand alone admin panel
 * You can still make custome pages with the MVC backend.
 
+## posts
 
-# Custome theme Controllers
+A post is a simple version of a page, all pages can have a parent page, if they have a parent they are a post. all the post php files are located in the view/posts folder.
+
+adding a post to a page can be done on the admin panel under posts.
+
+## Pages
+
+In a theme there is a view/pages folder where all the different types of pages are stored.
+To add a new page, go to the page panel on the admin site an create a new page. 
+
+If you want other options of pages you can simple create a new file in view/pages, to your own liking.
+
+
+
+## Custome theme Controllers
 
 to add a controller for a page in your theme, add a file with the same name to themefolder/Controllers/name.php
 
@@ -260,7 +274,7 @@ class frontpage {
 the constructor takes one parameter that is the database class, where you can access the db.
 
 
-# Theme Migration
+## Theme Migration
 
 In your controller folder add a Migrate folder with a migrate.php file, it should look something like this:
 ```php

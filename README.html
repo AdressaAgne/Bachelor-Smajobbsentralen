@@ -257,7 +257,20 @@ Please don&#8217;t write any logic in a view, use the controller and pas data to
 <li>You can still make custome pages with the MVC backend.</li>
 </ul>
 
-<h1 id="customethemecontrollers">Custome theme Controllers</h1>
+<h2 id="posts">posts</h2>
+
+<p>A post is a simple version of a page, all pages can have a parent page, if they have a parent they are a post. all the post php files are located in the view/posts folder.</p>
+
+<p>adding a post to a page can be done on the admin panel under posts.</p>
+
+<h2 id="pages">Pages</h2>
+
+<p>In a theme there is a view/pages folder where all the different types of pages are stored.
+To add a new page, go to the page panel on the admin site an create a new page. </p>
+
+<p>If you want other options of pages you can simple create a new file in view/pages, to your own liking.</p>
+
+<h2 id="customethemecontrollers">Custome theme Controllers</h2>
 
 <p>to add a controller for a page in your theme, add a file with the same name to themefolder/Controllers/name.php</p>
 
@@ -278,7 +291,7 @@ Please don&#8217;t write any logic in a view, use the controller and pas data to
 <p>```
 the constructor takes one parameter that is the database class, where you can access the db.</p>
 
-<h1 id="thememigration">Theme Migration</h1>
+<h2 id="thememigration">Theme Migration</h2>
 
 <p>In your controller folder add a Migrate folder with a migrate.php file, it should look something like this:
 ```php
