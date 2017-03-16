@@ -13,6 +13,7 @@ class View {
         return self::includeFile("view/".Config::$theme."/view/{$url}.php", $vars);
     }
     
+    
     public static function auth($url, $direct = '/login', $vars = null){
         if(Account::isLoggedIn()){
             return self::make($url, $vars);

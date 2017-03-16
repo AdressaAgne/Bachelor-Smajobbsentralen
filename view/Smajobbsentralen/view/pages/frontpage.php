@@ -5,7 +5,7 @@
     <ul>
     @foreach($class->categories() as $cat)
     
-        <li>{{$cat}}</li>
+        <li><i class="fa fa-{{$cat['icon']}}"></i>{{$cat['name']}}</li>
     
     @endforeach
     </ul>

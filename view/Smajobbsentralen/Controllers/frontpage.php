@@ -13,6 +13,6 @@ class frontpage {
     }
     
     public function categories(){
-        return ['snømåking', 'hage', 'måking'];
+        return $this->db->all('kategorier');
     }
 }
