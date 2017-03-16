@@ -85,7 +85,7 @@ class Migrations{
 			   'content'    => 'hablahablahahahaha',
 			   'user_id'    => '1',
 			   'auth'       => '0',
-			   'visible'    => '0',
+			   'visible'    => '1',
 			   'parent'     => '0',
 			   'style'      => 'normal',
 		   ]
