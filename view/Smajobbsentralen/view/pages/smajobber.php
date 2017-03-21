@@ -8,10 +8,10 @@
 </div>
 
 <div class="row">
-	<div class="col-2">
+	<div class="col-2" id="categories">
 		@foreach($class->get_cats() as $cat)
 
-			<button class="col-12">{{$cat['name']}}</button>
+			<button class="col-12 category" id="{{$cat['id']}}">{{$cat['name']}}</button>
 
 		@endforeach
 	</div>
@@ -26,3 +26,31 @@
 		@endforeach
 	</div>
 </div>
+@layout('layout.scripts')
+<script>
+	//Jquery for oppdatering av visningen av hvilke småjobbere som tar oppgitt oppdrag
+
+	$("#categories .category").on("click", function(e){
+		e.preventDefault();
+		var _this = $(this);
+		console.log("cat id: " + $(this).attr("id"));
+
+		//legg til loading
+
+		$.post({
+			url: "smajobbere/sort",
+			data : {
+				_method : 'POST',
+				_token : '@csrf()',
+			},
+			success : function(data){
+
+			},
+			error : function(){
+			  console.log("request fail");
+			}
+
+		});//post req
+	});//EL
+
+</script>
