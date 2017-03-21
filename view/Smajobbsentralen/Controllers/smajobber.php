@@ -30,13 +30,13 @@ class smajobber {
 		return "{$matches[1]} {$matches[2]} {$matches[3]}";
 	}
 
-	public function sorting($cat_id){
+	public function post($cat_id){
 		$smajobbere = $this->db->query("SELECT *
 		FROM users AS u
 		INNER JOIN user_category AS uc ON uc.user_id = u.id
 		INNER JOIN kategorier AS k ON k.id = :id", ['id' => $cat_id], 'User')->fetchAll();
 
-		return View::make('smajobbere/sort', ['smajobbere' => $smajobbere]);
+		return $smajobbere;
 	}//sorting()
 
 }

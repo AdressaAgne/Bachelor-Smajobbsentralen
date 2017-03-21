@@ -17,7 +17,7 @@
 	</div>
 	<div class="col-10">
 		@foreach($class->get_smajobbere() as $smajobber)
-		<div class="row smajobbere-list">
+		<div class="row smajobbere-list" id="smajobbere">
 			<div class="col-12">
 				<h1>{{$smajobber['name']}} {{$smajobber['surname']}}</h1>
 				<h1><strong><i class="fa fa-phone"></i> {{$class->format_phonenr($smajobber['mobile_phone'])}}</strong></h1>
@@ -32,19 +32,22 @@
 
 	$("#categories .category").on("click", function(e){
 		e.preventDefault();
-		var _this = $(this);
+		var smajobberId = $(this).attr("id");
 		console.log("cat id: " + $(this).attr("id"));
+		$("#smajobbere").hide();
 
 		//legg til loading
 
 		$.post({
-			url: "smajobbere/sort",
+			url: "/page/smajobbere",
 			data : {
 				_method : 'POST',
-				_token : '@csrf()',
+				_token  : '@csrf()',
+				id 		: smajobberId
 			},
 			success : function(data){
-
+				$("#smajobbere").html(data);
+				console.log(data);
 			},
 			error : function(){
 			  console.log("request fail");
