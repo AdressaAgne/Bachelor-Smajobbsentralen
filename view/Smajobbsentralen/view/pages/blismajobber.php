@@ -51,11 +51,11 @@
 		<div class="form-element col-6 col-s-12">
 			<p>Disponerer du bil?</p>
 			<div class="col-12">
-				<input type="radio" name="hitch" id="caryes">
+				<input type="radio" name="car" id="caryes">
 				<label class="radio-label" for="caryes">Ja</label><br>
 			</div>
 			<div class="col-12">
-				<input type="radio" name="hitch" id="carno">
+				<input type="radio" name="car" id="carno">
 				<label class="radio-label" for="carno">Nei</label><br>
 			</div>
 		</div>
