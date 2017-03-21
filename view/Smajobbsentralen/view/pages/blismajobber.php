@@ -8,28 +8,34 @@
 	<div class="row">
 	   <h3>Generelt</h3>
 		<div class="form-element col-6 col-s-12">
-			<label> Fornavn
-				<input type="text" name="firstname"/>
+			<label> Fornavn 
+				<input type="text" name="firstname" id="formFname"/>
+				<span id="errorMsgFName" class="errorMsg"></span>
+			</label>
+			
+		</div>
+		<div class="form-element col-6 col-s-12">
+			<label> Etternavn 
+				<input type="text" name="lastname" id="formLname"/>
+				<span id="errorMsgLName" class="errorMsg"></span>
 			</label>
 		</div>
 		<div class="form-element col-6 col-s-12">
-			<label> Etternavn
-				<input type="text" name="lastname"/>
-			</label>
-		</div>
-		<div class="form-element col-6 col-s-12">
-			<label> E-post
-				<input type="text" name="email"/>
+            <label> E-post 
+				<input type="text" name="email" id="formEmail"/>
+				<span id="errorMsgEmail" class="errorMsg"></span>
 			</label>
 		</div>
 		<div class="form-element col-6 col-s-12">
 			<label> Adresse
-				<input type="text" name="adress"/>
+				<input type="text" name="address" id="formAddress"/>
+				<span id="errorMsgAddress" class="errorMsg"></span>
 			</label>
 		</div>
 		<div class="form-element col-6 col-s-12">
 			<label> Fødselsdato
-				<input type="date" name="dob"/>
+				<input type="date" name="date" id="formDob"/>
+				<span id="errorMsgDob" class="errorMsg"></span>
 			</label>
 		</div>
 	</div>
@@ -37,12 +43,14 @@
 		<h3>Telefon</h3>
 		<div class="form-element col-6 col-s-12">
 			<label> Mobil
-				<input type="text" name="bil"/>
+				<input type="text" name="mob" id="formMob"/>
+				<span id="errorMsgMob" class="errorMsg"></span>
 			</label>
 		</div>
 		<div class="form-element col-6 col-s-12">
 			<label> Privat
-				<input type="text" name="bil"/>
+				<input type="text" name="priv" id="formPriv"/>
+				<span id="errorMsgPriv" class="errorMsg"></span>
 			</label>
 		</div>
 	</div>
@@ -126,3 +134,5 @@
 
 	@formend()
 </article>
+@layout('layout.scripts')
+<script src="{{$assets}}/js/applicationval.js"></script>

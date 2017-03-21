@@ -257,8 +257,7 @@ img {
   margin: 10px 0px; }
 
 .errorMsg {
-  visibility: hidden;
-  color: #d40000; }
+  color: red; }
 
 input[type='text'], input[type='date'], textarea {
   box-sizing: border-box;
