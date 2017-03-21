@@ -11,10 +11,12 @@ class Direct extends Route{
     private $type = '';
     
     public function __construct($route, $callback, $type){
-        $get = explode(",", preg_replace("/(.*)\/(\\{(.*)\\})/uiUmx", "$3,", $route));
+        $regex = "/(.*)\/(\\{(.*)\\})/uiUmx";
+        
+        $get = explode(",", preg_replace($regex, "$3,", $route));
         array_pop($get);
         
-        $route = "/".trim(preg_replace("/(.*)\/(\\{(.*)\\})/uiUmx", "$1", $route), "/");
+        $route = "/".trim(preg_replace($regex, "$1", $route), "/");
         
         $this->route = $route;
         $this->type = $type;

@@ -31,6 +31,9 @@ Direct::put('/admin/media', 'AdminController@put_media');
 Direct::get('/list', 'AdminController@route');
 
 Direct::put('/page/{id}', 'PageController@item');
+Direct::post('/page/{id}', 'PageController@item');
+Direct::patch('/page/{id}', 'PageController@item');
+Direct::delete('/page/{id}', 'PageController@item');
 
 Direct::stack('/page', 'PageController');
 
