@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
 
-use View, NormalController, Config;
+use View, NormalController, Config, Direct;
 
 class MainController extends Controller implements NormalController {
 
@@ -14,15 +14,18 @@ class MainController extends Controller implements NormalController {
         
         $page = $this->select('pages', ['*'], ['id' => $id], 'page')->fetch();
     
-        //check if a designated controller for the view file exists, if so call it and pass it to the file.
-        $theme = '/view/'.Config::$theme;
-        $controller = '.'.$theme.'/Controllers/'.$page->style.'.php';
-        
-        if(file_exists($controller)){
-            include_once($controller);
-            return View::make('index', ['page' => $page, 'class' => new $page->style($this, $page)]);
+        $controller = $this->callThemeController($page);
+        if($controller[0]){
+            return View::make('index', $controller[1]);
         }
 
         return View::make('index', ['page' => $page]);
     }
+    
+    public function route(){
+        return Direct::lists();
+    }
+    
+    
+    
 }

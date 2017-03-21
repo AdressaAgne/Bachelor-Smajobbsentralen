@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controllers;
-use DB, Account, User, Config, Direct;
+use DB, Account, User, Config, Direct, View;
 
 class Controller extends DB{
     
@@ -38,6 +38,25 @@ class Controller extends DB{
             
             self::$site_wide_vars['menu'] = $this->select('pages', ['*'], ['visible' => '1', 'auth' => '0'])->fetchAll();
         }
+    }
+    
+    public function callThemeController($page){
+        
+        //check if a designated controller for the view file exists, if so call it and pass it to the file.
+        $theme = '/view/'.Config::$theme;
+        $controller = '.'.$theme.'/Controllers/'.$page->style.'.php';
+        
+        if(file_exists($controller)){
+            include_once($controller);
+            $class = new $page->style($this, $page);
+            
+            if(isset($_POST['_method']) && method_exists($class, strtolower($_POST['_method']))){
+                call_user_func([$class, strtolower($_POST['_method'])], array_merge($_POST, $_GET));
+            }
+            
+            return [true, ['page' => $page, 'class' => $class]];
+        }
+        return [false];
     }
     
     public function __call($method, $params){

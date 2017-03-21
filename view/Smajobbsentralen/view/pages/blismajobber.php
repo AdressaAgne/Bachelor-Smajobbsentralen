@@ -2,7 +2,7 @@
 	<div class="row">
 	<h1>{{ $page->header }}</h1>
 	<p>@format($page->content)</p>
-	@form("put")
+	@form('', 'put')
 	<br/>
 	</div>
 	<div class="row">

@@ -14,4 +14,14 @@ class blismajobber {
 
 	}
 
+	/**
+	*	page/blismajobber put request
+	*	form validation and insert to db
+	*/
+	public function put($data){
+			
+			
+			
+	}
+
 }

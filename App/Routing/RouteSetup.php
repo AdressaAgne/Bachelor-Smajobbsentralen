@@ -6,6 +6,7 @@
 */
 
 Direct::get("/", 'MainController@index');
+Direct::get("/route", 'MainController@route');
 Direct::get("/migrate", 'MainController@migrate');
 
 
@@ -28,6 +29,8 @@ Direct::get('/admin/media', 'AdminController@media');
 Direct::put('/admin/media', 'AdminController@put_media');
 
 Direct::get('/list', 'AdminController@route');
+
+Direct::put('/page/{id}', 'PageController@item');
 
 Direct::stack('/page', 'PageController');
 

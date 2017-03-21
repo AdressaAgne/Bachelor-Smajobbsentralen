@@ -10,7 +10,12 @@ class Direct extends Route{
     private $route = '';
     private $type = '';
     
-    public function __construct($route, $callback, $type, $get = null){
+    public function __construct($route, $callback, $type){
+        $get = explode(",", preg_replace("/(.*)\/(\\{(.*)\\})/uiUmx", "$3,", $route));
+        array_pop($get);
+        
+        $route = "/".trim(preg_replace("/(.*)\/(\\{(.*)\\})/uiUmx", "$1", $route), "/");
+        
         $this->route = $route;
         $this->type = $type;
         parent::$routes[$type][$route] = [
@@ -36,9 +41,8 @@ class Direct extends Route{
      * and so on...
      */
     public static function get($a, $b){
-        $get = explode(",", preg_replace("/(.*)\/(\\{(.*)\\})/uiUmx", "$3,", $a));
-        array_pop($get);
-        return new Direct("/".trim(preg_replace("/(.*)\/(\\{(.*)\\})/uiUmx", "$1", $a), "/"), $b, 'get', $get);
+        
+        return new Direct($a, $b, 'get');
     }
     
     public static function delete($a, $b){

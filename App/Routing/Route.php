@@ -34,7 +34,7 @@ class Route {
         if($_SERVER['REQUEST_METHOD'] == "POST"){
             //CSRF token
             if($_POST['_token'] != $_SESSION['_token']){
-               return self::error('401');
+               return self::error('401', ['Missing/Wrong CSRF token']);
             } 
 
             switch(strtoupper($_POST['_method'])) {
@@ -92,18 +92,18 @@ class Route {
                     call_user_func($key['middleware']['callback']);   
                 }
                 if(!isset($_SESSION['uuid'])){
-                    return self::error('403');   
+                    return self::error('403', 'No entry, premission denied');   
                 }
             }
             return self::$routes[$method][$route];
         } else {
-            return self::error('404');
+            return self::error('404', ['error' => 'page does not exist', 'Route' => $route, 'Method' => $method, 'post' => $_POST]);
         }
     }
     
-    public static function error($error){
+    public static function error($error, $route = ''){
         
-        return array_key_exists($error, self::$routes['error']) ? self::$routes['error'][$error] : ['error' => "$error: Please set up a $error page"];
+        return array_key_exists($error, self::$routes['error']) ? self::$routes['error'][$error] : ['error' => "$error: Please set up a $error page", 'trace' => $route];
         
         //header for right http error.
         //header("HTTP/1.0 404 Not Found");
