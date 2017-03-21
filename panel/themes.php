@@ -16,8 +16,10 @@
                 </label>
             </div>
         @endforeach
-        <div class="form-element">
-            <input type="submit" value="Save Changes">
+        <div class="col-12">
+            <div class="form-element">
+                <input type="submit" value="Save Changes">
+            </div>
         </div>
     @formend()
     
