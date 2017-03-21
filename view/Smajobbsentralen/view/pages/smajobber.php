@@ -16,6 +16,11 @@
 		@endforeach
 	</div>
 	<div class="col-10">
+		@form('', 'POST')
+			<input type="submit" name="" value="test">
+		@formend()
+		
+		
 		@foreach($class->get_smajobbere() as $smajobber)
 		<div class="row smajobbere-list" id="smajobbere">
 			<div class="col-12">
@@ -38,15 +43,16 @@
 
 		//legg til loading
 
-		$.post({
-			url: "/page/smajobbere",
-			data : {
-				_method : 'POST',
-				_token  : '@csrf()',
-				id 		: smajobberId
+		$.ajax({
+			type: "POST",
+			url: "",
+			data: {
+				'_method' : 'POST',
+				'_token'  : '@csrf()',
+				'id' 	  : smajobberId
 			},
 			success : function(data){
-				$("#smajobbere").html(data);
+				//$("#smajobbere").html(data);
 				console.log(data);
 			},
 			error : function(){
