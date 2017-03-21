@@ -51,10 +51,10 @@ class Controller extends DB{
             $class = new $page->style($this, $page);
             
             if(isset($_POST['_method']) && method_exists($class, strtolower($_POST['_method']))){
-                call_user_func([$class, strtolower($_POST['_method'])], array_merge($_POST, $_GET));
+                return call_user_func([$class, strtolower($_POST['_method'])], array_merge($_POST, $_GET));
             }
             
-            return [true, ['page' => $page, 'class' => $class]];
+            return [true, View::make('index', ['page' => $page, 'class' => $class])];
         }
         return [false];
     }

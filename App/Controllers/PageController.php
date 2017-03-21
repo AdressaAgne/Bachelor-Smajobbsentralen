@@ -17,7 +17,7 @@ class PageController extends Controller implements StackController{
         
         $controller = $this->callThemeController($page);
         if($controller[0]){
-            return View::make('index', $controller[1]);
+            return $controller[1];
         }
         
         return View::make('index', ['page' => $page]);
