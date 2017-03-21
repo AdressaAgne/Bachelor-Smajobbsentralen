@@ -30,13 +30,18 @@ class smajobber {
 		return "{$matches[1]} {$matches[2]} {$matches[3]}";
 	}
 
-	public function post($cat_id){		
-		$smajobbere = $this->db->query("SELECT *
+	public function post($data){
+		/*Bugger seg med "NAME" attributt fra kategorier table og users table TODO */
+		$smajobbere = $this->db->query("SELECT u.name, u.surname, u.mobile_phone
 		FROM users AS u
-		INNER JOIN user_category AS uc ON uc.user_id = u.id
-		INNER JOIN kategorier AS k ON k.id = :id", ['id' => $cat_id['id']], 'User')->fetchAll();
+		LEFT JOIN user_category AS uc ON u.id = uc.user_id
+		LEFT JOIN kategorier AS k ON uc.category_id = k.id
+		WHERE uc.category_id = :id", [ 'id' => $data['id']], 'User')->fetchAll();
+		//skal virke men får sålangt ingen ID input fra ajax req
 
-		return 'ball';
+		return $smajobbere;
+
+
 	}//sorting()
 
 }
