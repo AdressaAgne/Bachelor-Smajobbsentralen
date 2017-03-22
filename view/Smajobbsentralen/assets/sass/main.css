@@ -987,11 +987,10 @@ p {
 .liten {
   font-size: 0.7em; }
 
-.footer-links a {
+.footer-links {
   text-decoration: none;
-  color: #fefefe;
-  margin-right: 30px; }
-  .footer-links a:hover {
+  color: #fefefe; }
+  .footer-links:hover {
     color: #E0E0E0; }
 
 .brick {
