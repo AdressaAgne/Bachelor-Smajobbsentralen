@@ -14,7 +14,6 @@ $(function(){
     $("[name=mob]").on('click', removeError );
     
 $("form").submit(function (e) {
-    e.preventDefault();
     
     var numbersCheck = /[0-9]/;
     var characterCheck = /^[a-zA-Z-_ æøåÆØÅ]+$/

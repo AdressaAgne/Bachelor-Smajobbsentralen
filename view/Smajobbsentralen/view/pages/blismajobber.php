@@ -58,11 +58,11 @@
 		<div class="form-element col-6 col-s-12" id="hascar">
 			<p>Disponerer du bil?</p>
 			<div class="col-12">
-				<input type="radio" name="car" id="caryes">
+				<input type="radio" name="car" id="caryes" value="1">
 				<label class="radio-label" for="caryes">Ja</label><br>
 			</div>
 			<div class="col-12">
-				<input type="radio" name="car" id="carno">
+				<input type="radio" name="car" id="carno" value="0">
 				<label class="radio-label" for="carno">Nei</label><br>
 			</div>
 			<span id="errorMsgCar" class="errorMsg"></span>
@@ -70,11 +70,11 @@
 		<div class="form-element col-6 col-s-12" id="hashitch">
 			<p>Hengerfeste?</p>
 			<div class="col-12">
-				<input type="radio" name="hitch" id="hitchyes">
+				<input type="radio" name="hitch" id="hitchyes" value="1">
 				<label class="radio-label" for="hitchyes">Ja</label><br>
 			</div>
 			<div class="col-12">
-				<input type="radio" name="hitch" id="hitchno">
+				<input type="radio" name="hitch" id="hitchno" value="0">
 				<label class="radio-label" for="hitchno">Nei</label><br>
 			</div>
 			<span id="errorMsgHitch" class="errorMsg"></span>
@@ -82,23 +82,23 @@
 		<div class="form-element col-12" id="hasocc">
 			<p> Okkupasjon</p>
 			<div class="col-12">
-				<input type="radio" name="occupation" id="school">
+				<input type="radio" name="occupation" id="school" value="skoleelev">
 				<label class="radio-label" for="school">Skoleelev</label><br>
 			</div>
 			<div class="col-12">
-				<input type="radio" name="occupation" id="unemployed">
+				<input type="radio" name="occupation" id="unemployed" value="unemployed">
 				<label class="radio-label" for="unemployed">Arbeidsledig</label><br>
 			</div>
 			<div class="col-12">
-				<input type="radio" name="occupation" id="pensioner">
+				<input type="radio" name="occupation" id="pensioner" value="pensioner">
 				<label class="radio-label" for="pensioner">Pensjonist</label><br>
 			</div>
 			<div class="col-12">
-				<input type="radio" name="occupation" id="disabled">
+				<input type="radio" name="occupation" id="disabled" value="disabled">
 				<label class="radio-label" for="disabled">Uføre</label><br>
 			</div>
 			<div class="col-12">
-				<input type="radio" name="occupation" id="other">
+				<input type="radio" name="occupation" id="other" value="other">
 				<label class="radio-label" for="other">Annet</label><br>
 			</div>
 			<span id="errorMsgOcc" class="errorMsg"></span>
@@ -108,7 +108,7 @@
 
 			@foreach($class->categories() as $cat)
 				<div class="col-6">
-					<input type="checkbox" name="work[]" id="{{$cat['name']}}">
+					<input type="checkbox" name="work[]" id="{{$cat['name']}}" value="{{$cat['name']}}">
 					<label class="checkbox" for="{{$cat['name']}}">{{ucfirst($cat['name'])}}</label>
 				</div>
 			@endforeach
