@@ -36,7 +36,7 @@ class smajobber {
 		FROM users AS u
 		LEFT JOIN user_category AS uc ON u.id = uc.user_id
 		LEFT JOIN kategorier AS k ON uc.category_id = k.id
-		WHERE uc.category_id = :id", [ 'id' => $data['id']], 'User')->fetchAll();
+		WHERE uc.category_id = :id", [ 'id' => $data['_id']], 'User')->fetchAll();
 		//skal virke men får sålangt ingen ID input fra ajax req
 
 		return $smajobbere;
