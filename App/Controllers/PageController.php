@@ -12,9 +12,7 @@ class PageController extends Controller implements StackController{
     }
     
     public function item($url){
-        
         $page = $this->select('pages', ['*'], ['permalink' => $url['id']], 'Page')->fetch();
-        
         $controller = $this->callThemeController($page);
         if($controller[0]){
             return $controller[1];

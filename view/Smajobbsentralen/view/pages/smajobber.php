@@ -49,7 +49,7 @@
 			data: {
 				'_method' : 'POST',
 				'_token'  : '@csrf()',
-				'id' 	  : smajobberId
+				'_id' 	  : smajobberId
 			},
 			success : function(data){
 				//$("#smajobbere").html(data);

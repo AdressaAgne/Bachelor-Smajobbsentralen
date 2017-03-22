@@ -50,7 +50,6 @@ class RouteHandler{
         $list = [];
         // Minify this stuff
         
-        
         foreach(Route::lists() as $type => $types){
             foreach($types as $key => $value){
                if(preg_match("/".$this->regexSlash($key)."/i", $url)){
