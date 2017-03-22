@@ -17,7 +17,14 @@
 	</div>
 	<div class="col-10">
 
-		<div class="row loading" style="display:none;"></div>
+		<div class="row" id="loading" style="display:none;">
+		  <label for="file" class="col--center" style="width: 150px;">
+			  <svg height="150" width="150" class="pie-chart processing" id="svg">
+				<circle class="behind"cx="50%" cy="50%" r="40%" />
+				<circle class="front" cx="50%" cy="50%" r="40%" data-percent="0" />
+			  </svg>
+		  </label>
+		</div>
 
 
 		<div id="smajobbere">
@@ -41,6 +48,7 @@
 		var smajobberId = $(this).attr("id");
 		//console.log("cat id: " + smajobberId);
 			$("#smajobbere").fadeOut(50);
+			$('#loading').show();
 
 		//legg til loading
 
@@ -54,6 +62,7 @@
 				'_id' 	  : smajobberId
 			},
 			success : function(data){
+				$('#loading').hide();
 				//$("#smajobbere").html(data);
 				//console.log(data);
 				//$("#smajobbere").fadeIn(50);
