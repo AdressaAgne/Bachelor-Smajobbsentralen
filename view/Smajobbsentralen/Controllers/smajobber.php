@@ -32,11 +32,13 @@ class smajobber {
 
 	public function post($data){
 		/*Bugger seg med "NAME" attributt fra kategorier table og users table TODO */
-		$smajobbere = $this->db->query("SELECT u.name, u.surname, u.mobile_phone
+		$smajobbere = $this->db->query("SELECT u.*
 		FROM users AS u
 		LEFT JOIN user_category AS uc ON u.id = uc.user_id
 		LEFT JOIN kategorier AS k ON uc.category_id = k.id
-		WHERE uc.category_id = :id", [ 'id' => $data['_id']], 'User')->fetchAll();
+		WHERE uc.category_id = :id
+		GROUP BY u.id
+		ORDER BY u.name", [ 'id' => $data['_id']], 'User')->fetchAll();
 		//skal virke men får sålangt ingen ID input fra ajax req
 
 		return $smajobbere;
