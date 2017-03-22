@@ -53,10 +53,10 @@ class blismajobber {
                         if(empty($value)) $validateForm = false;
                         break;
                     case 'car' : 
-                        if(preg_match('/{0,1}/', $value)) $validateForm = false;
+                        if(preg_match('/[0|1]/', $value)) $validateForm = false;
                         break;
                     case 'hitch' : 
-                        if(preg_match('/{0,1}/', $value)) $validateForm = false;
+                        if(preg_match('/[0|1]/', $value)) $validateForm = false;
                         break;
                     case 'occupation' : 
                         if(empty($value)) $validateForm = false;

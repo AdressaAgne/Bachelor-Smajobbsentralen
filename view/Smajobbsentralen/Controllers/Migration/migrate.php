@@ -122,7 +122,7 @@ class Migrate {
 			new Row('surname', 'varchar'),
 			new Row('email', 'varchar'),
 			new Row('password', 'varchar'),
-			new Row('approved', 'tinyint' 0),
+			new Row('approved', 'tinyint', 0),
 			new Row('visible', 'tinyint'),
 			new Row('dob', 'date'),
 			new Row('mobile_phone', 'int'),
