@@ -33,7 +33,7 @@ class Route {
         
         if($_SERVER['REQUEST_METHOD'] == "POST"){
             //CSRF token
-            if(!isset($_POST['_token'])) return self::error('401', ['missing token'])
+            if(!isset($_POST['_token'])) return self::error('401', ['missing token']);
             
             if($_POST['_token'] != $_SESSION['_token']){
                return self::error('401', ['Wrong CSRF token']);
