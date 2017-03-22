@@ -72,7 +72,7 @@
 						"<div class='row smajobbere-list'>"+
 							"<div class='col-12'>"+
 								"<h1>"+item.name + " " + item.surname + "</h1>"+
-								"<h1>"+"<strong><i class='fa fa-phone'></i>"+item.mobil+"</strong></h1>"+
+								"<h1>"+"<strong><i class='fa fa-phone'></i>"+formatPhoneNr(item.mobil)+"</strong></h1>"+
 							"</div>"+
 						"</div>"
 					).fadeIn(item);
@@ -84,5 +84,9 @@
 
 		});//post req
 	});//EL
+
+	function formatPhoneNr(nr){
+		return nr.replace(/(\d{3})(\d{2})(\d{3})/, '$1 $2 $3');
+	}
 
 </script>
