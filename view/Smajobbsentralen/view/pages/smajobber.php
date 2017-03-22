@@ -16,19 +16,20 @@
 		@endforeach
 	</div>
 	<div class="col-10">
-		@form('', 'POST')
-			<input type="submit" name="" value="test">
-		@formend()
+
+		<div class="row loading" style="display:none;"></div>
 
 
-		@foreach($class->get_smajobbere() as $smajobber)
-		<div class="row smajobbere-list" id="smajobbere">
-			<div class="col-12">
-				<h1>{{$smajobber['name']}} {{$smajobber['surname']}}</h1>
-				<h1><strong><i class="fa fa-phone"></i> {{$class->format_phonenr($smajobber['mobile_phone'])}}</strong></h1>
-			</div>
+		<div id="smajobbere">
+			@foreach($class->get_smajobbere() as $smajobber)
+				<div class="row smajobbere-list">
+					<div class="col-12">
+						<h1>{{$smajobber['name']}} {{$smajobber['surname']}}</h1>
+						<h1><strong><i class="fa fa-phone"></i> {{$class->format_phonenr($smajobber['mobile_phone'])}}</strong></h1>
+					</div>
+				</div>
+			@endforeach
 		</div>
-		@endforeach
 	</div>
 </div>
 @layout('layout.scripts')
@@ -38,14 +39,15 @@
 	$("#categories .category").on("click", function(e){
 		e.preventDefault();
 		var smajobberId = $(this).attr("id");
-		console.log("cat id: " + $(this).attr("id"));
-			$("#smajobbere").hide();
+		//console.log("cat id: " + smajobberId);
+			$("#smajobbere").fadeOut(50);
 
 		//legg til loading
 
 		$.ajax({
 			type: "POST",
 			url: "",
+			datatype : 'json',
 			data: {
 				'_method' : 'POST',
 				'_token'  : '@csrf()',
@@ -53,8 +55,19 @@
 			},
 			success : function(data){
 				//$("#smajobbere").html(data);
-				console.log(data);
-				$("#smajobbere").show();
+				//console.log(data);
+				//$("#smajobbere").fadeIn(50);
+				$("#smajobbere").html('');
+				$.each(data, function(i, item) {
+					$("#smajobbere").prepend(
+						"<div class='row smajobbere-list'>"+
+							"<div class='col-12'>"+
+								"<h1>"+item.name + " " + item.surname + "</h1>"+
+								"<h1>"+"<strong><i class='fa fa-phone'></i>"+item.mobil+"</strong></h1>"+
+							"</div>"+
+						"</div>"
+					).fadeIn(item);
+				})
 			},
 			error : function(){
 			  console.log("request fail");
