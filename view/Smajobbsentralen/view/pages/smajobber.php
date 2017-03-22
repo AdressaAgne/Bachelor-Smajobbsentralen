@@ -11,7 +11,7 @@
 	<div class="col-2" id="categories">
 		@foreach($class->get_cats() as $cat)
 
-			<button class="col-12 category" id="{{$cat['id']}}">{{$cat['name']}}</button>
+			<button class="col-12 category" id="{{$cat['id']}}" value="{{$cat['name']}}">{{$cat['name']}}</button>
 
 		@endforeach
 	</div>
@@ -45,6 +45,7 @@
 
 	$("#categories .category").on("click", function(e){
 		e.preventDefault();
+		var _this = $(this);
 		var smajobberId = $(this).attr("id");
 		//console.log("cat id: " + smajobberId);
 			$("#smajobbere").fadeOut(50);
@@ -67,16 +68,24 @@
 				//console.log(data);
 				//$("#smajobbere").fadeIn(50);
 				$("#smajobbere").html('');
-				$.each(data, function(i, item) {
-					$("#smajobbere").prepend(
-						"<div class='row smajobbere-list'>"+
-							"<div class='col-12'>"+
-								"<h1>"+item.name + " " + item.surname + "</h1>"+
-								"<h1>"+"<strong><i class='fa fa-phone'></i>"+formatPhoneNr(item.mobil)+"</strong></h1>"+
-							"</div>"+
-						"</div>"
-					).fadeIn(item);
-				})
+				if(data.length > 0){
+					$.each(data, function(i, item) {
+						$("#smajobbere").prepend(
+							"<div class='row smajobbere-list'>"+
+								"<div class='col-12'>"+
+									"<h1>"+item.name + " " + item.surname + "</h1>"+
+									"<h1>"+"<strong><i class='fa fa-phone'></i>"+formatPhoneNr(item.mobil)+"</strong></h1>"+
+								"</div>"+
+							"</div>"
+						).fadeIn(item);
+					})
+				}else{
+					$("#smajobbere").append(
+						"<h1>Det er dessverre ingen som kan gjøre arbeeid av typen \""+_this.val()+"\"</h1>"
+					).fadeIn();
+				}
+
+
 			},
 			error : function(){
 			  console.log("request fail");
