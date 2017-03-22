@@ -9,32 +9,32 @@
 	   <h3>Generelt</h3>
 		<div class="form-element col-6 col-s-12">
 			<label> Fornavn 
-				<input type="text" name="firstname" id="formFname"/>
+				<input type="text" name="firstname"/>
 				<span class="errorMsg"></span>
 			</label>
 			
 		</div>
 		<div class="form-element col-6 col-s-12">
 			<label> Etternavn 
-				<input type="text" name="lastname" id="formLname"/>
+				<input type="text" name="lastname"/>
 				<span class="errorMsg"></span>
 			</label>
 		</div>
 		<div class="form-element col-6 col-s-12">
             <label> E-post 
-				<input type="text" name="email" id="formEmail"/>
+				<input type="text" name="email"/>
 				<span class="errorMsg"></span>
 			</label>
 		</div>
 		<div class="form-element col-6 col-s-12">
 			<label> Adresse
-				<input type="text" name="address" id="formAddress"/>
-				<span id="errorMsgAddress" class="errorMsg"></span>
+				<input type="text" name="address"/>
+				<span class="errorMsg"></span>
 			</label>
 		</div>
 		<div class="form-element col-6 col-s-12">
 			<label> Fødselsdato
-				<input type="date" name="date" id="formDob"/>
+				<input type="date" name="date"/>
 				<span id="errorMsgDob" class="errorMsg"></span>
 			</label>
 		</div>
@@ -43,8 +43,8 @@
 		<h3>Telefon</h3>
 		<div class="form-element col-6 col-s-12">
 			<label> Mobil
-				<input type="text" name="mob" id="formMob"/>
-				<span id="errorMsgMob" class="errorMsg"></span>
+				<input type="text" name="mob"/>
+				<span class="errorMsg"></span>
 			</label>
 		</div>
 		<div class="form-element col-6 col-s-12">
@@ -130,7 +130,7 @@
 			<span id="errorMsgConf" class="errorMsg"></span>
 		</div>
 		<div class="form-element col-12">
-			<input type="submit" value="Send inn søknad">
+			<input type="submit" value="Send inn søknad" name="_submit">
 		</div>
 
 	</div>
@@ -139,4 +139,4 @@
 </article>
 @layout('layout.scripts')
 <script src="{{$assets}}/js/applicationval.js"></script>
-<script src="{{$assets}}/js/applicval.js"></script>
+<!--script src="{{$assets}}/js/applicval.js"></script-->

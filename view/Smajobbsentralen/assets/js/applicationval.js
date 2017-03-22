@@ -6,21 +6,23 @@ $(function(){
             $(this).css('borderColor', "");
         };
     
-    $("#formFname").on('click', removeError );
-    $("#formLname").on('click', removeError );
-    $("#formEmail").on('click', removeError );
-    $("#formAddress").on('click', removeError );
-    $("#formDob").on('click', removeError );
-    $("#formMob").on('click', removeError );
+    $("[name=firstname]").on('click', removeError );
+    $("[name=lastname]").on('click', removeError );
+    $("[name=email]").on('click', removeError );
+    $("[name=address]").on('click', removeError );
+    $("[name=date]").on('click', removeError );
+    $("[name=mob]").on('click', removeError );
     
 $("form").submit(function (e) {
     e.preventDefault();
     
     var numbersCheck = /[0-9]/;
-    var characterCheck = /^[a-zA-Z]+$/;
+    var characterCheck = /^[a-zA-Z-_ æøåÆØÅ]+$/
     var emailCheck = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     
-    
+    function validateAll(inputfield, errormsg1, errormsg2){
+        
+    }
     
     function validateFName() {
         
@@ -87,9 +89,10 @@ $("form").submit(function (e) {
     
     function validateAddress() {
         
-        address = $("[name=address]").val();
-        ema = $("#errorMsgAddress");
-        fa = $("#formAddress");
+        fa = $("[name=address]");
+        ema = fa.next('span');
+        address = fa.val();
+        
 
         if (address == "") {
             ema.css('visibility', "visible");
@@ -102,9 +105,9 @@ $("form").submit(function (e) {
     
     function validateDate() {
         
-        date = $("[name=date]").val();
-        emd = $("#errorMsgDob");
-        fd = $("#formDob");
+        fd = $("[name=date]");
+        emd = fd.next('span');
+        date = fd.val();
 
         if (date == "") {
             emd.css('visibility', "visible");
@@ -117,9 +120,10 @@ $("form").submit(function (e) {
     
     function validateMob() {
         
-        mob = $("[name=mob]").val();
-        emm = $("#errorMsgMob");
-        fm = $("#formMob");
+        fm = $("[name=mob]");
+        emm = fm.next('span');
+        mob = fm.val();
+        
 
         if (mob == "") {
             emm.css('visibility', "visible");
