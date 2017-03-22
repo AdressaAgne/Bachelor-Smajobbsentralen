@@ -17,6 +17,16 @@ class Migrate {
 			new Row('from_time', 'varchar'),
 			new Row('to_time', 'varchar'),
 		]);
+
+		$db->createTable('user_category', [
+			[
+				new PID(),
+				new Timestamp(),
+				new Row('user_id', 'int'),
+				new Row('category_id')
+			]
+		]);
+
 	}
 
 	public function populate($db){
@@ -147,6 +157,21 @@ class Migrate {
 				'visible' => '1',
 				'dob' => '2017-03-16 20:16:28',
 				'mobile_phone' => '12341234',
+			]
+		]);
+
+		$db->insert('user_category', [
+			[
+				'user_id' => 1,
+				'category_id' => 5
+			],
+			[
+				'user_id' => 2,
+				'category_id' => 1
+			],
+			[
+				'user_id' => 3,
+				'category_id' => 5
 			]
 		]);
 	}//populate

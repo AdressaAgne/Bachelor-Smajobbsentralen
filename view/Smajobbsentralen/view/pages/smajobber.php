@@ -19,8 +19,8 @@
 		@form('', 'POST')
 			<input type="submit" name="" value="test">
 		@formend()
-		
-		
+
+
 		@foreach($class->get_smajobbere() as $smajobber)
 		<div class="row smajobbere-list" id="smajobbere">
 			<div class="col-12">
@@ -39,7 +39,7 @@
 		e.preventDefault();
 		var smajobberId = $(this).attr("id");
 		console.log("cat id: " + $(this).attr("id"));
-		$("#smajobbere").hide();
+			$("#smajobbere").hide();
 
 		//legg til loading
 
@@ -54,6 +54,7 @@
 			success : function(data){
 				//$("#smajobbere").html(data);
 				console.log(data);
+				$("#smajobbere").show();
 			},
 			error : function(){
 			  console.log("request fail");
