@@ -1,8 +1,9 @@
 $(function(){
-
+var inputTypes;
 $('form').find('input').each(function(){
-    name = $(this).attr('name');
-    console.log(name);
+    
+    inputTypes = $(this).attr('id');
+    console.log(inputTypes);
 });
 
 });
