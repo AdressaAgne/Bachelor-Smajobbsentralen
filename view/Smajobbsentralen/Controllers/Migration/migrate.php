@@ -19,12 +19,10 @@ class Migrate {
 		]);
 
 		$db->createTable('user_category', [
-			[
-				new PID(),
-				new Timestamp(),
-				new Row('user_id', 'int'),
-				new Row('category_id', 'int')
-			]
+			new PID(),
+			new Timestamp(),
+			new Row('user_id', 'int'),
+			new Row('category_id', 'int')
 		]);
 
 	}
