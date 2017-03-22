@@ -35,8 +35,8 @@ class smajobber {
 		/*Bugger seg med "NAME" attributt fra kategorier table og users table TODO */
 		$smajobbere = $this->db->query("SELECT u.name, u.surname, u.mobile_phone AS mobil, u.private_phone AS tlf
 		FROM users AS u
-		LEFT JOIN user_category AS uc ON u.id = uc.user_id
-		LEFT JOIN kategorier AS k ON uc.category_id = k.id
+		INNER JOIN user_category AS uc ON u.id = uc.user_id
+		INNER JOIN kategorier AS k ON uc.category_id = k.id
 		WHERE uc.category_id = :id
 		GROUP BY u.id
 		ORDER BY u.name", [ 'id' => $data['_id']], 'User')->fetchAll();
