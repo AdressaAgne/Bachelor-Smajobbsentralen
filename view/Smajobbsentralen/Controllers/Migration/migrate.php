@@ -23,7 +23,7 @@ class Migrate {
 				new PID(),
 				new Timestamp(),
 				new Row('user_id', 'int'),
-				new Row('category_id')
+				new Row('category_id', 'int')
 			]
 		]);
 
