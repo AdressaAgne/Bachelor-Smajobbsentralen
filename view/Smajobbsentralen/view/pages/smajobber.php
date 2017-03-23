@@ -10,13 +10,10 @@
 <div class="row">
 	<div class="col-2" id="categories">
 		@foreach($class->get_cats() as $cat)
-
-			<button class="col-12 category" id="{{$cat['id']}}" value="{{$cat['name']}}">{{$cat['name']}}</button>
-
+			<button class="category" id="{{$cat['id']}}" value="{{$cat['name']}}">{{$cat['name']}}</button>
 		@endforeach
 	</div>
 	<div class="col-10">
-
 		<div class="row" id="loading" style="display:none;">
 		  <label for="file" class="col--center" style="width: 150px;">
 			  <svg height="150" width="150" class="pie-chart processing" id="svg">
@@ -46,12 +43,8 @@
 		e.preventDefault();
 		var _this = $(this);
 		var smajobberId = $(this).attr("id");
-		//console.log("cat id: " + smajobberId);
-			$("#smajobbere").fadeOut(50);
-			$('#loading').show();
-
-		//legg til loading
-
+		$("#smajobbere").fadeOut(50);
+		$('#loading').show();
 		$.ajax({
 			type: "POST",
 			url: "",
@@ -63,9 +56,6 @@
 			},
 			success : function(data){
 				$('#loading').hide();
-				//$("#smajobbere").html(data);
-				//console.log(data);
-				//$("#smajobbere").fadeIn(50);
 				$("#smajobbere").html('');
 				if(data.length > 0){
 					$.each(data, function(i, item) {
@@ -73,7 +63,7 @@
 							"<div class='row smajobbere-list'>"+
 								"<div class='col-12'>"+
 									"<h1>"+item.name + " " + item.surname + "</h1>"+
-									"<h1>"+"<strong><i class='fa fa-phone'></i>"+formatPhoneNr(item.mobil)+"</strong></h1>"+
+									"<h1>"+"<strong><i class='fa fa-phone'></i> "+formatPhoneNr(item.mobil)+"</strong></h1>"+
 								"</div>"+
 							"</div>"
 						).fadeIn(item);
