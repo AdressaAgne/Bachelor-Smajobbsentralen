@@ -68,7 +68,7 @@
 							"</div>"
 						).fadeIn(item);
 					})
-					$("#smajobbere").prepend("<h1>Følgende kan jobbe med "+_this.val()+"</h1>").fadeIn();
+					$("#smajobbere").prepend("<h1>Følgende kan jobbe med \""+_this.val()+"\"</h1>").fadeIn();
 				}else{
 					$("#smajobbere").append(
 						"<h1>Det er dessverre ingen som kan gjøre arbeeid av typen \""+_this.val()+"\"</h1>"
