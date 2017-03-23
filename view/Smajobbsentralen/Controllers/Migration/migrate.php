@@ -31,7 +31,7 @@ class Migrate {
 		$db->insert('kategorier', [
 			[
 				'name' => 'snømåking',
-				'icon' => 'user',
+				'icon' => 'lock',
 			],
 			[
 				'name' => 'hagearbeid',
@@ -110,9 +110,22 @@ class Migrate {
 				'type' => 'page',
 				'image' => '0',
 				'arrangement' => '0'
+			],
+			[
+				'permalink' => 'home',
+				'header' => 'Småjobbsentralen',
+				'user_id' => '0',
+				'content' => '',
+				'auth' => '0',
+				'visible' => '0',
+				'style' => 'frontpage',
+				'type' => 'page',
+				'image' => '0',
+				'arrangement' => '0'
 			]
 		]);
-
+		$db->setSetting('frontpage', 4);
+		
 		$db->deleteTable('users');
 
 		$db->createTable('users', [
