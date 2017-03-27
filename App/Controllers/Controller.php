@@ -40,6 +40,14 @@ class Controller extends DB{
         }
     }
     
+    protected function getFiles($path){
+        $types = array_diff(scandir($path), array('.', '..', '.DS_Store'));
+        foreach($types as $key => $type){
+            $types[$key] = pathinfo($type, PATHINFO_FILENAME);
+        }
+        return $types;
+    }
+    
     public function callThemeController($page){
         
         //check if a designated controller for the view file exists, if so call it and pass it to the file.

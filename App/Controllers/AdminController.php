@@ -61,14 +61,6 @@ class AdminController extends Controller implements NormalController {
         return View::make('posts', ['pagetypes' => $types, 'blogs' => $blogs, 'posts' => $posts, 'media' => $media], true);
     }
     
-    private function getFiles($path){
-        $types = array_diff(scandir($path), array('.', '..', '.DS_Store'));
-        foreach($types as $key => $type){
-            $types[$key] = pathinfo($type, PATHINFO_FILENAME);
-        }
-        return $types;
-    }
-    
     public function put_posts($data){
          $this->insert('pages', [[
             'header'    => $data['header'],

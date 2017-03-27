@@ -43,6 +43,9 @@ class PageController extends Controller implements StackController{
             'header'    => $data['header'],
             'content'   => $data['content'],
             'permalink' => $data['permalink'],
+            'parent'    => $data['parent'],
+            'image'     => $data['image'],
+            'style'     => $data['style'],
             'visible'   => isset($data['visible']),
         ], ['id' => $data['id']]);
         
@@ -52,8 +55,13 @@ class PageController extends Controller implements StackController{
     public function edit($url){
         
         $page = $this->select('pages', ['*'], ['permalink' => $url['id']], 'Page')->fetch();
+        $pages = $this->query('SELECT * FROM pages WHERE permalink != :id', ['id' => $url['id']], 'Page')->fetchAll();
+        $media = $this->select('image', ['*'], null, 'image');
         
-        return View::make('editpage', ['page' => $page], true);
+        
+        $types = $this->getFiles('./view/'.Config::$theme.'/view/pages');
+        
+        return View::make('editpage', ['page' => $page, 'parents' => $pages, 'media' => $media, 'types' => $types], true);
     }
     
     public function delete($data){
@@ -63,4 +71,5 @@ class PageController extends Controller implements StackController{
         
         return Direct::re('/admin/pages');
     }
+    
 }

@@ -1,6 +1,10 @@
 <input type="hidden" name="image" id="image" value="1">
-<div class="col-12" id="select-open" style="background-image: url()">Select Image</div>
 
+@if(isset($selected))
+<div class="col-12" id="select-open" style="background-image: url({{$selected->image()->small}})">Select Image</div>
+@else
+<div class="col-12" id="select-open" style="background-image: url()">Select Image</div>
+@endif
 
 <div class="image-selector">
     @foreach($media as $image)
