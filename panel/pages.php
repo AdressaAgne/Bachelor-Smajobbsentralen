@@ -13,18 +13,28 @@
                 </div>
                 <div class="form-element col-6">
                     <h4>Select page style</h4>
-                    <select name="style" id="">
+                    <select name="style" id="" class="dropdown">
                         @foreach($pagetypes as $style)
                             <option value="{{$style}}">{{$style}}</option>
                         @endforeach
                     </select>
                 </div>
+                <div class="form-element col-6">
+                    <h4>Type:</h4>
+                    <select name="type" id="types" class="dropdown">
+                            <option value="page">Page</option>
+                            <option value="post">Post</option>
+                            <option value="blog">Blog</option>
+                    </select>
+                    <label for="types" class="dropdown"></label>
+                </div> 
                 <div class="form-element col-12">
                     <textarea name="content" id="" cols="30" rows="10" class="form-control" placeholder="Content"></textarea>
                 </div>
                 <div class="form-element col-12">
                     <label for="">
-                        Visible in menu: <input type="checkbox" checked name="visible">
+                        <input id="visible" class="checkbox" type="checkbox" name="visible">
+                        <label for="visible" class="checkbox">Visible in Menu</label>
                     </label>
                 </div>
                 <div class="form-element col-12">

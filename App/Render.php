@@ -17,6 +17,7 @@ class Render {
         'active_page',
         'isLoggedIn',
         'checked',
+        'selected',
         'form',
         'formend',
         'format',
@@ -136,6 +137,9 @@ class Render {
 
     public static function checked($i){
         if($i) echo 'checked';
+    }
+    public static function selected($i){
+        if($i) echo 'selected';
     }
     
     public static function sub($msg, $sentences = 1){

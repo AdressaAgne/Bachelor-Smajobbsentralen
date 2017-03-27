@@ -20,7 +20,7 @@
         
         <div class="col-6">
             <div class="form-element col-12">
-                <h4>Parent:</h4>
+                <h4>Parent</h4>
                 <select name="parent" id="parent" class="dropdown">
                     <option value="">None</option>
                     @foreach($parents as $p)
@@ -35,7 +35,7 @@
             </div>
             
             <div class="form-element col-12">
-                <h4>Select a post style</h4>
+                <h4>Template</h4>
                 <select name="style" id="styles" class="dropdown">
                     <option value="">none</option>
                     @foreach($types as $style)
@@ -47,6 +47,16 @@
                     @endforeach
                 </select>
                 <label for="styles" class="dropdown"></label>
+            </div>   
+             
+            <div class="form-element col-12">
+                <h4>Type:</h4>
+                <select name="type" id="types" class="dropdown">
+                        <option value="page" @selected($page->type == 'page')>Page</option>
+                        <option value="post" @selected($page->type == 'post')>Post</option>
+                        <option value="blog" @selected($page->type == 'blog')>Blog</option>
+                </select>
+                <label for="types" class="dropdown"></label>
             </div>    
         </div>
         

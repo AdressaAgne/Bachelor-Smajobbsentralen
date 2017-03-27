@@ -54,7 +54,7 @@ class AdminController extends Controller implements NormalController {
     public function posts(){
         $types = $this->getFiles('./view/'.Config::$theme.'/view/posts');
         
-        $blogs = $this->select('pages', ['*'], ['style' => 'blog'], 'page')->fetchAll();
+        $blogs = $this->select('pages', ['*'], ['type' => 'blog'], 'page')->fetchAll();
         $posts = $this->select('pages', ['*'], ['type' => 'post'], 'page')->fetchAll();
         $media = $this->select('image', ['*'], null, 'Image')->fetchAll();
         

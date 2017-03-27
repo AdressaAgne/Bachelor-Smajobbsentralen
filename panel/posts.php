@@ -12,7 +12,7 @@
                         </div>
                         <div class="form-element col-12">
                             <h4>Select a blog</h4>
-                            <select name="parent" id="">
+                            <select name="parent" id="" class="dropdown">
                                 @foreach($blogs as $blog)
                                     <option value="{{$blog->id}}">{{$blog->header}}</option>
                                 @endforeach
@@ -20,7 +20,7 @@
                         </div>
                         <div class="form-element col-12">
                             <h4>Select a post style</h4>
-                            <select name="style" id="">
+                            <select name="style" id="" class="dropdown">
                                 @foreach($pagetypes as $style)
                                     <option value="{{$style}}">{{$style}}</option>
                                 @endforeach

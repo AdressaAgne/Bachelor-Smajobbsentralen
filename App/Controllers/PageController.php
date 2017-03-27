@@ -30,6 +30,7 @@ class PageController extends Controller implements StackController{
             'content'   => $data['content'],
             'permalink' => $data['permalink'],
             'style'     => $data['style'],
+            'type'      => $data['type'],
             'visible'   => isset($data['visible']),
         ]]);
         
@@ -46,6 +47,7 @@ class PageController extends Controller implements StackController{
             'parent'    => $data['parent'],
             'image'     => $data['image'],
             'style'     => $data['style'],
+            'type'      => $data['type'],
             'visible'   => isset($data['visible']),
         ], ['id' => $data['id']]);
         
