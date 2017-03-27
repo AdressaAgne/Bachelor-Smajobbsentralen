@@ -1,12 +1,36 @@
 .hero
-	background-image: url("../img/mountains.jpg")
 	background-size: cover
 	background-position: center bottom
 	width: 100vw
-	height: 60vh
+	height: 50vh
 	margin-bottom: 20px
+	margin-top: -20px
 	position: relative
 	text-align: center
+	&--header
+		position: absolute
+		left: 50%
+		transform: translateX(-50%)
+		bottom: 30px
+		z-index: 999
+
+.font-big
+	font-size: 1.8em
+	
+.font-normal
+	font-size: 1em
+	
+.font-medium
+	font-size: 1.4em
+	
+.font-small
+	font-size: .6em
+
+.border-bottom
+	border-bottom: 1px solid $theme-color-700
+	
+.border-right
+	border-right: 1px solid $theme-color-700
 
 .menu
 	width: 100%

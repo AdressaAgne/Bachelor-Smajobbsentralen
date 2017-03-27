@@ -58,11 +58,11 @@
 		<div class="form-element col-6 col-s-12" id="hascar">
 			<p>Disponerer du bil?</p>
 			<div class="col-12">
-				<input type="radio" name="car" id="caryes" value="1">
+				<input class="radio" type="radio" name="car" id="caryes" value="1">
 				<label class="radio-label" for="caryes">Ja</label><br>
 			</div>
 			<div class="col-12">
-				<input type="radio" name="car" id="carno" value="0">
+				<input class="radio"  type="radio" name="car" id="carno" value="0">
 				<label class="radio-label" for="carno">Nei</label><br>
 			</div>
 			<span id="errorMsgCar" class="errorMsg"></span>
@@ -70,11 +70,11 @@
 		<div class="form-element col-6 col-s-12" id="hashitch">
 			<p>Hengerfeste?</p>
 			<div class="col-12">
-				<input type="radio" name="hitch" id="hitchyes" value="1">
+				<input class="radio"  type="radio" name="hitch" id="hitchyes" value="1">
 				<label class="radio-label" for="hitchyes">Ja</label><br>
 			</div>
 			<div class="col-12">
-				<input type="radio" name="hitch" id="hitchno" value="0">
+				<input class="radio"  type="radio" name="hitch" id="hitchno" value="0">
 				<label class="radio-label" for="hitchno">Nei</label><br>
 			</div>
 			<span id="errorMsgHitch" class="errorMsg"></span>
@@ -82,23 +82,23 @@
 		<div class="form-element col-12" id="hasocc">
 			<p> Okkupasjon</p>
 			<div class="col-12">
-				<input type="radio" name="occupation" id="school" value="skoleelev">
+				<input class="radio"  type="radio" name="occupation" id="school" value="skoleelev">
 				<label class="radio-label" for="school">Skoleelev</label><br>
 			</div>
 			<div class="col-12">
-				<input type="radio" name="occupation" id="unemployed" value="unemployed">
+				<input class="radio"  type="radio" name="occupation" id="unemployed" value="unemployed">
 				<label class="radio-label" for="unemployed">Arbeidsledig</label><br>
 			</div>
 			<div class="col-12">
-				<input type="radio" name="occupation" id="pensioner" value="pensioner">
+				<input class="radio"  type="radio" name="occupation" id="pensioner" value="pensioner">
 				<label class="radio-label" for="pensioner">Pensjonist</label><br>
 			</div>
 			<div class="col-12">
-				<input type="radio" name="occupation" id="disabled" value="disabled">
+				<input class="radio"  type="radio" name="occupation" id="disabled" value="disabled">
 				<label class="radio-label" for="disabled">Uføre</label><br>
 			</div>
 			<div class="col-12">
-				<input type="radio" name="occupation" id="other" value="other">
+				<input class="radio"  type="radio" name="occupation" id="other" value="other">
 				<label class="radio-label" for="other">Annet</label><br>
 			</div>
 			<span id="errorMsgOcc" class="errorMsg"></span>
@@ -108,7 +108,7 @@
 
 			@foreach($class->categories() as $cat)
 				<div class="col-6">
-					<input type="checkbox" name="work[]" id="{{$cat['name']}}" value="{{$cat['name']}}">
+					<input  class="checkbox" type="checkbox" name="work[]" id="{{$cat['name']}}" value="{{$cat['name']}}">
 					<label class="checkbox" for="{{$cat['name']}}">{{ucfirst($cat['name'])}}</label>
 				</div>
 			@endforeach
@@ -124,7 +124,7 @@
 	<div class="row">
 		<div class="form-element col-8" id="conf">
 		<h3>Taushetserklæring:</h3>
-			<input type="checkbox" name="silence" id="repair">
+			<input class="checkbox" type="checkbox" name="silence" id="repair">
 			<label class="checkbox" for="repair">Jeg godtar at opplysninger jeg får kjennskap til hos de jeg jobber for, ikke omtales til andre utenfor frivilligsentralen. Dette gjelder også etter at jeg slutter. Om avtalen brytes kan jeg ikke benyttes på oppdrag lengere.
 			</label>
 			<span id="errorMsgConf" class="errorMsg"></span>

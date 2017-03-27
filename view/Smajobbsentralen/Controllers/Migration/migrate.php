@@ -95,7 +95,7 @@ class Migrate {
 				'auth' 		=> '0',
 				'visible' 	=> '1',
 				'style' 	=> 'smajobber',
-				'type' 		=> 'post',
+				'type' 		=> 'page',
 				'image' 	=> '0',
 				'arrangement' => '0'
 			],
@@ -115,12 +115,12 @@ class Migrate {
 				'permalink' => 'home',
 				'header' => 'Småjobbsentralen',
 				'user_id' => '0',
-				'content' => '',
+				'content' => 'Vi formidler rimelig hjelp til eldre og utføre',
 				'auth' => '0',
 				'visible' => '0',
 				'style' => 'frontpage',
 				'type' => 'page',
-				'image' => '0',
+				'image' => '1',
 				'arrangement' => '0'
 			]
 		]);

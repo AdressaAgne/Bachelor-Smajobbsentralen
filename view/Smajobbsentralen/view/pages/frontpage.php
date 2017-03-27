@@ -1,19 +1,35 @@
-</div>
 
-<div class="container--fluid" style="background-color: red;">
-    <h1>Smajobbsentralen</h1>
+</div>
+<div class="hero" style="background-image: url('{{$page->image()->big}}')">    
+    <div class="container hero--header">
+        <div class="brick">
+            <div class="row">
+                <?php $open = $class->opentimes(); ?>
+                <div class="col-12 border-bottom">
+                    <p>{{$page->content}}</p>
+                </div>
+                <div class="col-6 col-m-12 border-right">
+                    <p>{{$open['isOpen']}} nå</p>
+                    <p class="font-big"><strong><i class="fa fa-phone"></i> 61 10 95 50</strong></p>
+                </div>
+                <div class="col-6 col-m-12">
+                    <small class="font-small">Åpningstider: </small>
+                    @foreach($open['timeStr'] as $str)
+                        <p class="font-small">{{ $str }}</p>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="container">
     <article>
-
-        <p>@format($page->content)</p>
-
         <div class="row">
             <h1>Hva kan vi hjelpe deg med?</h1>
             @foreach($class->categories() as $cat)
             <div class="col-4">
-                <div class="col-12 brick">
+                <div class="col-12 brick brick--big">
                     <div>{{ucfirst($cat['name'])}}</div>
                     <i class="fa fa-{{$cat['icon']}}"></i> 
                 </div>
