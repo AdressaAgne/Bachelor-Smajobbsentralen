@@ -15,7 +15,8 @@ class RouteHandler{
      * @return string 
      */
     protected function get_path(){
-        return "/".preg_replace("/(.*)m=(.*)/uimx", "$2", $_SERVER['QUERY_STRING']);
+        return isset($_GET['param']) ? '/'.$_GET['param'] : '/';
+        //return "/".preg_replace("/(.*)m=(.*)/uimx", "$2", $_SERVER['QUERY_STRING']);
     }
     
     /**

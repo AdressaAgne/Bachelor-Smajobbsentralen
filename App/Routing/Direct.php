@@ -82,28 +82,42 @@ class Direct extends Route{
         
         //Edit page
         self::patch("$url/edit", "$controller@patch")->admin();
-        self::get("$url/edit/{id}", "$controller@edit");
+        self::get("$url/edit/{id}", "$controller@edit")->admin();
         
         // Update Page
         self::put("$url/create", "$controller@put")->admin();
     }
     
-    public function Auth($callback = null){
-        parent::$routes[$this->type][$this->route]['middleware']['auth'] = true;
-        if(gettype($callback) == 'function' && $callback != null){
-            parent::$routes[$this->type][$this->route]['middleware']['callback'] = $callback;
+    
+    public function Authenticate($grade, $callback){
+        $auth = &parent::$routes[$this->type][$this->route]['middleware'];
+        
+        $auth['auth'] = true;
+        $auth['grade'] = $grade;
+        
+        if(is_callable($callback)){
+            $auth['callback'] = $callback;
+        } else {
+            $auth['callback'] = function(){
+                Direct::re('/login');
+            };
         }
+
+    }
+    
+    public function Auth($callback = null){
+        self::Authenticate(3, $callback);
+        return $this;
+    }
+    
+    public function Mod($callback = null){
+        self::Authenticate(2, $callback);
+        return $this;
     }
     
     public function Admin($callback = null){
-        parent::$routes[$this->type][$this->route]['middleware']['auth'] = true;
-        if(gettype($callback) == 'function' & $callback != null){
-            parent::$routes[$this->type][$this->route]['middleware']['callback'] = $callback;
-        } else {
-            parent::$routes[$this->type][$this->route]['middleware']['callback'] = function(){
-                Direct::re('login');
-            };
-        }
+        $this->Authenticate(1, $callback);
+        return $this;
     }
     
     /**

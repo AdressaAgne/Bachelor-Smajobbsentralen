@@ -90,7 +90,6 @@ class Route {
                     if(isset($key['middleware']['callback'])){
                         return call_user_func($key['middleware']['callback']);   
                     }
-                    
                     return self::error('403', 'No entry, premission denied');   
                 }
             }
