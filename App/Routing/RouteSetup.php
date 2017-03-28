@@ -7,8 +7,10 @@
 
 Direct::get("/", 'MainController@index');
 
-Direct::get("/route", 'MainController@route');
-Direct::get("/migrate", 'MainController@migrate');
+if(Config::$debug_mode){
+    Direct::get("/route", 'MainController@route');
+    Direct::get("/migrate", 'MainController@migrate');
+}
 
 Direct::get("/login", 'LoginController@index');
 Direct::post("/login", 'LoginController@login');

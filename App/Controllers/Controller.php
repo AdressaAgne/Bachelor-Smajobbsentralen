@@ -21,7 +21,7 @@ class Controller extends DB{
     public function __construct(){
         parent::__construct();
 
-        if(!@$this->query('SELECT id FROM Settings')){
+        if(Config::$debug_mode && !@$this->query('SELECT id FROM Settings')){
             if(Config::$route != '/migrate'){
                 die('Database need to migrate, go to /migrate');
             }         
