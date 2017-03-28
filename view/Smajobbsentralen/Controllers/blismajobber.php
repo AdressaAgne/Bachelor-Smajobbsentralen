@@ -21,10 +21,6 @@ class blismajobber {
 	*	form validation and insert to db
 	*/
 	public function put($data){
-        echo "<pre>";
-        die(print_r($data));
-        echo "</pre>";
-        
             $validateForm = true;
             foreach($data as $key => $value){
                 

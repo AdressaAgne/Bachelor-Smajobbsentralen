@@ -13,8 +13,7 @@ $(function(){
     $("[name=date]").on('click', removeError );
     $("[name=mob]").on('click', removeError );
     
-$("form").submit(function (e) {
-    
+$("form").submit(function(e) {
     var numbersCheck = /[0-9]/;
     var characterCheck = /^[a-zA-Z-_ æøåÆØÅ]+$/
     var emailCheck = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -42,6 +41,7 @@ $("form").submit(function (e) {
             ffn.css('borderColor', "#d40000");
             return false;
         } 
+        return true;
     }
     
     function validateLName() {
@@ -63,6 +63,7 @@ $("form").submit(function (e) {
             fln.css('borderColor', "#d40000");
             return false;
         }
+        return true;
     }
     
     function validateEmail() {
@@ -84,6 +85,7 @@ $("form").submit(function (e) {
             fe.css('borderColor', "#d40000");
             return false;
         } 
+        return true;
     }
     
     function validateAddress() {
@@ -100,6 +102,7 @@ $("form").submit(function (e) {
             fa.css('borderColor', "#d40000");
             return false;
         }
+        return true;
     }
     
     function validateDate() {
@@ -115,6 +118,7 @@ $("form").submit(function (e) {
             fd.css('borderColor', "#d40000");
             return false;
         }
+        return true;
     }
     
     function validateMob() {
@@ -137,6 +141,7 @@ $("form").submit(function (e) {
             fm.css('borderColor', "#d40000");
             return false;
         } 
+        return true;
     }
     
     function validateCar(){
@@ -149,6 +154,7 @@ $("form").submit(function (e) {
         } else {
             emc.css('visibility', "hidden");
         }
+        return true;
     }
     
     function validateHitch(){
@@ -161,6 +167,7 @@ $("form").submit(function (e) {
         } else {
             emc.css('visibility', "hidden");
         }
+        return true;
     }
     
     function validateOcc(){
@@ -173,6 +180,7 @@ $("form").submit(function (e) {
         } else {
             emc.css('visibility', "hidden");
         }
+        return true;
     }
     
     function validateCheck() {
@@ -186,6 +194,8 @@ $("form").submit(function (e) {
         } else {
             emc.css('visibility', "hidden");
         }
+        
+        return true;
     };
     
     function validateConf() {
@@ -199,13 +209,28 @@ $("form").submit(function (e) {
         } else {
             emc.css('visibility', "hidden");
         }
+        
+        return true;
     };
 
 
-    if (validateFName() & validateLName() & validateEmail() & validateAddress() & validateDate() & validateMob() & validateCar() & validateHitch() & validateOcc() & validateCheck() & validateConf() == false) {
-        e.preventDefault();
+    if (!(validateFName() &
+          validateLName() &
+          validateEmail() &
+          validateAddress() &
+          validateDate() &
+          validateMob() &
+          validateCar() &
+          validateHitch() &
+          validateOcc() &
+          validateCheck() &
+          validateConf())
+      ) {
+          e.preventDefault();
+          return false;
     }
-
+    
+    
 });
 
 });
