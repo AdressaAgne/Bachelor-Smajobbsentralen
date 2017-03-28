@@ -4,7 +4,7 @@
     <div class="container hero--header">
         <div class="brick">
             <div class="row">
-                <?php $open = $class->opentimes(); ?>
+                <?php $open = $global->opentimes(); ?>
                 <div class="col-12 border-bottom">
                     <p>{{$page->content}}</p>
                 </div>

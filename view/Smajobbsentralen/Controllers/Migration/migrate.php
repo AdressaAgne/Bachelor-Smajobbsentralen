@@ -152,14 +152,14 @@ class Migrate {
 		
 		$adminId = Account::register('admin', 'admin', 'admin', 'admin@admin.admin');
 		
-		$db->updateWhere('users', ['id' => $adminId], [
+		$db->updateWhere('users',[
 			'name' => 'admin',
 			'surname' => 'adminsen',
 			'approved' => '1',
 			'visible' => '0',
 			'dob' => '2017-03-16 20:16:28',
 			'mobile_phone' => '47343090',
-		]);
+		], ['id' => $adminId]);
 		
 
 		$db->insert('user_category', [

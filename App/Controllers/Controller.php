@@ -36,6 +36,11 @@ class Controller extends DB{
                 self::$site_wide_vars['user'] = new User($_SESSION['uuid']);
             }
             
+            if(file_exists('./view/'.Config::$theme.'/Controllers/GlobalController.php')){
+                include_once('./view/'.Config::$theme.'/Controllers/GlobalController.php');
+                self::$site_wide_vars['global'] = new \GlobalController($this);
+            }
+            
             self::$site_wide_vars['menu'] = $this->select('pages', ['*'], ['visible' => '1', 'auth' => '0'])->fetchAll();
         }
     }
