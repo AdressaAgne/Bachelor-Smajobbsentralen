@@ -122,10 +122,22 @@ class Migrate {
 				'type' => 'page',
 				'image' => '1',
 				'arrangement' => '0'
-			]
+			],
+			[
+				'permalink' => 'telefonvakt',
+				'header' 	=> 'Telefonvakt Framside',
+				'user_id' 	=> '0',
+				'content' 	=> 'Telefonvakt Framside',
+				'auth' 		=> '0',
+				'visible' 	=> '1',
+				'style' 	=> 'telefonvakt',
+				'type' 		=> 'page',
+				'image' 	=> '0',
+				'arrangement' => '0'
+			],
 		]);
 		$db->setSetting('frontpage', 4);
-		
+
 		$db->deleteTable('users');
 
 		$db->createTable('users', [
@@ -149,9 +161,9 @@ class Migrate {
 		]);
 
 		//register($username, $pw1, $pw2, $mail)
-		
+
 		$adminId = Account::register('admin', 'admin', 'admin', 'admin@admin.admin');
-		
+
 		$db->updateWhere('users',[
 			'name' => 'admin',
 			'surname' => 'adminsen',
@@ -160,7 +172,7 @@ class Migrate {
 			'dob' => '2017-03-16 20:16:28',
 			'mobile_phone' => '47343090',
 		], ['id' => $adminId]);
-		
+
 
 		$db->insert('user_category', [
 			[
