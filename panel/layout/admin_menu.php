@@ -9,5 +9,6 @@
         <li><a href="/admin/settings">Settings</a></li>
         <li class="header">Links</li>
         <li><a href="/">Main Site</a></li>
+        <li><a href="/logout">Logout</a></li>
     </ul>
 </nav>

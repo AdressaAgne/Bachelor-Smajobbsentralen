@@ -22,26 +22,36 @@ class blismajobber {
 	*/
 	public function put($data){
             $validateForm = true;
+			unset($data['_method']);
+			unset($data['_token']);
+			
+			
+			
             foreach($data as $key => $value){
-                
+				
                 if($key == 'otherinfo') continue;
+                if($key == 'work') continue;
+                if($key == 'priv') continue;
                 
                 if($key == 'car' || $key == 'hitch'){
-                    if(preg_match('/[0|1]/', $value)) $validateForm = false;
+                    if(!preg_match('/[0|1]/', $value)) {
+						$validateForm = false;
+					}
                 } else {
-                    if(empty($value)) $validateForm = false;
-                    
+                    if(empty($value)) {
+						$validateForm = false;
+					}
                 }
                 
             }
-
+	
         
         if ($validateForm){
             $id = $this->db->insert('users', [
                 [
                     'name'          => $data['firstname'],
                     'surname'       => $data['lastname'],
-                    'email'         => $data['email'],
+                    'mail'         => $data['email'],
                     'dob'           => $data['date'],
                     'mobile_phone'  => $data['mob'],
                     'private_phone' => $data['priv'],
@@ -52,7 +62,7 @@ class blismajobber {
 
                 ]
             ]);
-            
+			
             $work = [];
             foreach($data['work'] as $value){
                 $work[] = [
@@ -63,7 +73,7 @@ class blismajobber {
         
             $this->db->insert('user_category', $work);
             
-            return (View::make('index', ['page' => $this->page, 'class' => $this]));
+            return (View::make('index', ['page' => $this->page, 'class' => $this, 'info' => 'Takk for at du melte deg på']));
             
         } else {
             return (View::make('index', ['page' => $this->page, 'class' => $this, 'error' => 'error']));   

@@ -23,6 +23,7 @@ class LoginController extends Controller implements NormalController {
     
     //get on /logout
     public function logout(){
-        # code...
+        Account::logout();
+        Direct::re('/');
     }
 }

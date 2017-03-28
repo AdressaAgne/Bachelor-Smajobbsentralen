@@ -7,6 +7,12 @@
 	</div>
 	<div class="row">
 	   <h3>Generelt</h3>
+	   	@if(isset($error))
+	   		<h1>{{$error}}</h1>
+		@endif
+	   	@if(isset($info))
+	   		<h1>{{$info}}</h1>
+		@endif
 		<div class="form-element col-6 col-s-12">
 			<label> Fornavn 
 				<input type="text" name="firstname"/>
