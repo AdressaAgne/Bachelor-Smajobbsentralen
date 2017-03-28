@@ -361,56 +361,6 @@ label.page-select {
 [type='radio']:checked + label.page-select {
   background-color: #607D8B; }
 
-.nav-admin {
-  width: 100%;
-  height: 100vh;
-  float: left;
-  background-color: #009688;
-  height: 100vh;
-  padding-top: 50px; }
-  .nav-admin ul {
-    list-style-type: none; }
-    .nav-admin ul li.header {
-      padding: 10px;
-      color: #f8f8f8;
-      width: 100%;
-      display: block; }
-    .nav-admin ul li a {
-      width: 100%;
-      display: block;
-      padding: 10px;
-      color: #f8f8f8;
-      border-bottom: 1px solid #008276;
-      border-top: 1px solid #00aa9a; }
-      .nav-admin ul li a:hover {
-        background-color: #008276; }
-
-.nav-tlfvakt {
-  width: 200px;
-  height: 100vh;
-  background-color: #009688;
-  height: 100vh;
-  padding-top: 60px;
-  position: fixed;
-  top: 0;
-  left: 0; }
-  .nav-tlfvakt ul {
-    list-style-type: none; }
-    .nav-tlfvakt ul li.header {
-      padding: 10px;
-      color: #f8f8f8;
-      width: 100%;
-      display: block; }
-    .nav-tlfvakt ul li a {
-      width: 100%;
-      display: block;
-      padding: 10px;
-      color: #f8f8f8;
-      border-bottom: 1px solid #008276;
-      border-top: 1px solid #00aa9a; }
-      .nav-tlfvakt ul li a:hover {
-        background-color: #008276; }
-
 table {
   width: 100%;
   border-collapse: collapse; }
@@ -1072,6 +1022,32 @@ footer {
     display: block; }
   .nav__item--burger {
     display: block; } }
+
+.nav-tlfvakt {
+  width: 200px;
+  height: 100vh;
+  background-color: #009688;
+  height: 100vh;
+  padding-top: 60px;
+  position: fixed;
+  top: 0;
+  left: 0; }
+  .nav-tlfvakt ul {
+    list-style-type: none; }
+    .nav-tlfvakt ul li.header {
+      padding: 10px;
+      color: #f8f8f8;
+      width: 100%;
+      display: block; }
+    .nav-tlfvakt ul li a {
+      width: 100%;
+      display: block;
+      padding: 10px;
+      color: #f8f8f8;
+      border-bottom: 1px solid #008276;
+      border-top: 1px solid #00aa9a; }
+      .nav-tlfvakt ul li a:hover {
+        background-color: #008276; }
 
 p {
   padding: 5px 0px; }

@@ -1,0 +1,19 @@
+table
+    width: 100%
+    border-collapse: collapse
+        
+    td
+        padding: 10px
+        
+    tr    
+        &:nth-of-type(even)
+            background-color: lighten($theme-color-300, 40%)
+            
+        &:nth-of-type(odd)
+            background-color: lighten($theme-color, 40%)
+            
+    thead
+        color: $theme-color-text
+        border-bottom: 2px solid $theme-color-700
+        tr
+            background-color: $theme-color-700 !important

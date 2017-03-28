@@ -2,7 +2,7 @@
     <h1>Edit: {{ $page->header }}</h1>
     @form('', 'patch')
         <h4>Edit Page</h4>
-        <div class="col-6">
+        <div class="col-6 col-m-12">
             <div class="form-element col-12">
                 <label>Header
                     <input type="text" placeholder="header" name="header" value="{{ $page->header }}">
@@ -10,7 +10,7 @@
             </div>        
         </div>
         
-        <div class="col-6">
+        <div class="col-6 col-m-12">
             <div class="form-element col-12">
                 <label>Permalink
                     <input type="text" placeholder="/page/..." name="permalink" value="{{ $page->permalink }}">
@@ -18,7 +18,7 @@
             </div>
         </div>
         
-        <div class="col-6">
+        <div class="col-6 col-m-12">
             <div class="form-element col-12">
                 <h4>Parent</h4>
                 <select name="parent" id="parent" class="dropdown">
@@ -60,7 +60,7 @@
             </div>    
         </div>
         
-        <div class="col-6">
+        <div class="col-6 col-m-12">
             <div class="form-element col-12">
                 <h4>Select an image</h4>
                 @panel('layout.image', ['media' => $media, 'selected' => $page])

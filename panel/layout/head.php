@@ -7,11 +7,10 @@
 	<meta name="application-name" content="{{$settings['meta-application-name']}}">
 	<title>{{ $title }}</title>
 	<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-	<link rel="stylesheet" href="{{$assets}}/css/main.css">
+	<link rel="stylesheet" href="{{$panel}}/css/main.css">
 </head>
 <body>
     <div class="container--fluid">
-        <div class="col-2">
-            @panel('layout.admin_menu')
-        </div>
-        <div class="col-9">
+        @panel('layout.admin_menu')
+        <div class="scrollable">
+			<div class="container--fluid">

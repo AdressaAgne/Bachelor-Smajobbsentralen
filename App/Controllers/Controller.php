@@ -13,6 +13,7 @@ class Controller extends DB{
         'source' => null,
         'settings' => null,
         'global' => null,
+        'panel' => null,
     ];
     
     /**
@@ -42,6 +43,7 @@ class Controller extends DB{
             
             self::$site_wide_vars['source'] = $source;
             self::$site_wide_vars['assets'] = $source.'/view/'.Config::$theme.'/assets';
+            self::$site_wide_vars['panel']  = $source.'/panel';
             
             //die(print_r([$_SERVER['REQUEST_URI'], $_GET['param'], $source, self::$site_wide_vars['assets']], true));
             
