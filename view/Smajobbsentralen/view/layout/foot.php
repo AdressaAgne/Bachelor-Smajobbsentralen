@@ -10,6 +10,14 @@
 					<p>Øvre Torvgate 2</p>
 					<p>2815 Gjøvik</p>
 				</div>
+				<footer>
+					<div class="col-12">
+							<div class="col--right">
+								<a>Logg inn som telefonvakt</a>
+								<a>Logg inn som smajobber</a>
+						</div>
+					</div>
+				</footer>
 			</div>
 		</div>
 	</footer>
