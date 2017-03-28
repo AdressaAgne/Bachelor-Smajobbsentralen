@@ -1,8 +1,7 @@
 <?php
 namespace App;
 
-use Account;
-use \App\Routing\RouteHandler as RouteHandler;
+use Account, RouteHandler;
 /**
 *   Small Render Engine, very inspirated by Twig
 */
@@ -22,13 +21,13 @@ class Render {
         'formend',
         'format',
         'csrf',
-        'sub',
-        'assets'
+        'sub'
     ];
     private $helpers = [
-        'if',
-        'foreach',
-        'for'
+        'if',             //@if()         @endif
+        'foreach',        //@foreach()    @endforeach
+        'for',            //@for()        @endfor
+        'while',          //@while()      @endwhile
     ];
 
     public function __construct($code){
@@ -37,13 +36,11 @@ class Render {
         $this->addFunction("shortcuts",      "@(".implode('|', $this->shortcuts)."){1}\\(([^\\)\\(]*)[\\)]","<?php Render::$1($2) ?>");
         $this->addFunction("Helpers",        "@(".implode('|', $this->helpers)."){1}[\s]*\((.*)\)", "<?php $1($2) : ?>");
         $this->addFunction("Helpers End",    "@end(".implode('|', $this->helpers)."){1}", "<?php end$1 ?>");
-        $this->addFunction("Else",    "@else", "<?php else : ?>");
+        $this->addFunction("Else",           "@else", "<?php else : ?>");
 
 
         $this->code = $this->render($code);
     }
-
-
 
     public static function code($code){
         return new Render($code);
@@ -69,7 +66,7 @@ class Render {
     }
 
     public static function csrf(){
-      echo $_SESSION['_token'];
+        echo $_SESSION['_token'];
     }
 
     // Render Functions, stuff you can use in the html @functionName
@@ -114,12 +111,10 @@ class Render {
             foreach($attrs as $key => &$value){
                 $value = "$key='$value'";
             }
-
             $attrs = implode(' ', $attrs);
         } else {
             $attrs = '';
         }
-
 
         if($method == 'get'){
             echo "<form action='$page' method='GET' $attrs>";
@@ -144,10 +139,5 @@ class Render {
     
     public static function sub($msg, $sentences = 1){
     	echo implode(".", array_slice(explode('.', $msg), 0, $sentences));
-    }
-
-    public static function assets($path){
-        echo 'view/'.Config::$theme.'/assets/'.$path;
-    }
-    
+    }    
 }

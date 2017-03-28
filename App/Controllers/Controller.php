@@ -10,7 +10,9 @@ class Controller extends DB{
         'google_key' => 'AIzaSyC7i0o5mdEYSbG_wqoWAx53tAP1xxTKVQo',
         'menu' => null,
         'assets' => null,
+        'source' => null,
         'settings' => null,
+        'global' => null,
     ];
     
     /**
@@ -27,7 +29,9 @@ class Controller extends DB{
             }         
         } else {
             $_GET['param'] = isset($_GET['param']) ? $_GET['param'] : '/';
+            
             self::$site_wide_vars['settings'] = $this->cms();
+            
             Config::$theme = self::$site_wide_vars['settings']['theme'];
             
             $source = str_replace($_GET['param'],'',$_SERVER['REQUEST_URI']);
@@ -45,8 +49,9 @@ class Controller extends DB{
                 self::$site_wide_vars['user'] = new User($_SESSION['uuid']);
             }
             
-            if(file_exists('./view/'.Config::$theme.'/Controllers/GlobalController.php')){
-                include_once('./view/'.Config::$theme.'/Controllers/GlobalController.php');
+            $GlobalController = './view/'.Config::$theme.'/Controllers/GlobalController.php';
+            if(file_exists($GlobalController)){
+                include_once($GlobalController);
                 self::$site_wide_vars['global'] = new \GlobalController($this);
             }
             

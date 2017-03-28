@@ -2,7 +2,7 @@
 
 /**
 *   Direct Setup
-*   Direct::[get, post, put, patch, delete](url, controller@method)->[auth(callback), admin]
+*   Direct::[get, post, put, patch, delete](url, controller@method)->[auth(), admin(), mod()]
 */
 
 Direct::get("/", 'MainController@index');

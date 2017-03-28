@@ -6,6 +6,9 @@ namespace App;
 class Config {
 
 
+    /**
+    *   when true: No cache, adding /migrate and /route, missing controller checks
+    */
     public static $debug_mode = true;
 
 
@@ -19,15 +22,23 @@ class Config {
     public static $password = 'root';
 
     public static $form_token = 'jlhkgfdlkshdjkskdfskjdhf';
-
-
+    
+    /**
+    *   Chache
+    */
+    
     public static $cookie_time = 86400 * 30;
     public static $cache_time = 3600;
     public static $cache_folder = 'cache/';
     
+    /**
+    *   Do not change
+    */
     public static $route = '/';
 
-
+    /**
+    *   File Uploading
+    */
     public static $files      = [
         "original"          => "/images/original/",
         "compressed"        => "/images/compressed/",
@@ -43,7 +54,6 @@ class Config {
 
     public static $controllers = '\App\Controllers\\';
 
-
     /**
     *   Class aliases
     */
@@ -52,7 +62,6 @@ class Config {
 
         // Config
         '\App\Config'                       => 'Config',
-
 
         // Database
         '\App\Database\Database'            => 'DB',

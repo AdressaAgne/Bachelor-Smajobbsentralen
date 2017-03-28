@@ -14,12 +14,18 @@ class Account extends DB{
      */
     public static function login($username, $password, $remember = false){
 
-        $user = DB::select('users', ['*'], ['username' => $username])->fetch();
+        $user = DB::select('users', ['*'], ['username' => $username]);
 
-        if(!password_verify($password, $user['password'])) return 'These credentials does not match any record in our database';
+        $msg = 'These credentials does not match any record in our database';
+
+        if($user->rowCount() == 0) return $msg;
+        
+        $user = $user->fetch();
+    
+        if(!password_verify($password, $user['password'])) return $msg;
 
         if($remember) {
-            $cookie = sha1(uniqid());
+            $cookie = sha1(uniqid(microtime()));
             DB::updateWhere('users', ['cookie' => $cookie], ['id' => $user['id']]);
             self::setCookie('remeberme', $user['cookie']);
         } else {
@@ -27,6 +33,7 @@ class Account extends DB{
         }
 
         $_SESSION['uuid'] = $user['id'];
+        $_SESSION['rank'] = isset($user['rank']) ? $user['rank'] : null;
 
         return true;
     }
@@ -42,7 +49,6 @@ class Account extends DB{
      */
     public static function register($username, $pw1, $pw2, $mail){
         if($pw1 != $pw2) return 'passwords does not match';
-
 
         if(DB::select('users', ['username'], ['username' => $username])->rowCount() > 0) return 'Username already taken';
 
@@ -99,9 +105,9 @@ class Account extends DB{
      * @return string string
      */
     public static function changePassword(User $user, $pw, $newPw, $newpw2){
-        if($newPw !== $newpw2) return 'The new password does not match';
+        if($newPw !== $newpw2) return 'The new passwords does not match';
 
-        if(!password_verify($pw, $user->password)) return 'Old Password is wrong';
+        if(!password_verify($pw, $user->password)) return 'Old password is wrong';
 
         $msg = DB::update(['password' => password_hash($newPw, PASSWORD_DEFAULT)], 'users', ['id' => $user->id]);
 

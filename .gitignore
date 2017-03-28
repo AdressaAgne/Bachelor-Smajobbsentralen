@@ -1,3 +1,4 @@
 images/**
 config.codekit3
 *.css
+cached/*
