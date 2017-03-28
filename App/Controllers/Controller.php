@@ -21,16 +21,25 @@ class Controller extends DB{
     public function __construct(){
         parent::__construct();
 
-        if(!@$this->query('SELECT * FROM Settings')){
+        if(!@$this->query('SELECT id FROM Settings')){
             if(Config::$route != '/migrate'){
                 die('Database need to migrate, go to /migrate');
             }         
         } else {
-            
+            $_GET['param'] = isset($_GET['param']) ? $_GET['param'] : '/';
             self::$site_wide_vars['settings'] = $this->cms();
             Config::$theme = self::$site_wide_vars['settings']['theme'];
             
-            self::$site_wide_vars['assets'] = '/view/'.Config::$theme.'/assets';
+            $source = str_replace($_GET['param'],'',$_SERVER['REQUEST_URI']);
+            
+            $source = '/'.trim($source, '/');
+            
+            $source = $source == '/' ? '' : $source;
+            
+            self::$site_wide_vars['source'] = $source;
+            self::$site_wide_vars['assets'] = $source.'/view/'.Config::$theme.'/assets';
+            
+            //die(print_r([$_SERVER['REQUEST_URI'], $_GET['param'], $source, self::$site_wide_vars['assets']], true));
             
             if(Account::isLoggedIn()){
                 self::$site_wide_vars['user'] = new User($_SESSION['uuid']);

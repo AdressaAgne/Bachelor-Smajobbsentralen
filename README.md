@@ -1,6 +1,5 @@
 MVC and CMS made by Agne Ødegaard
 
-
 # Backend Documentation
 
 ## Logic and Basic Template - App/Controllers
@@ -219,6 +218,11 @@ $assets is a global var that outputs the themes assets directory
 ```html
 {{$assets}}
 ```
+$source is a global var that outputs the subfolder directory
+```html
+{{$source}}
+```
+This is for use when you use the framework in a subfolder, should be use before all links anyway, $assets have the $source prepended to it already.
 
 *others:*
 
@@ -227,6 +231,8 @@ $assets is a global var that outputs the themes assets directory
 * user (User Object, currently logged in user)
 * settings (array, all the page settings)
 
+## Subfolder
+To use the framework in a subfolder go to the .htaccess file and add your folder there, further instructions are in the file.
 
 # Content Management System
 
@@ -256,7 +262,7 @@ If you want other options of pages you can simple create a new file in view/page
 
 ## Custome theme Controllers
 
-to add a controller for a page in your theme, add a file with the same name to themefolder/Controllers/name.php
+To add a controller for a page in your theme, add a file with the same name to themefolder/Controllers/name.php
 
 the file should look like this:
 ```php
@@ -272,6 +278,10 @@ class frontpage {
 
 ```
 the constructor takes one parameter that is the database class, where you can access the db.
+
+## Golbal controller
+
+If You have functions you need to use on many or all pages you can add a GlobalController.php in the Controllers folder, access it on all pages with {{$global}}
 
 
 ## Theme Migration
@@ -309,8 +319,6 @@ class migrate {
     }
     
 }
-
-
 ```
 
 This file will run when you run the MigrateTrait on /migrate

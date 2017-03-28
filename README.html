@@ -233,7 +233,12 @@ Please don&#8217;t write any logic in a view, use the controller and pas data to
 <p>$assets is a global var that outputs the themes assets directory
 <code>html
 {{$assets}}
-</code></p>
+</code>
+$source is a global var that outputs the subfolder directory
+<code>html
+{{$source}}
+</code>
+This is for use when you use the framework in a subfolder, should be use before all links anyway, $assets have the $source prepended to it already.</p>
 
 <p><em>others:</em></p>
 
@@ -243,6 +248,10 @@ Please don&#8217;t write any logic in a view, use the controller and pas data to
 <li>user (User Object, currently logged in user)</li>
 <li>settings (array, all the page settings)</li>
 </ul>
+
+<h2 id="subfolder">Subfolder</h2>
+
+<p>To use the framework in a subfolder go to the .htaccess file and add your folder there, further instructions are in the file.</p>
 
 <h1 id="contentmanagementsystem">Content Management System</h1>
 
@@ -272,7 +281,7 @@ To add a new page, go to the page panel on the admin site an create a new page. 
 
 <h2 id="customethemecontrollers">Custome theme Controllers</h2>
 
-<p>to add a controller for a page in your theme, add a file with the same name to themefolder/Controllers/name.php</p>
+<p>To add a controller for a page in your theme, add a file with the same name to themefolder/Controllers/name.php</p>
 
 <p>the file should look like this:
 ```php
@@ -290,6 +299,10 @@ To add a new page, go to the page panel on the admin site an create a new page. 
 
 <p>```
 the constructor takes one parameter that is the database class, where you can access the db.</p>
+
+<h2 id="golbalcontroller">Golbal controller</h2>
+
+<p>If You have functions you need to use on many or all pages you can add a GlobalController.php in the Controllers folder, access it on all pages with {{$global}}</p>
 
 <h2 id="thememigration">Theme Migration</h2>
 
@@ -326,9 +339,8 @@ public function populate(){
 }
 </code></pre>
 
-<p>}</p>
-
-<p>```</p>
+<p>}
+```</p>
 
 <p>This file will run when you run the MigrateTrait on /migrate</p>
 
