@@ -78,14 +78,14 @@ class Direct extends Route{
         self::get("$url/{id}", "$controller@item");
         
         // Delete page
-        self::delete($url, "$controller@delete");
+        self::delete($url, "$controller@delete")->admin();
         
         //Edit page
-        self::patch("$url/edit", "$controller@patch");
+        self::patch("$url/edit", "$controller@patch")->admin();
         self::get("$url/edit/{id}", "$controller@edit");
         
         // Update Page
-        self::put("$url/create", "$controller@put");
+        self::put("$url/create", "$controller@put")->admin();
     }
     
     public function Auth($callback = null){
@@ -99,6 +99,10 @@ class Direct extends Route{
         parent::$routes[$this->type][$this->route]['middleware']['auth'] = true;
         if(gettype($callback) == 'function' & $callback != null){
             parent::$routes[$this->type][$this->route]['middleware']['callback'] = $callback;
+        } else {
+            parent::$routes[$this->type][$this->route]['middleware']['callback'] = function(){
+                Direct::re('login');
+            };
         }
     }
     

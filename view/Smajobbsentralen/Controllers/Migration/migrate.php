@@ -131,9 +131,11 @@ class Migrate {
 		$db->createTable('users', [
 			new PID(),
 			new Timestamp(),
+			new Row('username', 'varchar'),
+			new Row('cookie', 'varchar'),
 			new Row('name', 'varchar'),
 			new Row('surname', 'varchar'),
-			new Row('email', 'varchar'),
+			new Row('mail', 'varchar'),
 			new Row('password', 'varchar'),
 			new Row('approved', 'tinyint', 0),
 			new Row('visible', 'tinyint'),
@@ -146,30 +148,19 @@ class Migrate {
 			new Row('other_info', 'varchar')
 		]);
 
-
-		$db->insert('users', [
-			[
-				'name' => 'admin',
-				'surname' => 'adminsen',
-				'email' => 'admin@admin.admin',
-				'password' => 'admin',
-				'approved' => '1',
-				'visible' => '1',
-				'dob' => '2017-03-16 20:16:28',
-				'mobile_phone' => '47343090',
-
-			],
-			[
-				'name' => 'heis',
-				'surname' => 'sann',
-				'email' => 'skji@ss.admin',
-				'password' => '123',
-				'approved' => '1',
-				'visible' => '1',
-				'dob' => '2017-03-16 20:16:28',
-				'mobile_phone' => '12341234',
-			]
+		//register($username, $pw1, $pw2, $mail)
+		
+		$adminId = Account::register('admin', 'admin', 'admin', 'admin@admin.admin');
+		
+		$db->updateWhere('users', ['id' => $adminId], [
+			'name' => 'admin',
+			'surname' => 'adminsen',
+			'approved' => '1',
+			'visible' => '0',
+			'dob' => '2017-03-16 20:16:28',
+			'mobile_phone' => '47343090',
 		]);
+		
 
 		$db->insert('user_category', [
 			[

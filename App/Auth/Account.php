@@ -20,10 +20,10 @@ class Account extends DB{
 
         if($remember) {
             $cookie = sha1(uniqid());
-            DB::update('users', ['cookie' => $cookie], ['id' => $user['id']]);
-            self::setCookie('remberme', $user['cookie']);
+            DB::updateWhere('users', ['cookie' => $cookie], ['id' => $user['id']]);
+            self::setCookie('remeberme', $user['cookie']);
         } else {
-            self::removeCookie('remberme');
+            self::removeCookie('remeberme');
         }
 
         $_SESSION['uuid'] = $user['id'];
@@ -46,11 +46,11 @@ class Account extends DB{
 
         if(DB::select('users', ['username'], ['username' => $username])->rowCount() > 0) return 'Username already taken';
 
-        return DB::insert([[
+        return DB::insert('users',[[
             'username'  => $username,
             'password'  => password_hash($pw1, PASSWORD_DEFAULT),
             'mail'      => $mail,
-        ]], 'users');
+        ]]);
 
     }
 
@@ -59,7 +59,7 @@ class Account extends DB{
      * @author Agne *degaard
      */
     public static function logout(){
-        self::removeCookie('remberme');
+        self::removeCookie('remeberme');
         session_destroy();
     }
 

@@ -6,10 +6,14 @@
         @form('page/create', 'put')
             <div class="admin-panel">
                 <div class="form-element col-6">
-                    <input type="text" placeholder="Header" name="header">
+                    <label>Header
+                        <input type="text" placeholder="Header" name="header">
+                    </label>
                 </div>
                 <div class="form-element col-6">
-                    <input type="text" placeholder="Url" name="permalink">
+                    <label>Permalink
+                        <input type="text" placeholder="Url" name="permalink">
+                    </label>
                 </div>
                 <div class="form-element col-6">
                     <h4>Select page style</h4>

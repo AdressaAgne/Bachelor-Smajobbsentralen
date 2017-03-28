@@ -86,10 +86,11 @@ class Route {
             $key = self::$routes[$method][$route];
             
             if(isset($key['middleware']['auth'])){
-                if(isset($key['middleware']['callback'])){
-                    call_user_func($key['middleware']['callback']);   
-                }
                 if(!isset($_SESSION['uuid'])){
+                    if(isset($key['middleware']['callback'])){
+                        return call_user_func($key['middleware']['callback']);   
+                    }
+                    
                     return self::error('403', 'No entry, premission denied');   
                 }
             }
