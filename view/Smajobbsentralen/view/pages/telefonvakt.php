@@ -9,9 +9,7 @@
 @layout('layout.telefonvakt_menu')
 <!-- TODO loop igjennom fra backend. Evt vurder table istedet -->
 	<div class="row">
-		<div class="col-12">
-			@form('', 'post')
-			
+		@form('', 'post')
 			<div class="col-3 font-left">
 				<input type="hidden" name="month" value="{{$class->month}}">
 				<input type="hidden" name="year" value="{{$class->year}}">
@@ -23,9 +21,7 @@
 			<div class="col-3 font-right">
 				<button type="submit" id="next" name="next" class="btn">Neste måned <i class="fa fa-arrow-right"></i></button>
 			</div>
-			
-			@formend()
-		</div>
+		@formend()
 
 		<div class="col-12">
 			@for($i = 1; $i < 8; $i++)
