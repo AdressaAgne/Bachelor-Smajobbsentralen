@@ -34,7 +34,7 @@
 
 			@foreach($class->calendar() as $cal)
 				<div class="cal-1 calendar calendar--{{$cal['class']}}">
-					<div class="calendar--date">{{$cal['date']}}</div>
+					<div class="calendar--date" data-date="{{$cal['date']}}" data-name="{{$cal['work']['name']}}" data-surname="{{$cal['work']['surname']}}">{{$cal['date']}}</div>
 					{{ isset($cal['work']['name']) ? $cal['work']['name'] : '' }}
 				</div>
 			@endforeach
@@ -43,6 +43,20 @@
 @layout('layout.scripts')
 	<script>
 		$('.calendar').on('click', function(){
-			$('.calendar-modal').fadeIn();
+
+			var name    = ($(this).find("div").data("name")) ? $(this).find("div").data("name") : "Det er ingen oppsatt til å jobbe denne dagen";
+			var surname = ($(this).find("div").data("surname")) ? $(this).find("div").data("surname") : "";
+			var date    = ($(this).find("div").data("date")) ? $(this).find("div").data("date") : "";
+
+
+			$('.calendar-modal').html(
+				"<div class='row'>"+
+					"<div class='col-12'>"+
+						"<h1>"+date+"</h1>"+
+						"<h1>"+name+"</h1>"+
+						"<h1>"+surname+"</h1>"+
+					"</div>"+
+				"</div>"
+			).slideToggle(20);
 		});
 	</script>
