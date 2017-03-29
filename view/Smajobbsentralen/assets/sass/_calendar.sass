@@ -1,0 +1,86 @@
+//grid spesifically for the calendar for tlfvakt backend
+$calendar-grid-columns:                  7      !default
+$calendar-grid-col-name:                 cal    !default
+$calendar-grid-row-name:                 row    !default
+$calendar-grid-gutter:                   12px   !default
+
+$calendar-grid-breakpoint-small-name:    s      !default
+$calendar-grid-breakpoint-small:         480px  !default
+
+$calendar-grid-breakpoint-medium-name:   m      !default
+$calendar-grid-breakpoint-medium:        768px  !default
+
+$calendar-grid-breakpoint-large-name:    l      !default
+$calendar-grid-breakpoint-large:         1200px !default
+
+
+
+.#{$calendar-grid-row-name}
+	width: 100%
+	clear: both
+	box-sizing: border-box
+	padding-left: $calendar-grid-gutter
+	@extend .clearfix
+	img
+		max-width: 100%
+
+	&--line
+		@extend .clearfix
+		margin-top: 20px
+		margin-bottom: 20px
+		padding-bottom: 15px
+		border-bottom: 1px #999999 solid
+
+[class*='#{$calendar-grid-col-name}-']
+	float: left
+	box-sizing: border-box
+	padding-right: $calendar-grid-gutter
+	padding-top: $calendar-grid-gutter
+
+.#{$calendar-grid-col-name}
+	&--right
+		float: right
+
+.clearfix:after
+	content: "."
+	visibility: hidden
+	display: block
+	height: 0
+	clear: both
+
+// Large
+@media (min-width: $calendar-grid-breakpoint-large)
+	@for $i from 1 to $calendar-grid-columns+1
+		.#{$calendar-grid-col-name}-#{$calendar-grid-breakpoint-large-name}-#{$i}
+			width: (100% / 12) * $i
+
+
+// Normal
+@for $i from 1 to $calendar-grid-columns+1
+	.#{$calendar-grid-col-name}-#{$i}
+		width: (100% / 12) * $i
+
+
+// Tablet
+@media (max-width: $calendar-grid-breakpoint-medium)
+	@for $i from 1 to $calendar-grid-columns+1
+		.#{$calendar-grid-col-name}-#{$calendar-grid-breakpoint-medium-name}-#{$i}
+			width: (100% / 12) * $i
+
+.#{$calendar-grid-col-name}--center
+	margin-left: auto
+	margin-right: auto
+	float: none
+	padding-left: 0px
+
+// Phone
+@media (max-width: $calendar-grid-breakpoint-small)
+	@for $i from 1 to $calendar-grid-columns+1
+		.#{$calendar-grid-col-name}-#{$i}
+			width: 100%
+
+		.#{$calendar-grid-col-name}-#{$calendar-grid-breakpoint-small-name}-#{$i}
+			width: (100% / 12) * $i
+
+	.#{$calendar-grid-col-name}--center
+		padding-left: 0px
