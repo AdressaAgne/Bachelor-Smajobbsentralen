@@ -23,10 +23,12 @@
 			</div>
 		@formend()
 
+		<div class="calendar-modal" style="display:none;"></div>
+
 		<div class="col-12">
 			@for($i = 1; $i < 8; $i++)
 				<div class="cal-1 calendar calendar--header">
-					{{$class->ISO_8601($i)}}
+					{{$class->day_to_str($i)}}
 				</div>
 			@endfor
 
@@ -38,3 +40,9 @@
 			@endforeach
 		</div>
 	</div>
+@layout('layout.scripts')
+	<script>
+		$('.calendar').on('click', function(){
+			$('.calendar-modal').fadeIn();
+		});
+	</script>
