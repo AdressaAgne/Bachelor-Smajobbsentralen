@@ -45,7 +45,7 @@ class telefonvakt {
 			$cal[] = [
                 'date'   => $days,
                 'class'  => $days == $today ? 'current' : ($data == 1 ? 'holy' : 'normal'),
-                'day'    => $data,
+                'day'    => $this->ISO_8601($data),
                 'work'   => $user,
             ];
         }
@@ -64,4 +64,22 @@ class telefonvakt {
 	    return $this->db->update(['approved' => $data['approve']], 'users', ['id' => $data['_id']]);
 	}
     
+    private function ISO_8601($i){
+        switch ($i) {
+            case 0:
+                return 'Søndag';
+            case 1:
+                return 'Mandag';
+            case 2:
+                return 'Tirsdag';
+            case 3:
+                return 'Onsdag';
+            case 4:
+                return 'Torsdag';
+            case 5:
+                return 'Fredag';
+            case 6:
+                return 'Lørdag';
+        }
+    }
 }
