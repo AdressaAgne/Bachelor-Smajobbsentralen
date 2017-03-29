@@ -36,10 +36,11 @@ class telefonvakt {
         $prev_month_days = date('t', mktime(0, 0, 0, $prev_month, 1, $prev_year));
         
         for ($days = 0; $days < $blanks; $days++) { 
+            $date = ($prev_month_days - $blanks + $days + 1);
             $cal[] = [
                 'class' => 'blank',
-                'day' => $this->ISO_8601(date('N', mktime(0, 0, 0, $month, $prev_month_days - $blanks + $days +1, $year))),
-                'date' => $prev_month_days - $blanks + $days +1,
+                'day' => '',
+                'date' => $date,
                 'work' => '',  
             ];
 
