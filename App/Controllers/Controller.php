@@ -82,8 +82,8 @@ class Controller extends DB{
 
             
             if(isset($_POST['_method']) && method_exists($class, strtolower($_POST['_method']))){
-                
-                return [true, call_user_func([$class, strtolower($_POST['_method'])], array_merge($_POST, $_GET))];
+                $val = call_user_func([$class, strtolower($_POST['_method'])], array_merge($_POST, $_GET));
+                if($val !== false) return [true, $val];
             }
             
             return [true, View::make('index', ['page' => $page, 'class' => $class])];

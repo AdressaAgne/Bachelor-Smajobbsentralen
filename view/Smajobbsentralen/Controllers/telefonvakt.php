@@ -2,25 +2,28 @@
 
 class telefonvakt {
     
-    public $month = 0;
-    public $year = 0;
+    public $month = 1;
+    public $year = 2017;
     
     public function __construct($db){
         $this->db = $db;
+        
+        $this->month = date('m', time());
+        $this->year = date('Y', time());
     }
     
     public function calendar($month = null, $year = null){
-        if(is_null($month)) $month = date('m', time());
-        if(is_null($year)) $year = date('Y', time());
-        $this->year = $year;
-        $this->month = $month;
+        if(is_null($month)) $month = $this->month;
+        if(is_null($year)) $year = $this->year;
+        
         $data = [];
         $cal = [];
-        
-        $blanks = date('w', mktime(0, 0, 0, $month, 1, $year)) -1;
-        $total_days = date('t', mktime(0, 0, 0, $month, 1, $year));
+        $time = mktime(0, 0, 0, $month, 1, $year);
+        $blanks = date('N', $time)-1;
+        $total_days = date('t', $time);
         $iDay = 0;
         $today = date('d', time());
+        $m = date('m', time());
         
         for ($days = 0; $days < $blanks; $days++) { 
             $cal[] = [
@@ -42,6 +45,7 @@ class telefonvakt {
         
         for($days = 1; $days <= $total_days; $days++) {
 		    $data = date('N', mktime(0, 0, 0, $month, $days, $year));
+		    
 			/* add in the day number */
             
             $user = array_search($days, array_column($work, 'day'));
@@ -49,7 +53,7 @@ class telefonvakt {
             
 			$cal[] = [
                 'date'   => $days,
-                'class'  => $days == $today ? 'current' : ($data == 7 ? 'holy' : 'normal'),
+                'class'  => ($days == $today && $m == $month) ? 'current' : ($data == 7 ? 'holy' : 'normal'),
                 'day'    => $this->ISO_8601($data),
                 //'day'    => $data,
                 'work'   => $user,
@@ -80,64 +84,27 @@ class telefonvakt {
 	}
     
     public function ISO_8601($i){
-        switch ($i) {
-            case 1:
-                return 'Mandag';
-            case 2:
-                return 'Tirsdag';
-            case 3:
-                return 'Onsdag';
-            case 4:
-                return 'Torsdag';
-            case 5:
-                return 'Fredag';
-            case 6:
-                return 'Lørdag';
-            case 7:
-                return 'Søndag';
-        }
+        return ['Mandag','Tirsdag','Onsdag','Torsdag','Fredag','Lørdag','Søndag'][$i-1];
     }
     public function month_to_str($i){
-        switch ($i) {
-            case 1:
-                return 'Januar';
-            case 2:
-                return 'Februar';
-            case 3:
-                return 'Mars';
-            case 4:
-                return 'April';
-            case 5:
-                return 'Mai';
-            case 6:
-                return 'Juni';
-            case 7:
-                return 'Juli';
-            case 8:
-                return 'August';
-            case 9:
-                return 'September';
-            case 10:
-                return 'Okober';
-            case 11:
-                return 'November';
-            case 12:
-                return 'Desember';
-        }
+        return ['Januar', 'Februar', 'Mars', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Desember'][$i-1];
     }
     
     public function post($data){
-        
+        $this->month = $data['month'];
+        $this->year = $data['year'];
+
         if(isset($data['next'])){
-            if($this->month == 12) {
+            if($this->month == 12){
                 $this->month = 1;
                 $this->year++;
             } else {
                 $this->month++;
             }
         }
+        
         if(isset($data['prev'])){
-            if($this->month == 1) {
+            if($this->month == 1){
                 $this->month = 12;
                 $this->year--;
             } else {
@@ -146,5 +113,7 @@ class telefonvakt {
         }
         
         
+        
+        return false;
     }
 }
