@@ -24,6 +24,7 @@ class telefonvakt {
         $iDay = 0;
         $today = date('d', time());
         $m = date('m', time());
+        $y = date('Y', time());
         
         $prev_year = $year;
         if($month == 1){
@@ -65,7 +66,7 @@ class telefonvakt {
             
 			$cal[] = [
                 'date'   => $days,
-                'class'  => ($days == $today && $m == $month) ? 'current' : ($data == 7 ? 'holy' : 'normal'),
+                'class'  => ($days == $today && $m == $month && $y == $year) ? 'current' : ($data == 7 ? 'holy' : 'normal'),
                 'day'    => $this->ISO_8601($data),
                 //'day'    => $data,
                 'work'   => $user,
