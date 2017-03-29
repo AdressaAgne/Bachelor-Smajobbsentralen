@@ -25,8 +25,8 @@ class Migrate {
 			new Row('category_id', 'int')
 		]);
 
-		$db->createTable('calendar'[
-			new Pid(),
+		$db->createTable('calendar', [
+			new PID(),
 			new Timestamp(),
 			new Row('user_id', 'int'),
 			new Row('year', 'int(4)', 2017),
@@ -146,10 +146,17 @@ class Migrate {
 			],
 		]);
 		$db->insert('calendar', [
-			'user_id' => '1'
-			'year' => '2017',
-			'month' => '10',
-			'day' => '24'
+			[
+				'user_id' => '1',
+				'year' => '2017',
+				'month' => '10',
+				'day' => '24'
+			],[
+				'user_id' => '2',
+				'year' => '2017',
+				'month' => '10',
+				'day' => '30'
+			],
 		]);
 
 		$db->setSetting('frontpage', 4);
