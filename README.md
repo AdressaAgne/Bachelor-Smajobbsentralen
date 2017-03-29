@@ -322,7 +322,3 @@ class migrate {
 ```
 
 This file will run when you run the MigrateTrait on /migrate
-
-todo: 
-
-* [ ] Admin pages should have a standalone css, that is not depended on the theme.
