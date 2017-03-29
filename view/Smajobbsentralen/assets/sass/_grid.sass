@@ -60,20 +60,20 @@ img
 @media (min-width: $iron-grid-breakpoint-large)
 	@for $i from 1 to $iron-grid-columns+1
 		.#{$iron-grid-col-name}-#{$iron-grid-breakpoint-large-name}-#{$i}
-			width: (100% / 12) * $i
+			width: (100% / $iron-grid-columns) * $i
 
 
 // Normal
 @for $i from 1 to $iron-grid-columns+1
 	.#{$iron-grid-col-name}-#{$i}
-		width: (100% / 12) * $i
+		width: (100% / $iron-grid-columns) * $i
 
 
 // Tablet
 @media (max-width: $iron-grid-breakpoint-medium)
 	@for $i from 1 to $iron-grid-columns+1
 		.#{$iron-grid-col-name}-#{$iron-grid-breakpoint-medium-name}-#{$i}
-			width: (100% / 12) * $i
+			width: (100% / $iron-grid-columns) * $i
 
 .#{$iron-grid-col-name}--center
 	margin-left: auto
@@ -88,7 +88,7 @@ img
 			width: 100%
 
 		.#{$iron-grid-col-name}-#{$iron-grid-breakpoint-small-name}-#{$i}
-			width: (100% / 12) * $i
+			width: (100% / $iron-grid-columns) * $i
 
 	.#{$iron-grid-col-name}--center
 		padding-left: 0px

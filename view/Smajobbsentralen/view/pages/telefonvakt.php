@@ -12,7 +12,8 @@
 		<div class="col-12">
 			@foreach($class->calendar() as $cal)
 				<div class="cal-1 {{$cal['class']}}">
-					{{$cal['day']}}
+					{{$cal['date']}}
+
 				</div>
 			@endforeach
 		</div>
