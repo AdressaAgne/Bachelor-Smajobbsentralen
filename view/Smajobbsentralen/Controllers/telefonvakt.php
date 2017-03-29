@@ -18,7 +18,10 @@ class telefonvakt {
         
         for ($days = 0; $days < $blanks; $days++) { 
             $cal[] = [
-                'class' => 'blank',    
+                'class' => 'blank',
+                'day' => '',
+                'date' => '',
+                'work' => '',  
             ];
             $weekdays++;
         }
