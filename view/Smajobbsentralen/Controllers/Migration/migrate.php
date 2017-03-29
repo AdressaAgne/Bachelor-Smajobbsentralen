@@ -149,7 +149,7 @@ class Migrate {
 			[
 				'user_id' => '1',
 				'year' => '2017',
-				'month' => '10',
+				'month' => '3',
 				'day' => '24'
 			],[
 				'user_id' => '2',
