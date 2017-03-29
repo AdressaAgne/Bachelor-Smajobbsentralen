@@ -25,13 +25,24 @@ class telefonvakt {
         $today = date('d', time());
         $m = date('m', time());
         
+        $prev_year = $year;
+        if($month == 1){
+            $prev_month = 12;
+            $prev_year = $year - 1;
+        } else {
+            $prev_month = $month - 1;
+        }
+        
+        $prev_month_days = date('t', mktime(0, 0, 0, $prev_month, 1, $prev_year));
+        
         for ($days = 0; $days < $blanks; $days++) { 
             $cal[] = [
                 'class' => 'blank',
-                'day' => '',
-                'date' => '',
+                'day' => $this->ISO_8601(date('N', mktime(0, 0, 0, $month, $prev_month_days - $blanks + $days +1, $year))),
+                'date' => $prev_month_days - $blanks + $days +1,
                 'work' => '',  
             ];
+
         }
         
         $work = $this->db->select('calendar', ['*'], ['month' => $month, 'year' => $year])->fetchAll();
@@ -57,15 +68,6 @@ class telefonvakt {
                 'day'    => $this->ISO_8601($data),
                 //'day'    => $data,
                 'work'   => $user,
-            ];
-        }
-        
-        for ($i = $blanks + $total_days; $i < 35; $i++) { 
-            $cal[] = [
-                'class' => 'blank',
-                'day' => '',
-                'date' => '',
-                'work' => '',  
             ];
         }
         
