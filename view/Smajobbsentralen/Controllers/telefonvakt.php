@@ -2,6 +2,9 @@
 
 class telefonvakt {
     
+    public $month = 0;
+    public $year = 0;
+    
     public function __construct($db){
         $this->db = $db;
     }
@@ -9,6 +12,8 @@ class telefonvakt {
     public function calendar($month = null, $year = null){
         if(is_null($month)) $month = date('m', time());
         if(is_null($year)) $year = date('Y', time());
+        $this->year = $year;
+        $this->month = $month;
         $data = [];
         $cal = [];
         
@@ -91,5 +96,55 @@ class telefonvakt {
             case 7:
                 return 'Søndag';
         }
+    }
+    public function month_to_str($i){
+        switch ($i) {
+            case 1:
+                return 'Januar';
+            case 2:
+                return 'Februar';
+            case 3:
+                return 'Mars';
+            case 4:
+                return 'April';
+            case 5:
+                return 'Mai';
+            case 6:
+                return 'Juni';
+            case 7:
+                return 'Juli';
+            case 8:
+                return 'August';
+            case 9:
+                return 'September';
+            case 10:
+                return 'Okober';
+            case 11:
+                return 'November';
+            case 12:
+                return 'Desember';
+        }
+    }
+    
+    public function post($data){
+        
+        if(isset($data['next'])){
+            if($this->month == 12) {
+                $this->month = 1;
+                $this->year++;
+            } else {
+                $this->month++;
+            }
+        }
+        if(isset($data['prev'])){
+            if($this->month == 1) {
+                $this->month = 12;
+                $this->year--;
+            } else {
+                $this->month--;
+            }
+        }
+        
+        
     }
 }
