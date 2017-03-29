@@ -6,13 +6,14 @@ class telefonvakt {
         $this->db = $db;
     }
     
-    public function calendar($month = 3, $year = 2017){
+    public function calendar($month = null, $year = null){
+        if(is_null($month)) $month = date('m', time());
+        if(is_null($year)) $year = date('Y', time());
         $data = [];
         $cal = [];
         
-        $blanks = date('w', mktime(0, 0, 0, $month, 1, $year));
+        $blanks = date('w', mktime(0, 0, 0, $month, 1, $year)) -1;
         $total_days = date('t', mktime(0, 0, 0, $month, 1, $year));
-        $weekdays = 1;
         $iDay = 0;
         $today = date('d', time());
         
@@ -23,7 +24,6 @@ class telefonvakt {
                 'date' => '',
                 'work' => '',  
             ];
-            $weekdays++;
         }
         
         $work = $this->db->select('calendar', ['*'], ['month' => $month, 'year' => $year])->fetchAll();
@@ -44,9 +44,19 @@ class telefonvakt {
             
 			$cal[] = [
                 'date'   => $days,
-                'class'  => $days == $today ? 'current' : ($data == 1 ? 'holy' : 'normal'),
+                'class'  => $days == $today ? 'current' : ($data == 7 ? 'holy' : 'normal'),
                 'day'    => $this->ISO_8601($data),
+                //'day'    => $data,
                 'work'   => $user,
+            ];
+        }
+        
+        for ($i = $blanks + $total_days; $i < 35; $i++) { 
+            $cal[] = [
+                'class' => 'blank',
+                'day' => '',
+                'date' => '',
+                'work' => '',  
             ];
         }
         
@@ -64,10 +74,8 @@ class telefonvakt {
 	    return $this->db->update(['approved' => $data['approve']], 'users', ['id' => $data['_id']]);
 	}
     
-    private function ISO_8601($i){
+    public function ISO_8601($i){
         switch ($i) {
-            case 0:
-                return 'Søndag';
             case 1:
                 return 'Mandag';
             case 2:
@@ -80,6 +88,8 @@ class telefonvakt {
                 return 'Fredag';
             case 6:
                 return 'Lørdag';
+            case 7:
+                return 'Søndag';
         }
     }
 }
