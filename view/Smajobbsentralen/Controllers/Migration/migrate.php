@@ -25,6 +25,15 @@ class Migrate {
 			new Row('category_id', 'int')
 		]);
 
+		$db->createTable('calendar'[
+			new Pid(),
+			new Timestamp(),
+			new Row('user_id', 'int'),
+			new Row('year', 'int(4)', 2017),
+			new Row('month', 'int(2)'),
+			new Row('day', 'int(2)')
+		]);
+
 	}
 
 	public function populate($db){
@@ -136,6 +145,13 @@ class Migrate {
 				'arrangement' => '0'
 			],
 		]);
+		$db->insert('calendar', [
+			'user_id' => '1'
+			'year' => '2017',
+			'month' => '10',
+			'day' => '24'
+		]);
+
 		$db->setSetting('frontpage', 4);
 
 		$db->deleteTable('users');
