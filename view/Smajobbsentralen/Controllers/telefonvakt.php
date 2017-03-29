@@ -16,23 +16,18 @@ class telefonvakt {
         if(is_null($month)) $month = $this->month;
         if(is_null($year)) $year = $this->year;
         
-        $data = [];
         $cal = [];
+        
         $time = mktime(0, 0, 0, $month, 1, $year);
         $blanks = date('N', $time)-1;
         $total_days = date('t', $time);
-        $iDay = 0;
+        
         $today = date('d', time());
         $m = date('m', time());
         $y = date('Y', time());
         
-        $prev_year = $year;
-        if($month == 1){
-            $prev_month = 12;
-            $prev_year = $year - 1;
-        } else {
-            $prev_month = $month - 1;
-        }
+        $prev_month = ($month == 1) ? 12 : $month-1;
+        $prev_year = ($month == 1) ? $year-1 : $year;
         
         $prev_month_days = date('t', mktime(0, 0, 0, $prev_month, 1, $prev_year));
         
@@ -46,29 +41,22 @@ class telefonvakt {
             ];
 
         }
-        
         $work = $this->db->select('calendar', ['*'], ['month' => $month, 'year' => $year])->fetchAll();
         $work = $this->db->query('SELECT c.year, c.month, c.day, u.name, u.surname, u.mobile_phone, u.private_phone
                                   FROM calendar as c
                                   LEFT JOIN users AS u ON c.user_id = u.id
-                                  WHERE c.month = :m AND c.year = :y
-                                  ',
-                                  
+                                  WHERE c.month = :m AND c.year = :y',
                                   ['m' => $month, 'y' => $year])->fetchAll();
         
         for($days = 1; $days <= $total_days; $days++) {
-		    $data = date('N', mktime(0, 0, 0, $month, $days, $year));
-		    
-			/* add in the day number */
-            
+		    $date = date('N', mktime(0, 0, 0, $month, $days, $year));
             $user = array_search($days, array_column($work, 'day'));
             $user = $user !== false ? $work[$user] : null;
             
 			$cal[] = [
                 'date'   => $days,
-                'class'  => ($days == $today && $m == $month && $y == $year) ? 'current' : ($data == 7 ? 'holy' : 'normal'),
-                'day'    => $this->ISO_8601($data),
-                //'day'    => $data,
+                'class'  => ($days == $today && $m == $month && $y == $year) ? 'current' : ($date == 7 ? 'holy' : 'normal'),
+                'day'    => $this->day_to_str($date),
                 'work'   => $user,
             ];
         }
@@ -76,18 +64,8 @@ class telefonvakt {
         return $cal;
     }
     
-    public function getAwaitingUsers(){
-		return $this->db->query("SELECT *
-			FROM users as u WHERE 
-			u.approved = 0
-			ORDER BY u.name ASC")->fetchAll();
-	}
-
-	public function approveOrDeclineUser($data){
-	    return $this->db->update(['approved' => $data['approve']], 'users', ['id' => $data['_id']]);
-	}
     
-    public function ISO_8601($i){
+    public function day_to_str($i){
         return ['Mandag','Tirsdag','Onsdag','Torsdag','Fredag','Lørdag','Søndag'][$i-1];
     }
     public function month_to_str($i){
@@ -115,9 +93,18 @@ class telefonvakt {
                 $this->month--;
             }
         }
-        
-        
-        
         return false;
     }
+    
+    
+    public function getAwaitingUsers(){
+		return $this->db->query("SELECT *
+			FROM users as u WHERE 
+			u.approved = 0
+			ORDER BY u.name ASC")->fetchAll();
+	}
+
+	public function approveOrDeclineUser($data){
+	    return $this->db->update(['approved' => $data['approve']], 'users', ['id' => $data['_id']]);
+	}
 }
