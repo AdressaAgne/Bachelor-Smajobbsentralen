@@ -39,10 +39,11 @@
 				</div>
 				@if($key % 7 == 6)
 					<div class="cal-7 calendar--edit">
+						<div class="calendar--date exit">&times;</div>
 						<h2><span class="date">{{$cal['date']}}</span>. <span class="month">{{$class->month_to_str($class->month)}}</span> <span class="year">{{$class->year}}</span></h2>
 						@form('', 'PUT')
 							<div class="form-element col-12">
-								
+
 								<label>Navn
 									<input type="text" name="name" placeholder="Navn">
 								</label>
@@ -50,7 +51,7 @@
 									<textarea name="annet" rows="8" cols="80"></textarea>
 								</label>
 							</div>
-							
+
 							<div class="form-element col-12">
 								<input type="hidden" name="date" value="{{$cal['date']}}">
 								<input type="hidden" name="month" value="{{$class->month}}">
@@ -65,7 +66,7 @@
 				<h2><span class="date">{{$cal['date']}}</span>. <span class="month">{{$class->month_to_str($class->month)}}</span> <span class="year">{{$class->year}}</span></h2>
 				@form('', 'PUT')
 					<div class="form-element col-12">
-						
+
 						<label>Navn
 							<input type="text" name="name" placeholder="Navn">
 						</label>
@@ -73,7 +74,7 @@
 							<textarea name="annet" rows="8" cols="80"></textarea>
 						</label>
 					</div>
-					
+
 					<div class="form-element col-12">
 						<input type="hidden" name="date" value="{{$cal['date']}}">
 						<input type="hidden" name="month" value="{{$class->month}}">
@@ -88,24 +89,31 @@
 	<script>
 	var cal = $('.calendar--holy, .calendar--normal, .calendar--current');
 		$(cal).on('click', function(){
-			
+
 			var form = $(this).nextAll('.cal-7').first();
 			var form_name = $(this).nextAll('.cal-7').first().find('[name=name]');
 			var form_info = $(this).nextAll('.cal-7').first().find('[name=annet]');
 			var form_date = $(this).nextAll('.cal-7').first().find('.date');
-			
+
 			$(cal).removeClass('calendar--active');
 			$('.cal-7').not(form).slideUp();
-			
+
 			var name    = $(this).find("div").data("name");
 			var surname = $(this).find("div").data("surname");
 			var date    = $(this).find("div").data("date");
 			//todo: add stuff to form
 			$(form_date).text(date);
 			$(form_name).val(name + ' ' + surname);
-			
+
 			$(form).slideDown();
 			$(this).addClass('calendar--active');
-			
+
 		});
+
+
+	$(".exit").on("click", function(){
+		console.log($(this).parent());
+		$(this).parent().slideUp();
+
+	});
 	</script>
