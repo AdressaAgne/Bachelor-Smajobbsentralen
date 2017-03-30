@@ -35,7 +35,8 @@
 			@foreach($class->calendar() as $key => $cal)
 				<div class="cal-1 calendar calendar--{{$cal['class']}}">
 					<div class="calendar--date" data-date="{{$cal['date']}}" data-name="{{$cal['work']['name']}}" data-surname="{{$cal['work']['surname']}}">{{$cal['date']}}</div>
-					<p>{{ isset($cal['work']['holy']) ? $cal['work']['name'] : '' }}</p>
+					<p>{{ isset($cal['work']['name']) ? $cal['work']['name'] : '' }}</p>
+					<p>{{ isset($cal['holy']) ? $cal['holy'] : "" }}</p>
 				</div>
 				@if($key % 7 == 6)
 					<div class="cal-7 calendar--edit">
@@ -114,17 +115,18 @@
 		});
 
 
-/*
+
 	$(".exit, body").on("click", function(){
+		/*
 		if($(cal).hasClass('calendar--active')){;
 			clickedOnCalculator = false
 			$(cal).removeClass('calendar--active');
-		}
-		console.log($(this));
+		}*/
+		//console.log($(this));
 		$(cal).removeClass('calendar--active');
 		$(".calendar--edit").each(function(){
 			$(this).hide();
 		});
 
-	});*/
+	});
 	</script>
