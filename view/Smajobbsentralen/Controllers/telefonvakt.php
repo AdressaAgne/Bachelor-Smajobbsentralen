@@ -41,9 +41,9 @@ class telefonvakt {
         $easter_aften   = $this->days_to_date($easyer_days-1);
         $easter         = $this->days_to_date($easyer_days);
         $easter_2       = $this->days_to_date($easyer_days+1);
-        $airfart        = $this->days_to_date($easyer_days+40);
-        $pins_1         = $this->days_to_date($easyer_days+50);
-        $pins_2         = $this->days_to_date($easyer_days+51);
+        $airfart        = $this->days_to_date($easyer_days+39);
+        $pins_1         = $this->days_to_date($easyer_days+49);
+        $pins_2         = $this->days_to_date($easyer_days+50);
         
         $holy[$easter_aften['month']][$easter_aften['day']] = 'påskeaften';
         $holy[$easter['month']][$easter['day']] = 'første påskedag';
