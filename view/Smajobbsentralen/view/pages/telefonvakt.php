@@ -35,7 +35,7 @@
 			@foreach($class->calendar() as $key => $cal)
 				<div class="cal-1 calendar calendar--{{$cal['class']}}">
 					<div class="calendar--date" data-date="{{$cal['date']}}" data-name="{{$cal['work']['name']}}" data-surname="{{$cal['work']['surname']}}">{{$cal['date']}}</div>
-					{{ isset($cal['work']['name']) ? $cal['work']['name'] : '' }}
+					<p>{{ isset($cal['work']['holy']) ? $cal['work']['name'] : '' }}</p>
 				</div>
 				@if($key % 7 == 6)
 					<div class="cal-7 calendar--edit">
@@ -88,7 +88,10 @@
 @layout('layout.scripts')
 	<script>
 	var cal = $('.calendar--holy, .calendar--normal, .calendar--current');
-		$(cal).on('click', function(){
+	var clickedOnCalculator = false;
+		$(cal).on('click', function(e){
+			e.stopPropagation();
+			clickedOnCalculator = true;
 
 			var form = $(this).nextAll('.cal-7').first();
 			var form_name = $(this).nextAll('.cal-7').first().find('[name=name]');
@@ -111,9 +114,17 @@
 		});
 
 
-	$(".exit").on("click", function(){
-		console.log($(this).parent());
-		$(this).parent().slideUp();
+/*
+	$(".exit, body").on("click", function(){
+		if($(cal).hasClass('calendar--active')){;
+			clickedOnCalculator = false
+			$(cal).removeClass('calendar--active');
+		}
+		console.log($(this));
+		$(cal).removeClass('calendar--active');
+		$(".calendar--edit").each(function(){
+			$(this).hide();
+		});
 
-	});
+	});*/
 	</script>
