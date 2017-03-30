@@ -2,3 +2,6 @@ images/**
 config.codekit3
 *.css
 cached/*
+view/Smajobbsentralen/assets/css/main.css
+
+view/Smajobbsentralen/assets/css/main.css.map

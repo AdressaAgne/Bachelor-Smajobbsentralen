@@ -51,6 +51,7 @@ $calendar-grid-breakpoint-large:         1200px !default
 
 .calendar
 	height: 80px
+	box-shadow: inset -1px 1px 0px 1px rgba(0, 0, 0, .1)
 	&--holy
 		background-color: lighten($palette-red, 15%)
 		color: $accent-color-text
@@ -67,7 +68,7 @@ $calendar-grid-breakpoint-large:         1200px !default
 		background-color: $theme-color
 		color: $theme-color-text
 		&:hover
-			background-color: darken($theme-color, 5%)
+			background-color: $theme-color-700
 	&--blank
 		background-color: #cecece
 	&--date
@@ -80,7 +81,17 @@ $calendar-grid-breakpoint-large:         1200px !default
 		background-color: rgba(0, 0, 0, .2)
 		line-height: 30px
 	&--header
+		text-align: center
 		height: auto
 		padding-bottom: $calendar-grid-gutter
 		background-color: $theme-color
 		color: $theme-color-text
+	&--active
+		background-color: $accent-color
+		&:hover
+			background-color: $accent-color-700
+	&--edit
+		background-color: $accent-color
+		color: $accent-color-text
+		display: none
+		

@@ -32,31 +32,80 @@
 				</div>
 			@endfor
 
-			@foreach($class->calendar() as $cal)
+			@foreach($class->calendar() as $key => $cal)
 				<div class="cal-1 calendar calendar--{{$cal['class']}}">
 					<div class="calendar--date" data-date="{{$cal['date']}}" data-name="{{$cal['work']['name']}}" data-surname="{{$cal['work']['surname']}}">{{$cal['date']}}</div>
 					{{ isset($cal['work']['name']) ? $cal['work']['name'] : '' }}
 				</div>
+				@if($key % 7 == 6)
+					<div class="cal-7 calendar--edit">
+						<h2><span class="date">{{$cal['date']}}</span>. <span class="month">{{$class->month_to_str($class->month)}}</span> <span class="year">{{$class->year}}</span></h2>
+						@form('', 'PUT')
+							<div class="form-element col-12">
+								
+								<label>Navn
+									<input type="text" name="name" placeholder="Navn">
+								</label>
+								<label>Annet
+									<textarea name="annet" rows="8" cols="80"></textarea>
+								</label>
+							</div>
+							
+							<div class="form-element col-12">
+								<input type="hidden" name="date" value="{{$cal['date']}}">
+								<input type="hidden" name="month" value="{{$class->month}}">
+								<input type="hidden" name="year" value="{{$class->year}}">
+								<input type="submit" value="Rediger">
+							</div>
+						@formend()
+					</div>
+				@endif
 			@endforeach
+			<div class="cal-7 calendar--edit">
+				<h2><span class="date">{{$cal['date']}}</span>. <span class="month">{{$class->month_to_str($class->month)}}</span> <span class="year">{{$class->year}}</span></h2>
+				@form('', 'PUT')
+					<div class="form-element col-12">
+						
+						<label>Navn
+							<input type="text" name="name" placeholder="Navn">
+						</label>
+						<label>Annet
+							<textarea name="annet" rows="8" cols="80"></textarea>
+						</label>
+					</div>
+					
+					<div class="form-element col-12">
+						<input type="hidden" name="date" value="{{$cal['date']}}">
+						<input type="hidden" name="month" value="{{$class->month}}">
+						<input type="hidden" name="year" value="{{$class->year}}">
+						<input type="submit" value="Rediger">
+					</div>
+				@formend()
+			</div>
 		</div>
 	</div>
 @layout('layout.scripts')
 	<script>
-		$('.calendar').on('click', function(){
-
-			var name    = ($(this).find("div").data("name")) ? $(this).find("div").data("name") : "Det er ingen oppsatt til å jobbe denne dagen";
-			var surname = ($(this).find("div").data("surname")) ? $(this).find("div").data("surname") : "";
-			var date    = ($(this).find("div").data("date")) ? $(this).find("div").data("date") : "";
-
-
-			$('.calendar-modal').html(
-				"<div class='row'>"+
-					"<div class='col-12'>"+
-						"<h1>"+date+"</h1>"+
-						"<h1>"+name+"</h1>"+
-						"<h1>"+surname+"</h1>"+
-					"</div>"+
-				"</div>"
-			).slideToggle(20);
+	var cal = $('.calendar--holy, .calendar--normal, .calendar--current');
+		$(cal).on('click', function(){
+			
+			var form = $(this).nextAll('.cal-7').first();
+			var form_name = $(this).nextAll('.cal-7').first().find('[name=name]');
+			var form_info = $(this).nextAll('.cal-7').first().find('[name=annet]');
+			var form_date = $(this).nextAll('.cal-7').first().find('.date');
+			
+			$(cal).removeClass('calendar--active');
+			$('.cal-7').not(form).slideUp();
+			
+			var name    = $(this).find("div").data("name");
+			var surname = $(this).find("div").data("surname");
+			var date    = $(this).find("div").data("date");
+			//todo: add stuff to form
+			$(form_date).text(date);
+			$(form_name).val(name + ' ' + surname);
+			
+			$(form).slideDown();
+			$(this).addClass('calendar--active');
+			
 		});
 	</script>
