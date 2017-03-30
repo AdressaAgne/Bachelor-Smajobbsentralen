@@ -16,7 +16,7 @@ class telefonvakt {
     public function isHoly($day, $month){
         $holy = [
             1 => [
-                1 => 'nørst nyttårsdag',
+                1 => 'første nyttårsdag',
             ], 
             2 => [],
             3 => [],
@@ -37,19 +37,33 @@ class telefonvakt {
                 26 => 'andre juledag',
             ],
         ];
-        $easyer_days    = easter_days($this->year);
-        $easter_aften   = $this->days_to_date($easyer_days-1);
-        $easter         = $this->days_to_date($easyer_days);
-        $easter_2       = $this->days_to_date($easyer_days+1);
-        $airfart        = $this->days_to_date($easyer_days+39);
-        $pins_1         = $this->days_to_date($easyer_days+49);
-        $pins_2         = $this->days_to_date($easyer_days+50);
+        //easter_days() returns days after march 21, wich is 80, but on a leap year its 81.
+        $easter_days    = easter_days($this->year) + 80 + date('L', mktime(0, 0, 0, 1, 1, $this->year));
+        
+        //5 = Fredag
+
+        
+        //4 = Torsdag
+        
+        $lang           = $this->days_to_date($this->get_day_before(4, $easter_days));
+        $skjer          = $this->days_to_date($this->get_day_before(5, $easter_days));
+        
+        $easter_aften   = $this->days_to_date($easter_days - 1);
+        $easter_1       = $this->days_to_date($easter_days);
+        $easter_2       = $this->days_to_date($easter_days + 1);
+        $skyfart        = $this->days_to_date($easter_days + 39);
+        $pins_1         = $this->days_to_date($easter_days + 49);
+        $pins_2         = $this->days_to_date($easter_days + 50);
+        
+        $holy[$lang['month']][$lang['day']] = 'langfredag';
+        $holy[$skjer['month']][$skjer['day']] = 'skjærtorsdag';
+        
         
         $holy[$easter_aften['month']][$easter_aften['day']] = 'påskeaften';
-        $holy[$easter['month']][$easter['day']] = 'første påskedag';
+        $holy[$easter_1['month']][$easter_1['day']] = 'første påskedag';
         $holy[$easter_2['month']][$easter_2['day']] = 'andre påskedag';
         
-        $holy[$airfart['month']][$airfart['day']] = 'Kristi himmelfartsdag';
+        $holy[$skyfart['month']][$skyfart['day']] = 'Kristi himmelfartsdag';
         $holy[$pins_1['month']][$pins_1['day']] = '	første pinsedag';
         $holy[$pins_2['month']][$pins_2['day']] = 'andre pinsedag';
         
@@ -59,10 +73,13 @@ class telefonvakt {
         
     }
     
-    public function days_to_date($days){
+    public function get_day_before($day, $day_of_year){
+        //$weekday = date('N', mktime( 0, 0, 0, 1, $day_of_year, $this->year));
+        return $day_of_year - 7 + $day;
         
-        $leap = date('L', mktime(0, 0, 0, 1, 1, $this->year));
-        $days = $days + 80 + $leap;
+    }
+    
+    public function days_to_date($days){
         
         $day = date('d', mktime( 0, 0, 0, 1, $days, $this->year));
         $month = date('n', mktime( 0, 0, 0, 1, $days, $this->year));
