@@ -89,17 +89,23 @@
 @layout('layout.scripts')
 	<script>
 	var cal = $('.calendar--holy, .calendar--normal, .calendar--current');
-	var clickedOnCalculator = false;
 		$(cal).on('click', function(e){
-			e.stopPropagation();
-			clickedOnCalculator = true;
 
 			var form = $(this).nextAll('.cal-7').first();
-			var form_name = $(this).nextAll('.cal-7').first().find('[name=name]');
-			var form_info = $(this).nextAll('.cal-7').first().find('[name=annet]');
-			var form_date = $(this).nextAll('.cal-7').first().find('.date');
+
+			if($(this).hasClass('calendar--active')){
+				$(this).removeClass('calendar--active');
+				$(form).slideUp();
+				return;
+			}
+
+
+			var form_name = $(form).find('[name=name]');
+			var form_info = $(form).find('[name=annet]');
+			var form_date = $(form).find('.date');
 
 			$(cal).removeClass('calendar--active');
+
 			$('.cal-7').not(form).slideUp();
 
 			var name    = $(this).find("div").data("name");
@@ -114,19 +120,8 @@
 
 		});
 
-
-
-	$(".exit, body").on("click", function(){
-		/*
-		if($(cal).hasClass('calendar--active')){;
-			clickedOnCalculator = false
+		$(".exit").on('click', function(e){
 			$(cal).removeClass('calendar--active');
-		}*/
-		//console.log($(this));
-		$(cal).removeClass('calendar--active');
-		$(".calendar--edit").each(function(){
-			$(this).hide();
+			$('.calendar--edit').slideUp();
 		});
-
-	});
 	</script>
