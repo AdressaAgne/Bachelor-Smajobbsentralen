@@ -39,14 +39,11 @@ class telefonvakt {
 		];
 		//easter_days() returns days after march 21, wich is 80, but on a leap year its 81.
 		$easter_days    = easter_days($this->year) + 80 + date('L', mktime(0, 0, 0, 1, 1, $this->year));
-
-		//5 = Fredag
-
-
-		//4 = Torsdag
-
-		$lang           = $this->days_to_date($this->get_day_before(4, $easter_days));
-		$skjer          = $this->days_to_date($this->get_day_before(5, $easter_days));
+        
+        //5 = Fredag
+		$lang           = $this->days_to_date($this->get_day_before(5, $easter_days));
+        //4 = Torsdag
+		$skjer          = $this->days_to_date($this->get_day_before(4, $easter_days));
 
 		$easter_aften   = $this->days_to_date($easter_days - 1);
 		$easter_1       = $this->days_to_date($easter_days);
