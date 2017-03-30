@@ -64,6 +64,7 @@
 				@endif
 			@endforeach
 			<div class="cal-7 calendar--edit">
+				<div class="calendar--date exit">&times;</div>
 				<h2><span class="date">{{$cal['date']}}</span>. <span class="month">{{$class->month_to_str($class->month)}}</span> <span class="year">{{$class->year}}</span></h2>
 				@form('', 'PUT')
 					<div class="form-element col-12">
