@@ -8,8 +8,66 @@ class telefonvakt {
     public function __construct($db){
         $this->db = $db;
         
-        $this->month = date('m', time());
+        $this->month = date('n', time());
         $this->year = date('Y', time());
+
+    }
+    
+    public function isHoly($day, $month){
+        $holy = [
+            1 => [
+                1 => 'nørst nyttårsdag',
+            ], 
+            2 => [],
+            3 => [],
+            4 => [],
+            5 => [
+                1 => 'arbeiderens dag',
+                17 => 'norges nasjonaldag',
+            ],
+            6 => [],
+            7 => [],
+            8 => [],
+            9 => [],
+            10 => [],
+            11 => [],
+            12 => [
+                24 => 'julaften',
+                25 => 'først juledag',
+                26 => 'andre juledag',
+            ],
+        ];
+        $easyer_days    = easter_days($this->year);
+        $easter_aften   = $this->days_to_date($easyer_days-1);
+        $easter         = $this->days_to_date($easyer_days);
+        $easter_2       = $this->days_to_date($easyer_days+1);
+        $airfart        = $this->days_to_date($easyer_days+40);
+        $pins_1         = $this->days_to_date($easyer_days+50);
+        $pins_2         = $this->days_to_date($easyer_days+51);
+        
+        $holy[$easter_aften['month']][$easter_aften['day']] = 'påskeaften';
+        $holy[$easter['month']][$easter['day']] = 'første påskedag';
+        $holy[$easter_2['month']][$easter_2['day']] = 'andre påskedag';
+        
+        $holy[$airfart['month']][$airfart['day']] = 'Kristi himmelfartsdag';
+        $holy[$pins_1['month']][$pins_1['day']] = '	første pinsedag';
+        $holy[$pins_2['month']][$pins_2['day']] = 'andre pinsedag';
+        
+        //die(print_r($holy, true));
+        
+        return (array_key_exists($day, $holy[$month])) ? $holy[$month][$day] : false;
+        
+    }
+    
+    public function days_to_date($days){
+        
+        $leap = date('L', mktime(0, 0, 0, 1, 1, $this->year));
+        $days = $days + 80 + $leap;
+        
+        $day = date('d', mktime( 0, 0, 0, 1, $days, $this->year));
+        $month = date('n', mktime( 0, 0, 0, 1, $days, $this->year));
+        
+        return ['day' => $day, 'month' => $month];
     }
     
     public function calendar($month = null, $year = null){
@@ -23,7 +81,7 @@ class telefonvakt {
         $total_days = date('t', $time);
         
         $today = date('d', time());
-        $m = date('m', time());
+        $m = date('n', time());
         $y = date('Y', time());
         
         $prev_month = ($month == 1) ? 12 : $month-1;
@@ -53,11 +111,14 @@ class telefonvakt {
             $user = array_search($days, array_column($work, 'day'));
             $user = $user !== false ? $work[$user] : null;
             
+            $holy = $this->isHoly($days, $month);
+            
 			$cal[] = [
                 'date'   => $days,
-                'class'  => ($days == $today && $m == $month && $y == $year) ? 'current' : ($date == 7 ? 'holy' : 'normal'),
+                'class'  => ($days == $today && $m == $month && $y == $year) ? 'current' : ($date == 7 ? 'holy' : ($holy) ? 'holy' : 'normal'),
                 'day'    => $this->day_to_str($date),
                 'work'   => $user,
+                'holy'   => ucfirst($holy),
             ];
         }
         
