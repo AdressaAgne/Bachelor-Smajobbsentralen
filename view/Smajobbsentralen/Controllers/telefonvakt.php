@@ -55,7 +55,6 @@ class telefonvakt {
 		$holy[$lang['month']][$lang['day']] = 'langfredag';
 		$holy[$skjer['month']][$skjer['day']] = 'skjærtorsdag';
 
-
 		$holy[$easter_aften['month']][$easter_aften['day']] = 'påskeaften';
 		$holy[$easter_1['month']][$easter_1['day']] = 'første påskedag';
 		$holy[$easter_2['month']][$easter_2['day']] = 'andre påskedag';
@@ -72,8 +71,8 @@ class telefonvakt {
 
 	public function get_day_before($day, $day_of_year){
 		$weekday = date('N', mktime( 0, 0, 0, 1, $day_of_year, $this->year));
+
 		return $day_of_year - $weekday + $day;
-		
 	}
 
 	public function days_to_date($days){
@@ -111,9 +110,8 @@ class telefonvakt {
 				'date' => $date,
 				'work' => '',
 			];
-
 		}
-		$work = $this->db->select('calendar', ['*'], ['month' => $month, 'year' => $year])->fetchAll();
+        
 		$work = $this->db->query('SELECT c.year, c.month, c.day, u.name, u.surname, u.mobile_phone, u.private_phone
 								  FROM calendar as c
 								  LEFT JOIN users AS u ON c.user_id = u.id
@@ -146,28 +144,21 @@ class telefonvakt {
 	public function month_to_str($i){
 		return ['Januar', 'Februar', 'Mars', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Desember'][$i-1];
 	}
-
+    
 	public function post($data){
 		$this->month = $data['month'];
 		$this->year = $data['year'];
 
 		if(isset($data['next'])){
-			if($this->month == 12){
-				$this->month = 1;
-				$this->year++;
-			} else {
-				$this->month++;
-			}
+            $this->month = ($this->month == 12) ? 1 : $this->month + 1;
+    		$this->year = ($this->month == 12) ? $this->year + 1 : $this->year;
 		}
 
 		if(isset($data['prev'])){
-			if($this->month == 1){
-				$this->month = 12;
-				$this->year--;
-			} else {
-				$this->month--;
-			}
+            $this->month = ($this->month == 1) ? 12 : $this->month - 1;
+    		$this->year = ($this->month == 1) ? $this->year - 1 : $this->year;
 		}
+        
 		return false;
 	}
 
