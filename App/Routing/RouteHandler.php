@@ -2,7 +2,7 @@
 
 namespace App\Routing;
 
-use ErrorHandling;
+use ErrorHandling, Config, Direct;
 
 class RouteHandler{
     
@@ -16,7 +16,6 @@ class RouteHandler{
      */
     protected function get_path(){
         return isset($_GET['param']) ? '/'.$_GET['param'] : '/';
-        //return "/".preg_replace("/(.*)m=(.*)/uimx", "$2", $_SERVER['QUERY_STRING']);
     }
     
     /**
@@ -51,20 +50,19 @@ class RouteHandler{
         $list = [];
         // Minify this stuff
         
-        foreach(Route::lists() as $type => $types){
-            foreach($types as $key => $value){
+        foreach(Route::lists() as $type => $http){
+            foreach($http as $key => $value){
                if(preg_match("/".$this->regexSlash($key)."/i", $url)){
                    $list[] = $key;
                }
             }
         }
+        
         $lengths = array_map('strlen', $list);
         $maxLength = max($lengths);
         $index = array_search($maxLength, $lengths);
-        
-        if($list[$index] == '/' && $url != '/'){
-            return $url;
-        }
+
+        if($list[$index] == '/' && $url != '/') return $url;
         
         return $list[$index];
     }
@@ -81,9 +79,7 @@ class RouteHandler{
      * @return string
      */
     public function getPageData(){
-        $url = $this->get_page();
-        
-        return $this->callController($url);
+        return $this->callController($this->get_page());
     }
     
     /**
@@ -113,16 +109,11 @@ class RouteHandler{
     private function callController($url){
         $this->route = Direct::getCurrentRoute($url);
         
-        if(array_key_exists('error', $this->route)){
-            return $this->route;
-        }
+        if(array_key_exists('error', $this->route)) return $this->route;
         
         $this->view = explode('@', $this->route['callback']);
         
-        $funcToCall = [$this->getMethod(), $this->getClass()];
-        
-        $class = call_user_func($funcToCall, $this->extractVars($url));
-        
+        $class = call_user_func([$this->getMethod(), $this->getClass()], $this->extractVars($url));
         
         return $class;
     }
@@ -134,17 +125,11 @@ class RouteHandler{
      * @return array
      */
     private function extractVars($url){
-        if(!empty($this->route['vars'])){
-            $vars = $this->get_vars($url);
-            
-            foreach($this->route['vars'] as $key => $value){
-                if(isset($vars[$key])){
-                    $_GET[$value] = $vars[$key];
-                }
-            }
-        }
-        return array_merge($_GET, $_POST);
+        $vars = $this->route['vars'];
         
+        $params = !empty($vars) ? array_combine($vars, $this->get_vars($url)) : [];
+
+        return array_merge($params, $_POST);
     }
     
 }

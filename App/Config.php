@@ -104,5 +104,4 @@ class Config {
         '\App\Modules\Image'                => 'Image',
         
     ];
-
 }

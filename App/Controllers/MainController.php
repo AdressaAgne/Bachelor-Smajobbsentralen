@@ -26,6 +26,9 @@ class MainController extends Controller implements NormalController {
         return Direct::lists();
     }
     
+    public function test($data){
+        return [$data];
+    }
     
     
 }

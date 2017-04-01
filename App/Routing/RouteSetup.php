@@ -5,6 +5,8 @@
 *   Direct::[get, post, put, patch, delete](url, controller@method)->[auth(), admin(), mod()]
 */
 
+Direct::get("/test/{x}/{y}/{z}", 'MainController@test');
+
 Direct::get("/", 'MainController@index');
 
 if(Config::$debug_mode){

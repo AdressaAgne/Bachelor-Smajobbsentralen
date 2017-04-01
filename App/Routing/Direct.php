@@ -10,21 +10,30 @@ class Direct extends Route{
     private $route = '';
     private $type = '';
     
+    const GET = 'get';
+    const POST = 'post';
+    const PUT = 'put';
+    const PATCH = 'patch';
+    const DELETE = 'delete';
+    
     public function __construct($route, $callback, $type){
-        $regex = "/(.*)\/(\\{(.*)\\})/uiUmx";
+        $regex = "/([a-zA-Z0-9*])\/(\{(.*)\})/";
+
+        $var_regex = '/\{(.*?)\}/';
         
-        $get = explode(",", preg_replace($regex, "$3,", $route));
-        array_pop($get);
+        preg_match_all($var_regex, $route, $vars);
         
-        $route = "/".trim(preg_replace($regex, "$1", $route), "/");
+        $route = rtrim(preg_replace($regex, "$1", $route), "/");
         
         $this->route = $route;
         $this->type = $type;
+        
         parent::$routes[$type][$route] = [
-                                    'callback' => Config::$controllers.$callback,
-                                    'vars' => $get,
-                                    'middleware' => [],
-                                ];
+            'callback' => Config::$controllers.$callback,
+            'vars' => $vars[1],
+            'middleware' => [],
+        ];
+
     }
     
     /**
@@ -35,6 +44,12 @@ class Direct extends Route{
         header("location: {$page}");
     }
     
+    // Die and Dump
+    public static function dd(...$param){
+        die(print_r($param, true));
+    }
+
+    
     /**
      * Create a new Direct
      * @param  string  $a URI
@@ -44,23 +59,23 @@ class Direct extends Route{
      */
     public static function get($a, $b){
         
-        return new Direct($a, $b, 'get');
+        return new Direct($a, $b, self::GET);
     }
     
     public static function delete($a, $b){
-        return new Direct($a, $b, 'delete');
+        return new Direct($a, $b, self::DELETE);
     }
     
     public static function put($a, $b){
-        return new Direct($a, $b, 'put');
+        return new Direct($a, $b, self::PUT);
     }
     
     public static function patch($a, $b){
-        return new Direct($a, $b, 'patch');
+        return new Direct($a, $b, self::PATCH);
     }
    
     public static function post($a, $b){
-        return new Direct($a, $b, 'post');
+        return new Direct($a, $b, self::POST);
     }
     
     public static function err($a, $b){
@@ -70,7 +85,6 @@ class Direct extends Route{
     
     
     public static function stack($url, $controller){
-        
         //Overlook page
         self::get($url, "$controller@index");
         
