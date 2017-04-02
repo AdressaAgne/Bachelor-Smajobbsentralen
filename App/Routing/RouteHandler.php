@@ -2,7 +2,7 @@
 
 namespace App\Routing;
 
-use ErrorHandling, Config, Direct;
+use ErrorHandling, Config, Direct, Route;
 
 class RouteHandler{
     
@@ -111,10 +111,11 @@ class RouteHandler{
         if(array_key_exists('error', $this->route)) return $this->route;
         
         $this->view = explode('@', $this->route['callback']);
+        $vars = $this->extractVars($url);
         
-        $class = call_user_func([$this->getMethod(), $this->getClass()], $this->extractVars($url));
+        if(isset($vars['error'])) return Route::error('404', $vars);
         
-        return $class;
+        return call_user_func([$this->getMethod(), $this->getClass()], $vars);
     }
     
     /**
@@ -125,8 +126,20 @@ class RouteHandler{
      */
     private function extractVars($url){
         $vars = $this->route['vars'];
+        $url = $this->get_vars($url);
         
-        $params = !empty($vars) ? array_combine($vars, $this->get_vars($url)) : [];
+        if(empty($url[0])) $url = [];
+        
+        if(count($vars) != count($url)){
+            $vars = array_filter($vars, function($value){
+                return !preg_match('/\?/', $value);
+            });
+            if(count($vars) != count($url)) return ['error' => 'Url does not match variables for route', 'vars' => $vars, 'url' => $url];
+        };
+        
+        $combined = array_combine(str_replace('?', '', $vars), $url);
+        
+        $params = !empty($vars) ? $combined : [];
 
         return array_merge($params, $_POST);
     }
