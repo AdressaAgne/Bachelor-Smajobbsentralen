@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Database;
-use Config;
+
+use Config, Direct;
 use PDO;
 
 class Database extends DBhelpers{
@@ -16,9 +17,7 @@ class Database extends DBhelpers{
     
     public static function select($table, array $rows = ['*'], $data = null, $join = 'AND', $class = null){
         
-        if($join == 'AND' || $join == 'OR'){
-        
-        } else {
+        if(!($join == 'AND' || $join == 'OR')){
             $class = $join;
         }
         
@@ -57,33 +56,29 @@ class Database extends DBhelpers{
      * @return boo
      */
     public static function insert($table, array $data){
-        $trows = [];
         $placeholder = [];
-        $values = [];
         $insertData = [];
-        foreach($data[0] as $key => $value){
-            $trows[] = $key;
-        }
-
-        foreach($data as $nr => $rows){
+        
+        $table_rows = implode(", ", array_keys($data[0]));
+        
+        foreach($data as $i => $rows){
             $p = [];
             foreach($rows as $key => $row){
-                $p[] = ":".$key.$nr;
-                $insertData[$key.$nr] = $row;
+                $p[] = ":".$key.$i;
+                $insertData[$key.$i] = $row;
             }
             $placeholder[] = '('.implode(", ", $p).')';
         }
-
-        $trows = implode(", ", $trows);
+        
         $placeholder = implode(", ", $placeholder);
 
-        $sql = "INSERT INTO {$table} ({$trows}) VALUES {$placeholder}";
-        $q = self::query($sql, $insertData);
+        $sql = "INSERT INTO {$table} ({$table_rows}) VALUES {$placeholder}";
+        
+        $query = self::query($sql, $insertData);
+        
         $id = self::$db->lastInsertId('id');
-        if($id == 0){
-          return $q;
-        }
-        return $id;
+        
+        return ($id == 0) ? $query : $id;
     }
     
     /**

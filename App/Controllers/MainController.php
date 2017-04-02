@@ -27,6 +27,15 @@ class MainController extends Controller implements NormalController {
     }
     
     public function test($data){
+        $this->insert('users', [
+            [
+                'name' => 'navn',
+                'username' => 'navnesem',
+            ],[
+                'name' => 'navn2',
+                'username' => 'navnesem2',
+            ],
+        ]);
         return [$data];
     }
     

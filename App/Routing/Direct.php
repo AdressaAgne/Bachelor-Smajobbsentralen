@@ -44,8 +44,13 @@ class Direct extends Route{
         header("location: {$page}");
     }
     
-    // Die and Dump
+    /**
+     * Die and dump
+     * @param  any $param 
+     * @return [die]        [kills the page and prints $parma[]]
+     */
     public static function dd(...$param){
+        header('Content-type: application/json');
         die(print_r($param, true));
     }
 
@@ -58,7 +63,6 @@ class Direct extends Route{
      * and so on...
      */
     public static function get($a, $b){
-        
         return new Direct($a, $b, self::GET);
     }
     

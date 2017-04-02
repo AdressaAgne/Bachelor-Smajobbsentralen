@@ -17,6 +17,7 @@ class DBhelpers{
 		try {
 			$dns = 'mysql:host='.Config::$host.';dbname='.Config::$database;
 			self::$db = new PDO($dns, Config::$username, Config::$password);
+			
 			self::$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
 			self::$db->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
 			self::$db->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, true);
@@ -77,14 +78,13 @@ class DBhelpers{
 		}
 	}
 
-
-	public $tableStatus = [];
 	/**
 	 * create a new table
 	 * @param  string  $name table name
 	 * @param  array   $rows arrow of Row objects
 	 * @return boolean
 	 */
+	public $tableStatus = [];
 	public function createTable($table, array $rows, $drop = true){
 		$query = "";
 		if($drop) {
@@ -106,7 +106,6 @@ class DBhelpers{
 		return $return;
 	}
 
-
 	/**
 	 * covert variables types to sql variable types
 	 * @author Agne *degaard
@@ -122,7 +121,6 @@ class DBhelpers{
 			'boolean'   => 'tinyint(1)',
 			'bool'      => 'tinyint(1)',
 		];
-
 		return array_key_exists($type, $types) ? $types[$type] : $type;
 	}
 
@@ -132,7 +130,6 @@ class DBhelpers{
 	 * @param  string $name
 	 * @return true/false
 	 */
-
 	 public function deleteTable($table){
 		 return self::$db->query('DROP TABLE IF EXISTS '.$table);
 	 }

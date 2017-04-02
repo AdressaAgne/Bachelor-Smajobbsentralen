@@ -72,7 +72,6 @@ class RouteHandler{
         return trim($page->get_page(), '/');
     }
     
-    
     /**
      * get the page data from current url
      * @author Agne *degaard
