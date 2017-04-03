@@ -33,7 +33,7 @@ class Controller extends DB{
             
             self::$site_wide_vars['settings'] = $this->cms();
             
-            Config::$theme = self::$site_wide_vars['settings']['theme'];
+            Config::$theme = isset(self::$site_wide_vars['settings']['theme']) ? self::$site_wide_vars['settings']['theme'] : 'Basic';
             
             $source = str_replace($_GET['param'],'',$_SERVER['REQUEST_URI']);
             
