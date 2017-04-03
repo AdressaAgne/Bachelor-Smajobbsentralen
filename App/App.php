@@ -21,7 +21,7 @@ session_regenerate_id();
  * @param function function($class)
  */
 spl_autoload_register(function($class){
-    $file = implode('/', explode('\\', "{$class}.php"));
+    $file = str_replace('\\', '/', "{$class}.php");
     if(file_exists($file)){
         require_once($file);
     }
@@ -48,7 +48,7 @@ class App extends RouteHandler{
         }
         
         $cached_file = './'.Config::$cache_folder.'cached_';
-        $cached_file .= trim(preg_replace('/\//u', '_', $this->get_path()), '.').".html";
+        $cached_file .= trim(str_replace('/', '_', $this->get_path()), '.').".html";
         
         if(!isset($_SESSION['uuid']) && $_SERVER['REQUEST_METHOD'] != "POST" && !Config::$debug_mode && file_exists($cached_file) && (filemtime($cached_file) + Config::$cache_time > time())){
             

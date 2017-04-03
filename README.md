@@ -19,7 +19,7 @@ class MainController extends Controller {
    }
 }
 ```
-$params is _$_GET_ and _$_POST_ merged together
+$params is $_GET and $_POST merged together
 To make a JSON API just return an array insted of a View.
 
 ## Setup a view - App/Routing/RouteSetup.php
@@ -30,12 +30,16 @@ Direct::get("/", 'MainController@index');
 ```
 
 ### Post Requests
-This wil run the submit method in the MainController class when a post request is made to /submit
-it will set two get variables _$_GET['mail']_ and _$_GET['text']_ to whatever the url says.
+This will run the submit method in the MainController class when a post request is made to /submit
+it will pass an argument to submit with mail and text in an array.
 ```php
 Direct::post("/submit/{mail}/{text}", 'MainController@submit');
 ```
-Or you could just use normal _$_POST_ variables
+By setting a ? after the variable name means its an optional variable and will therfor not throw a 404 if its not included in the url.  
+```php
+Direct::post("/submit/{mail}/{text?}", 'MainController@submit');
+```
+Or you could just use normal $_POST variables
 ```php
 Direct::post("/submit", 'MainController@submit');
 ```
@@ -227,9 +231,11 @@ This is for use when you use the framework in a subfolder, should be use before 
 *others:*
 
 * assets (string)
+* source (string)
 * menu (array)
 * user (User Object, currently logged in user)
 * settings (array, all the page settings)
+* global (access GlobalController)
 
 ## Subfolder
 To use the framework in a subfolder go to the .htaccess file and add your folder there, further instructions are in the file.
@@ -279,7 +285,7 @@ class frontpage {
 ```
 the constructor takes one parameter that is the database class, where you can access the db.
 
-## Golbal controller
+## Global controller
 
 If You have functions you need to use on many or all pages you can add a GlobalController.php in the Controllers folder, access it on all pages with {{$global}}
 
