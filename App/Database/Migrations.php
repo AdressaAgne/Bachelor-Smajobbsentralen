@@ -12,7 +12,7 @@ class Migrations{
 
 		$themeMigrate = './view/'.Config::$theme.'/Controllers/Migration/migrate.php';
 
-
+		$this->getSetting('theme');
 		// User Account
 		$db->createTable('users', [
 			new PID(),
@@ -60,7 +60,7 @@ class Migrations{
 			$themeClass->install($db);
 		}
 
-		self::populate($this->getSetting('theme'));
+		self::populate($theme);
 		
 		if(file_exists($themeMigrate)){
 			$themeClass->populate($db);
