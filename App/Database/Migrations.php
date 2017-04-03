@@ -12,12 +12,6 @@ class Migrations{
 
 		$themeMigrate = './view/'.Config::$theme.'/Controllers/Migration/migrate.php';
 
-		if(file_exists($themeMigrate)){
-			include_once($themeMigrate);
-			$themeClass = new \Migrate();
-
-			$themeClass->install($db);
-		}
 
 		// User Account
 		$db->createTable('users', [
@@ -60,14 +54,21 @@ class Migrations{
 			new Timestamp(),
 		]);
 
-		self::populate();
+		if(file_exists($themeMigrate)){
+			include_once($themeMigrate);
+			$themeClass = new \Migrate();
+			$themeClass->install($db);
+		}
+
+		self::populate($this->getSetting('theme'));
+		
 		if(file_exists($themeMigrate)){
 			$themeClass->populate($db);
 		}
 		return [$db->tableStatus];
 	}
 
-	public static function populate(){
+	public static function populate($theme){
 		$db = new DB();
 		$db->insert('pages', [
 		   [
@@ -91,7 +92,7 @@ class Migrations{
 				'value' => 'just another cms',
 			],[
 				'name' => 'theme',
-				'value' => Config::$theme,
+				'value' => empty($theme) ? 'Basic' : $theme,
 			],[
 				'name' => 'frontpage',
 				'value' => '1',

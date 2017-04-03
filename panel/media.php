@@ -33,5 +33,5 @@
         @endforeach
         
     </div>
-<script src="{{$assets}}/js/min/uploader-min.js"></script>   
+<script src="{{$panel}}/js/min/uploader-min.js"></script>   
 @panel('layout.foot')

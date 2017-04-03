@@ -1,7 +1,7 @@
 <?php
 namespace App;
 
-use Account, RouteHandler;
+use Account, RouteHandler, Config;
 /**
 *   Small Render Engine, very inspirated by Twig
 */
@@ -115,7 +115,6 @@ class Render {
         } else {
             $attrs = '';
         }
-
         if($method == 'get'){
             echo "<form action='$page' method='GET' $attrs>";
         } else {

@@ -3,7 +3,7 @@
     
     <div class="row">
         <h3>New Page</h3>
-        @form('page/create', 'put')
+        @form($source.'/page/create', 'put')
             <div class="admin-panel">
                 <div class="form-element col-6 col-m-12">
                     <label>Header

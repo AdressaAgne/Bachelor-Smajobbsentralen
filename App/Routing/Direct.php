@@ -23,7 +23,7 @@ class Direct extends Route{
         
         preg_match_all($var_regex, $route, $vars);
         
-        $route = rtrim(preg_replace($regex, "$1", $route), "/");
+        $route = preg_replace($regex, "$1", $route);
         
         $this->route = $route;
         $this->type = $type;
@@ -50,7 +50,7 @@ class Direct extends Route{
      * @return [die]        [kills the page and prints $parma[]]
      */
     public static function dd(...$param){
-        header('Content-type: application/json');
+        @header('Content-type: application/json');
         die(print_r($param, true));
     }
 

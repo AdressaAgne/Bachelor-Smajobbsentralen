@@ -3,7 +3,7 @@
 var info = 0;
 function upload(files){
     
-    ajax('admin/media', {
+    ajax('/admin/media', {
             file : files[0],
             '_token' : elm('[name=_token]').value,
             '_method' : elm('[name=_method]').value

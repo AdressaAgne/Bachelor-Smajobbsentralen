@@ -27,7 +27,10 @@ class RouteHandler{
     private function get_vars($path){
         $regex = $this->regexSlash($this->get_page());
         $str = preg_replace("/$regex/uimx", '', $this->get_path());
-        return explode("/", trim($str, "/"));   
+        $d = explode("/", trim($str, "/"));   
+        
+        //Direct::dd($this->get_path(), $str, $regex, $this->get_page());
+        return $d;
     }
     
     /**
@@ -41,6 +44,14 @@ class RouteHandler{
     }
     
     /**
+     * get the http method
+     * @return [string] [PUT, PATCH, DELETE, GET, POST]
+     */
+    public function get_http_method(){
+        return (isset($_POST['_method'])) ? $_POST['_method'] : 'get';
+    }
+    
+    /**
      * Find the right page in the route array
      * @author Agne *degaard
      * @return array
@@ -49,13 +60,12 @@ class RouteHandler{
         $url = $this->get_path();
         $list = [];
         // Minify this stuff
+        $route = Route::lists()[$this->get_http_method()];
         
-        foreach(Route::lists() as $type => $http){
-            foreach($http as $key => $value){
-               if(preg_match("/".$this->regexSlash($key)."/i", $url)){
-                   $list[] = $key;
-               }
-            }
+        foreach($route as $key => $value){
+           if(preg_match("/".$this->regexSlash($key)."/i", $url)){
+               $list[] = $key;
+           }
         }
         
         $lengths = array_map('strlen', $list);
@@ -63,6 +73,8 @@ class RouteHandler{
         $index = array_search($maxLength, $lengths);
 
         if($list[$index] == '/' && $url != '/') return $url;
+        
+        //Direct::dd($list);
         
         return $list[$index];
     }
@@ -134,7 +146,7 @@ class RouteHandler{
             $vars = array_filter($vars, function($value){
                 return !preg_match('/\?/', $value);
             });
-            if(count($vars) != count($url)) return ['error' => 'Url does not match variables for route', 'vars' => $vars, 'url' => $url];
+            if(count($vars) != count($url)) return ['error' => 'Url does not match route variables', 'vars' => $vars, 'url' => $url];
         };
         
         $combined = array_combine(str_replace('?', '', $vars), $url);
@@ -143,5 +155,4 @@ class RouteHandler{
 
         return array_merge($params, $_POST);
     }
-    
 }

@@ -35,6 +35,7 @@ class Config {
     *   Do not change
     */
     public static $route = '/';
+    public static $source = '';
 
     /**
     *   File Uploading

@@ -9,7 +9,7 @@
 
 Direct::get("/test/{x}/{y}/{z?}", 'MainController@test');
 
-Direct::get("/", 'MainController@index');
+Direct::get("", 'MainController@index');
 
 if(Config::$debug_mode){
     Direct::get("/route", 'MainController@route');
@@ -47,7 +47,6 @@ Direct::patch('/page/{id}', 'PageController@item');
 Direct::delete('/page/{id}', 'PageController@item');
 
 Direct::stack('/page', 'PageController');
-
 
 // Errors
 Direct::err('403', 'ErrorController@noaccess');
