@@ -337,16 +337,16 @@ class migrate {
         
         $db->insert('opningstider', [
             [
-				'day' => 2, // tirsdag
-				'from_time' => '10:00',
-				'to_time' => '12:00',
-			],
-			[
-				'day' => 4, // torsdag
-				'from_time' => '10:00',
-				'to_time' => '12:00',
-			],
-		]);
+                'day' => 2, // tirsdag
+                'from_time' => '10:00',
+                'to_time' => '12:00',
+            ],
+            [
+                'day' => 4, // torsdag
+                'from_time' => '10:00',
+                'to_time' => '12:00',
+            ],
+        ]);
         
     }
     
