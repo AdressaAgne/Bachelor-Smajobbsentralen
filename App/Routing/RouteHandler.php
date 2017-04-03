@@ -48,7 +48,7 @@ class RouteHandler{
      * @return [string] [PUT, PATCH, DELETE, GET, POST]
      */
     public function get_http_method(){
-        return (isset($_POST['_method'])) ? $_POST['_method'] : 'get';
+        return (isset($_POST['_method'])) ? strtolower($_POST['_method']) : 'get';
     }
     
     /**
@@ -58,25 +58,19 @@ class RouteHandler{
      */
     protected function get_page(){
         $url = $this->get_path();
-        $list = [];
-        // Minify this stuff
-        $route = Route::lists()[$this->get_http_method()];
         
-        foreach($route as $key => $value){
-           if(preg_match("/".$this->regexSlash($key)."/i", $url)){
-               $list[] = $key;
-           }
-        }
+        $route = array_keys(Route::lists()[$this->get_http_method()]);
         
-        $lengths = array_map('strlen', $list);
-        $maxLength = max($lengths);
-        $index = array_search($maxLength, $lengths);
-
-        if($list[$index] == '/' && $url != '/') return $url;
+        if($url == '' || $url == '/') return $url;
         
-        //Direct::dd($list);
+        $route = array_filter($route, function($value) use($url) {
+            return preg_match("/^".$this->regexSlash($value)."/i", $url);
+        });
         
-        return $list[$index];
+        $lengths = array_map('strlen', $route);
+        $index = array_search(max($lengths), $lengths);
+        
+        return $route[$index];
     }
     
     public static function page(){
