@@ -120,6 +120,11 @@ $db-&gt;createTable('users', [
 ]);
 
 new Row($name, $type, $default = null, $not_null = true, $auto_increment = false);
+new Varchar($name, $default = null);
+new Integer($name, $default = null);
+new Boolean($name, $default = 0);
+new Timestamp();
+new PID();  // Primary ID
 </code></pre>
 
 <h2 id="caching">Caching</h2>
@@ -292,21 +297,40 @@ To add a new page, go to the page panel on the admin site an create a new page. 
 &lt;?php</p>
 
 <p>class frontpage {
- private $db;</p>
+ private $db;
+ private $page;</p>
 
-<pre><code>function __construct($db) {
+<pre><code>function __construct($db, $page) {
     $this-&gt;db = $db;
+    $this-&gt;page = $page;
 }
 </code></pre>
 
-<p>}</p>
-
-<p>```
-the constructor takes one parameter that is the database class, where you can access the db.</p>
+<p>}
+```
+the constructor takes two parameter that is the database class and the page class for page you are on.</p>
 
 <h2 id="globalcontroller">Global controller</h2>
 
 <p>If You have functions you need to use on many or all pages you can add a GlobalController.php in the Controllers folder, access it on all pages with {{$global}}</p>
+
+<pre><code class="php">&lt;?php
+
+class GlobalController {
+    private $db;
+    
+    function __construct($db) {
+        $this-&gt;db = $db;
+    }
+    
+    public function someFunc(){
+        return 'someValue';
+    }
+    
+}
+</code></pre>
+
+<p>access someFunc() with {{$global-&gt;someFunc()}}</p>
 
 <h2 id="thememigration">Theme Migration</h2>
 
@@ -320,8 +344,10 @@ the constructor takes one parameter that is the database class, where you can ac
     $db-&gt;createTable('tablename', [
         new PID(), // Primary ID
         new Timestamp(),
-        new Row('name', 'varchar'),
+        new Varchar('name'),
         new Row('icon', 'varchar'),
+        new Integer('color', 23),
+        new Boolean('grayscale', 0),
     ]);
 }
 

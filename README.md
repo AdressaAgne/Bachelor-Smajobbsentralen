@@ -110,6 +110,11 @@ $db->createTable('users', [
 ]);
 
 new Row($name, $type, $default = null, $not_null = true, $auto_increment = false);
+new Varchar($name, $default = null);
+new Integer($name, $default = null);
+new Boolean($name, $default = 0);
+new Timestamp();
+new PID();  // Primary ID
 ```
 
 ## Caching
@@ -276,18 +281,37 @@ the file should look like this:
 
 class frontpage {
     private $db;
+    private $page;
     
-    function __construct($db) {
+    function __construct($db, $page) {
         $this->db = $db;
+        $this->page = $page;
     }
 }
-
 ```
-the constructor takes one parameter that is the database class, where you can access the db.
+the constructor takes two parameter that is the database class and the page class for page you are on.
 
 ## Global controller
 
 If You have functions you need to use on many or all pages you can add a GlobalController.php in the Controllers folder, access it on all pages with {{$global}}
+
+```php
+<?php
+
+class GlobalController {
+    private $db;
+    
+    function __construct($db) {
+        $this->db = $db;
+    }
+    
+    public function someFunc(){
+        return 'someValue';
+    }
+    
+}
+```
+access someFunc() with {{$global->someFunc()}}
 
 
 ## Theme Migration
@@ -302,8 +326,10 @@ class migrate {
         $db->createTable('tablename', [
             new PID(), // Primary ID
             new Timestamp(),
-            new Row('name', 'varchar'),
+            new Varchar('name'),
             new Row('icon', 'varchar'),
+            new Integer('color', 23),
+            new Boolean('grayscale', 0),
         ]);
     }
     
