@@ -12,7 +12,7 @@ class Migrations{
 
 		$themeMigrate = './view/'.Config::$theme.'/Controllers/Migration/migrate.php';
 
-		$db->getSetting('theme');
+		$theme = $db->getSetting('theme');
 		// User Account
 		$db->createTable('users', [
 			new PID(),
