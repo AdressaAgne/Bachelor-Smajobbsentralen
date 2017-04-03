@@ -144,6 +144,18 @@ class Migrate {
 				'image' 	=> '0',
 				'arrangement' => '0'
 			],
+			[
+				'permalink' => 'innstillinger',
+				'header'	=> 'innstillinger for Telefonvakt',
+				'user_id'   => '0',
+				'content'	=> 'innstillinger framside',
+				'auth'		=> '0',
+				'visible'	=> '0',
+				'style'		=> 'innstillinger',
+				'type'		=> 'page',
+				'image' 	=> '0',
+				'arrangement' => '0'
+			]
 		]);
 		$db->insert('calendar', [
 			[

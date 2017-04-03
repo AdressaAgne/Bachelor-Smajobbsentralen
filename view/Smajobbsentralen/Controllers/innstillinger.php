@@ -1,7 +1,7 @@
 <?php
 
 
-class Instillinger{
+class innstillinger{
 
     public function __construct($db){
         $this->db = $db;
@@ -23,8 +23,8 @@ class Instillinger{
         return $this->db->insert('kategorier',[
             [
                 'name' => $data['_name'],
-                'icon' => isset($data['icon']) ? $data['icon'] : "user";
+                'icon' => isset($data['icon']) ? $data['icon'] : "user"
             ]
         ]);
     }
-}
+}//class
