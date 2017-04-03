@@ -39,7 +39,7 @@ class telefonvakt {
 		];
 		//easter_days() returns days after march 21, wich is 80, but on a leap year its 81.
 		$easter_days    = easter_days($this->year) + 80 + date('L', mktime(0, 0, 0, 1, 1, $this->year));
-        
+
         //5 = Fredag
 		$lang           = $this->days_to_date($this->get_day_before(5, $easter_days));
         //4 = Torsdag
@@ -111,7 +111,7 @@ class telefonvakt {
 				'work' => '',
 			];
 		}
-        
+
 		$work = $this->db->query('SELECT c.year, c.month, c.day, u.name, u.surname, u.mobile_phone, u.private_phone
 								  FROM calendar as c
 								  LEFT JOIN users AS u ON c.user_id = u.id
@@ -144,7 +144,7 @@ class telefonvakt {
 	public function month_to_str($i){
 		return ['Januar', 'Februar', 'Mars', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Desember'][$i-1];
 	}
-    
+
 	public function post($data){
 		$this->month = $data['month'];
 		$this->year = $data['year'];
@@ -158,19 +158,7 @@ class telefonvakt {
             $this->month = ($this->month == 1) ? 12 : $this->month - 1;
     		$this->year = ($this->month == 1) ? $this->year - 1 : $this->year;
 		}
-        
+
 		return false;
-	}
-
-
-	public function getAwaitingUsers(){
-		return $this->db->query("SELECT *
-			FROM users as u WHERE
-			u.approved = 0
-			ORDER BY u.name ASC")->fetchAll();
-	}
-
-	public function approveOrDeclineUser($data){
-		return $this->db->update(['approved' => $data['approve']], 'users', ['id' => $data['_id']]);
 	}
 }
