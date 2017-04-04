@@ -33,7 +33,7 @@ class Migrate {
 			new Row('month', 'int(2)'),
 			new Row('day', 'int(2)')
 		]);
-		
+
 		$db->createTable('oppdrag', [
 			new PID(),
 			new Timestamp(),
@@ -205,6 +205,18 @@ class Migrate {
 				'image' 	=> '0',
 				'arrangement' => '0'
 			],
+			[
+				'permalink' => 'soknader',
+				'header' => 'Innmeldte søknader',
+				'user_id' => '0',
+				'content' => '',
+				'auth' => '0',
+				'visible' => '0',
+				'style' => 'soknader',
+				'type' => 'page',
+				'image' => '0',
+				'arrangement' => '0'
+			]
 		]);
 		$db->insert('calendar', [
 			[
