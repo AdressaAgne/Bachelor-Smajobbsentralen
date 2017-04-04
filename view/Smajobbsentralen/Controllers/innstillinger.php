@@ -13,7 +13,7 @@ class innstillinger{
 
     public function getArbeidstyper(){
         //return $this->db->all("kategorier", [])->fetchAll();
-        return $this->db->query("SELECT name FROM kategorier")->fetchAll();
+        return $this->db->query("SELECT name, id FROM kategorier")->fetchAll();
     }
 
     public function fjernArbeidstype($data){

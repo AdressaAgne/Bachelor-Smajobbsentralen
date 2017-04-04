@@ -41,7 +41,7 @@
 				<p>{{$arbType['name']}}</p>
 			</div>
 			<div class="col-2">
-				<input type="button" value="fjern" class="btn btn-danger">
+				<input type="button" value="fjern" class="fjernArbeidstype btn" id="{{$arbType['id']}}">
 			</div>
 		</div>
 		@endforeach
@@ -57,3 +57,31 @@
 		</div>
 	</div>
 </div>
+
+@layout('layout.scripts')
+
+<script>
+	$(".fjernArbeidstype").on("click", function(){
+		var id = $(this).attr("id");
+
+		//console.log($(this).attr("id"));
+
+    	$.post({
+			type: "POST",
+			url: "",
+			data: {
+				'_method' : 'POST',
+				'_token'  : '@csrf()',
+				'_id' 	  : id
+			},
+			success : function(){
+				console.log("woohoo");
+				$(this).parent().parent().slideUp();
+			},
+			error : function(){
+				alert("noe gikk dessverre galt under fjerning av arbeidstype. Prøv igjen senere");
+				console.log("fail");
+			}
+		});
+	});
+</script>
