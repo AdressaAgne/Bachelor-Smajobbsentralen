@@ -39,8 +39,7 @@ class Migrate {
 			new Timestamp(),
 			new Integer('user_id'),
 			new Integer('cat_id'),
-			new Varchar('from_time'),
-			new Varchar('to_time'),
+			new Varchar('tid'),
 			new Integer('for_user_id'),
 			new Integer('km', 0),
 			new Boolean('hitch'),
@@ -194,6 +193,18 @@ class Migrate {
 				'image' 	=> '0',
 				'arrangement' => '0'
 			],
+			[
+				'permalink' => 'kunder',
+				'header'	=> 'Kunder',
+				'user_id'   => '0',
+				'content'	=> 'Legg til en kunde',
+				'auth'		=> '1',
+				'visible'	=> '0',
+				'style'		=> 'kunder',
+				'type'		=> 'page',
+				'image' 	=> '0',
+				'arrangement' => '0'
+			],
 		]);
 		$db->insert('calendar', [
 			[
@@ -226,11 +237,13 @@ class Migrate {
 			new Row('visible', 'tinyint', 1),
 			new Row('dob', 'date'),
 			new Row('mobile_phone', 'int'),
+			new Row('address', 'varchar'),
 			new Row('private_phone', 'int'),
 			new Row('car', 'tinyint'),
 			new Row('hitch', 'tinyint'),
 			new Row('occupation', 'varchar'),
-			new Row('other_info', 'varchar')
+			new Row('other_info', 'varchar'),
+			new Row('type', 'varchar', 0), //0 = oppdragstaker, 1 = tlfvakt, 2 = kunde
 		]);
 
 		//register($username, $pw1, $pw2, $mail)

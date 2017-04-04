@@ -113,7 +113,12 @@ input[type='submit'], input[type='button'], button, .btn
     padding: 6px
     
     cursor: pointer
-    
+    &.accent
+        background-color: $accent-color
+        &:hover
+            background-color: $accent-color-700
+            color: $accent-color-text
+            
     &:hover
         background-color: $theme-color-700
         color: $theme-color-text

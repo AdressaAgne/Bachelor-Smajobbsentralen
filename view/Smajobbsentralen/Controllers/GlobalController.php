@@ -8,6 +8,12 @@ class GlobalController {
         $this->db = $db;
     }
     
+    public function categories(){
+
+        return $this->db->all('kategorier');
+
+    }
+    
     public function opentimes(){
         $open = $this->db->all('opningstider'); 
         return ['isOpen' => $this->isOpen($open), 'timeStr' => $this->formatTime($open)];

@@ -2,7 +2,7 @@
 
 namespace App\Database;
 
-use DB, Account, Config;
+use DB, Account, Config, Direct;
 
 class Migrations{
 
@@ -11,7 +11,12 @@ class Migrations{
 		$db = new DB();
 
 		$themeMigrate = './view/'.Config::$theme.'/Controllers/Migration/migrate.php';
-
+		
+		if(file_exists($themeMigrate)){
+			include_once($themeMigrate);
+			$themeClass = new \Migrate();
+		}
+		
 		$theme = $db->getSetting('theme');
 		// User Account
 		$db->createTable('users', [
@@ -55,8 +60,6 @@ class Migrations{
 		]);
 
 		if(file_exists($themeMigrate)){
-			include_once($themeMigrate);
-			$themeClass = new \Migrate();
 			$themeClass->install($db);
 		}
 
