@@ -62,27 +62,28 @@
 
 <script>
 	$(".fjernArbeidstype").on("click", function(){
+
 		var id = $(this).attr("id");
 		var _this = $(this).parent().parent();
 
-		//console.log($(this).attr("id"));
-
-    	$.post({
-			type: "POST",
-			url: "",
-			data: {
-				'_method' : 'POST',
-				'_token'  : '@csrf()',
-				'_id' 	  : id
-			},
-			success : function(){
-				console.log("woohoo");
-				_this.slideUp();
-			},
-			error : function(){
-				alert("noe gikk dessverre galt under fjerning av arbeidstype. Prøv igjen senere");
-				console.log("fail");
-			}
-		});
-	});
+		if(confirm("er du sikker på at du vil fjerne denne arbeidstypen")){
+			$.post({
+				type: "POST",
+				url: "",
+				data: {
+					'_method' : 'POST',
+					'_token'  : '@csrf()',
+					'_id' 	  : id
+				},
+				success : function(){
+					console.log("woohoo");
+					_this.slideUp();
+				},
+				error : function(){
+					alert("noe gikk dessverre galt under fjerning av arbeidstype. Prøv igjen senere");
+					console.log("fail");
+				}
+			});//ajax
+		}
+	});//eventlistener
 </script>
