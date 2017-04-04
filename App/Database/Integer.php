@@ -6,8 +6,13 @@ use DB;
 
 class Integer extends DB{
     
-    public function toString($name, $default = null){
-        return new Row($name, 'int', $default);
+    function __construct($name, $default = null){
+        $this->name = $name;
+        $this->default = $default;
+    }
+    
+    public function toString(){
+        return new Row($this->name, 'int', $this->default);
     }
     
 }

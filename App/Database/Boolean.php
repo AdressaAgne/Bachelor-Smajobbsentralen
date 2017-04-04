@@ -6,8 +6,13 @@ use DB;
 
 class Boolean extends DB{
     
-    public function toString($name, $default = 0){
-        return new Row($name, 'bool', $default);
+    function __construct($name, $default = 0){
+        $this->name = $name;
+        $this->default = $default;
+    }
+    
+    public function toString(){
+        return new Row($this->name, 'bool', $this->default);
     }
     
 }

@@ -33,6 +33,20 @@ class Migrate {
 			new Row('month', 'int(2)'),
 			new Row('day', 'int(2)')
 		]);
+		
+		$db->createTable('oppdrag', [
+			new PID(),
+			new Timestamp(),
+			new Integer('user_id'),
+			new Integer('cat_id'),
+			new Varchar('from_time'),
+			new Varchar('to_time'),
+			new Integer('for_user_id'),
+			new Integer('km', 0),
+			new Boolean('hitch'),
+			new Boolean('equipment'),
+			new Row('info', 'text'),
+		]);
 
 	}
 
@@ -149,13 +163,37 @@ class Migrate {
 				'header'	=> 'innstillinger for Telefonvakt',
 				'user_id'   => '0',
 				'content'	=> 'innstillinger framside',
-				'auth'		=> '0',
+				'auth'		=> '1',
 				'visible'	=> '0',
 				'style'		=> 'innstillinger',
 				'type'		=> 'page',
 				'image' 	=> '0',
 				'arrangement' => '0'
-			]
+			],
+			[
+				'permalink' => 'applications',
+				'header'	=> 'Søknader',
+				'user_id'   => '0',
+				'content'	=> 'Søknader for å bli småjobber',
+				'auth'		=> '1',
+				'visible'	=> '0',
+				'style'		=> 'applications',
+				'type'		=> 'page',
+				'image' 	=> '0',
+				'arrangement' => '0'
+			],
+			[
+				'permalink' => 'faktura',
+				'header'	=> 'Faktura',
+				'user_id'   => '0',
+				'content'	=> 'Lag en fakura for en kunde',
+				'auth'		=> '1',
+				'visible'	=> '0',
+				'style'		=> 'faktura',
+				'type'		=> 'page',
+				'image' 	=> '0',
+				'arrangement' => '0'
+			],
 		]);
 		$db->insert('calendar', [
 			[

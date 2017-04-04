@@ -6,8 +6,13 @@ use DB;
 
 class varchar extends DB{
     
-    public function toString($name, $default = null){
-        return new Row($name, 'varchar', $default);
+    function __construct($name, $default = null){
+        $this->name = $name;
+        $this->default = $default;
+    }
+    
+    public function toString(){
+        return new Row($this->name, 'varchar', $this->default);
     }
     
 }
