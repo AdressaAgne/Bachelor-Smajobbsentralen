@@ -185,7 +185,7 @@ class Migrate {
 			new Row('mail', 'varchar'),
 			new Row('password', 'varchar'),
 			new Row('approved', 'tinyint', 0),
-			new Row('visible', 'tinyint'),
+			new Row('visible', 'tinyint', 1),
 			new Row('dob', 'date'),
 			new Row('mobile_phone', 'int'),
 			new Row('private_phone', 'int'),

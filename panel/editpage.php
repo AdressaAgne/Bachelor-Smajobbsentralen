@@ -1,6 +1,6 @@
 @panel('layout.head', ['title' => 'Edit Page'])
     <h1>Edit: {{ $page->header }}</h1>
-    @form('', 'patch')
+    @form($source.'/page/edit', 'patch')
         <h4>Edit Page</h4>
         <div class="col-6 col-m-12">
             <div class="form-element col-12">

@@ -141,7 +141,7 @@ class RouteHandler{
             $vars = array_filter($vars, function($value){
                 return !preg_match('/\?/', $value);
             });
-            if(count($vars) != count($url)) return ['error' => 'Url does not match route variables', 'vars' => $vars, 'url' => $url];
+            if(count($vars) != count($url)) return ['error' => 'Url does not match route variables', 'vars' => $vars, 'url' => $url, 'route' => $this->route];
         };
         
         $combined = array_combine(str_replace('?', '', $vars), $url);

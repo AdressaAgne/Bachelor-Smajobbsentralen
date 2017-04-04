@@ -114,7 +114,7 @@
 
 			@foreach($class->categories() as $cat)
 				<div class="col-6">
-					<input  class="checkbox" type="checkbox" name="work[]" id="{{$cat['name']}}" value="{{$cat['name']}}">
+					<input  class="checkbox" type="checkbox" name="work[]" id="{{$cat['name']}}" value="{{$cat['id']}}">
 					<label class="checkbox" for="{{$cat['name']}}">{{ucfirst($cat['name'])}}</label>
 				</div>
 			@endforeach

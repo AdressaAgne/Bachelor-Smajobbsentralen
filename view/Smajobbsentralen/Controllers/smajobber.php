@@ -16,10 +16,10 @@ class smajobber {
 
 	public function get_smajobbere(){
 		return $this->db->query("SELECT *
-			FROM users as u WHERE u.visible >= 1
-			AND u.approved >= 1
-			AND u.id > 0
-			ORDER BY u.name ASC")->fetchAll();
+			FROM users WHERE visible = 1
+			AND approved = 1
+			AND id > 0
+			ORDER BY name ASC")->fetchAll();
 	}
 
 	public function format_phonenr($nr){
@@ -37,7 +37,7 @@ class smajobber {
 		FROM users AS u
 		INNER JOIN user_category AS uc ON u.id = uc.user_id
 		INNER JOIN kategorier AS k ON uc.category_id = k.id
-		WHERE uc.category_id = :id
+		WHERE uc.category_id = :id AND u.approved = 1 AND u.vivisble = 1
 		GROUP BY u.id
 		ORDER BY u.name", [ 'id' => $data['_id']], 'User')->fetchAll();
 		//skal virke men får sålangt ingen ID input fra ajax req

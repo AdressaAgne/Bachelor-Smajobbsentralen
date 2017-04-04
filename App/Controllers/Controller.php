@@ -78,9 +78,6 @@ class Controller extends DB{
         if(file_exists($controller)){
             include_once($controller);
             $class = new $page->style($this, $page);
-            
-
-            
             if(isset($_POST['_method']) && method_exists($class, strtolower($_POST['_method']))){
                 $val = call_user_func([$class, strtolower($_POST['_method'])], array_merge($_POST, $_GET));
                 if($val !== false) return [true, $val];

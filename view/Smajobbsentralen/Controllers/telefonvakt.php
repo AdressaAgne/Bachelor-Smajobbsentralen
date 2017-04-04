@@ -13,6 +13,12 @@ class telefonvakt {
 
 	}
 
+	/**
+	 * Return true / false if the day input is a holy day, should probably just return the array.
+	 * @param  [int]  $day   [the day you wanna check is a holy day]
+	 * @param  [int]  $month [the month you wanna check]
+	 * @return boolean
+	 */
 	public function isHoly($day, $month){
 		$holy = [
 			1 => [
@@ -62,8 +68,6 @@ class telefonvakt {
 		$holy[$skyfart['month']][$skyfart['day']] = 'Kristi himmelfartsdag';
 		$holy[$pins_1['month']][$pins_1['day']] = '	første pinsedag';
 		$holy[$pins_2['month']][$pins_2['day']] = 'andre pinsedag';
-
-		//die(print_r($holy, true));
 
 		return (array_key_exists($day, $holy[$month])) ? $holy[$month][$day] : false;
 
