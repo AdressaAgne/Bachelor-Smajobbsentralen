@@ -63,6 +63,7 @@
 <script>
 	$(".fjernArbeidstype").on("click", function(){
 		var id = $(this).attr("id");
+		var _this = $(this).parent().parent();
 
 		//console.log($(this).attr("id"));
 
@@ -76,7 +77,7 @@
 			},
 			success : function(){
 				console.log("woohoo");
-				$(this).parent().parent().slideUp();
+				_this.slideUp();
 			},
 			error : function(){
 				alert("noe gikk dessverre galt under fjerning av arbeidstype. Prøv igjen senere");
