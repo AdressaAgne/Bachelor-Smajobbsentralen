@@ -30,3 +30,30 @@
         @formend()
     </div>
 </div>
+<hr>
+
+<div class="row">
+	<div class="col-6 tlfvaktArbeid">
+		<h2 class="font-center">Arbeidstyper</h2>
+		@foreach($class->getArbeidstyper() as $arbType)
+		<div class="col-12 tlfvaktArbeid-type">
+			<div class="col-10">
+				<p>{{$arbType['name']}}</p>
+			</div>
+			<div class="col-2">
+				<input type="button" value="fjern" class="btn btn-danger">
+			</div>
+		</div>
+		@endforeach
+	</div>
+	<div class="col-1"></div>
+	<div class="col-5 tlfvaktArbeid">
+		<h2 class="font-center">Legg til arbeidstype</h2>
+		<div class="col-8 tlfvaktArbeid-leggtil">
+			<input type="text" placeholder="skriv inn ønsket navn">
+		</div>
+		<div class="col-4  tlfvaktArbeid-leggtil">
+			<input type="button" class="" value="legg til">
+		</div>
+	</div>
+</div>
