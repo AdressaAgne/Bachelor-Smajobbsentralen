@@ -51,48 +51,66 @@
 @endforeach
 </div>
 @layout('layout.scripts')
+@layout('layout.dialog')
 
 <script>
-    $("#decline").on("click", function(e){
-        e.preventDefault();
-        var _this = $(this);
+$("#decline").on("click", function(e){
+    e.preventDefault();
+    var _this = $(this);
 
-        $.ajax(
-            url: "",
-            data : {
-                '_method' : 'patch',
-                '_token'  : '@csrf()',
-                '_id' 	  : _this.data("id");
-            },
-            success : function(){
-                console.log("sucess");
-            },
-            error : function(){
-                console.log("fail");
-            }
-        );
 
-    });//#decline
+    showDialog("Er du sikker på du vil fjerne denne brukeren?", {
+        ja: function(){
+            $.ajax(
+                url: "",
+                data : {
+                    '_method' : 'patch',
+                    '_token'  : '@csrf()',
+                    '_id' 	  : _this.data("id");
+                },
+                success : function(){
+                    console.log("sucess");
+                },
+                error : function(){
+                    console.log("fail");
+                }
+            );
+        },
+        nei : function(){
+            showDialog('Vi klarte ikke å fjerne brukeren. prøv igjen senere', {ok : ''})
+        }
+    });
+});//#decline
+
+
 
 
     $("#accept").on("click", function(e){
         e.preventDefault();
         var _this = $(this);
 
-        $.ajax(
-            url: "",
-            data : {
-                '_method' : 'post',
-                '_token'  : '@csrf()',
-                '_id' 	  : _this.data("id");
-            },
-            success : function(){
-                console.log("sucess");
-            },
-            error : function(){
-                console.log("fail");
-            }
-        );
 
-    });//#decline
+        showDialog("Er du sikker på at du vil ta imot denne brukeren?", {
+            ja: function(){
+                $.ajax(
+                    url: "",
+                    data : {
+                        '_method' : 'post',
+                        '_token'  : '@csrf()',
+                        '_id' 	  : _this.data("id");
+                    },
+                    success : function(){
+                        console.log("sucess");
+                    },
+                    error : function(){
+                        console.log("fail");
+                    }
+                );
+            },
+            nei : function(){
+                showDialog('Vi klarte ikke å akseptere brukeren. prøv igjen senere', {ok : ''})
+            }
+        });
+    });//#accept
+
 </script>
