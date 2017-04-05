@@ -36,18 +36,16 @@
             <strong>annen info:</strong>
             {{$user->other_info}}
         </p>
-        @form('', 'post')
+
         <div class="col-6">
             <input type="hidden" name="user_id" value="{{$user->id}}" id="accept">
             <input type="submit" value="Aksepter">
         </div>
-        @formend()
-        @form('', 'patch')
+
         <div class="col-6">
             <input type="hidden" name="user_id" value="{{$user->id}}">
             <input type="submit" value="Decline" id="decline" data-id="{{$user->id}}" class="btn danger">
         </div>
-        @formend()
         </div>
     </div>
 @endforeach
@@ -62,7 +60,7 @@
         $.ajax(
             url: "",
             data : {
-                '_method' : 'POST',
+                '_method' : 'patch',
                 '_token'  : '@csrf()',
                 '_id' 	  : _this.data("id");
             },
@@ -72,7 +70,28 @@
             error : function(){
                 console.log("fail");
             }
+        );
 
+    });//#decline
+
+
+    $("#accept").on("click", function(e){
+        e.preventDefault();
+        var _this = $(this);
+
+        $.ajax(
+            url: "",
+            data : {
+                '_method' : 'post',
+                '_token'  : '@csrf()',
+                '_id' 	  : _this.data("id");
+            },
+            success : function(){
+                console.log("sucess");
+            },
+            error : function(){
+                console.log("fail");
+            }
         );
 
     });//#decline

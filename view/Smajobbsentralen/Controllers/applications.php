@@ -37,7 +37,10 @@ class applications {
     }
 
 	public function patch($data){
-		return $this->db->deleteWhere('users', 'id', $data['user_id']);
+
+		if($this->db->deleteWhere('users', 'id', $data['user_id'])){
+			return $this->db->deleteWhere("user_category", "user_id", $data['user_id']);
+		}
 	}
 
 }
