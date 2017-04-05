@@ -162,3 +162,34 @@ label.page-select
     display: none
 [type='radio']:checked + label.page-select
     background-color: $accent-color        
+    
+.overlay
+    position: fixed
+    left: 0px
+    top: 0px
+    width: 100vw
+    height: 100vh
+    background-color: rgba(0, 0, 0, .3) 
+    z-index: 1000
+    display: none
+    
+.dialog
+    display: none
+    z-index: 1001
+    width: 400px
+    position: fixed
+    top: 50%
+    left: 50%
+    transform: translateX(-50%) translateY(-50%)
+    background-color: $paper-color
+    border: 2px solid $theme-color
+    border-top-width: 25px
+    border-radius: 3px
+    .close
+        position: absolute
+        top: -30px
+        right: 0px
+        color: $theme-color-text
+        padding: 5px
+        cursor: pointer
+    

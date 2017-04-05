@@ -80,31 +80,35 @@
 </div>
 
 @layout('layout.scripts')
-
+@layout('layout.dialog')
 <script>
 	$("input[value=Fjern]").on("click", function(){
 
 		var id = $(this).attr("id");
 		var _this = $(this).parent().parent();
-
-		if(confirm("er du sikker på at du vil fjerne denne arbeidstypen")){
-			$.post({
-				type: "POST",
-				url: "",
-				data: {
-					'_method' : 'POST',
-					'_token'  : '@csrf()',
-					'_id' 	  : id
-				},
-				success : function(){
-					console.log("woohoo");
-					_this.slideUp();
-				},
-				error : function(){
-					alert("noe gikk dessverre galt under fjerning av arbeidstype. Prøv igjen senere");
-					console.log("fail");
-				}
-			});//ajax
-		}
+		
+		showDialog('Er du sikker på at du vil fjerne denne arbeidstypen?', {
+			Ja : function(){
+					$.post({
+						type: "POST",
+						url: "",
+						data: {
+							'_method' : 'POST',
+							'_token'  : '@csrf()',
+							'_id' 	  : id
+						},
+						success : function(){
+							_this.slideUp();
+						},
+						error : function(){
+							showDialog('noe gikk dessverre galt under fjerning av arbeidstype. Prøv igjen senere', {ok : ''})
+							console.log("fail");
+						}
+					});//ajax
+			},
+			Nei : function(){
+				
+			}
+		});
 	});//eventlistener
 </script>
