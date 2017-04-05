@@ -24,6 +24,18 @@ class Row extends DB{
         
     }
     
+    public function null(){
+        $this->not_null = false;
+    }
+    
+    public function auto_increment(){
+        $this->$auto_increment = true;
+    }
+    
+    public function default($str = null){
+        $this->default = $str;
+    }
+    
     public function toString(){
         $str = "`".$this->name."`";
         $str .= " ".parent::types($this->type)." ";

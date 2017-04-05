@@ -1,60 +1,80 @@
-<div class="row">
-	@if(!empty($page->header))
-		<h3>{{$page->header}}</h3>
-	@endif
-</div>
 @layout('layout.telefonvakt_menu')
+
+
+@if(!empty($page->header))
+	<div class="row">
+		<h1>{{$page->header}}</h1>
+		<h2>{{$page->content}}</h2>
+	</div>
+@endif
+
+
 <div class="row">
     <div class="col-12">
-        <h1>Åpningstider</h1>
+        <h3>Åpningstider</h3>
+	</div>
+	<div class="row">
         @form('', 'POST')
-            @for($i = 0; $i < 7; $i++)
-			<div class="row">
-	            <div class="col-2">
-	                <div class="form-element" style="margin-top: 35px;"> <!-- test TODO -->
-	                    <input class="checkbox" type="checkbox" id="{{$global->ISO_8601($i)}}" name="{{$global->ISO_8601($i)}}">
-	                    <label class="checkbox" for="{{$global->ISO_8601($i)}}">{{$global->ISO_8601($i)}}</label>
-	                </div>
-	            </div>
-				<div class="col-4">
+			@for($i = 1; $i < 8; $i++)
+				<div class="cal-1 calendar calendar--header">
+					{{$global->day_to_str($i)}}
+				</div>
+			@endfor
+			@for($i = 1; $i < 8; $i++)
+				@if(in_array($i, $class->get_open_days()))
+					<div class="cal-1 calendar calendar--active">
+				@else
+					<div class="cal-1 calendar">
+				@endif
 					<div class="form-element">
-						Fra kl: <input type="text">
+						<label>Fra kl: 
+							<input type="text" name="from[]" placeholder="00:00">	
+						</label>
+						<label>Til kl: 
+							<input type="text" name="to[]" placeholder="00:00">	
+						</label>
 					</div>
 				</div>
-				<div class="col-4">
-					<div class="form-element">
-						Til kl: <input type="text">
-					</div>
-				</div>
-			</div>
-            @endfor
+			@endfor
         @formend()
     </div>
 </div>
-<hr>
+
 
 <div class="row">
-	<div class="col-6 tlfvaktArbeid">
-		<h2 class="font-center">Arbeidstyper</h2>
+	<div class="col-6">
+		<div class="row">
+			<h2 class="font-center">Arbeidstyper</h2>
+		</div>
+		<div class="row form-element--border">
 		@foreach($class->getArbeidstyper() as $arbType)
-		<div class="col-12 tlfvaktArbeid-type">
-			<div class="col-10">
-				<p>{{$arbType['name']}}</p>
+			<div class="col-12">
+				<div class="form-element">
+					<p>{{$arbType['name']}}</p>
+				</div>
+				<div class="form-element form-element--right">
+					<input type="button" value="Fjern" class="accent" id="{{$arbType['id']}}">
+				</div>
 			</div>
-			<div class="col-2">
-				<input type="button" value="fjern" class="fjernArbeidstype btn" id="{{$arbType['id']}}">
-			</div>
-		</div>
 		@endforeach
-	</div>
-	<div class="col-1"></div>
-	<div class="col-5 tlfvaktArbeid">
-		<h2 class="font-center">Legg til arbeidstype</h2>
-		<div class="col-8 tlfvaktArbeid-leggtil">
-			<input type="text" placeholder="skriv inn ønsket navn">
 		</div>
-		<div class="col-4  tlfvaktArbeid-leggtil">
-			<input type="button" class="" value="legg til">
+	</div>
+
+	<div class="col-6">
+		<div class="row">
+			<h2 class="font-center">Legg til arbeidstype</h2>
+		</div>
+		<div class="row form-element--border">
+			<div class="col-12">
+				<div class="form-element col-12">
+					<label>Skriv inn ønsket navn
+						<input type="text" placeholder="Skriv inn ønsket navn">
+					</label>
+				</div>
+				<div class="form-element col-12">
+					<input type="button" class="" value="legg til">
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -62,7 +82,7 @@
 @layout('layout.scripts')
 
 <script>
-	$(".fjernArbeidstype").on("click", function(){
+	$("input[value=Fjern]").on("click", function(){
 
 		var id = $(this).attr("id");
 		var _this = $(this).parent().parent();

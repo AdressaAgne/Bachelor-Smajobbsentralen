@@ -3,12 +3,16 @@
 
 class innstillinger{
 
+    public $open;
+    public $db;
+
     public function __construct($db){
         $this->db = $db;
+        $this->open = $db->all("opningstider");
     }
 
-    public function getApningstider(){
-        return $this->db->all("opningstider", [])->fetchAll();
+    public function get_open_days(){
+        return array_column($this->open, 'day');
     }
 
     public function getArbeidstyper(){

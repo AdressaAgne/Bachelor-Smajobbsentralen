@@ -22,7 +22,12 @@
     float: left
     display: block
     margin: 10px 0px
-
+    &--border
+        border-radius: 3px
+        border: 1px solid $theme-color
+    &--right
+        float: right
+        
 .errorMsg
     visibility: hidden
     color: #d40000
@@ -105,7 +110,7 @@ input[type='submit'], input[type='button'], button, .btn
     font-weight: 300
     
     background-color: $theme-color
-    color: white
+    color: $accent-color-text
     
     width: 100%
     
@@ -116,17 +121,34 @@ input[type='submit'], input[type='button'], button, .btn
     padding: 6px
     
     cursor: pointer
+    &.danger
+        background-color: $palette-red
+        color: #f8f8f8
+        &:hover
+            background-color: darken($palette-red, 10%)
+    
+    &.warning
+        background-color: $palette-amber
+        color: #f8f8f8
+        &:hover
+            background-color: darken($palette-amber, 10%)
+    
     &.accent
         background-color: $accent-color
+        color: $accent-color-text
         &:hover
             background-color: $accent-color-700
-            color: $accent-color-text
-    
+            
     &:hover
         background-color: $theme-color-700
-        color: $theme-color-text
+        
     &:active
         box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, .4)
+.btn
+    &--fixed
+        max-width: 100px
+    &--right
+        float: right
 
 
 label.page-select

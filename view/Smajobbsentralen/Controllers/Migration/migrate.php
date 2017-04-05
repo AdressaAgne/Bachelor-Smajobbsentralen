@@ -3,7 +3,7 @@
 class Migrate {
 
 	public function install($db) {
-
+		
 		$db->createTable('kategorier', [
 			new PID(),
 			new Timestamp(),
@@ -33,7 +33,7 @@ class Migrate {
 			new Row('month', 'int(2)'),
 			new Row('day', 'int(2)')
 		]);
-
+		
 		$db->createTable('oppdrag', [
 			new PID(),
 			new Timestamp(),
@@ -41,7 +41,7 @@ class Migrate {
 			new Integer('cat_id'),
 			new Varchar('tid'),
 			new Integer('for_user_id'),
-			new Integer('km', 0),
+			new Integer('km'),
 			new Boolean('hitch'),
 			new Boolean('equipment'),
 			new Row('info', 'text'),
@@ -275,14 +275,6 @@ class Migrate {
 		$db->insert('user_category', [
 			[
 				'user_id' => 1,
-				'category_id' => 5
-			],
-			[
-				'user_id' => 2,
-				'category_id' => 1
-			],
-			[
-				'user_id' => 3,
 				'category_id' => 5
 			]
 		]);

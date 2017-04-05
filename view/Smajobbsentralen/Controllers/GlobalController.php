@@ -28,6 +28,13 @@ class GlobalController {
         return $str;
     }
     
+    public function day_to_str($i){
+		return ['Mandag','Tirsdag','Onsdag','Torsdag','Fredag','Lørdag','Søndag'][$i-1];
+	}
+	public function month_to_str($i){
+		return ['Januar', 'Februar', 'Mars', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Desember'][$i-1];
+	}
+    
     public function ISO_8601($i){
         switch ($i) {
             case 0:
