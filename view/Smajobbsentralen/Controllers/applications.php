@@ -31,9 +31,7 @@ class applications {
 
     public function post($data){
 
-        $this->db->updateWhere('users', ['approved' => 1], ['id' => $data['user_id']]);
-
-        return false;
+        return $this->db->updateWhere('users', ['approved' => 1], ['id' => $data['user_id']]);
     }
 
 	public function patch($data){

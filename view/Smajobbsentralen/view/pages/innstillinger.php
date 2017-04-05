@@ -27,11 +27,11 @@
 					<div class="cal-1 calendar">
 				@endif
 					<div class="form-element">
-						<label>Fra kl: 
-							<input type="text" name="from[]" placeholder="00:00">	
+						<label>Fra kl:
+							<input type="text" name="from[]" placeholder="00:00">
 						</label>
-						<label>Til kl: 
-							<input type="text" name="to[]" placeholder="00:00">	
+						<label>Til kl:
+							<input type="text" name="to[]" placeholder="00:00">
 						</label>
 					</div>
 				</div>
@@ -86,11 +86,11 @@
 
 		var id = $(this).attr("id");
 		var _this = $(this).parent().parent();
-		
+
 		showDialog('Er du sikker på at du vil fjerne denne arbeidstypen?', {
 			Ja : function(){
 					$.post({
-						type: "POST",
+						method : 'post',
 						url: "",
 						data: {
 							'_method' : 'POST',
@@ -107,7 +107,7 @@
 					});//ajax
 			},
 			Nei : function(){
-				
+
 			}
 		});
 	});//eventlistener

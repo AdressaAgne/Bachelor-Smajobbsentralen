@@ -38,13 +38,13 @@
         </p>
 
         <div class="col-6">
-            <input type="hidden" name="user_id" value="{{$user->id}}" id="accept">
-            <input type="submit" value="Aksepter">
+            <input type="hidden" name="user_id" value="{{$user->id}}">
+            <input type="submit" value="Aksepter" class="accept" data-id="{{$user->id}}">
         </div>
 
         <div class="col-6">
             <input type="hidden" name="user_id" value="{{$user->id}}">
-            <input type="submit" value="Decline" id="decline" data-id="{{$user->id}}" class="btn danger">
+            <input type="submit" value="Avslå" data-id="{{$user->id}}" class="decline btn danger">
         </div>
         </div>
     </div>
@@ -54,63 +54,68 @@
 @layout('layout.dialog')
 
 <script>
-$("#decline").on("click", function(e){
-    e.preventDefault();
-    var _this = $(this);
-
-
-    showDialog("Er du sikker på du vil fjerne denne brukeren?", {
-        ja: function(){
-            $.ajax(
-                url: "",
-                data : {
-                    '_method' : 'patch',
-                    '_token'  : '@csrf()',
-                    '_id' 	  : _this.data("id");
-                },
-                success : function(){
-                    console.log("sucess");
-                },
-                error : function(){
-                    console.log("fail");
-                }
-            );
-        },
-        nei : function(){
-            showDialog('Vi klarte ikke å fjerne brukeren. prøv igjen senere', {ok : ''})
-        }
-    });
-});//#decline
-
-
-
-
-    $("#accept").on("click", function(e){
-        e.preventDefault();
+    $(".accept").on("click", function(){
         var _this = $(this);
-
+        var thisUser = $(this).parent().parent();
+        console.log(_this.data("id"));
 
         showDialog("Er du sikker på at du vil ta imot denne brukeren?", {
-            ja: function(){
-                $.ajax(
-                    url: "",
+            ja : function(){
+
+                $.ajax({
+                    url : "",
+                    method : 'post',
                     data : {
                         '_method' : 'post',
                         '_token'  : '@csrf()',
-                        '_id' 	  : _this.data("id");
+                        'user_id' 	  : _this.data("id")
                     },
-                    success : function(){
-                        console.log("sucess");
+                    success : function(data){
+                        console.log(data);
+                        thisUser.slideUp();
                     },
                     error : function(){
                         console.log("fail");
                     }
-                );
+                });//ajax
             },
             nei : function(){
                 showDialog('Vi klarte ikke å akseptere brukeren. prøv igjen senere', {ok : ''})
             }
-        });
-    });//#accept
+        });//dialog
+    });//event accept
+
+
+
+
+    $(".decline").on("click", function(){
+        var _this = $(this);
+        var thisUser = $(this).parent().parent();
+
+        showDialog("Er du sikker på at du vil fjerne denne brukeren?", {
+            ja : function(){
+                $.ajax({
+                    url : "",
+                    method : 'post',
+                    data : {
+                        '_method' : 'patch',
+                        '_token'  : '@csrf()',
+                        'user_id' 	  : _this.data("id")
+                    },
+                    success : function(data){
+                        console.log(data);
+                        thisUser.slideUp();
+
+                    },
+                    error : function(){
+                        console.log("fail");
+                    }
+                });//ajax
+            },
+            nei : function(){
+                showDialog('Vi klarte ikke å fjerne brukeren. prøv igjen senere', {ok : ''})
+            }
+        });//dialog
+    });//event decline
 
 </script>
