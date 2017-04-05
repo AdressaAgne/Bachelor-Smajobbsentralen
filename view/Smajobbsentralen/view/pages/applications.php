@@ -14,7 +14,7 @@
     <div class="col-8">
         <div class="col-12 smajobbere-list">
         <h1>{{$user->name}} {{$user->surname}}</h1>
-        
+
         <p>
             <strong>Informasjon</strong>
             <ul>
@@ -37,10 +37,43 @@
             {{$user->other_info}}
         </p>
         @form('', 'post')
-            <input type="hidden" name="user_id" value="{{$user->id}}">
+        <div class="col-6">
+            <input type="hidden" name="user_id" value="{{$user->id}}" id="accept">
             <input type="submit" value="Aksepter">
+        </div>
+        @formend()
+        @form('', 'patch')
+        <div class="col-6">
+            <input type="hidden" name="user_id" value="{{$user->id}}">
+            <input type="submit" value="Decline" id="decline" data-id="{{$user->id}}">
+        </div>
         @formend()
         </div>
     </div>
 @endforeach
 </div>
+@layout('layout.scripts')
+
+<script>
+    $("#decline").on("click", function(e){
+        e.preventDefault();
+        var _this = $(this);
+
+        $.ajax(
+            url: "",
+            data : {
+                '_method' : 'POST',
+                '_token'  : '@csrf()',
+                '_id' 	  : _this.data("id");
+            },
+            success : function(){
+
+            },
+            error : function(){
+
+            }
+
+        );
+
+    });//#decline
+</script>
