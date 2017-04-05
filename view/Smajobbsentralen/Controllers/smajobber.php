@@ -37,7 +37,7 @@ class smajobber {
 		FROM users AS u
 		INNER JOIN user_category AS uc ON u.id = uc.user_id
 		INNER JOIN kategorier AS k ON uc.category_id = k.id
-		WHERE uc.category_id = :id AND u.approved = 1 AND u.vivisble = 1
+		WHERE uc.category_id = :id AND u.approved = 1 AND u.visible = 1
 		GROUP BY u.id
 		ORDER BY u.name", [ 'id' => $data['_id']], 'User')->fetchAll();
 		//skal virke men får sålangt ingen ID input fra ajax req

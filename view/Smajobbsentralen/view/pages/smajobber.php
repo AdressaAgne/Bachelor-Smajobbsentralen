@@ -14,15 +14,6 @@
 		@endforeach
 	</div>
 	<div class="col-10">
-		<div class="row" id="loading" style="display:none;">
-		  <label for="file" class="col--center" style="width: 150px;">
-			  <svg height="150" width="150" class="pie-chart processing" id="svg">
-				<circle class="behind"cx="50%" cy="50%" r="40%" />
-				<circle class="front" cx="50%" cy="50%" r="40%" data-percent="0" />
-			  </svg>
-		  </label>
-		</div>
-
 		<div id="smajobbere">
 			@foreach($class->get_smajobbere() as $smajobber)
 				<div class="row smajobbere-list">
@@ -44,7 +35,7 @@
 		var _this = $(this);
 		var smajobberId = $(this).attr("id");
 		$("#smajobbere").fadeOut(50);
-		$('#loading').show();
+		loading.show();
 		$.ajax({
 			type: "POST",
 			url: "",
@@ -55,7 +46,7 @@
 				'_id' 	  : smajobberId
 			},
 			success : function(data){
-				$('#loading').hide();
+				loading.hide();
 				$("#smajobbere").html('');
 				if(data.length > 0){
 					$.each(data, function(i, item) {

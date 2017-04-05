@@ -54,7 +54,7 @@
             $(dialog_buttons).prepend(btn_id);
             
             //check if the callback is a function
-            if(typeof callback[key] != 'function') {
+            if(typeof callback[key] != 'function' || typeof callback[key] == undefined) {
                 $('#button-'+key).click(hideDialog);    
                 continue;
             }
