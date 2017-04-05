@@ -45,7 +45,7 @@
         @form('', 'patch')
         <div class="col-6">
             <input type="hidden" name="user_id" value="{{$user->id}}">
-            <input type="submit" value="Decline" id="decline" data-id="{{$user->id}}">
+            <input type="submit" value="Decline" id="decline" data-id="{{$user->id}}" class="btn danger">
         </div>
         @formend()
         </div>
@@ -67,10 +67,10 @@
                 '_id' 	  : _this.data("id");
             },
             success : function(){
-
+                console.log("sucess");
             },
             error : function(){
-
+                console.log("fail");
             }
 
         );
