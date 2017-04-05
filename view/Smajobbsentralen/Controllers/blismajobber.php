@@ -59,6 +59,7 @@ class blismajobber {
                     'hitch'         => $data['hitch'],
                     'occupation'    => $data['occupation'],
                     'other_info'    => $data['otherinfo'],
+                    'address'    	=> $data['address'],
                 ]
             ]);
 			

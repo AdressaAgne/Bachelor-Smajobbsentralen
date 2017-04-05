@@ -23,7 +23,7 @@
                 <li>Privat: {{$user->private_phone}}</li>
                 @endif
                 <li>E-post: {{$user->mail}}</li>
-                <li>Adresse: not in db....</li>
+                <li>Adresse: {{$user->address}}</li>
                 <li>Født: {{$user->dob}}</li>
                 <li>Alder: {{$class->get_age($user->dob)}}</li>
                 <li>Okkupasjon: {{$user->occupation}}</li>
