@@ -155,12 +155,12 @@ class telefonvakt {
 
 		if(isset($data['next'])){
             $this->month = ($this->month == 12) ? 1 : $this->month + 1;
-    		$this->year = ($this->month == 12) ? $this->year + 1 : $this->year;
-		}
-
-		if(isset($data['prev'])){
-            $this->month = ($this->month == 1) ? 12 : $this->month - 1;
-    		$this->year = ($this->month == 1) ? $this->year - 1 : $this->year;
+    		$this->year = ($this->month == 1) ? $this->year + 1 : $this->year;
+			
+		} else if(isset($data['prev'])){
+            
+			$this->month = ($this->month == 1) ? 12 : $this->month - 1;
+    		$this->year = ($this->month == 12) ? $this->year - 1 : $this->year;
 		}
 
 		return false;

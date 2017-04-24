@@ -10,11 +10,11 @@ class Direct extends Route{
     private $route = '';
     private $type = '';
     
-    const GET = 'get';
-    const POST = 'post';
-    const PUT = 'put';
-    const PATCH = 'patch';
-    const DELETE = 'delete';
+    const GET     = 'get';
+    const POST    = 'post';
+    const PUT     = 'put';
+    const PATCH   = 'patch';
+    const DELETE  = 'delete';
     
     public function __construct(string $route, $callback, $type){
         $regex = "/([a-zA-Z0-9*])\/(\{(.*)\})/";
