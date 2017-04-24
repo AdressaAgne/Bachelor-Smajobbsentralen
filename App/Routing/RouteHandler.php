@@ -116,13 +116,16 @@ class RouteHandler{
         
         if(array_key_exists('error', $this->route)) return $this->route;
         
-        $this->view = explode('@', $this->route['callback']);
+        
         
         $vars = $this->extractVars($url);
         
         if(isset($vars['error'])) return Route::error('404', $vars);
-        
-        return call_user_func([$this->getMethod(), $this->getClass()], $vars);
+        if(gettype($this->route['callback']) == 'string'){
+            $this->view = explode('@', $this->route['callback']);
+            return call_user_func([$this->getMethod(), $this->getClass()], $vars);    
+        }
+        return call_user_func($this->route['callback'], $vars);    
     }
     
     /**

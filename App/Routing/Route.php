@@ -67,11 +67,12 @@ class Route {
             
         foreach(self::$routes as $key => $http){
             foreach($http as $class){
-                $class = explode('@', $class['callback']);
-                if(!method_exists($class[0], $class[1])){
-                    $missing[] = $class;
+                if(gettype($class['callback']) == 'string') {
+                    $class = explode('@', $class['callback']);
+                    if(!method_exists($class[0], $class[1])){
+                        $missing[] = $class;
+                    }
                 }
-
             }
         }
         if(!empty($missing)){

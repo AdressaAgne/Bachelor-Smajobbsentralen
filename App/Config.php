@@ -17,7 +17,7 @@ class Config {
     */
 
     public static $host = 'localhost';
-    public static $database = 'smajobb';
+    public static $database = 'test';
     public static $username = 'root';
     public static $password = 'root';
 
@@ -68,7 +68,7 @@ class Config {
         '\App\Database\Database'            => 'DB',
         '\App\Database\Row'                 => 'Row',
         '\App\Database\PID'                 => 'PID',
-        '\App\Database\Integer'                 => 'Integer',
+        '\App\Database\Integer'             => 'Integer',
         '\App\Database\Varchar'             => 'Varchar',
         '\App\Database\Boolean'             => 'Boolean',
         '\App\Database\Timestamp'           => 'Timestamp',

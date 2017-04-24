@@ -2,10 +2,14 @@
 
 /**
 *   Direct Setup
-*   Direct::[get, post, put, patch, delete](url, controller@method)->[auth(), admin(), mod()]
+*   Direct::[get, post, put, patch, delete](url, [controller@method, controller, callable])->[auth(), admin(), mod()]
 *   url = /test/{var}/{optional?}
 *   add a ? at the end of a variable to make it optional like {var?}
 */
+
+Direct::get('/halla', function($data){
+     return ['var' => 'yolo', 'data' => $data];
+});
 
 Direct::get("/test/{x}/{y}/{z?}", 'MainController@test');
 
@@ -47,6 +51,7 @@ Direct::patch('/page/{id}', 'PageController@item');
 Direct::delete('/page/{id}', 'PageController@item');
 
 Direct::stack('/page', 'PageController');
+
 
 // Errors
 Direct::err('403', 'ErrorController@noaccess');

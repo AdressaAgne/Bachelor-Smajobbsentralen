@@ -16,7 +16,7 @@ class Direct extends Route{
     const PATCH = 'patch';
     const DELETE = 'delete';
     
-    public function __construct($route, $callback, $type){
+    public function __construct(string $route, $callback, $type){
         $regex = "/([a-zA-Z0-9*])\/(\{(.*)\})/";
 
         $var_regex = '/\{(.*?)\}/';
@@ -27,9 +27,11 @@ class Direct extends Route{
         
         $this->route = $route;
         $this->type = $type;
+    
+        $callback = (gettype($callback) == 'string') ? Config::$controllers.$callback : $callback;
         
         parent::$routes[$type][$route] = [
-            'callback' => Config::$controllers.$callback,
+            'callback' => $callback,
             'vars' => $vars[1],
             'middleware' => [],
         ];
@@ -40,7 +42,7 @@ class Direct extends Route{
      * redirect to a page
      * @param string $page
      */
-    public static function re($page){
+    public static function re(string $page){
         header("location: {$page}");
     }
     
@@ -62,33 +64,34 @@ class Direct extends Route{
      * @return object   Direct Object
      * and so on...
      */
-    public static function get($a, $b){
+    public static function get(string $a, $b){
+
         return new Direct($a, $b, self::GET);
     }
     
-    public static function delete($a, $b){
+    public static function delete(string $a, $b){
         return new Direct($a, $b, self::DELETE);
     }
     
-    public static function put($a, $b){
+    public static function put(string $a, $b){
         return new Direct($a, $b, self::PUT);
     }
     
-    public static function patch($a, $b){
+    public static function patch(string $a, $b){
         return new Direct($a, $b, self::PATCH);
     }
    
-    public static function post($a, $b){
+    public static function post(string $a, $b){
         return new Direct($a, $b, self::POST);
     }
     
-    public static function err($a, $b){
+    public static function err(string $a, $b){
         return new Direct($a, $b, 'error');
     }
     
     
     
-    public static function stack($url, $controller){
+    public static function stack(string $url, string $controller){
         //Overlook page
         self::get($url, "$controller@index");
         
