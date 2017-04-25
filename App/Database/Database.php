@@ -58,8 +58,12 @@ class Database extends DBhelpers{
     public static function insert($table, array $data){
         $placeholder = [];
         $insertData = [];
-        
-        $table_rows = implode(", ", array_keys($data[0]));
+        //INSERT INTO users (name, surname, username) 
+        // VALUES (:name0, :surname0, :username0), 
+        //        (:name1, :surname1, :username1)
+
+        $table_rows = is_array(array_values($data)[0]) ? $data[0] : $data;
+        $table_rows = implode(", ", array_keys($table_rows));
         
         foreach($data as $i => $rows){
             $p = [];
@@ -71,12 +75,13 @@ class Database extends DBhelpers{
         }
         
         $placeholder = implode(", ", $placeholder);
-
+        
         $sql = "INSERT INTO {$table} ({$table_rows}) VALUES {$placeholder}";
         
         $query = self::query($sql, $insertData);
         
         $id = self::$db->lastInsertId('id');
+        
         
         return ($id == 0) ? $query : $id;
     }

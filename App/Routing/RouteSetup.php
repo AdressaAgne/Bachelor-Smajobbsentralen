@@ -7,8 +7,8 @@
 *   add a ? at the end of a variable to make it optional like {var?}
 */
 
-Direct::get('/halla', function($data){
-     return ['var' => 'yolo', 'data' => $data];
+Direct::get('/halla/{swag}', function(Request $r){
+    die(print_r($r->get, true));
 });
 
 Direct::get("/test/{x}/{y}/{z?}", 'MainController@test');

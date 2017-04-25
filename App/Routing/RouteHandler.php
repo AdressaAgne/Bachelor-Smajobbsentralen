@@ -2,7 +2,8 @@
 
 namespace App\Routing;
 
-use ErrorHandling, Config, Direct, Route;
+use ErrorHandling, Config, Direct, Route, Request;
+use ReflectionParameter, ReflectionException;
 
 class RouteHandler{
     
@@ -112,20 +113,52 @@ class RouteHandler{
      * @return string
      */
     private function callController($url){
+        //Get the current route
         $this->route = Direct::getCurrentRoute($url);
         
+        //if there is an error in the route, return error page
         if(array_key_exists('error', $this->route)) return $this->route;
         
+        //set the callable
+        $callable = $this->route['callback'];
         
-        
+        //extract the vars from url
         $vars = $this->extractVars($url);
         
+        //check if there is an error with the get vars
         if(isset($vars['error'])) return Route::error('404', $vars);
-        if(gettype($this->route['callback']) == 'string'){
-            $this->view = explode('@', $this->route['callback']);
-            return call_user_func([$this->getMethod(), $this->getClass()], $vars);    
+        
+        //if the callable is a string, split it up class / method
+        //make a new instance of Controller
+        if(is_string($callable)) {
+            $callable = explode('@', $callable);
+            $callable[0] = new $callable[0];
         }
-        return call_user_func($this->route['callback'], $vars);    
+
+        //check if users wants a Request class or not
+        $vars = $this->requestVars($callable, $vars);
+
+        // call function
+        return call_user_func($callable, $vars);   
+
+    }
+    
+    private function requestVars($callable, $vars){
+        try {
+            //create a new ReflectionParameter class, and check param on index 0, 
+            //will return ReflectionException if there is no param at index 0
+            $reflection = new ReflectionParameter($callable, 0);    
+            
+            // if the first params type is Request return a new Request instance
+            if(is_object($reflection->getClass()) && $reflection->getClass()->name == 'App\Database\Request')
+                return new Request($vars);
+            
+        } catch (ReflectionException $e) {
+            // so far i have found no other bypass
+        }
+        
+        //if not return a merged array of get and post
+        return array_merge($vars['get'], $vars['post']);
     }
     
     /**
@@ -136,6 +169,7 @@ class RouteHandler{
      */
     private function extractVars($url){
         $vars = $this->route['vars'];
+        $without_vars = $url;
         $url = $this->get_vars($url);
         
         if(empty($url[0])) $url = [];
@@ -151,6 +185,6 @@ class RouteHandler{
         
         $params = !empty($vars) ? $combined : [];
 
-        return array_merge($params, $_POST);
+        return ['get' => $params, 'post' => $_POST, 'url' => $_GET['param'], 'without_vars' => $without_vars];
     }
 }

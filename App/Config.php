@@ -66,6 +66,7 @@ class Config {
 
         // Database
         '\App\Database\Database'            => 'DB',
+        '\App\Database\Request'             => 'Request',
         '\App\Database\Row'                 => 'Row',
         '\App\Database\PID'                 => 'PID',
         '\App\Database\Integer'             => 'Integer',

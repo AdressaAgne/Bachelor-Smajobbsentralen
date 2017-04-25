@@ -13,6 +13,11 @@ class telefonvakt {
 
 	}
 
+	public function users(){
+		// type = 1, telefonvakt
+		return $this->db->select('users', ['*'], ['type' => 1], 'User');
+	}
+
 	/**
 	 * Return true / false if the day input is a holy day, should probably just return the array.
 	 * @param  [int]  $day   [the day you wanna check is a holy day]
@@ -116,10 +121,10 @@ class telefonvakt {
 			];
 		}
 
-		$work = $this->db->query('SELECT c.year, c.month, c.day, u.name, u.surname, u.mobile_phone, u.private_phone
+		$work = $this->db->query('SELECT c.unix, MONTH(FROM_UNIXTIME(c.unix)) as month, YEAR(FROM_UNIXTIME(c.unix)) as year, day(FROM_UNIXTIME(c.unix)) as day, u.name, u.surname, u.mobile_phone, u.private_phone, u.id, c.description
 								  FROM calendar as c
 								  LEFT JOIN users AS u ON c.user_id = u.id
-								  WHERE c.month = :m AND c.year = :y',
+								  WHERE MONTH(FROM_UNIXTIME(c.unix)) = :m AND YEAR(FROM_UNIXTIME(c.unix)) = :y',
 								  ['m' => $month, 'y' => $year])->fetchAll();
 
 		for($days = 1; $days <= $total_days; $days++) {
@@ -163,6 +168,24 @@ class telefonvakt {
     		$this->year = ($this->month == 12) ? $this->year - 1 : $this->year;
 		}
 
+		return false;
+	}
+	
+	//add to calendar
+	public function put($request){
+		
+		$this->db->query('INSERT INTO calendar (unix, user_id, description)
+			VALUES(:unix, :id_1, :desc_1) 
+			ON DUPLICATE KEY 
+				UPDATE user_id = :id_2, description = :desc_2', [
+				
+			'unix' => mktime(0, 0, 0, $request['month'], $request['day'], $request['year']),
+			'id_1' => $request['user_id'],
+			'id_2' => $request['user_id'],
+			'desc_1' => $request['desc'],
+			'desc_2' => $request['desc'],
+		]);
+		
 		return false;
 	}
 }

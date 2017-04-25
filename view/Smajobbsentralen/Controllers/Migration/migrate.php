@@ -29,9 +29,8 @@ class Migrate {
 			new PID(),
 			new Timestamp(),
 			new Row('user_id', 'int'),
-			new Row('year', 'int(4)', 2017),
-			new Row('month', 'int(2)'),
-			new Row('day', 'int(2)')
+			new Row('description', 'text'),
+			new Row('unix', 'varchar', null, true, false, 'UNIQUE'),
 		]);
 		
 		$db->createTable('oppdrag', [
@@ -218,19 +217,6 @@ class Migrate {
 				'arrangement' => '0'
 			]
 		]);
-		$db->insert('calendar', [
-			[
-				'user_id' => '1',
-				'year' => '2017',
-				'month' => '3',
-				'day' => '24'
-			],[
-				'user_id' => '2',
-				'year' => '2017',
-				'month' => '10',
-				'day' => '30'
-			],
-		]);
 
 		$db->setSetting('frontpage', 4);
 
@@ -270,6 +256,15 @@ class Migrate {
 			'dob' => '2017-03-16 20:16:28',
 			'mobile_phone' => '47343090',
 		], ['id' => $adminId]);
+
+		$db->insert('users', [
+			[
+				'name' => 'per',
+				'surname' => 'bjarneson',
+				'type' => 1,
+				'approved' => 1,
+			]
+		]);
 
 
 		$db->insert('user_category', [
