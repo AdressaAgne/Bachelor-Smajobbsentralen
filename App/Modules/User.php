@@ -2,14 +2,19 @@
 
 namespace App\Modules;
 
-use DB, Module;
+use DB;
 
 
-class User extends DB implements Module {
+class User extends DB {
     
     
-    public function __construct(){
+    public function __construct($id = null){
         
+        if(!is_null($id)) {
+            foreach ($this->select('users', ['*'], ['id' => $id])->fetch() as $key => $value) {
+                $this->$key = $value;
+            }
+        }
         
     }
     

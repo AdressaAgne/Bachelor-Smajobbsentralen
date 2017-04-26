@@ -89,7 +89,7 @@ class Controller extends DB{
     }
     
     public function __call($method, $params){
-        die($params[0]['param'] . ": Could not find method <b>$method</b> in <em>".static::class."</em>");
+        die("Could not find method <b>$method</b> in <em>".static::class."</em>");
     }
     
     public function cms(){

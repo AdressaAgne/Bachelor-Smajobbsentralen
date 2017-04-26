@@ -1,5 +1,4 @@
-
-
+@layout('layout.telefonvakt_menu')
 <div class="row">
     @if(!empty($page->header))
         <h3>{{$page->header}}</h3>
@@ -10,6 +9,9 @@
 </div>
 
 <div class="row">
+@if(count($class->get_applications()) < 1)
+    <h1>Ingen nye søknader</h1>
+@endif
 @foreach($class->get_applications() as $user)
     <div class="col-8">
         <div class="col-12 smajobbere-list">
@@ -53,7 +55,6 @@
 @endforeach
 </div>
 @layout('layout.scripts')
-@layout('layout.dialog')
 
 <script>
     $(".accept").on("click", function(){

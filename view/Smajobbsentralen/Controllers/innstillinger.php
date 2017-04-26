@@ -14,6 +14,10 @@ class innstillinger{
     public function get_open_days(){
         return array_column($this->open, 'day');
     }
+    
+    public function get_open($i){
+        return $this->open[array_search($i, array_column($this->open, 'day'))];
+    }
 
     public function getArbeidstyper(){
         //return $this->db->all("kategorier", [])->fetchAll();

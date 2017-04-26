@@ -69,7 +69,7 @@ class Route {
             foreach($http as $class){
                 if(gettype($class['callback']) == 'string') {
                     $class = explode('@', $class['callback']);
-                    if(!method_exists($class[0], $class[1])){
+                    if(count($class) == 2 && !method_exists($class[0], $class[1])){
                         $missing[] = $class;
                     }
                 }

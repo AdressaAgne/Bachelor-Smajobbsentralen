@@ -132,6 +132,11 @@ class RouteHandler{
         //make a new instance of Controller
         if(is_string($callable)) {
             $callable = explode('@', $callable);
+            
+            // if the method do not exist in string, try to call the route as a method
+            if(count($callable) == 1)
+                $callable = [$callable[0], trim($url, '/')];
+            
             $callable[0] = new $callable[0];
         }
 
@@ -143,6 +148,12 @@ class RouteHandler{
 
     }
     
+    /**
+     * returns the correct type of param to the function
+     * @param  [callable] $callable [arrau[object,method], function]
+     * @param  [array] $vars     
+     * @return [array/onject]  
+     */
     private function requestVars($callable, $vars){
         try {
             //create a new ReflectionParameter class, and check param on index 0, 
@@ -150,8 +161,11 @@ class RouteHandler{
             $reflection = new ReflectionParameter($callable, 0);    
             
             // if the first params type is Request return a new Request instance
-            if(is_object($reflection->getClass()) && $reflection->getClass()->name == 'App\Database\Request')
-                return new Request($vars);
+            if(is_object($reflection->getClass())){
+                $class = $reflection->getClass()->name;
+                return new $class($vars);
+            }
+                
             
         } catch (ReflectionException $e) {
             // so far i have found no other bypass
@@ -185,6 +199,6 @@ class RouteHandler{
         
         $params = !empty($vars) ? $combined : [];
 
-        return ['get' => $params, 'post' => $_POST, 'url' => $_GET['param'], 'without_vars' => $without_vars];
+        return ['get' => $params, 'post' => $_POST, 'url' => isset($_GET['param']) ? $_GET['param'] : '/', 'without_vars' => $without_vars];
     }
 }

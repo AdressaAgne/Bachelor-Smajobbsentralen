@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
 
-use View, NormalController, Config, Direct, Account;
+use View, NormalController, Config, Direct, Account, Request;
 
 class LoginController extends Controller implements NormalController {
 
@@ -11,9 +11,9 @@ class LoginController extends Controller implements NormalController {
     }
     
     //post on /login
-    public function login($data){
+    public function login(Request $data){
 
-        if($info = Account::login($data['username'], $data['password'], isset($data['rememberme']))){
+        if($info = Account::login($data->post->username, $data->post->password, isset($data->post->rememberme))){
             Direct::re('/admin');
         } else {
             View::make('login', ['info' => $info]);

@@ -5,25 +5,31 @@
 *   Direct::[get, post, put, patch, delete](url, [controller@method, controller, callable])->[auth(), admin(), mod()]
 *   url = /test/{var}/{optional?}
 *   add a ? at the end of a variable to make it optional like {var?}
+*
+*   if you do not set a method, it will try to call the route as a method instead
+*   Direct::get("/home", 'MainController');
+*   this will try to call the home method in the MainController
 */
 
-Direct::get('/halla/{swag}', function(Request $r){
-    die(print_r($r->get, true));
+Direct::get('/test/{x}/{y}/{z?}', function(Request $data){
+    // $get = $data->get;
+    // $post = $data->post;
+    // $method = $data->method();
+    // $url = $data->url();
+    // $get_url = $data->get_url();
+    return [$data, $data->method(), $data->url(), $data->get_url()];
 });
-
-Direct::get("/test/{x}/{y}/{z?}", 'MainController@test');
 
 Direct::get("/", 'MainController@index');
 
 if(Config::$debug_mode){
-    Direct::get("/route", 'MainController@route');
-    Direct::get("/migrate", 'MainController@migrate');
+    Direct::get("/route", 'MainController');
+    Direct::get("/migrate", 'MainController');
 }
 
 Direct::get("/login", 'LoginController@index');
 Direct::post("/login", 'LoginController@login');
-Direct::get("/logout", 'LoginController@logout');
-
+Direct::get("/logout", 'LoginController');
 
 Direct::get('/admin', 'AdminController@index')->admin();
 
@@ -55,3 +61,4 @@ Direct::stack('/page', 'PageController');
 
 // Errors
 Direct::err('403', 'ErrorController@noaccess');
+Direct::err('404', 'MainController@index');

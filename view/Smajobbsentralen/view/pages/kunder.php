@@ -1,3 +1,4 @@
+@layout('layout.telefonvakt_menu')
 <div class="row">
     @if(!empty($page->header))
         <h1>{{$page->header}}</h1>

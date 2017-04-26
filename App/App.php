@@ -7,6 +7,7 @@ use \App\Routing\RouteHandler       as RouteHandler;
 use \App\Config                     as Config;
 use \App\Controllers\ErrorHandling  as ErrorHandling;
 
+
 // Start a session if it does not exist
 if(!isset($_SESSION)){
     session_start();
@@ -56,7 +57,7 @@ class App extends RouteHandler{
             
         } else {
             $page = $this->getPageData();
-            
+
             if(gettype($page) !== 'string'){
                 
                 header('Content-type: application/json');
@@ -64,6 +65,7 @@ class App extends RouteHandler{
                 return;
                 
             } else {
+                
                 
                 // Echo out the rendered code
                 echo $page;

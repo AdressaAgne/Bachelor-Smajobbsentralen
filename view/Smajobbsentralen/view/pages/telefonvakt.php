@@ -8,6 +8,7 @@
 </div>
 @layout('layout.telefonvakt_menu')
 <!-- TODO loop igjennom fra backend. Evt vurder table istedet -->
+
 	<div class="row">
 		@form('', 'post')
 			<div class="col-3 font-left">
@@ -46,6 +47,7 @@
 							<div class="form-element col-12">
 
 								<label>Navn
+									
 									<select class="" name="user_id">
 										<option value="" class="selected_option">Velg et Navn</option>
 										<option value="">Ingen</option>
