@@ -8,6 +8,10 @@ class Migrations{
 
 	public static function install(){
 		//$name, $type, $default = null, $not_null = true, $auto_increment = false)
+		
+		$account = new Account();
+		$account->logout();
+		
 		$db = new DB();
 
 		$themeMigrate = './view/'.Config::$theme.'/Controllers/Migration/migrate.php';
@@ -18,6 +22,7 @@ class Migrations{
 		}
 		
 		$theme = $db->getSetting('theme');
+		if(!$theme) $theme = 'Smajobbsentralen';
 		// User Account
 		$db->createTable('users', [
 			new PID(),
@@ -28,6 +33,7 @@ class Migrations{
 			new Row('image', 'int', '1'),
 			new Row('mail', 'varchar'),
 		]);
+		
 
 		$db->createTable('pages', [
 			new PID(),

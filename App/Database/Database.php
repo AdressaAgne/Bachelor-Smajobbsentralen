@@ -131,7 +131,9 @@ class Database extends DBhelpers{
      * @return string
      */
     public static function getSetting($name){
-        return self::select('settings', ['value'], ['name' => $name])->fetch()['value'];
+        if($setting = self::select('settings', ['value'], ['name' => $name])){
+            return $setting->fetch()['value'];
+        }
     }
     
     /**

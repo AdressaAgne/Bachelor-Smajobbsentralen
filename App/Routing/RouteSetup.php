@@ -17,7 +17,7 @@ Direct::get('/test/{x}/{y}/{z?}', function(Request $data){
     // $method = $data->method();
     // $url = $data->url();
     // $get_url = $data->get_url();
-    return [$data, $data->method(), $data->url(), $data->get_url()];
+    return [$_SERVER];
 });
 
 Direct::get("/", 'MainController@index');
@@ -28,7 +28,7 @@ if(Config::$debug_mode){
 }
 
 Direct::get("/login", 'LoginController@index');
-Direct::post("/login", 'LoginController@login');
+Direct::post("/login", 'LoginController');
 Direct::get("/logout", 'LoginController');
 
 Direct::get('/admin', 'AdminController@index')->admin();

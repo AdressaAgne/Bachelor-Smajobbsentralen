@@ -1,6 +1,6 @@
 @layout('layout.telefonvakt_menu')
 
-
+<!-- split up to åpningstider and arbeidstyper -->
 @if(!empty($page->header))
 	<div class="row">
 		<h1>{{$page->header}}</h1>
