@@ -41,8 +41,8 @@ class Config {
     *   File Uploading
     */
     public static $files      = [
-        "original"          => "/images/original/",
-        "compressed"        => "/images/compressed/",
+        "original"          => "/public/images/original/",
+        "compressed"        => "/public/images/compressed/",
         "compressedSize"    => 600,
         "compressedSize2"   => 1000,
     ];
@@ -104,8 +104,8 @@ class Config {
         
         // Modules
         
-        '\App\Modules\Page'                 => 'Page',
         '\App\Modules\User'                 => 'User',
+        '\App\Modules\Category'             => 'Category',
         '\App\Modules\Image'                => 'Image',
         
     ];

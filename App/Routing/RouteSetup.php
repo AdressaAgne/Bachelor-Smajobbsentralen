@@ -11,16 +11,49 @@
 *   this will try to call the home method in the MainController
 */
 
-Direct::get('/test/{x}/{y}/{z?}', function(Request $data){
-    // $get = $data->get;
-    // $post = $data->post;
-    // $method = $data->method();
-    // $url = $data->url();
-    // $get_url = $data->get_url();
-    return [$_SERVER];
-});
-
+// Mainpage
 Direct::get("/", 'MainController@index');
+
+// All Småjobbere
+Direct::get('/smajobbere', 'SmajobberController@smajobbere');
+Direct::post('/smajobbere', 'SmajobberController@post');
+
+// Bli småjobber / send inn applications
+Direct::get('/blismajobber', 'SmajobberController@application');
+Direct::put('/blismajobber', 'SmajobberController@put');
+
+// Admin - Redirect helper
+Direct::get('/admin', 'AdminController');
+
+// Admin - Telefonvakt
+Direct::get('/telefonvakt/{month?}/{year?}', 'AdminController')->Auth();
+Direct::put('/telefonvakt/{month?}/{year?}', 'AdminController@calendar_put')->Auth();
+
+// Admin - Kunder
+Direct::get('/kunder', 'MembersController')->Auth();
+Direct::put('/kunder', 'MembersController@new_member')->Auth();
+
+// Admin - Faktura
+Direct::get('/faktura', 'MembersController')->Auth();
+Direct::put('/faktura', 'MembersController@new_faktura')->Auth();
+Direct::delete('/faktura', 'MembersController@delete_member')->Auth();
+
+// Admin - Applications
+Direct::get('/soknader', 'ApplicationController@index')->Auth();
+Direct::patch('/soknader', 'ApplicationController@patch')->Auth();
+Direct::delete('/soknader', 'ApplicationController@delete')->Auth();
+
+// Admin - members
+
+
+// Admin - opningstider
+Direct::get('/opningstider', 'SettingsController')->Auth();
+Direct::post('/opningstider', 'SettingsController')->Auth();
+
+// Admin - arbeidstyper
+Direct::get('/arbeidstyper', 'SettingsController')->Auth();
+Direct::put('/arbeidstyper', 'SettingsController@put_arbeidstyper')->Auth();
+Direct::delete('/arbeidstyper', 'SettingsController@delete_arbeidstype')->Auth();
 
 if(Config::$debug_mode){
     Direct::get("/route", 'MainController');
@@ -31,32 +64,8 @@ Direct::get("/login", 'LoginController@index');
 Direct::post("/login", 'LoginController');
 Direct::get("/logout", 'LoginController');
 
-Direct::get('/admin', 'AdminController@index')->admin();
+//Direct::get('/list', 'AdminController@route')->admin();
 
-Direct::get('/admin/settings', 'AdminController@settings')->admin();
-Direct::patch('/admin/settings', 'AdminController@patch_settings')->admin();
-
-Direct::get('/admin/themes', 'AdminController@themes')->admin();
-Direct::patch('/admin/themes', 'AdminController@patch_themes')->admin();
-
-Direct::get('/admin/pages', 'AdminController@pages')->admin();
-Direct::get('/page/arrange/{page}', 'AdminController@arrange_blogposts')->admin();
-Direct::patch('/page/arrange', 'AdminController@arrange_blogposts_patch')->admin();
-
-Direct::get('/admin/posts', 'AdminController@posts')->admin();
-Direct::put('/post/create', 'AdminController@put_posts')->admin();
-
-Direct::get('/admin/media', 'AdminController@media')->admin();
-Direct::put('/admin/media', 'AdminController@put_media')->admin();
-
-Direct::get('/list', 'AdminController@route')->admin();
-
-Direct::put('/page/{id}', 'PageController@item');
-Direct::post('/page/{id}', 'PageController@item');
-Direct::patch('/page/{id}', 'PageController@item');
-Direct::delete('/page/{id}', 'PageController@item');
-
-Direct::stack('/page', 'PageController');
 
 
 // Errors

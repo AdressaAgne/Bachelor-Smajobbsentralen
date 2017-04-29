@@ -14,47 +14,27 @@ class Migrations{
 		
 		$db = new DB();
 
-		$themeMigrate = './view/'.Config::$theme.'/Controllers/Migration/migrate.php';
-		
-		if(file_exists($themeMigrate)){
-			include_once($themeMigrate);
-			$themeClass = new \Migrate();
-		}
-		
-		$theme = $db->getSetting('theme');
-		if(!$theme) $theme = 'Smajobbsentralen';
 		// User Account
 		$db->createTable('users', [
 			new PID(),
 			new Timestamp(),
 			new Row('username', 'varchar'),
-			new Row('password', 'varchar'),
 			new Row('cookie', 'varchar'),
-			new Row('image', 'int', '1'),
+			new Row('name', 'varchar'),
+			new Row('surname', 'varchar'),
 			new Row('mail', 'varchar'),
-		]);
-		
-
-		$db->createTable('pages', [
-			new PID(),
-			new Timestamp(),
-			new Row('permalink', 'var'),
-			new Row('header', 'var'),
-			new Row('content', 'text'),
-			new Row('user_id', 'int'),
-			new Row('auth', 'bool'),
-			new Row('visible', 'bool'),
-			new Row('parent', 'int', '0'),
-			new Row('style', 'var', 'normal'),
-			new Row('type', 'var', 'page'),
-			new Row('image', 'int', '0'),
-			new Row('arrangement', 'int', '0'),
-		]);
-
-		$db->createTable('settings', [
-			new PID(),
-			new Row('name', 'var'),
-			new Row('value', 'var'),
+			new Row('password', 'varchar'),
+			new Row('approved', 'tinyint', 0),
+			new Row('visible', 'tinyint', 1),
+			new Row('dob', 'date'),
+			new Row('mobile_phone', 'int'),
+			new Row('address', 'varchar'),
+			new Row('private_phone', 'int'),
+			new Row('car', 'tinyint'),
+			new Row('hitch', 'tinyint'),
+			new Row('occupation', 'varchar'),
+			new Row('other_info', 'varchar'),
+			new Row('type', 'varchar', 0), //0 = oppdragstaker, 1 = tlfvakt, 2 = kunde
 		]);
 
 		 $db->createTable('image', [
@@ -65,59 +45,143 @@ class Migrations{
 			new Timestamp(),
 		]);
 
-		if(file_exists($themeMigrate)){
-			$themeClass->install($db);
-		}
+		$db->createTable('kategorier', [
+			new PID(),
+			new Timestamp(),
+			new Row('name', 'varchar'),
+			new Row('icon', 'varchar'),
+		]);
 
-		self::populate($theme);
+		$db->createTable('opningstider', [
+			new PID(),
+			new Row('day', 'int'),
+			new Row('from_time', 'varchar'),
+			new Row('to_time', 'varchar'),
+		]);
+
+		$db->createTable('user_category', [
+			new PID(),
+			new Timestamp(),
+			new Row('user_id', 'int'),
+			new Row('category_id', 'int')
+		]);
+
+		$db->createTable('calendar', [
+			new PID(),
+			new Timestamp(),
+			new Row('user_id', 'int'),
+			new Row('description', 'text'),
+			new Row('unix', 'varchar', null, true, false, 'UNIQUE'),
+		]);
 		
-		if(file_exists($themeMigrate)){
-			$themeClass->populate($db);
-		}
+		$db->createTable('oppdrag', [
+			new PID(),
+			new Timestamp(),
+			new Integer('user_id'),
+			new Integer('cat_id'),
+			new Varchar('tid'),
+			new Integer('for_user_id'),
+			new Integer('km'),
+			new Boolean('hitch'),
+			new Boolean('equipment'),
+			new Row('info', 'text'),
+		]);
+
+
+		self::populate();
+		
+	
 		return [$db->tableStatus];
 	}
 
-	public static function populate($theme){
+	public static function populate(){
 		$db = new DB();
-		$db->insert('pages', [
-		   [
-			   'permalink'  => 'home',
-			   'header'     => 'Welcome to your page',
-			   'content'    => 'This is the homepage of your site, you can edit this or make a new page in the admin panel',
-			   'user_id'    => '1',
-			   'auth'       => '0',
-			   'visible'    => '0',
-			   'parent'     => '0',
-			   'style'      => 'normal',
-		   ]
+
+		$db->insert('kategorier', [
+			[
+				'name' => 'snømåking',
+				'icon' => 'lock',
+			],
+			[
+				'name' => 'hagearbeid',
+				'icon' => 'user',
+			],
+			[
+				'name' => 'kjøring',
+				'icon' => 'user',
+			],
+			[
+				'name' => 'gressklipping',
+				'icon' => 'user',
+			],
+			[
+				'name' => 'handling',
+				'icon' => 'user',
+			],
+			[
+				'name' => 'flytting',
+				'icon' => 'user',
+			],
+			[
+				'name' => 'maling',
+				'icon' => 'user',
+			],
+			[
+				'name' => 'møblering',
+				'icon' => 'user',
+			],
+			[
+				'name' => 'vasking',
+				'icon' => 'user',
+			],
+			[
+				'name' => 'småarbeid',
+				'icon' => 'user',
+			],
+
 		]);
 
-		$db->insert('settings', [
+		//days starts on sunday = 0;
+		$db->insert('opningstider', [
 			[
-				'name' => 'page-title',
-				'value' => 'A cms page title',
-			],[
-				'name' => 'sub-header',
-				'value' => 'just another cms',
-			],[
-				'name' => 'theme',
-				'value' => empty($theme) ? 'Basic' : $theme,
-			],[
-				'name' => 'frontpage',
-				'value' => '1',
-			],[
-				'name' => 'comments',
-				'value' => '1',
-			],[
-				'name' => 'meta-application-name',
-				'value' => '',
-			],[
-				'name' => 'meta-author',
-				'value' => 'Agne Ødegaard',
-			],[
-				'name' => 'meta-description',
-				'value' => 'This is just another cms page',
+				'day' => 2, // tirsdag
+				'from_time' => '10:00',
+				'to_time' => '12:00',
 			],
+			[
+				'day' => 4, // torsdag
+				'from_time' => '10:00',
+				'to_time' => '12:00',
+			],
+		]);
+
+		//register($username, $pw1, $pw2, $mail)
+
+		$adminId = Account::register('admin', 'admin', 'admin', 'admin@admin.admin');
+
+		$db->updateWhere('users',[
+			'name' => 'admin',
+			'surname' => 'adminsen',
+			'approved' => '1',
+			'visible' => '0',
+			'dob' => '2017-03-16 20:16:28',
+			'mobile_phone' => '47343090',
+			'type' => '3',
+		], ['id' => $adminId]);
+
+		$db->insert('users', [
+			[
+				'name' => 'per',
+				'surname' => 'bjarneson',
+				'type' => 1,
+				'approved' => 1,
+			]
+		]);
+		$db->insert('user_category', [
+			[
+				'user_id' => 1,
+				'category_id' => 5
+			]
 		]);
 
 	}

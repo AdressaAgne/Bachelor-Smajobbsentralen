@@ -7,14 +7,13 @@ class Controller extends DB{
     
     public static $site_wide_vars = [
         'user' => null,
-        'google_key' => 'AIzaSyC7i0o5mdEYSbG_wqoWAx53tAP1xxTKVQo',
-        'menu' => null,
         'assets' => null,
         'source' => null,
-        'settings' => null,
         'global' => null,
-        'panel' => null,
     ];
+    
+    public $user;
+    public $global;
     
     /**
      * This code runs with all controllers
@@ -24,16 +23,12 @@ class Controller extends DB{
     public function __construct(){
         parent::__construct();
 
-        if(Config::$debug_mode && !@$this->query('SELECT id FROM Settings')){
+        if(Config::$debug_mode && !@$this->query('SELECT id FROM Users')){
             if(Config::$route != '/migrate'){
                 die('Database need to migrate, go to /migrate');
             }         
         } else {
             $_GET['param'] = isset($_GET['param']) ? $_GET['param'] : '/';
-            
-            self::$site_wide_vars['settings'] = $this->cms();
-            
-            Config::$theme = isset(self::$site_wide_vars['settings']['theme']) ? self::$site_wide_vars['settings']['theme'] : 'Basic';
             
             $source = str_replace($_GET['param'],'',$_SERVER['REQUEST_URI']);
             
@@ -42,22 +37,17 @@ class Controller extends DB{
             $source = $source == '/' ? '' : $source;
             
             self::$site_wide_vars['source'] = $source;
-            self::$site_wide_vars['assets'] = $source.'/view/'.Config::$theme.'/assets';
-            self::$site_wide_vars['panel']  = $source.'/panel';
+            self::$site_wide_vars['assets'] = $source.'/public/assets';
             
-            //die(print_r([$_SERVER['REQUEST_URI'], $_GET['param'], $source, self::$site_wide_vars['assets']], true));
             
             if(Account::isLoggedIn()){
-                self::$site_wide_vars['user'] = new User($_SESSION['uuid']);
+                $this->user = new User($_SESSION['uuid']);
+                self::$site_wide_vars['user'] = $this->user;
             }
+
+            $this->global = new GlobalController($this);
+            self::$site_wide_vars['global'] = $this->global;
             
-            $GlobalController = './view/'.Config::$theme.'/Controllers/GlobalController.php';
-            if(file_exists($GlobalController)){
-                include_once($GlobalController);
-                self::$site_wide_vars['global'] = new \GlobalController($this);
-            }
-            
-            self::$site_wide_vars['menu'] = $this->select('pages', ['*'], ['visible' => '1', 'auth' => '0'])->fetchAll();
         }
     }
     
@@ -69,38 +59,11 @@ class Controller extends DB{
         return $types;
     }
     
-    public function callThemeController($page){
-        
-        //check if a designated controller for the view file exists, if so call it and pass it to the file.
-        $theme = '/view/'.Config::$theme;
-        $controller = '.'.$theme.'/Controllers/'.$page->style.'.php';
-        
-        if(file_exists($controller)){
-            include_once($controller);
-            $class = new $page->style($this, $page);
-            if(isset($_POST['_method']) && method_exists($class, strtolower($_POST['_method']))){
-                $val = call_user_func([$class, strtolower($_POST['_method'])], array_merge($_POST, $_GET));
-                if($val !== false) return [true, $val];
-            }
-            
-            return [true, View::make('index', ['page' => $page, 'class' => $class])];
-        }
-        return [false];
-    }
+    
     
     public function __call($method, $params){
         die("Could not find method <b>$method</b> in <em>".static::class."</em>");
     }
     
-    public function cms(){
-        $settings = $this->all('settings');
-
-        foreach($settings as $key => $value){
-            $settings[$value['name']] = $value['value'];
-            unset($settings[$key]);
-        }
-
-        return $settings;
-    }
     
 }
