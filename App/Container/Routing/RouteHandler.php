@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Routing;
+namespace App\Container\Routing;
 
 use ErrorHandling, Config, Direct, Route, Request;
 use ReflectionParameter, ReflectionException;

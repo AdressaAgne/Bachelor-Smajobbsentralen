@@ -34,12 +34,14 @@ class Config {
     /**
     *   Do not change
     */
+   
     public static $route = '/';
     public static $source = '';
 
     /**
     *   File Uploading
     */
+   
     public static $files      = [
         "original"          => "/public/images/original/",
         "compressed"        => "/public/images/compressed/",
@@ -62,45 +64,45 @@ class Config {
     public static $aliases = [
 
         // Config
-        '\App\Config'                       => 'Config',
+        '\App\Config'                           => 'Config',
 
         // Database
-        '\App\Database\Database'            => 'DB',
-        '\App\Database\Request'             => 'Request',
-        '\App\Database\Row'                 => 'Row',
-        '\App\Database\PID'                 => 'PID',
-        '\App\Database\Integer'             => 'Integer',
-        '\App\Database\Varchar'             => 'Varchar',
-        '\App\Database\Boolean'             => 'Boolean',
-        '\App\Database\Timestamp'           => 'Timestamp',
-        '\App\Database\Migrations'          => 'Migrations',
-        '\App\Auth\Account'                 => 'Account',
+        '\App\Container\Database\Database'      => 'DB',
+        '\App\Container\Database\Request'       => 'Request',
+        '\App\Container\Database\Row'           => 'Row',
+        '\App\Container\Database\PID'           => 'PID',
+        '\App\Container\Database\Integer'       => 'Integer',
+        '\App\Container\Database\Varchar'       => 'Varchar',
+        '\App\Container\Database\Boolean'       => 'Boolean',
+        '\App\Container\Database\Timestamp'     => 'Timestamp',
+        '\App\Container\Database\Migrations'    => 'Migrations',
+        '\App\Auth\Account'                     => 'Account',
 
         // Routing
-        '\App\View'                         => 'View',
-        '\App\Routing\Direct'               => 'Direct',
-        '\App\Routing\Route'                => 'Route',
-        '\App\Routing\RouteHandler'         => 'RouteHandler',
-        '\App\Render'                       => 'Render',
+        '\App\Container\View'                   => 'View',
+        '\App\Container\Routing\Direct'         => 'Direct',
+        '\App\Container\Routing\Route'          => 'Route',
+        '\App\Container\Routing\RouteHandler'   => 'RouteHandler',
+        '\App\Container\Render'                 => 'Render',
         
         // Helpres
 
-        '\App\Helpers\Uploader'             => 'Uploader',
-        '\App\Helpers\Compressor'           => 'Compressor',
-        '\App\Helpers\Sorting'              => 'Sorting',
-        '\App\Controllers\Controller'       => 'BaseController',
+        '\App\Container\Helpers\Uploader'       => 'Uploader',
+        '\App\Container\Helpers\Compressor'     => 'Compressor',
+        '\App\Container\Helpers\Sorting'        => 'Sorting',
+        '\App\Controllers\Controller'           => 'BaseController',
 
         // Interfaces
         
-        'App\Interfaces\ApiController'      => 'ApiController',
-        'App\Interfaces\Module'             => 'Module',
-        'App\Interfaces\StackController'    => 'StackController',
-        'App\Interfaces\NormalController'   => 'NormalController',
+        'App\Container\Interfaces\ApiController'      => 'ApiController',
+        'App\Container\Interfaces\Module'             => 'Module',
+        'App\Container\Interfaces\StackController'    => 'StackController',
+        'App\Container\Interfaces\NormalController'   => 'NormalController',
         
         // Traits
         
-        'App\Traits\IndexTrait'             => 'IndexTrait',
-        'App\Traits\MigrateTrait'           => 'MigrateTrait',
+        'App\Container\Traits\IndexTrait'             => 'IndexTrait',
+        'App\Container\Traits\MigrateTrait'           => 'MigrateTrait',
         
         // Modules
         
@@ -108,5 +110,18 @@ class Config {
         '\App\Modules\Category'             => 'Category',
         '\App\Modules\Image'                => 'Image',
         
+    ];
+    
+    /**
+     *  Constants
+     */
+    
+    public static $constants = [
+        'GET'      => 'get',
+        'POST'     => 'post',
+        'PUT'      => 'put',
+        'PATCH'    => 'patch',
+        'DELETE'   => 'delete',
+        'ERROR'    => 'error',
     ];
 }

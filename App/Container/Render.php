@@ -1,7 +1,7 @@
 <?php
-namespace App;
+namespace App\Container;
 
-use Account, RouteHandler, Config;
+use Account, RouteHandler, Config, View;
 /**
 *   Small Render Engine, very inspirated by Twig
 */

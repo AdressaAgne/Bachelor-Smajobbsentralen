@@ -2,7 +2,7 @@
 
 /**
 *   Direct Setup
-*   Direct::[get, post, put, patch, delete](url, [controller@method, controller, callable])->[auth(), admin(), mod()]
+*   Direct::[get, post, put, patch, delete, all, on](url, [controller@method, controller, callable])->[auth(), admin(), mod()]
 *   url = /test/{var}/{optional?}
 *   add a ? at the end of a variable to make it optional like {var?}
 *
@@ -10,6 +10,13 @@
 *   Direct::get("/home", 'MainController');
 *   this will try to call the home method in the MainController
 */
+
+Direct::on([GET, POST], '/test', function(){
+    return Config::$constants;
+});
+
+// Direct::all(url, callable); // GET, POST, PATCH, PUT, DELETE
+// Direct::on([GET, POST, PATCH, PUT, DELETE, ERROR], url, callable);
 
 // Mainpage
 Direct::get("/", 'MainController@index');
@@ -69,5 +76,5 @@ Direct::get("/logout", 'LoginController');
 
 
 // Errors
-Direct::err('403', 'ErrorController@noaccess');
-Direct::err('404', 'MainController@index');
+Direct::error('403', 'ErrorController@noaccess');
+Direct::error('404', 'MainController@index');

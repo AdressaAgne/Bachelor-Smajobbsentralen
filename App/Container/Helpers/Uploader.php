@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Helpers;
+namespace App\Container\Helpers;
 
 use Compressor, DB, Config;
 // Image Uploader

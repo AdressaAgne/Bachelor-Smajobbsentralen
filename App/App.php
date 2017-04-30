@@ -1,17 +1,14 @@
 <?php
 namespace App;
 
-use \App\Routing\Direct             as Direct;
-use \App\Routing\Route              as Route;
-use \App\Routing\RouteHandler       as RouteHandler;
-use \App\Config                     as Config;
-use \App\Controllers\ErrorHandling  as ErrorHandling;
+use \App\Container\Routing\Direct             as Direct;
+use \App\Container\Routing\Route              as Route;
+use \App\Container\Routing\RouteHandler       as RouteHandler;
+use \App\Config                               as Config;
 
 
 // Start a session if it does not exist
-if(!isset($_SESSION)){
-    session_start();
-}
+if(!isset($_SESSION)) session_start();
 
 // Generate a new PHP Session ID to prevent session hijacking.
 session_regenerate_id();
@@ -33,9 +30,15 @@ foreach(Config::$aliases as $key => $value){
     class_alias($key, $value);
 }
 
+// Define constants
+foreach (Config::$constants as $key => $value) {
+    define($key, $value);
+}
+
+
 
 // Adding routing
-require_once('App/Routing/RouteSetup.php');
+require_once('App/RouteSetup.php');
 
 // Start Route Handling
 class App extends RouteHandler{
@@ -51,7 +54,7 @@ class App extends RouteHandler{
         $cached_file = './'.Config::$cache_folder.'cached_';
         $cached_file .= trim(str_replace('/', '_', $this->get_path()), '.').".html";
         
-        if(!isset($_SESSION['uuid']) && $_SERVER['REQUEST_METHOD'] != "POST" && !Config::$debug_mode && file_exists($cached_file) && (filemtime($cached_file) + Config::$cache_time > time())){
+        if(!isset($_SESSION['uuid']) && $_SERVER['REQUEST_METHOD'] != POST && !Config::$debug_mode && file_exists($cached_file) && (filemtime($cached_file) + Config::$cache_time > time())){
             
             echo file_get_contents($cached_file);
             
@@ -71,7 +74,7 @@ class App extends RouteHandler{
                 echo $page;
                 
                 // save file to cache
-                if(!Config::$debug_mode && $_SERVER['REQUEST_METHOD'] != "POST" && !isset($_SESSION['uuid'])){
+                if(!Config::$debug_mode && $_SERVER['REQUEST_METHOD'] != POST && !isset($_SESSION['uuid'])){
                     if(!file_exists(Config::$cache_folder)){
                         mkdir(Config::$cache_folder, 0777, true);
                     }

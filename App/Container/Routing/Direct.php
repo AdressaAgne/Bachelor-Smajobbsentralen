@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Routing;
+namespace App\Container\Routing;
 
 use Config;
 
@@ -10,13 +10,8 @@ class Direct extends Route{
     private $route = '';
     private $type = '';
     
-    const GET     = 'get';
-    const POST    = 'post';
-    const PUT     = 'put';
-    const PATCH   = 'patch';
-    const DELETE  = 'delete';
     
-    public function __construct(string $route, $callback, $type){
+    public function __construct(string $route, $callback, string $type){
         $regex = "/([a-zA-Z0-9*])\/(\{(.*)\})/";
 
         $var_regex = '/\{(.*?)\}/';
@@ -65,30 +60,41 @@ class Direct extends Route{
      * and so on...
      */
     public static function get(string $a, $b){
-
-        return new Direct($a, $b, self::GET);
+        return new Direct($a, $b, GET);
     }
     
     public static function delete(string $a, $b){
-        return new Direct($a, $b, self::DELETE);
+        return new Direct($a, $b, DELETE);
     }
     
     public static function put(string $a, $b){
-        return new Direct($a, $b, self::PUT);
+        return new Direct($a, $b, PUT);
     }
     
     public static function patch(string $a, $b){
-        return new Direct($a, $b, self::PATCH);
+        return new Direct($a, $b, PATCH);
     }
    
     public static function post(string $a, $b){
-        return new Direct($a, $b, self::POST);
+        return new Direct($a, $b, POST);
     }
     
-    public static function err(string $a, $b){
-        return new Direct($a, $b, 'error');
+    public static function error(string $a, $b){
+        return new Direct($a, $b, ERROR);
     }
     
+    public static function all(string $a, $b){
+        foreach ([GET, POST, PATCH, PUT, DELETE] as $value) {
+            call_user_func_array("Direct::$value", [$a, $b]);
+        }
+    }
+    
+    public static function on(array $http, string $a, $b) {
+        foreach ($http as $value) {
+            if(!in_array($value, [GET, POST, PATCH, PUT, ERROR, DELETE])) continue;
+            call_user_func_array("Direct::$value", [$a, $b]);
+        }
+    }
     
     
     public static function stack(string $url, string $controller){
@@ -99,14 +105,14 @@ class Direct extends Route{
         self::get("$url/{id}", "$controller@item");
         
         // Delete page
-        self::delete($url, "$controller@delete")->admin();
+        self::delete($url, "$controller@delete")->auth();
         
         //Edit page
-        self::patch("$url/edit", "$controller@patch")->admin();
-        self::get("$url/edit/{id}", "$controller@edit")->admin();
+        self::patch("$url/edit", "$controller@patch")->auth();
+        self::get("$url/edit/{id}", "$controller@edit")->auth();
         
         // Update Page
-        self::put("$url/create", "$controller@put")->admin();
+        self::put("$url/create", "$controller@put")->auth();
     }
     
     

@@ -44,7 +44,6 @@ class AdminController extends CalendarController {
     public function kunder(){
         return View::make('kunder');
     }
-    
 	
 	//add to calendar
 	public function calendar_put(Request $request){

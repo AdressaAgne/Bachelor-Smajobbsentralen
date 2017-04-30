@@ -1,5 +1,5 @@
 <?php
-namespace App\Routing;
+namespace App\Container\Routing;
 
 use Config;
 
@@ -29,10 +29,10 @@ class Route {
         
         if($_SERVER['REQUEST_METHOD'] == "POST"){
             //CSRF token
-            if(!isset($_POST['_token'])) return self::error('401', ['Missing token']);
+            if(!isset($_POST['_token'])) return self::set_error('401', ['Missing token']);
             
             if($_POST['_token'] != $_SESSION['_token']){
-               return self::error('401', ['Wrong CSRF token']);
+               return self::set_error('401', ['Wrong CSRF token']);
             } 
 
             switch(strtoupper($_POST['_method'])) {
@@ -54,7 +54,7 @@ class Route {
                 break;
 
                 default:
-                    return self::error('405');
+                    return self::set_error('405');
                 break;
             }
         } else {
@@ -91,16 +91,16 @@ class Route {
                     if(isset($key['middleware']['callback'])){
                         return call_user_func($key['middleware']['callback']);   
                     }
-                    return self::error('403', 'No entry, premission denied');   
+                    return self::set_error('403', 'No entry, premission denied');   
                 }
             }
             return self::$routes[$method][$route];
         } else {
-            return self::error('404', ['error' => 'page does not exist', 'Route' => $route, 'Method' => $method, 'post' => $_POST]);
+            return self::set_error('404', ['error' => 'page does not exist', 'Route' => $route, 'Method' => $method, 'post' => $_POST]);
         }
     }
     
-    public static function error($error, $route = ''){
+    public static function set_error($error, $route = ''){
         
         return array_key_exists($error, self::$routes['error']) ? self::$routes['error'][$error] : ['error' => "$error: Please set up a $error page", 'trace' => $route];
         

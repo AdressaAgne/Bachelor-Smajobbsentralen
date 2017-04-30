@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Database;
+namespace App\Container\Database;
 
 use DB, Account, Config, Direct;
 
