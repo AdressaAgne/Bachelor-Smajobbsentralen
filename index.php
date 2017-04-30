@@ -1,6 +1,6 @@
 <?php
 
-use \App\Config                               as Config;
+use \App\Config as Config;
 
 // Start a session if it does not exist
 if(!isset($_SESSION)) session_start();
@@ -28,6 +28,11 @@ foreach(Config::$aliases as $key => $value){
 // Define constants
 foreach (Config::$constants as $key => $value) {
     define($key, $value);
+}
+
+function dd(...$param){
+    @header('Content-type: application/json');
+    die(print_r($param, true));
 }
 
 // Adding routing

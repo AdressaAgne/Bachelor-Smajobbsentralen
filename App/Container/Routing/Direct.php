@@ -42,17 +42,7 @@ class Direct extends Route{
         header("location: {$page}");
     }
     
-    /**
-     * Die and dump
-     * @param  any $param 
-     * @return [die]        [kills the page and prints $parma[]]
-     */
-    public static function dd(...$param){
-        @header('Content-type: application/json');
-        die(print_r($param, true));
-    }
 
-    
     /**
      * Create a new Direct
      * @param  string  $a URI
@@ -85,8 +75,7 @@ class Direct extends Route{
     }
     
     public static function debug(string $a, $b, array $http = [GET]){
-        if(!Config::$debug_mode) return;
-        return self::on($http, $a, $b);
+        if(Config::$debug_mode) return self::on($http, $a, $b);
     }
     
     public static function all(string $a, $b){
@@ -138,9 +127,8 @@ class Direct extends Route{
     }
     
     public function Cache(callable $callable = null){
-        if(!is_null($callable) && $callable()) return $this->add_filter('cache', true);
-        
-        return $this->add_filter('cache', true);
+        if(is_callable($callable) && call_user_func($callable)) return $this->add_filter('cache', true);
+        if(!is_callable($callable)) return $this->add_filter('cache', true);
     }
     
     public function Auth($callback = null){

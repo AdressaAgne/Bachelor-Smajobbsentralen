@@ -16,10 +16,14 @@ class Config {
     *   Database Connection
     */
 
-    public static $host = 'localhost';
+    public static $host     = 'localhost';
     public static $database = 'smajobb';
     public static $username = 'root';
     public static $password = 'root';
+
+    /**
+    *   CSRF token, this will be randomly generated for each session
+    */
 
     public static $form_token = 'jlhkgfdlkshdjkskdfskjdhf';
     
@@ -27,22 +31,22 @@ class Config {
     *   Chache
     */
     
-    public static $cookie_time = 86400 * 30;
-    public static $cache_time = 3600;
+    public static $cookie_time  = 86400 * 30;
+    public static $cache_time   = 3600;
     public static $cache_folder = 'cache/';
     
     /**
     *   Do not change
     */
    
-    public static $route = '/';
+    public static $route  = '/';
     public static $source = '';
 
     /**
     *   File Uploading
     */
    
-    public static $files      = [
+    public static $files    = [
         "original"          => "/public/images/original/",
         "compressed"        => "/public/images/compressed/",
         "compressedSize"    => 600,

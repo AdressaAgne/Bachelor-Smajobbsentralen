@@ -29,7 +29,7 @@ class Cache extends RouteHandler {
         
         $file = fopen($this->cached_file_name, 'w');
         
-        $w = fwrite($file, "<!--- Cached Version ".time()." --->\n".$data);
+        $w = fwrite($file, "<!--- Cached Version ".date('H:i:s - d/m/y', time())." --->\n".$data);
         
         fclose($file);
     }

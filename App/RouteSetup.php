@@ -21,8 +21,8 @@
 *   Direct::on([GET, POST, PATCH, PUT, DELETE, ERROR], url, callable);
 */
 
-Direct::get('/test/{var?}', function(){
-    return '<h1>This is supposed to be cached</h1>';
+Direct::get('/test', function(){
+    return '<h1>This is supposed to be cached lol</h1>';
 })->Cache();
 
 

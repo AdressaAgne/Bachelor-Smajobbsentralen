@@ -30,7 +30,7 @@ class Controller extends DB{
         } else {
             $_GET['param'] = isset($_GET['param']) ? $_GET['param'] : '/';
             
-            $source = str_replace($_GET['param'],'',$_SERVER['REQUEST_URI']);
+            $source = str_replace($_GET['param'], '', $_SERVER['REQUEST_URI']);
             
             $source = '/'.trim($source, '/');
             
@@ -50,16 +50,6 @@ class Controller extends DB{
             
         }
     }
-    
-    protected function getFiles($path){
-        $types = array_diff(scandir($path), array('.', '..', '.DS_Store'));
-        foreach($types as $key => $type){
-            $types[$key] = pathinfo($type, PATHINFO_FILENAME);
-        }
-        return $types;
-    }
-    
-    
     
     public function __call($method, $params){
         die("Could not find method <b>$method</b> in <em>".static::class."</em>");

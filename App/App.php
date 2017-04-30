@@ -1,7 +1,7 @@
 <?php
 namespace App;
 
-use RouteHandler, Cache, Direct;
+use RouteHandler, Cache, Config;
 
 class App extends RouteHandler{
 
@@ -14,11 +14,13 @@ class App extends RouteHandler{
         
         if($cache->has_cached_file()){
             
+            //load chached file if it exists
             echo $cache->get_cached_file();
             
         } else {
             $page = $this->get_page_data();
             
+            // create a cahced version of the file if it exists
             if(isset($page->filter['cache']) && $page->filter['cache']) $cache->cache_file($page->data);
             
             if(gettype($page->data) == 'string'){
