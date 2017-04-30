@@ -81,6 +81,6 @@ Direct::get("/logout", 'LoginController');
 
 // Errors
 Direct::error('403', 'ErrorController@noaccess');
-Direct::error('404', function(){
-    return [404];
+Direct::error('404', function(Request $request){
+    return ['404' => $request->url()];
 });

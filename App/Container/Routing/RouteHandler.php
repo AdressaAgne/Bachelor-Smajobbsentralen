@@ -50,7 +50,10 @@ class RouteHandler{
      * @return [string] [PUT, PATCH, DELETE, GET, POST]
      */
     public function get_http_method(){
-        return (isset($_POST['_method'])) ? strtolower($_POST['_method']) : 'get';
+        if(isset($_POST['_method']) && in_array(strtoupper($_POST['_method']), [GET, POST, PUT, PATCH, DELETE])) {
+            return strtoupper($_POST['_method']);
+        }
+        return GET;
     }
     
     /**
@@ -71,7 +74,7 @@ class RouteHandler{
             return preg_match("/(^\\".$value.")/i", $url);
         });
 
-        if(count($route) < 1) return '404';
+        if(count($route) < 1) return $url;
 
         $lengths = array_map('strlen', $route);
         $index = array_search(max($lengths), $lengths);
@@ -90,9 +93,10 @@ class RouteHandler{
      * @return string
      */
     public function get_page_data(){
+        //Direct::dd($this->route);
         return (object)[
             'data' => $this->callController($this->get_page()),
-            'filter' => $this->route['filter'],
+            //'filter' => $this->route['filter'],
         ];
     }
     
@@ -126,18 +130,16 @@ class RouteHandler{
         
         //if there is an error in the route, return error page
         if(array_key_exists('error', $this->route)) return $this->route;
-        
+
         $isError = in_array($url, ['404', '403', '405']);
         //set the callable
         $callable = $this->route['callback'];
         
-        $vars = [];
         //extract the vars from url
         if(!$isError) $vars = $this->extractVars($url);
         
         //check if there is an error with the get vars
         if(isset($vars['error'])) return $vars;
-        
         
         //if the callable is a string, split it up class / method
         //make a new instance of Controller
@@ -153,7 +155,7 @@ class RouteHandler{
 
         //check if users wants a Request class or not
         if(!$isError) $vars = $this->requestVars($callable, $vars);
-
+        
         // call function
         return call_user_func($callable, $vars);   
 

@@ -118,11 +118,11 @@ class Config {
      */
     
     public static $constants = [
-        'GET'      => 'get',
-        'POST'     => 'post',
-        'PUT'      => 'put',
-        'PATCH'    => 'patch',
-        'DELETE'   => 'delete',
-        'ERROR'    => 'error',
+        'GET'      => 'GET',
+        'POST'     => 'POST',
+        'PUT'      => 'PUT',
+        'PATCH'    => 'PATCH',
+        'DELETE'   => 'DELETE',
+        'ERROR'    => 'ERROR',
     ];
 }
