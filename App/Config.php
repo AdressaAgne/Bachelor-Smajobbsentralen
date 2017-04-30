@@ -72,7 +72,7 @@ class Config {
 
         // Database
         '\App\Container\Database\Database'      => 'DB',
-        '\App\Container\Database\Request'       => 'Request',
+        
         '\App\Container\Database\Row'           => 'Row',
         '\App\Container\Database\PID'           => 'PID',
         '\App\Container\Database\Integer'       => 'Integer',
@@ -95,6 +95,7 @@ class Config {
         '\App\Container\Helpers\Compressor'     => 'Compressor',
         '\App\Container\Helpers\Sorting'        => 'Sorting',
         '\App\Container\Helpers\Cache'          => 'Cache',
+        '\App\Container\Helpers\Request'        => 'Request',
         '\App\Controllers\Controller'           => 'BaseController',
 
         // Interfaces

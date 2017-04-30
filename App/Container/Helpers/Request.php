@@ -1,5 +1,5 @@
 <?php
-namespace App\Container\Database;
+namespace App\Container\Helpers;
 
 class Request {
     
@@ -22,6 +22,10 @@ class Request {
     
     public function get_url(){
         return '/'.$this->vars['url'];
+    }
+    
+    public function get_beardcrubs(){
+        return explode('/', $this->url());
     }
     
     public function method(){
