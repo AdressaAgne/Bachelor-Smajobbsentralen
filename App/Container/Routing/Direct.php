@@ -84,6 +84,11 @@ class Direct extends Route{
         return new Direct($a, $b, ERROR);
     }
     
+    public static function debug(string $a, $b, array $http = [GET]){
+        if(!Config::$debug_mode) return;
+        return self::on($http, $a, $b);
+    }
+    
     public static function all(string $a, $b){
         foreach ([GET, POST, PATCH, PUT, DELETE] as $value) {
             call_user_func_array("Direct::$value", [$a, $b]);
@@ -116,42 +121,38 @@ class Direct extends Route{
         self::put("$url/create", "$controller@put")->auth();
     }
     
-    
-    public function Authenticate($grade, $callback){
-        $auth = &parent::$routes[$this->type][$this->route]['filter'];
-        
-        $auth['auth'] = true;
-        $auth['grade'] = $grade;
-        
-        if(is_callable($callback)){
-            $auth['callback'] = $callback;
-        } else {
-            $auth['callback'] = function(){
-                Direct::re('/login');
-            };
-        }
-
+    private function add_filter(string $key, $value){
+        parent::$routes[$this->type][$this->route]['filter'][$key] = $value;
+        return $this;
     }
     
-    public function cache(){
-        $filter = &parent::$routes[$this->type][$this->route]['filter'];
+    private function Authenticate($grade, callable $callback = null){        
+        $this->add_filter('auth', true);
+        $this->add_filter('grade', $grade);
         
-        $filter['cache'] = true;
+        if(is_callable($callback)) $this->add_filter('callback', $callback);
+        
+        return $this->add_filter('callback', function(){
+            Direct::re('/login');
+        });
+    }
+    
+    public function Cache(callable $callable = null){
+        if(!is_null($callable) && $callable()) return $this->add_filter('cache', true);
+        
+        return $this->add_filter('cache', true);
     }
     
     public function Auth($callback = null){
-        self::Authenticate(3, $callback);
-        return $this;
+        return $this->Authenticate(3, $callback);
     }
     
     public function Mod($callback = null){
-        self::Authenticate(2, $callback);
-        return $this;
+        return $this->Authenticate(2, $callback);
     }
     
     public function Admin($callback = null){
-        $this->Authenticate(1, $callback);
-        return $this;
+        return $this->Authenticate(1, $callback);
     }
     
     /**

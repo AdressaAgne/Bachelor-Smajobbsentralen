@@ -12,7 +12,7 @@ class Cache extends RouteHandler {
     private $cached_file_name;
     
     function __construct() {
-        $this->cached_file_name = './'.Config::$cache_folder.'cached_';
+        $this->cached_file_name = Config::$cache_folder.'cached_';
         $this->cached_file_name .= trim(str_replace('/', '_', $this->get_path()), '.').".html";
     }
     
@@ -25,6 +25,8 @@ class Cache extends RouteHandler {
     }
     
     public function cache_file(string $data){
+        $this->make_cache_folder();
+        
         $file = fopen($this->cached_file_name, 'w');
         
         $w = fwrite($file, "<!--- Cached Version ".time()." --->\n".$data);

@@ -2,7 +2,7 @@
 
 /**
 *   Direct Setup
-*   Direct::[get, post, put, patch, delete](url, [controller@method, controller, callable])->[auth(), admin(), mod(), cache()]
+*   Direct::[get, post, put, patch, delete, debug](url, [controller@method, controller, callable])->[Auth(), Admin(), Mod(), Cache()]
 *   Example:
 *   Direct::get('/', 'MainController@index')
 *   Direct::get('/profole', 'MainController@profole')->auth()
@@ -23,14 +23,14 @@
 
 Direct::get('/test/{var?}', function(){
     return '<h1>This is supposed to be cached</h1>';
-});
+})->Cache();
 
 
 // Mainpage
 Direct::get("/", 'MainController@index');
 
 // All Småjobbere
-Direct::get('/smajobbere', 'SmajobberController@smajobbere');
+Direct::get('/smajobbere', 'SmajobberController');
 Direct::post('/smajobbere', 'SmajobberController@post');
 
 // Bli småjobber / send inn applications
@@ -70,10 +70,6 @@ Direct::get('/arbeidstyper', 'SettingsController')->Auth();
 Direct::put('/arbeidstyper', 'SettingsController@put_arbeidstyper')->Auth();
 Direct::delete('/arbeidstyper', 'SettingsController@delete_arbeidstype')->Auth();
 
-if(Config::$debug_mode){
-    Direct::get("/route", 'MainController');
-    Direct::get("/migrate", 'MainController');
-}
 
 Direct::get("/login", 'LoginController@index');
 Direct::post("/login", 'LoginController');
@@ -84,3 +80,8 @@ Direct::error('403', 'ErrorController@noaccess');
 Direct::error('404', function(Request $request){
     return ['404' => $request->url()];
 });
+
+// Debug routes
+
+Direct::debug("/route", 'MainController');
+Direct::debug("/migrate", 'MainController');

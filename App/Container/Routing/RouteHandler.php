@@ -96,7 +96,7 @@ class RouteHandler{
         //Direct::dd($this->route);
         return (object)[
             'data' => $this->callController($this->get_page()),
-            //'filter' => $this->route['filter'],
+            'filter' => isset($this->route['filter']) ? $this->route['filter'] : [],
         ];
     }
     
@@ -131,7 +131,7 @@ class RouteHandler{
         //if there is an error in the route, return error page
         if(array_key_exists('error', $this->route)) return $this->route;
 
-        $isError = in_array($url, ['404', '403', '405']);
+        $isError = in_array($url, ['404', '403', '405', '401']);
         //set the callable
         $callable = $this->route['callback'];
         
