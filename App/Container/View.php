@@ -18,7 +18,6 @@ class View {
 		return Direct::re($direct);
 	}
 
-
 	/**
 	 * Return a php file in the view folder
 	 * @param  string  $filename

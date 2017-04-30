@@ -6,12 +6,12 @@ use Config;
 class Route {
     
     public static $routes = [
-        'get'       => [],
-        'post'      => [],
-        'patch'     => [],
-        'put'       => [],
-        'delete'    => [],
-        'error'     => [],
+        GET       => [],
+        POST      => [],
+        PATCH     => [],
+        PUT       => [],
+        DELETE    => [],
+        ERROR     => [],
     ];
     
     /**
@@ -37,20 +37,20 @@ class Route {
 
             switch(strtoupper($_POST['_method'])) {
                     
-                case 'PUT':
-                    return self::method('put', $route);
+                case PUT:
+                    return self::method(PUT, $route);
                 break;
 
-                case 'PATCH':
-                    return self::method('patch', $route);
+                case PATCH:
+                    return self::method(PATCH, $route);
                 break;
 
-                case 'DELETE':
-                    return self::method('delete', $route);
+                case DELETE:
+                    return self::method(DELETE, $route);
                 break;
               
-                case 'POST':
-                    return self::method('post', $route);
+                case POST:
+                    return self::method(POST, $route);
                 break;
 
                 default:
@@ -58,7 +58,7 @@ class Route {
                 break;
             }
         } else {
-            return self::method('get', $route);
+            return self::method(GET, $route);
         }
     }
     
@@ -86,10 +86,10 @@ class Route {
         if(array_key_exists($route, self::$routes[$method])){
             $key = self::$routes[$method][$route];
             
-            if(isset($key['middleware']['auth'])){
+            if(isset($key['filter']['auth'])){
                 if(!isset($_SESSION['uuid'])){
-                    if(isset($key['middleware']['callback'])){
-                        return call_user_func($key['middleware']['callback']);   
+                    if(isset($key['filter']['callback'])){
+                        return call_user_func($key['filter']['callback']);   
                     }
                     return self::set_error('403', 'No entry, premission denied');   
                 }
@@ -102,11 +102,10 @@ class Route {
     
     public static function set_error($error, $route = ''){
         
-        return array_key_exists($error, self::$routes['error']) ? self::$routes['error'][$error] : ['error' => "$error: Please set up a $error page", 'trace' => $route];
+        return array_key_exists($error, self::$routes[ERROR]) ? self::$routes[ERROR][$error] : ['error' => "$error: Please set up a $error page", 'trace' => $route];
         
-        //header for right http error.
-        //header("HTTP/1.0 404 Not Found");
     }
+    
     
     public static function lists(){
         return self::$routes;

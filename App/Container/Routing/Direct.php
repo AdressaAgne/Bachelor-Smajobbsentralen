@@ -12,6 +12,7 @@ class Direct extends Route{
     
     
     public function __construct(string $route, $callback, string $type){
+        
         $regex = "/([a-zA-Z0-9*])\/(\{(.*)\})/";
 
         $var_regex = '/\{(.*?)\}/';
@@ -28,7 +29,7 @@ class Direct extends Route{
         parent::$routes[$type][$route] = [
             'callback' => $callback,
             'vars' => $vars[1],
-            'middleware' => [],
+            'filter' => [],
         ];
 
     }
@@ -117,7 +118,7 @@ class Direct extends Route{
     
     
     public function Authenticate($grade, $callback){
-        $auth = &parent::$routes[$this->type][$this->route]['middleware'];
+        $auth = &parent::$routes[$this->type][$this->route]['filter'];
         
         $auth['auth'] = true;
         $auth['grade'] = $grade;
@@ -130,6 +131,12 @@ class Direct extends Route{
             };
         }
 
+    }
+    
+    public function cache(){
+        $filter = &parent::$routes[$this->type][$this->route]['filter'];
+        
+        $filter['cache'] = true;
     }
     
     public function Auth($callback = null){

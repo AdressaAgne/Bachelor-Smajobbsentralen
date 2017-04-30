@@ -2,21 +2,29 @@
 
 /**
 *   Direct Setup
-*   Direct::[get, post, put, patch, delete, all, on](url, [controller@method, controller, callable])->[auth(), admin(), mod()]
+*   Direct::[get, post, put, patch, delete](url, [controller@method, controller, callable])->[auth(), admin(), mod(), cache()]
+*   Example:
+*   Direct::get('/', 'MainController@index')
+*   Direct::get('/profole', 'MainController@profole')->auth()
+* 
 *   url = /test/{var}/{optional?}
 *   add a ? at the end of a variable to make it optional like {var?}
 *
 *   if you do not set a method, it will try to call the route as a method instead
 *   Direct::get("/home", 'MainController');
 *   this will try to call the home method in the MainController
+*
+*   Aditional you can do:
+*   for GET, POST, PATCH, PUT, DELETE at the same time (does not include ERROR)
+*   Direct::all(url, callable);
+*   Or if you want more then one method but not all
+*   Direct::on([GET, POST, PATCH, PUT, DELETE, ERROR], url, callable);
 */
 
-Direct::on([GET, POST], '/test', function(){
-    return Config::$constants;
+Direct::get('/test/{var?}', function(){
+    return '<h1>This is supposed to be cached</h1>';
 });
 
-// Direct::all(url, callable); // GET, POST, PATCH, PUT, DELETE
-// Direct::on([GET, POST, PATCH, PUT, DELETE, ERROR], url, callable);
 
 // Mainpage
 Direct::get("/", 'MainController@index');
@@ -71,10 +79,8 @@ Direct::get("/login", 'LoginController@index');
 Direct::post("/login", 'LoginController');
 Direct::get("/logout", 'LoginController');
 
-//Direct::get('/list', 'AdminController@route')->admin();
-
-
-
 // Errors
 Direct::error('403', 'ErrorController@noaccess');
-Direct::error('404', 'MainController@index');
+Direct::error('404', function(){
+    return [404];
+});

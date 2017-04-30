@@ -90,6 +90,7 @@ class Config {
         '\App\Container\Helpers\Uploader'       => 'Uploader',
         '\App\Container\Helpers\Compressor'     => 'Compressor',
         '\App\Container\Helpers\Sorting'        => 'Sorting',
+        '\App\Container\Helpers\Cache'          => 'Cache',
         '\App\Controllers\Controller'           => 'BaseController',
 
         // Interfaces

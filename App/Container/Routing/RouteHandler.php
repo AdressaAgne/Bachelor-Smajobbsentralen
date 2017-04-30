@@ -27,9 +27,10 @@ class RouteHandler{
      */
     private function get_vars($path){
         $regex = $this->regexSlash($this->get_page());
-        $str = preg_replace("/$regex/uimx", '', $this->get_path());
-        $d = explode("/", trim($str, "/"));   
         
+        $str = preg_replace("/$regex/uimx", '', $this->get_path());
+        
+        $d = explode("/", trim($str, "/"));   
         //Direct::dd($this->get_path(), $str, $regex, $this->get_page());
         return $d;
     }
@@ -64,10 +65,14 @@ class RouteHandler{
         
         if($url == '' || $url == '/') return $url;
         
-        $route = array_filter($route, function($value) use($url) {
-            return preg_match("/^".$this->regexSlash($value)."/i", $url);
-        });
+        unset($route[array_search('/', $route)]);
         
+        $route = array_filter($route, function($value) use($url) {
+            return preg_match("/(^\\".$value.")/i", $url);
+        });
+
+        if(count($route) < 1) return '404';
+
         $lengths = array_map('strlen', $route);
         $index = array_search(max($lengths), $lengths);
         
@@ -84,8 +89,11 @@ class RouteHandler{
      * @author Agne *degaard
      * @return string
      */
-    public function getPageData(){
-        return $this->callController($this->get_page());
+    public function get_page_data(){
+        return (object)[
+            'data' => $this->callController($this->get_page()),
+            'filter' => $this->route['filter'],
+        ];
     }
     
     /**
@@ -119,14 +127,17 @@ class RouteHandler{
         //if there is an error in the route, return error page
         if(array_key_exists('error', $this->route)) return $this->route;
         
+        $isError = in_array($url, ['404', '403', '405']);
         //set the callable
         $callable = $this->route['callback'];
         
+        $vars = [];
         //extract the vars from url
-        $vars = $this->extractVars($url);
+        if(!$isError) $vars = $this->extractVars($url);
         
         //check if there is an error with the get vars
-        if(isset($vars['error'])) return Route::error('404', $vars);
+        if(isset($vars['error'])) return $vars;
+        
         
         //if the callable is a string, split it up class / method
         //make a new instance of Controller
@@ -141,7 +152,7 @@ class RouteHandler{
         }
 
         //check if users wants a Request class or not
-        $vars = $this->requestVars($callable, $vars);
+        if(!$isError) $vars = $this->requestVars($callable, $vars);
 
         // call function
         return call_user_func($callable, $vars);   
@@ -185,7 +196,6 @@ class RouteHandler{
         $vars = $this->route['vars'];
         $without_vars = $url;
         $url = $this->get_vars($url);
-        
         if(empty($url[0])) $url = [];
         
         if(count($vars) != count($url)){

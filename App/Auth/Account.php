@@ -114,12 +114,7 @@ class Account extends DB{
         return $msg;
     }
 
-    /**
-     * @TODO
-     * @author Agne *degaard
-     * @param  string $newMail
-     * @return boolean
-     */
+    // @TODO
     public function changeEmail($newMail){
       return 0;
     }
