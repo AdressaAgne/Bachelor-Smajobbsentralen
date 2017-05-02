@@ -12,6 +12,10 @@ class MainController extends Controller implements NormalController {
         return View::make('index', ['cats' => $cats]);
     }
     
+    public function om(){
+        return View::make('om');
+    }
+    
     
     public function route(){
         return Direct::lists();

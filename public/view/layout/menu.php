@@ -4,6 +4,7 @@
 		<li class="nav__item"><a href="{{$source}}/">Hjem</a></li><!-- legg inn logo TODO -->
 		<li class="nav__item"><a href="{{$source}}/smajobbere">Småjobbere</a></li>
 		<li class="nav__item"><a href="{{$source}}/blismajobber">Bli Småjobbere</a></li>
+		<li class="nav__item"><a href="{{$source}}/om">Om Smajobbsentralen</a></li>
 	</ul>
 	<ul class="nav--right">
         @if(isset($user))

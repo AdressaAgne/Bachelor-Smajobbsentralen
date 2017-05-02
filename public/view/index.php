@@ -9,7 +9,7 @@
                 <div class="row">
                     <?php $open = $global->opentimes(); ?>
                     <div class="col-12 border-bottom">
-                        <p>lorem</p>
+                        <p>Vi formidler rimelig hjelp til eldre og uføre</p>
                     </div>
                     <div class="col-6 col-m-12 border-right">
                         <p>{{$open['isOpen']}} nå</p>

@@ -9,7 +9,11 @@ class SmajobberController extends Controller{
 	public function smajobbere(){
 		return View::make('smajobber', ['smajobbere' => $this->get_smajobbere()]);
 	}
-
+	
+	public function admin(){
+		return View::make('smajobberadmin', ['smajobbere' => $this->get_smajobbere()]);
+	}
+	
 	public function get_smajobbere(){
 		return $this->query("SELECT *
 			FROM users WHERE visible = 1

@@ -69,11 +69,11 @@ class RouteHandler{
         if($url == '' || $url == '/') return $url;
         
         unset($route[array_search('/', $route)]);
-        
-        $route = array_filter($route, function($value) use($url) {
-            return preg_match("/(^\\".$value.")/i", $url);
-        });
 
+        $route = array_filter($route, function($value) use($url) {
+            return preg_match("/(^".$this->regexSlash($value).")/i", $url);
+        });
+        
         if(count($route) < 1) return $url;
 
         $lengths = array_map('strlen', $route);

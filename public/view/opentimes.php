@@ -12,7 +12,7 @@
         <h3>Åpningstider</h3>
 	</div>
 	<div class="row">
-        @form('', 'POST')
+        @form('', PATCH)
 			@for($i = 1; $i < 8; $i++)
 				<div class="cal-1 calendar calendar--header">
 					{{$global->day_to_str($i)}}
@@ -44,11 +44,14 @@
 				@endif
 					
 			@endfor
+			
+			<div class="form-element">
+				<input type="submit" value="Lagre">
+			</div>
+			
         @formend()
 		
-		<div class="form-element">
-			<input type="submit" value="lagre(todo)">
-		</div>
+		
 		
     </div>
 </div>

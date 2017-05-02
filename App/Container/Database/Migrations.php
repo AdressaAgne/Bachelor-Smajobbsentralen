@@ -54,7 +54,7 @@ class Migrations{
 
 		$db->createTable('opningstider', [
 			new PID(),
-			new Row('day', 'int'),
+			new Row('day', 'int', null, true, false, 'UNIQUE'),
 			new Row('from_time', 'varchar'),
 			new Row('to_time', 'varchar'),
 		]);

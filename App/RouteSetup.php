@@ -29,6 +29,8 @@ Direct::get('/test', function(){
 // Mainpage
 Direct::get("/", 'MainController@index');
 
+Direct::get("/om", 'MainController@om');
+
 // All Småjobbere
 Direct::get('/smajobbere', 'SmajobberController');
 Direct::post('/smajobbere', 'SmajobberController@post');
@@ -45,30 +47,30 @@ Direct::get('/telefonvakt/{month?}/{year?}', 'AdminController')->Auth();
 Direct::put('/telefonvakt/{month?}/{year?}', 'AdminController@calendar_put')->Auth();
 
 // Admin - Kunder
-Direct::get('/kunder', 'MembersController')->Auth();
-Direct::put('/kunder', 'MembersController@new_member')->Auth();
+Direct::get('/oppdragstaker/kunder', 'MembersController@kunder')->Auth();
+Direct::put('/oppdragstaker/kunder', 'MembersController@new_member')->Auth();
 
 // Admin - Faktura
-Direct::get('/faktura', 'MembersController')->Auth();
-Direct::put('/faktura', 'MembersController@new_faktura')->Auth();
-Direct::delete('/faktura', 'MembersController@delete_member')->Auth();
+Direct::get('/oppdragstaker/faktura', 'MembersController@faktura')->Auth();
+Direct::put('/oppdragstaker/faktura', 'MembersController@new_faktura')->Auth();
+Direct::delete('/oppdragstaker/faktura', 'MembersController@delete_member')->Auth();
 
 // Admin - Applications
-Direct::get('/soknader', 'ApplicationController@index')->Auth();
-Direct::patch('/soknader', 'ApplicationController@patch')->Auth();
-Direct::delete('/soknader', 'ApplicationController@delete')->Auth();
+Direct::get('/telefonvakt/soknader', 'ApplicationController@index')->Auth();
+Direct::patch('/telefonvakt/soknader', 'ApplicationController@patch')->Auth();
+Direct::delete('/telefonvakt/soknader', 'ApplicationController@delete')->Auth();
 
 // Admin - members
-
+Direct::get('/telefonvakt/smajobbere', 'SmajobberController@admin');
 
 // Admin - opningstider
-Direct::get('/opningstider', 'SettingsController')->Auth();
-Direct::post('/opningstider', 'SettingsController')->Auth();
+Direct::get('/telefonvakt/opningstider', 'SettingsController@opningstider')->Auth();
+Direct::patch('/telefonvakt/opningstider', 'SettingsController@edit')->Auth();
 
 // Admin - arbeidstyper
-Direct::get('/arbeidstyper', 'SettingsController')->Auth();
-Direct::put('/arbeidstyper', 'SettingsController@put_arbeidstyper')->Auth();
-Direct::delete('/arbeidstyper', 'SettingsController@delete_arbeidstype')->Auth();
+Direct::get('/telefonvakt/arbeidstyper', 'SettingsController@arbeidstyper')->Auth();
+Direct::put('/telefonvakt/arbeidstyper', 'SettingsController@put_arbeidstyper')->Auth();
+Direct::delete('/telefonvakt/arbeidstyper', 'SettingsController@delete_arbeidstype')->Auth();
 
 
 Direct::get("/login", 'LoginController@index');
@@ -76,9 +78,13 @@ Direct::post("/login", 'LoginController');
 Direct::get("/logout", 'LoginController');
 
 // Errors
-Direct::error('403', 'ErrorController@noaccess');
+Direct::error('301', 'ErrorController@noaccess');
 Direct::error('404', function(Request $request){
-    return ['404' => $request->url()];
+    return '404 page does not exist';
+});
+
+Direct::error('401', function(Request $request){
+    return '401 premission denaid';
 });
 
 // Debug routes
