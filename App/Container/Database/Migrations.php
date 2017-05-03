@@ -158,6 +158,8 @@ class Migrations{
 		//register($username, $pw1, $pw2, $mail)
 
 		$adminId = Account::register('admin', 'admin', 'admin', 'admin@admin.admin');
+		$tlf = Account::register('tlf', 'tlf', 'tlf', 'tlf@tlf.tlf');
+		$smajobber = Account::register('smajobber', 'smajobber', 'smajobber', 'smajobber@smajobber.smajobber');
 
 		$db->updateWhere('users',[
 			'name' => 'admin',
@@ -168,6 +170,24 @@ class Migrations{
 			'mobile_phone' => '47343090',
 			'type' => '3',
 		], ['id' => $adminId]);
+		$db->updateWhere('users',[
+			'name' => 'tlf',
+			'surname' => 'tellefonesen',
+			'approved' => '1',
+			'visible' => '0',
+			'dob' => '2017-03-16 20:16:28',
+			'mobile_phone' => '47343090',
+			'type' => '1',
+		], ['id' => $tlf]);
+		$db->updateWhere('users',[
+			'name' => 'smajobber',
+			'surname' => 'jobberson',
+			'approved' => '1',
+			'visible' => '0',
+			'dob' => '2017-03-16 20:16:28',
+			'mobile_phone' => '47343090',
+			'type' => '0',
+		], ['id' => $smajobber]);
 
 		$db->insert('users', [
 			[

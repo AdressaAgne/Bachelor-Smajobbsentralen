@@ -76,6 +76,7 @@ class CalendarController extends Controller {
 
 	}
 
+	
 	public function get_day_before($day, $day_of_year){
 		$weekday = date('N', mktime( 0, 0, 0, 1, $day_of_year, $this->year));
 

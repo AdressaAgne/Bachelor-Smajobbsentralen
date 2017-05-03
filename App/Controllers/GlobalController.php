@@ -14,7 +14,7 @@ class GlobalController {
     }
     
     public function categories(){
-        return $this->db->query('SELECT * from kategorier ORDER BY id DESC');
+        return $this->db->query('SELECT * FROM kategorier ORDER BY id DESC');
     }
     
     public function opentimes(){

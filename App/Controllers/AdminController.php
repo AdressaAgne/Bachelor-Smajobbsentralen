@@ -9,11 +9,11 @@ class AdminController extends CalendarController {
     public function admin(){
         
         if(Account::isLoggedIn()){
-            if($this->user->type == 0 || $this->user->type == 3)
+            if($this->user->type == 1 || $this->user->type == 3)
                 Direct::re('/telefonvakt');
                 
-            if($this->user->type == 1)
-                Direct::re('/kunder');
+            if($this->user->type == 0)
+                Direct::re('/oppdragstaker/kunder');
                 
         } else {
             Direct::re('/login');
@@ -57,6 +57,9 @@ class AdminController extends CalendarController {
 			'description' => $request->post->desc,
 		]);
 		
+        $request->get->month = isset($request->get->month) ? $request->get->month : $this->month;
+        $request->get->year = isset($request->get->year) ? $request->get->year : $this->year;
+        
 		Direct::re('/telefonvakt/'.$request->get->month.'/'.$request->get->year);
 	}
     

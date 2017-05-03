@@ -26,7 +26,7 @@ class MembersController extends Controller {
         
         $id = $this->insert('users', [
             [
-                'name'            => $data['name'],    
+                'name'            => $data['name'],      
                 'approved'        => 1,    
                 'visible'         => 0,    
                 'type'            => 2,
@@ -37,7 +37,7 @@ class MembersController extends Controller {
             ]
         ]);
         
-        return Direct::re('/faktura');
+        return Direct::re('/oppdragstaker/faktura');
     }
     
     public function get_members(){
@@ -48,7 +48,7 @@ class MembersController extends Controller {
         
         $this->deleteWhere('users', 'id', $request->post->kunde_id);
         
-        return Direct::re('/faktura');
+        return Direct::re('/oppdragstaker/faktura');
     }
     
     public function new_faktura($data){
@@ -65,7 +65,7 @@ class MembersController extends Controller {
             'time'            => time(),
         ]]);
         
-        return Direct::re('/faktura');
+        return Direct::re('/oppdragstaker/faktura');
     }
     
 }

@@ -3,7 +3,7 @@
     <!-- check if the selected page has a controller with it -->
     
     </div>
-    <div class="hero" style="background-image: url('')">    
+    <div class="hero" style="background-image: url('{{$assets}}/img/home.jpg')">    
         <div class="container hero--header">
             <div class="brick">
                 <div class="row">

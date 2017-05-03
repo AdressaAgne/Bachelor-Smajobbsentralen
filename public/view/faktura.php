@@ -64,12 +64,12 @@
                         </select>
                     </div>
                     <div class="form-element col-4 col-m-6">
-                        <input type="checkbox" name="hitch" id="hitch" class="checkbox">
-                        <label for="hitch" class="checkbox">Brukte du tilhenger?</label>
+                        <input type="checkbox" name="hitch" id="hitch-{{$kunde->name}}" class="checkbox">
+                        <label for="hitch-{{$kunde->name}}" class="checkbox">Brukte du tilhenger?</label>
                     </div>
                     <div class="form-element col-4 col-m-6">    
-                        <input type="checkbox" name="equipment" id="equipment" class="checkbox">
-                        <label for="equipment" class="checkbox">brukte du egent utstryt?</label>
+                        <input type="checkbox" name="equipment" id="equipment-{{$kunde->name}}" class="checkbox">
+                        <label for="equipment-{{$kunde->name}}" class="checkbox">brukte du egent utstryt?</label>
                     </div>
                 </div>
                 <div class="col-12">

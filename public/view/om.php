@@ -3,7 +3,7 @@
     <!-- check if the selected page has a controller with it -->
     
     </div>
-    <div class="hero" style="background-image: url('')">    
+    <div class="hero" style="background-image: url('{{$assets}}/img/home.jpg')">    
         <div class="container hero--header">
             <div class="brick">
                 <div class="row">
@@ -38,11 +38,7 @@
                     <p>{{ $str }}</p>
                 @endforeach
                 <p>tlf. 61 10 95 80 </p>
-                <address>
-                    Øvre Torvgate 2, 2815 Gjøvik (Furubakken)
-                </address>
-
-                 
+                <address>Øvre Torvgate 2, 2815 Gjøvik (Furubakken)</address>
 
                 <h3>Hva slags arbeidsoppgaver formidles?</h3>
 

@@ -10,8 +10,8 @@
 		@endif
 		@if($user->type == 0 || $user->type == 3)
 		<li class="header">Oppdragstaker</li>
-		<li><a href="{{$source}}/oppdragstaker/kunder">Kunder</a></li>
-		<li><a href="{{$source}}/oppdragstaker/faktura">faktura</a></li>
+		<li><a href="{{$source}}/oppdragstaker/kunder">Ny kunde</a></li>
+		<li><a href="{{$source}}/oppdragstaker/faktura">Faktura</a></li>
 		@endif
 		<li><a href="{{$source}}/logout">Logg ut</a></li>
 	</ul>
