@@ -15,7 +15,7 @@ $(function(){
     
 $("form").submit(function(e) {
     var numbersCheck = /[0-9]/;
-    var characterCheck = /^[a-zA-Z-_ æøåÆØÅ]+$/
+    var characterCheck = /^[a-zA-Z- æøåÆØÅ]+$/
     var emailCheck = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     
     function validateAll(inputfield, errormsg1, errormsg2){
