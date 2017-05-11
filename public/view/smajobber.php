@@ -9,12 +9,12 @@
 </div>
 
 <div class="row">
-	<div class="col-2" id="categories">
+	<div class="col-2 col-m-3" id="categories">
 		@foreach($global->categories() as $cat)
-			<button class="category" id="{{$cat['id']}}" value="{{$cat['name']}}">{{$cat['name']}}</button>
+			<button class="category" id="{{$cat['id']}}" value="{{$cat['name']}}"><i class="fa fa-lg fa-{{$cat['icon']}}"></i><br>{{$cat['name']}}</button>
 		@endforeach
 	</div>
-	<div class="col-10">
+	<div class="col-10 col-m-8">
 		<div id="smajobbere">
 			@foreach($smajobbere as $smajobber)
 				<div class="row smajobbere-list">
@@ -39,7 +39,7 @@
 		loading.show();
 		$.ajax({
 			type: "POST",
-			url: "",
+			url: "/smajobbere",
 			datatype : 'json',
 			data: {
 				'_method' : 'POST',
@@ -60,10 +60,10 @@
 							"</div>"
 						).fadeIn(item);
 					})
-					$("#smajobbere").prepend("<h1>Følgende kan jobbe med \""+_this.val()+"\"</h1>").fadeIn();
+					$("#smajobbere").prepend("<h1>Følgende kan jobbe med \""+_this.find('i')[0].outerHTML+' '+_this.val()+"\"</h1>").fadeIn();
 				}else{
 					$("#smajobbere").append(
-						"<h1>Det er dessverre ingen som kan gjøre arbeeid av typen \""+_this.val()+"\"</h1>"
+						"<h1>Det er dessverre ingen som kan gjøre arbeeid av typen \""+_this.find('i')[0].outerHTML+' '+_this.val()+"\"</h1>"
 					).fadeIn();
 				}
 

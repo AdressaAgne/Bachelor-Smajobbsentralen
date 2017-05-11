@@ -13,7 +13,7 @@
                     </div>
                     <div class="col-6 col-m-12 border-right">
                         <p>{{$open['isOpen']}} nå</p>
-                        <p class="font-big"><strong><i class="fa fa-phone"></i> 61 10 95 50</strong></p>
+                        <p class="font-big"><strong><i class="fa fa-phone"></i> {{$global->get_priser()['tlf']['value']}}</strong></p>
                     </div>
                     <div class="col-6 col-m-12">
                         <small class="font-small">Åpningstider: </small>
@@ -60,14 +60,15 @@
                 <p>Betaling for utført oppdrag skjer direkte mellom den som har bestilt oppdraget, og den som utfører oppdraget.</p>
 
                 <h3>Satsene er slik:</h3>
+                <?php $priser = $global->get_priser() ?>
                 <ul>
-                    <li>Utføring av arbeidsoppdrag kr 100,-/time (påbegynt time avrundes oppover til nærmeste halvtime). </li>
-                    <li>Bruk av egen bil betales med kr 2,50/km, med tilhenger kr 3,-/km </li>
-                    <li>Bruk av egen tilhenger, gressklipper, snøfreser, elektrisk hekksaks og lignende, betales med kr 30,-/time</li>
+                    <li>Utføring av arbeidsoppdrag kr {{$priser['hours']['value']}},-/time (påbegynt time avrundes oppover til nærmeste halvtime). </li>
+                    <li>Bruk av egen bil betales med kr {{$priser['km']['value']}}/km, med tilhenger kr {{$priser['km_hitch']['value']}},-/km </li>
+                    <li>Bruk av egen tilhenger, gressklipper, snøfreser, elektrisk hekksaks og lignende, betales med kr {{$priser['equipment']['value']}},-/time</li>
                 </ul>
                 <h3>Hvordan kommer jeg i kontakt med Småjobbsentralen?</h3>
 
-                <p>Ring tlf. 61 10 95 80, hver tirsdag eller torsdag i tidsrommet kl. 10.00-12.00 så får du snakket med noen på vakttelefonen, eller stikk innom oss i Øvre Torvgate nr 2. Her får du mer informasjon om tjenesten, og kan registrere deg enten som bruker av tjenesten, eller fordi du ønsker å påta deg oppdrag!</p>
+                <p>Ring tlf. {{$global->get_priser()['tlf']['value']}}, hver tirsdag eller torsdag i tidsrommet kl. 10.00-12.00 så får du snakket med noen på vakttelefonen, eller stikk innom oss i Øvre Torvgate nr 2. Her får du mer informasjon om tjenesten, og kan registrere deg enten som bruker av tjenesten, eller fordi du ønsker å påta deg oppdrag!</p>
             </div>
         </div>
     </div>

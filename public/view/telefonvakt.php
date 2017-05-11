@@ -1,8 +1,9 @@
 @layout('layout.head', ['title' => 'Småjobbsentralen'])
+@layout('layout.telefonvakt_menu')
 <div class="row">
 	<h1>Telefonvakt Framside</h1>
 </div>
-@layout('layout.telefonvakt_menu')
+
 <!-- TODO loop igjennom fra backend. Evt vurder table istedet -->
 
 	<div class="row">
@@ -59,7 +60,7 @@
 								<input type="hidden" name="day" value="{{$cal['date']}}">
 								<input type="hidden" name="month" value="{{$month}}">
 								<input type="hidden" name="year" value="{{$year}}">
-								<input type="submit" value="Rediger">
+								<input type="submit" value="Lagre">
 							</div>
 						@formend()
 					</div>
@@ -88,7 +89,7 @@
 						<input type="hidden" name="day" value="{{$cal['date']}}">
 						<input type="hidden" name="month" value="{{$month}}">
 						<input type="hidden" name="year" value="{{$year}}">
-						<input type="submit" value="Rediger">
+						<input type="submit" value="Lagre">
 					</div>
 				@formend()
 			</div>

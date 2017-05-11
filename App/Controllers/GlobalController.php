@@ -7,10 +7,25 @@ use DateTime;
 class GlobalController {
     
     public $open;
+    public $breadcrubs;
     
     public function __construct($db){
         $this->db = $db;
         $this->open = $this->db->all('opningstider'); 
+        
+        
+        
+        $url = explode('/', $_GET['param']);
+
+        $concat = '';
+        foreach ($url as $key => $value) {
+            $url[$key] = "<li><a href='/$concat$value'>$value</a></li>";
+            $concat .= $value.'/';
+        }
+        
+        $this->breadcrubs = '<ul class="breadcrubs">'.implode('<li> / </li>', $url).'</ul>';
+
+        
     }
     
     public function categories(){
@@ -34,11 +49,15 @@ class GlobalController {
         return $this->db->select('users', ['*'], ['type' => 1], 'User')->fetchAll();
     }
     
-    public function get_age($date){
-        $date = explode('-', $date);
-        $date = new DateTime(date('Y-m-d', mktime(0, 0, 0, $date[2], $date[1], $date[0])));
+    public function get_age($year){
+        $date = new DateTime(date('Y-m-d', mktime(0, 0, 0, 0, 0, $year)));
         $now = new DateTime(date('Y-m-d', time()));
         return $now->diff($date)->y;
+    }
+    
+    public function get_priser(){
+        $priser = $this->db->all('settings');
+        return array_combine(array_column($priser, 'item_key'), $priser);
     }
     
     public function formatTime($open){

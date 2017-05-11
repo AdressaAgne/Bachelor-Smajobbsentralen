@@ -75,12 +75,12 @@
                         thisUser.slideUp();
                     },
                     error : function(){
-                        console.log("fail");
+                        showDialog('Vi klarte ikke å akseptere brukeren. prøv igjen senere', {ok : ''})
                     }
                 });//ajax
             },
             nei : function(){
-                showDialog('Vi klarte ikke å akseptere brukeren. prøv igjen senere', {ok : ''})
+                
             }
         });//dialog
     });//event accept
@@ -102,18 +102,16 @@
                         '_token'  : '@csrf()',
                         'user_id' 	  : _this.data("id")
                     },
-                    success : function(data){
-                        console.log(data);
+                    success : function(){
                         thisUser.slideUp();
-
                     },
                     error : function(){
-                        console.log("fail");
+                        showDialog('Vi klarte ikke å fjerne brukeren. prøv igjen senere', {ok : ''})
                     }
                 });//ajax
             },
             nei : function(){
-                showDialog('Vi klarte ikke å fjerne brukeren. prøv igjen senere', {ok : ''})
+                
             }
         });//dialog
     });//event decline

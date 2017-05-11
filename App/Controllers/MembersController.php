@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use View, NormalController, Config, Direct, Request;
+use View, NormalController, Config, Direct, Request, Account;
 
 class MembersController extends Controller {
     
@@ -18,8 +18,11 @@ class MembersController extends Controller {
         return View::make('kunder');
     }
     
-    public function faktura(){
-        return View::make('faktura', ['members' => $this->get_members()]);
+    public function faktura(Request $data){
+        return View::make('faktura', [
+            'members' => $this->get_members(),
+            'breadcrubs' => $data->get_beardcrubs()
+    ]);
     }
     
     public function new_member($data){
@@ -34,6 +37,7 @@ class MembersController extends Controller {
                 'private_phone'   => $data['private'],    
                 'other_info'      => $data['info'],    
                 'address'         => $data['address'],    
+                'occupation'      => Account::get_id(),    
             ]
         ]);
         
@@ -41,14 +45,11 @@ class MembersController extends Controller {
     }
     
     public function get_members(){
-        return $this->select('users', ['*'], ['type' => 2], 'User')->fetchAll();    
+        return $this->query('SELECT * FROM users WHERE type = :t and occupation = :id', ['t' => 2, 'id' => Account::get_id()], 'User')->fetchAll();    
     }
     
     public function delete_member(Request $request){
-        
-        $this->deleteWhere('users', 'id', $request->post->kunde_id);
-        
-        return Direct::re('/oppdragstaker/faktura');
+        return $this->deleteWhere('users', 'id', $request->post->kunde_id);
     }
     
     public function new_faktura($data){

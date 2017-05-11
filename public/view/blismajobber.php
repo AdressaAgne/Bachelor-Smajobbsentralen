@@ -10,36 +10,36 @@
 	   		<h1>{{$error}}</h1>
 		@endif
 	   	@if(isset($info))
-	   		<h1>{{$info}}</h1>
-		@endif
+	   		<h1 style="color: #00CE00">{{$info}}</h1>
+		@else
 		<div class="form-element col-6 col-s-12">
 			<label> Fornavn 
-				<input type="text" name="firstname"/>
+				<input type="text" name="firstname" placeholder="Fornavn">
 				<span class="errorMsg"></span>
 			</label>
 			
 		</div>
 		<div class="form-element col-6 col-s-12">
 			<label> Etternavn 
-				<input type="text" name="lastname"/>
+				<input type="text" name="lastname" placeholder="Etternavn">
 				<span class="errorMsg"></span>
 			</label>
 		</div>
 		<div class="form-element col-6 col-s-12">
             <label> E-post 
-				<input type="text" name="email"/>
+				<input type="text" name="email" placeholder="E-post">
 				<span class="errorMsg"></span>
 			</label>
 		</div>
 		<div class="form-element col-6 col-s-12">
 			<label> Adresse
-				<input type="text" name="address"/>
+				<input type="text" name="address" placeholder="Adresse" >
 				<span class="errorMsg"></span>
 			</label>
 		</div>
 		<div class="form-element col-6 col-s-12">
-			<label> Fødselsdato
-				<input type="date" name="date"/>
+			<label> Fødselsår
+				<input type="text" name="date" placeholder="Fødselsår" >
 				<span id="errorMsgDob" class="errorMsg"></span>
 			</label>
 		</div>
@@ -47,14 +47,14 @@
 	<div class="row">
 		<h3>Telefon</h3>
 		<div class="form-element col-6 col-s-12">
-			<label> Mobil
-				<input type="text" name="mob"/>
+			<label> Mobil Telefon
+				<input type="text" name="mob" placeholder="Mobil">
 				<span class="errorMsg"></span>
 			</label>
 		</div>
 		<div class="form-element col-6 col-s-12">
-			<label> Privat
-				<input type="text" name="priv"/>
+			<label> Privat Telefon
+				<input type="text" name="priv" placeholder="Privat Telefon">
 			</label>
 		</div>
 	</div>
@@ -139,7 +139,7 @@
 		</div>
 
 	</div>
-
+	@endif
 	@formend()
 </article>
 @layout('layout.scripts')

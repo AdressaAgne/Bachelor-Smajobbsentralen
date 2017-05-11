@@ -26,7 +26,7 @@ class Migrations{
 			new Row('password', 'varchar'),
 			new Row('approved', 'tinyint', 0),
 			new Row('visible', 'tinyint', 1),
-			new Row('dob', 'date'),
+			new Row('dob', 'int(4)'),
 			new Row('mobile_phone', 'int'),
 			new Row('address', 'varchar'),
 			new Row('private_phone', 'int'),
@@ -35,6 +35,14 @@ class Migrations{
 			new Row('occupation', 'varchar'),
 			new Row('other_info', 'varchar'),
 			new Row('type', 'varchar', 0), //0 = oppdragstaker, 1 = tlfvakt, 2 = kunde
+		]);
+
+		$db->createTable('settings', [
+			new PID(),
+			new Varchar('value'),
+			new Varchar('item'),
+			new Row('item_key', 'varchar', null, true, false, 'UNIQUE'),
+			new Timestamp(),
 		]);
 
 		 $db->createTable('image', [
@@ -76,7 +84,7 @@ class Migrations{
 		
 		$db->createTable('oppdrag', [
 			new PID(),
-			new Timestamp(),
+			new Integer('time'),
 			new Integer('user_id'),
 			new Integer('cat_id'),
 			new Varchar('tid'),
@@ -100,45 +108,73 @@ class Migrations{
 		$db->insert('kategorier', [
 			[
 				'name' => 'snømåking',
-				'icon' => 'lock',
+				'icon' => 'snowflake-o',
 			],
 			[
 				'name' => 'hagearbeid',
-				'icon' => 'user',
+				'icon' => 'tree',
 			],
 			[
 				'name' => 'kjøring',
-				'icon' => 'user',
+				'icon' => 'car',
 			],
 			[
 				'name' => 'gressklipping',
-				'icon' => 'user',
+				'icon' => 'leaf',
 			],
 			[
 				'name' => 'handling',
-				'icon' => 'user',
+				'icon' => 'shopping-cart',
 			],
 			[
 				'name' => 'flytting',
-				'icon' => 'user',
+				'icon' => 'truck',
 			],
 			[
 				'name' => 'maling',
-				'icon' => 'user',
+				'icon' => 'paint-brush',
 			],
 			[
 				'name' => 'møblering',
-				'icon' => 'user',
+				'icon' => 'suitcase',
 			],
 			[
 				'name' => 'vasking',
-				'icon' => 'user',
+				'icon' => 'shower',
 			],
 			[
 				'name' => 'småarbeid',
-				'icon' => 'user',
+				'icon' => 'wrench',
 			],
 
+		]);
+		
+		$db->insert('settings', [
+			[
+				'value' => 2.50,
+				'item'  => 'Killometer', 
+				'item_key'   => 'km', 
+			],
+			[
+				'value' => 3,
+				'item'  => 'Killomter Med Tilhenger', 
+				'item_key'   => 'km_hitch', 
+			],	
+			[
+				'value' => 100,
+				'item'  => 'Timespris', 
+				'item_key'   => 'hours', 
+			],	
+			[
+				'value' => 30,
+				'item'  => 'Eget Utstyr', 
+				'item_key'   => 'equipment', 
+			],		
+			[
+				'value' => '61 10 95 80',
+				'item'  => 'Telefon Nummer', 
+				'item_key'   => 'tlf', 
+			],		
 		]);
 
 		//days starts on sunday = 0;

@@ -9,7 +9,7 @@ class Config {
     /**
     *   when true: No cache, adding /migrate and /route, missing controller checks
     */
-    public static $debug_mode = false;
+    public static $debug_mode = true;
 
 
     /**

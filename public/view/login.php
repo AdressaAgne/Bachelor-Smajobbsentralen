@@ -1,4 +1,3 @@
-@layout('layout.head', ['title' => 'Småjobbsentralen'])
 @layout('layout.head', ['title' => 'Login'])
     
     <div class="container">

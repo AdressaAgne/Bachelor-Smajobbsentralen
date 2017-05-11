@@ -21,9 +21,6 @@
 *   Direct::on([GET, POST, PATCH, PUT, DELETE, ERROR], url, callable);
 */
 
-Direct::get('/test', function(){
-    return '<h1>This is supposed to be cached lol</h1>';
-})->Cache();
 
 
 // Mainpage
@@ -32,7 +29,7 @@ Direct::get("/", 'MainController@index');
 Direct::get("/om", 'MainController@om');
 
 // All Småjobbere
-Direct::get('/smajobbere', 'SmajobberController');
+Direct::get('/smajobbere/{id?}', 'SmajobberController');
 Direct::post('/smajobbere', 'SmajobberController@post');
 
 // Bli småjobber / send inn applications
@@ -40,10 +37,17 @@ Direct::get('/blismajobber', 'SmajobberController@application');
 Direct::put('/blismajobber', 'SmajobberController@put');
 
 // Admin - Redirect helper
-Direct::get('/admin', 'AdminController');
+Direct::get('/admin', 'AdminController')->Auth();
+Direct::get('/telefonvakt/brukere', 'AdminController@brukere')->Auth();
+Direct::patch('/telefonvakt/brukere', 'AdminController@brukere_edit')->Auth();
+Direct::delete('/telefonvakt/brukere', 'AdminController@brukere_delete')->Auth();
+Direct::get('/profil', 'AdminController@profile')->Auth();
+Direct::patch('/profil', 'AdminController@profile_edit')->Auth();
 
 // Admin - Telefonvakt
+
 Direct::get('/telefonvakt/{month?}/{year?}', 'AdminController')->Auth();
+
 Direct::put('/telefonvakt/{month?}/{year?}', 'AdminController@calendar_put')->Auth();
 
 // Admin - Kunder
@@ -61,11 +65,15 @@ Direct::patch('/telefonvakt/soknader', 'ApplicationController@patch')->Auth();
 Direct::delete('/telefonvakt/soknader', 'ApplicationController@delete')->Auth();
 
 // Admin - members
-Direct::get('/telefonvakt/smajobbere', 'SmajobberController@admin');
+Direct::get('/telefonvakt/smajobbere', 'SmajobberController@admin')->Auth();
 
 // Admin - opningstider
 Direct::get('/telefonvakt/opningstider', 'SettingsController@opningstider')->Auth();
 Direct::patch('/telefonvakt/opningstider', 'SettingsController@edit')->Auth();
+
+// Admin - Priser
+Direct::get('/telefonvakt/priser', 'SettingsController@priser')->Auth();
+Direct::patch('/telefonvakt/priser', 'SettingsController@rediger_priser')->Auth();
 
 // Admin - arbeidstyper
 Direct::get('/telefonvakt/arbeidstyper', 'SettingsController@arbeidstyper')->Auth();
@@ -75,7 +83,7 @@ Direct::delete('/telefonvakt/arbeidstyper', 'SettingsController@delete_arbeidsty
 
 Direct::get("/login", 'LoginController@index');
 Direct::post("/login", 'LoginController');
-Direct::get("/logout", 'LoginController');
+Direct::get("/logout", 'LoginController')->Auth();
 
 // Errors
 Direct::error('301', 'ErrorController@noaccess');

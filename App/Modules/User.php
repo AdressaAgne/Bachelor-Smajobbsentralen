@@ -20,15 +20,37 @@ class User extends DB {
     public function get_oppdrag(){
         
         if(empty($this->oppdrag)){
-            $this->oppdrag = $this->query('SELECT * FROM oppdrag AS o
+            $this->oppdrag = $this->query('SELECT c.name, c.icon, o.tid, o.km, o.hitch, o.equipment, o.info, o.time FROM oppdrag AS o
                                            JOIN kategorier AS c ON c.id = o.cat_id
+                                            WHERE o.user_id = :user_id
                                            GROUP BY o.id',
             ['user_id' => $_SESSION['uuid']])->fetchAll();
         }
         
-        return array_filter($this->oppdrag, function($value){
-            return $value['for_user_id'] == $this->id;
-        });
+        $priser = $this->all('pris');
+        $priser = array_combine(array_column($priser, 'item_key'), array_column($priser, 'value'));
+        $total = 0;
+        foreach ($this->oppdrag as $key => &$value) {
+            $pris = 0;
+            // Times pris
+            if($value['equipment'] == 1){
+                $pris += ($value['tid'] / 60) * ($priser['hours'] + $priser['equipment']);
+            } else {
+                $pris += ($value['tid'] / 60) * $priser['hours'];
+            }
+            
+            if($value['hitch'] == 1){
+                $pris += $value['km'] * $priser['km_hitch'];
+            } else {
+                $pris += $value['km'] * $priser['km'];
+            }
+            
+            $value['pris'] = (int)$pris;
+            $total += (int)$pris;
+        }
+        
+        
+        return ['oppdrag' => $this->oppdrag, 'total' => $total];
         
     }
     
@@ -39,6 +61,10 @@ class User extends DB {
                                  ['id' => $this->id])->fetchAll();
 
         return array_column($work, 'name');
+    }
+    
+    public function full_name(){
+        return ucwords($this->name . ' ' . $this->surname);
     }
     
 }

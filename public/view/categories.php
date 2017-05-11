@@ -16,7 +16,7 @@
 			@foreach($global->categories() as $cat)
 				<div class="col-12">
 					<div class="form-element">
-						<p>{{$cat['name']}}</p>
+						<p><i class="fa fa-lg fa-{{$cat['icon']}}"></i> {{$cat['name']}}</p>
 					</div>
 					<div class="form-element form-element--right">
 						<input type="button" value="Fjern" class="accent" id="{{$cat['id']}}">
@@ -37,6 +37,65 @@
 						<label>Skriv inn ønsket navn
 							<input type="text" name="name" placeholder="Skriv inn ønsket navn">
 						</label>
+					</div>
+					<div class="form-element col-12">
+						<h2>Velg arbeidstype bilde</h2>
+						<div class="col-12">
+							<input class="radio" type="radio" name="arbeidstype_icon" id="icon-1" checked value="user">
+							<label class="radio" for="icon-1"><i class="fa fa-lg fa-user"></i> Person</label><br>
+						</div>
+						
+						<div class="col-12">
+							<input class="radio" type="radio" name="arbeidstype_icon" id="icon-2" value="snowflake-o">
+							<label class="radio" for="icon-2"><i class="fa fa-lg fa-snowflake-o"></i> Snøfnugg / Snømøking</label><br>
+						</div>
+						
+						<div class="col-12">
+							<input class="radio" type="radio" name="arbeidstype_icon" id="icon-3" value="car">
+							<label class="radio" for="icon-3"><i class="fa fa-lg fa-car"></i> Bil / Kjøring</label><br>
+						</div>
+						
+						<div class="col-12">
+							<input class="radio" type="radio" name="arbeidstype_icon" id="icon-4" value="truck">
+							<label class="radio" for="icon-4"><i class="fa fa-lg fa-truck"></i> Lastebil / Flytting</label><br>
+						</div>
+						
+						<div class="col-12">
+							<input class="radio" type="radio" name="arbeidstype_icon" id="icon-5" value="paint-brush">
+							<label class="radio" for="icon-5"><i class="fa fa-lg fa-paint-brush"></i> Malekost / Maling</label><br>
+						</div>
+						
+						<div class="col-12">
+							<input class="radio" type="radio" name="arbeidstype_icon" id="icon-6" value="suitcase">
+							<label class="radio" for="icon-6"><i class="fa fa-lg fa-suitcase"></i> Koffert / Møblering</label><br>
+						</div>
+						
+						<div class="col-12">
+							<input class="radio" type="radio" name="arbeidstype_icon" id="icon-7" value="leaf">
+							<label class="radio" for="icon-7"><i class="fa fa-lg fa-leaf"></i> Blad / Hage</label><br>
+						</div>
+						
+						<div class="col-12">
+							<input class="radio" type="radio" name="arbeidstype_icon" id="icon-8" value="tree">
+							<label class="radio" for="icon-8"><i class="fa fa-lg fa-tree"></i> Tre / Hage</label><br>
+						</div>
+						
+						<div class="col-12">
+							<input class="radio" type="radio" name="arbeidstype_icon" id="icon-9" value="wrench">
+							<label class="radio" for="icon-9"><i class="fa fa-lg fa-wrench"></i> Skiftnøkkel / Småarbied</label><br>
+						</div>
+						
+						<div class="col-12">
+							<input class="radio" type="radio" name="arbeidstype_icon" id="icon-10" value="shopping-cart">
+							<label class="radio" for="icon-10"><i class="fa fa-lg fa-shopping-cart"></i> Vogn / Handling</label><br>
+						</div>
+						
+						<div class="col-12">
+							<input class="radio" type="radio" name="arbeidstype_icon" id="icon-11" value="shower">
+							<label class="radio" for="icon-11"><i class="fa fa-lg fa-shower"></i> vann / vasking</label><br>
+						</div>
+						
+						
 					</div>
 					<div class="form-element col-12">
 						<input type="submit" class="" value="legg til">

@@ -2,12 +2,24 @@
 
 namespace App\Controllers;
 
-use View, NormalController, Config, Direct;
+use View, NormalController, Config, Direct, Request;
 
 class SmajobberController extends Controller{
 
-	public function smajobbere(){
-		return View::make('smajobber', ['smajobbere' => $this->get_smajobbere()]);
+	public function smajobbere(Request $data){
+		if(isset($data->get->id)) {
+			$smajobbere = $this->query("SELECT u.name, u.surname, u.mobile_phone AS mobil, u.private_phone AS tlf
+			FROM users AS u
+			INNER JOIN user_category AS uc ON u.id = uc.user_id
+			INNER JOIN kategorier AS k ON uc.category_id = k.id
+			WHERE uc.category_id = :id AND u.approved = 1 AND u.visible = 1
+			GROUP BY u.id
+			ORDER BY u.name", [ 'id' => $data->get->id], 'User')->fetchAll();;
+		} else {
+			$smajobbere = $this->get_smajobbere();
+		}	
+			
+		return View::make('smajobber', ['smajobbere' => $smajobbere]);
 	}
 	
 	public function admin(){
@@ -74,11 +86,12 @@ class SmajobberController extends Controller{
 	
         
         if ($validateForm){
+			$username = strtolower(substr($data['firstname'], 0, 3) . substr($data['lastname'], 0, 3) . substr($data['date'], 2, 3));
             $id = $this->insert('users', [
                 [
                     'name'          => $data['firstname'],
                     'surname'       => $data['lastname'],
-                    'mail'         => $data['email'],
+                    'mail'          => $data['email'],
                     'dob'           => $data['date'],
                     'mobile_phone'  => $data['mob'],
                     'private_phone' => $data['priv'],
@@ -87,6 +100,7 @@ class SmajobberController extends Controller{
                     'occupation'    => $data['occupation'],
                     'other_info'    => $data['otherinfo'],
                     'address'    	=> $data['address'],
+                    'username'    	=> $username,
                 ]
             ]);
 			

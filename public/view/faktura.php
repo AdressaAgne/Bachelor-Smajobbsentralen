@@ -1,6 +1,5 @@
 @layout('layout.head', ['title' => 'Småjobbsentralen'])
 @layout('layout.telefonvakt_menu')
-
 <div class="row">
     <h1>Faktura</h1>
     <h2>Lag en fakura for en kunde</h2>
@@ -11,23 +10,23 @@
     
     @if(count($members) == 0)
         <h1>Ingen kunder enda</h1>
-        <p><a href="{{$source}}/kunder">Legg til kunde</a></p>
+        <p><a href="{{$source}}/oppdragstaker/kunder">Legg til kunde</a></p>
     @endif
     
     @foreach($members as $kunde)
         <div class="col-12">
             <div class="col-12 smajobbere-list">
-                
-                <h1>{{$kunde->name}}</h1>
-                <p>Telefon: {{$kunde->mobile_phone}}</p>
-                @if($kunde->private_phone != 0)
-                <p>Privat: {{$kunde->private_phone}}</p>
-                @endif
-                <p>Address: <address>{{$kunde->address}}</address></p>
-                
+                <div class="info" id='kunde-info-{{$kunde->id}}'>
+                    <h1>{{$kunde->name}}</h1>
+                    <p>Telefon: {{$kunde->mobile_phone}}</p>
+                    @if($kunde->private_phone != 0)
+                    <p>Privat Telefon: {{$kunde->private_phone}}</p>
+                    @endif
+                    <p>Adresse: <address>{{$kunde->address}}</address></p>
+                </div>
                 <div class="col-12">
                     <h2>Oppdrag</h2>
-                    <table>
+                    <table id='kunde-priser-{{$kunde->id}}' style="width: 100%;">
                         <thead>
                             <tr>
                                 <td>Dato:</td>
@@ -35,19 +34,33 @@
                                 <td>Kilometer</td>
                                 <td>Tid</td>
                                 <td>Merknad</td>
+                                <td>Pris</td>
                             </tr>
                         </thead>
-                        @foreach($kunde->get_oppdrag() as $oppdrag)
+                        
+                        <?php $k_oppdrag = $kunde->get_oppdrag(); ?>
+                        @foreach($k_oppdrag['oppdrag'] as $oppdrag)
                             
                             <tr>
-                                <td>{{$oppdrag['time']}}</td>
-                                <td>{{$oppdrag['name']}}</td>
+                                <td>{{date('d/m/Y', $oppdrag['time'])}}</td>
+                                <td><i class="fa fa-{{$oppdrag['icon']}}"></i> {{$oppdrag['name']}}</td>
                                 <td>{{$oppdrag['km']}}</td>
                                 <td>{{$oppdrag['tid']}}</td>
                                 <td>{{$oppdrag['info']}}</td>
+                                <td>{{$oppdrag['pris']}},-</td>
                             </tr>
                         
                         @endforeach
+                        
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>Sum: </td>
+                            <td>{{$k_oppdrag['total']}},-</td>
+                        </tr>
+                        
                     </table>
                     
                     
@@ -97,15 +110,57 @@
                 </div>    
                 @formend()
                 
-                @form('', 'delete')
-                    <input type="hidden" name="kunde_id" value="{{$kunde->id}}">
-                    <div class="form-element col-6">
-                        <input type="submit" class="accent" value="Slett kunde">
-                    </div>
-                @formend()
+                
+                <div class="form-element col-6">
+                    <input type="submit" name="delete" data-id="{{$kunde->id}}" class="accent" value="Slett kunde">
+                </div>
+                
+                <div class="form-element col-6">
+                    <input type="submit" name="print" data-id="{{$kunde->id}}" value="Print ut faktura">
+                </div>
+                
                 
             </div>
         </div>
     @endforeach
 </div>
+@layout('layout.scripts')
+<script>
+    
+    $('input[name=print]').click(function(){
+        newWin = window.open("");
+        newWin.document.write($('#kunde-info-'+$(this).data('id'))[0].outerHTML);
+        newWin.document.write($('#kunde-priser-'+$(this).data('id'))[0].outerHTML);
+        newWin.print();
+        newWin.close();
+    });
+    
+    $('input[name=delete]').click(function() {
+        var that = $(this);
+        showDialog('Vil du slette denne kunden?', {
+            Ja : function () {
+                $.ajax({
+                    url : "",
+                    method : 'post',
+                    data : {
+                        '_method' : 'delete',
+                        '_token'  : '@csrf()',
+                        'kunde_id' 	  : that.data("id")
+                    },
+                    success : function(data){
+                        that.parent().parent().slideUp();
+
+                    },
+                    error : function(){
+                        showDialog('Vi klarte ikke å fjerne kunden. prøv igjen senere', {ok : ''})
+                    }
+                });//ajax
+            },
+            Nei : function () {
+                
+            }
+        });
+    });
+    
+</script>
 @layout('layout.foot')

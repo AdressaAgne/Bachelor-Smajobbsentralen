@@ -13,7 +13,7 @@
                     </div>
                     <div class="col-6 col-m-12 border-right">
                         <p>{{$open['isOpen']}} nå</p>
-                        <p class="font-big"><strong><i class="fa fa-phone"></i> 61 10 95 50</strong></p>
+                        <p class="font-big"><strong><i class="fa fa-phone"></i> {{$global->get_priser()['tlf']['value']}}</strong></p>
                     </div>
                     <div class="col-6 col-m-12">
                         <small class="font-small">Åpningstider: </small>
@@ -32,10 +32,12 @@
                 <h1>Hva kan vi hjelpe deg med?</h1>
                 @foreach($cats as $cat)
                 <div class="col-4">
-                    <div class="col-12 brick brick--big">
-                        <div>{{ucfirst($cat['name'])}}</div>
-                        <i class="fa fa-{{$cat['icon']}}"></i> 
-                    </div>
+                    <a href="/smajobbere/{{$cat['id']}}">
+                        <div class="col-12 brick brick--big">
+                            <div>{{ucfirst($cat['name'])}}</div>
+                            <i class="fa fa-{{$cat['icon']}}"></i> 
+                        </div>
+                    </a>
                 </div>
                 @endforeach
             </div>

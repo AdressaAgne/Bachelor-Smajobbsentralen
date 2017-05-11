@@ -25,7 +25,15 @@ class Request {
     }
     
     public function get_beardcrubs(){
-        return explode('/', $this->url());
+        $url = explode('/', $this->url());
+        array_shift($url);
+        $concat = '';
+        foreach ($url as $key => $value) {
+            $url[$key] = "<li><a href='/$concat$value'>$value</a></li>";
+            $concat .= $value.'/';
+        }
+        
+        return '<ul class="breadcrubs">'.implode('<li> > </li>', $url).'</ul>';
     }
     
     public function method(){

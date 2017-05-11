@@ -109,9 +109,14 @@ class Account extends DB{
 
         if(!password_verify($pw, $user->password)) return 'Old password is wrong';
 
-        $msg = DB::update(['password' => password_hash($newPw, PASSWORD_DEFAULT)], 'users', ['id' => $user->id]);
+        $msg = DB::updateWhere('users', ['password' => password_hash($newPw, PASSWORD_DEFAULT)], ['id' => $user->id]);
 
         return $msg;
+    }
+    
+    public static function changePasswordAdmin($id, $pw, $pw2){
+        if($pw !== $pw2) return 'The new passwords does not match';
+        $msg = DB::updateWhere('users', ['password' => password_hash($pw, PASSWORD_DEFAULT)], ['id' => $id]);
     }
 
     // @TODO

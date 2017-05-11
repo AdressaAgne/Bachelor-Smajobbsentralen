@@ -17,17 +17,6 @@ class SettingsController extends Controller {
 
     public function edit(Request $data){
         
-        foreach($data->post->from as $day => $time){
-            
-        }
-        // $data->post->from = array_filter($data->post->from, function(&$time){
-        //     return !empty($time);
-        // });
-        // 
-        // $data->post->to = array_filter($data->post->to, function(&$time){
-        //     return !empty($time);
-        // });
-        // 
         foreach ($data->post->to as $day => $time) {
             $this->query('INSERT INTO opningstider (day, from_time, to_time) 
             VALUES(:day, :from, :to)
@@ -53,10 +42,26 @@ class SettingsController extends Controller {
         $this->insert('kategorier',[
             [
                 'name' => $data->post->name,
-                'icon' => isset($data->post->icon) ? $data->post->icon : "user"
+                'icon' => isset($data->post->arbeidstype_icon) ? $data->post->arbeidstype_icon : "user"
             ]
         ]);
         
         return Direct::re('/telefonvakt/arbeidstyper');
     }
+    
+    
+    public function priser() {
+        return View::make('priser');
+        
+    }
+    
+    public function rediger_priser(Request $data){
+        foreach ($data->post->key as $key => $value) {
+            $this->updateWhere('settings', ['value' => $data->post->value[$key]], ['item_key' => $value]);
+        }
+        
+        
+        return Direct::re('/telefonvakt/priser');
+    }
+    
 }//class
