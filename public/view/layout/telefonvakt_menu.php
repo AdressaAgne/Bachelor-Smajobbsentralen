@@ -1,6 +1,5 @@
 <nav class="nav-tlfvakt">
 	<ul>
-		<li><a href="{{$source}}/profil">Din Profile</a></li>
 		@if($user->type == 1 || $user->type == 3)
 		<li class="header">Telefonvakt</li>
 		<li><a href="{{$source}}/telefonvakt/brukere">Alle Brukere</a></li>
@@ -16,6 +15,8 @@
 		<li><a href="{{$source}}/oppdragstaker/kunder">Ny kunde</a></li>
 		<li><a href="{{$source}}/oppdragstaker/faktura">Faktura</a></li>
 		@endif
+		<li class="header">{{ $user->full_name() }}</li>
+		<li><a href="{{$source}}/profil">Din Profil</a></li>
 		<li><a href="{{$source}}/logout">Logg ut</a></li>
 	</ul>
 </nav>

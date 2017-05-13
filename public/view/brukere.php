@@ -39,6 +39,10 @@
                             <input class="checkbox" type="checkbox" @checked($bruker->type == 0 || $bruker->type == 3) name="smajobber" id="smajobber-{{$bruker->id}}">
                             <label class="checkbox" for="smajobber-{{$bruker->id}}">Småjobber</label>
                         </div>
+                        <div class="form-element col-6">
+                            <input class="checkbox" type="checkbox" @checked($bruker->visible == 1) name="visible" id="visible-{{$bruker->id}}">
+                            <label class="checkbox" for="visible-{{$bruker->id}}">Synlig i søk</label>
+                        </div>
                         </div>
 
                         <div class="form-element col-6">

@@ -1,7 +1,8 @@
 <nav class="nav nav--fixed">
   <div class="container">
-	<ul class="nav--left ">
-		<li class="nav__item"><a href="{{$source}}/">Hjem</a></li><!-- legg inn logo TODO -->
+	<ul class="nav--left">
+        <li class="nav__item--burger">Meny</li>
+		<li class="nav__item"><a href="{{$source}}/">Hjem</a></li>
 		<li class="nav__item"><a href="{{$source}}/smajobbere">Småjobbere</a></li>
 		<li class="nav__item"><a href="{{$source}}/blismajobber">Bli Småjobber</a></li>
 		<li class="nav__item"><a href="{{$source}}/om">Om Smajobbsentralen</a></li>
@@ -12,7 +13,6 @@
         @else    
             <li class="nav__item"><a href="{{$source}}/admin">Login</a></li>
         @endif
-		<!-- <li class="nav__item"><a href=""><span class="liten">A</span>-A</a></li> -->
 	</ul>
   </div>
 </nav>

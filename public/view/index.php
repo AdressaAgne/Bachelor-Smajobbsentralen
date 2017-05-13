@@ -31,7 +31,7 @@
             <div class="row">
                 <h1>Hva kan vi hjelpe deg med?</h1>
                 @foreach($cats as $cat)
-                <div class="col-4">
+                <div class="col-4 col-m-6">
                     <a href="/smajobbere/{{$cat['id']}}">
                         <div class="col-12 brick brick--big">
                             <div>{{ucfirst($cat['name'])}}</div>

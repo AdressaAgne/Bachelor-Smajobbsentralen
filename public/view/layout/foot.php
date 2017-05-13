@@ -1,3 +1,15 @@
+<script>
+    var menu = document.querySelector('.nav');
+	document.querySelector('.nav__item--burger').addEventListener('click', function(){
+		var classes = menu.className.split(' ');
+		if(classes.indexOf('active') < 0){
+			calsses = classes.push('active');
+		} else {
+			classes.splice(classes.indexOf('active'), 1);
+		}
+		menu.className = classes.join(' ');
+	});
+</script>
 	</div><!-- /container-fluid -->
 	<footer>
 		<div class="row">

@@ -27,12 +27,14 @@ class AdminController extends CalendarController {
     public function brukere_edit(Request $data){
         
         if(isset($data->post->smajobber) && isset($data->post->tlfvakt)){
-            $this->updateWhere('users', ['type' => 3], ['id' => $data->post->user_id]);
+            $this->updateWhere('users', ['type' => 3, 'visible' => isset($data->post->visible)], ['id' => $data->post->user_id]);
         } else if (isset($data->post->smajobber)) {
-            $this->updateWhere('users', ['type' => 0], ['id' => $data->post->user_id]);
+            $this->updateWhere('users', ['type' => 0, 'visible' => isset($data->post->visible)], ['id' => $data->post->user_id]);
         } else if (isset($data->post->tlfvakt)) {
-            $this->updateWhere('users', ['type' => 1], ['id' => $data->post->user_id]);
+            $this->updateWhere('users', ['type' => 1, 'visible' => isset($data->post->visible)], ['id' => $data->post->user_id]);
         }
+        
+        
         if(!empty($data->post->pw1) && !empty($data->post->pw2))
             Account::changePasswordAdmin($data->post->user_id, $data->post->pw1, $data->post->pw2);
         Direct::re('/telefonvakt/brukere');
