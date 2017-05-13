@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<meta charset="UTF-8">
 	<meta name="author" content="Agne Ødegaard, Øyvind Grimstad & Thomas Hesselberg">
 	<meta name="description" content="Vi formidler rimelig hjelp til eldre og uføre">
@@ -19,6 +20,8 @@
 	<!-- Metas for Twitter share. -->
 	<meta name="twitter:url" content="https://smajobb.agne.no">
 	<meta name="twitter:title" content="Småjobbsentralen">
+	
+	<meta name="generator" content="My bare hands and some magic">
 	
 	<!-- Viewport -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
