@@ -43,6 +43,7 @@ Direct::patch('/telefonvakt/brukere', 'AdminController@brukere_edit')->Auth();
 Direct::delete('/telefonvakt/brukere', 'AdminController@brukere_delete')->Auth();
 Direct::get('/profil', 'AdminController@profile')->Auth();
 Direct::patch('/profil', 'AdminController@profile_edit')->Auth();
+Direct::post('/profil', 'AdminController@profile_edit_info')->Auth();
 
 // Admin - Telefonvakt
 

@@ -45,10 +45,48 @@ class AdminController extends CalendarController {
     }
     
     public function profile(){
-        return ['profile'];
+        return View::make('profile');
     }
+    
+    // Patch Edit password
     public function profile_edit(Request $data){
-        return $data;
+        Account::changePasswordAdmin(Account::get_id(), $data->post->pw1, $data->post->pw2);
+        return Direct::re('/profil');
+    }
+    
+    // post edit info
+    public function profile_edit_info(Request $data){
+
+        $this->updateWhere('users', [
+            'name'          => $data->post->firstname,
+            'surname'       => $data->post->lastname,
+            'mail'          => $data->post->email,
+            'dob'           => $data->post->date,
+            'mobile_phone'  => $data->post->mob,
+            'private_phone' => $data->post->priv,
+            'car'           => $data->post->car,
+            'hitch'         => $data->post->hitch,
+            'occupation'    => $data->post->occupation,
+            'other_info'    => $data->post->otherinfo,
+            'address'    	=> $data->post->address,
+            'visible'    	=> isset($data->post->visible),
+        ], ['id' => Account::get_id()]);
+        
+        
+        $this->deleteWhere('user_category', 'user_id', Account::get_id());
+        
+        foreach($data->post->work as $value){
+            $this->query('INSERT INTO user_category (user_id, category_id) VALUES(:u, :c) 
+                ON DUPLICATE KEY
+                    UPDATE
+                        user_id = :u AND category_id = :c', [
+                'u' => Account::get_id(),
+                'c' => $value,
+            ]);
+        }
+        
+        return Direct::re('/profil');
+    
     }
     
     public function telefonvakt(Request $request){

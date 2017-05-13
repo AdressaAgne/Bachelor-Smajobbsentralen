@@ -56,6 +56,13 @@ img
 	height: 0
 	clear: both
 
+.#{$iron-grid-col-name}--center
+	margin-left: auto
+	margin-right: auto
+	float: none
+	padding-left: 0px
+
+
 // Large
 @media (min-width: $iron-grid-breakpoint-large)
 	@for $i from 1 to $iron-grid-columns+1
@@ -74,12 +81,6 @@ img
 	@for $i from 1 to $iron-grid-columns+1
 		.#{$iron-grid-col-name}-#{$iron-grid-breakpoint-medium-name}-#{$i}
 			width: (100% / $iron-grid-columns) * $i
-
-.#{$iron-grid-col-name}--center
-	margin-left: auto
-	margin-right: auto
-	float: none
-	padding-left: 0px
 
 // Phone
 @media (max-width: $iron-grid-breakpoint-small)
