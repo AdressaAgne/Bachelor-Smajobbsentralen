@@ -161,7 +161,7 @@
 </div>
 <div class="row">
     <div class="form-element col-12">
-        <input type="submit" value="Large din profil" name="_submit">
+        <input type="submit" value="Lagre din profil" name="_submit">
     </div>
 </div>
 @formend()

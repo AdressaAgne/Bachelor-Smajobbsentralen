@@ -91,8 +91,8 @@
                 </div>
                 <div class="col-12">
                     <div class="form-element col-6">
-                        <label>Tid i minuter:
-                            <input type="text" placeholder="minuter" name="time">
+                        <label>Tid i minutter:
+                            <input type="text" placeholder="Minutter" name="time">
                         </label>
                     </div>
                     <div class="form-element col-6">

@@ -31,7 +31,7 @@
 	
 	<title>{{ $title }}</title>
 	
-	<link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
 	<link rel="stylesheet" href="{{$assets}}/css/main.css">
 	<link rel="stylesheet" href="{{$assets}}/css/font-awesome.min.css">
 </head>

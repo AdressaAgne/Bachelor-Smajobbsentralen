@@ -39,7 +39,7 @@
 						</label>
 					</div>
 					<div class="form-element col-12">
-						<h2>Velg arbeidstype bilde</h2>
+						<h2>Velg arbeidstypebilde</h2>
 						<div class="col-12">
 							<input class="radio" type="radio" name="arbeidstype_icon" id="icon-1" checked value="user">
 							<label class="radio" for="icon-1"><i class="fa fa-lg fa-user"></i> Person</label><br>
