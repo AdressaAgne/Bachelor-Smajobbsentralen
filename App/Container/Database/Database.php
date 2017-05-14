@@ -15,6 +15,21 @@ class Database extends DBhelpers{
         return self::query('SELECT '.implode(', ', $rows).' FROM '.$table)->fetchAll();
     }
     
+    /**
+     * Select from a table
+     *
+     * @method select
+     *
+     * @author [Agne Ødegaard]
+     *
+     * @param  [string] $table [sql table name]
+     * @param  [array] $rows  [the rows you want back in array]
+     * @param  [array] $data  [WHERE key = value]
+     * @param  string $join  [AND | OR]
+     * @param  [string] $class [The class you want the rows in]
+     *
+     * @return [type]        [description]
+     */
     public static function select($table, array $rows = ['*'], $data = null, $join = 'AND', $class = null){
         
         if(!($join == 'AND' || $join == 'OR')){

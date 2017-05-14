@@ -15,9 +15,15 @@ class Route {
     ];
     
     /**
-     * Store all Directs in a array
-     * @param  object $route Direct
-     * @return string URI
+     * get the current route for the page the suer is on.
+     *
+     * @method getCurrentRoute
+     *
+     * @author [Agne Ødegaard]
+     *
+     * @param  [type]          $route [description]
+     *
+     * @return current page, route and filters
      */
     public static function getCurrentRoute($route){
         
@@ -62,6 +68,15 @@ class Route {
         }
     }
     
+    /**
+     * check if there is any missing controller methods, that is not defined
+     *
+     * @method checkForMissingMethods
+     *
+     * @author [Agne Ødegaard]
+     *
+     * @return [array]                 [contains data about the missing controlelrs]
+     */
     private static function checkForMissingMethods(){
         $missing = [];
             
@@ -81,6 +96,18 @@ class Route {
         }
     }
     
+    /**
+     * check a route and method exists
+     *
+     * @method method
+     *
+     * @author [Agne Ødegaard]
+     *
+     * @param  [string] $method [get, post, put, patch, delete]
+     * @param  [string] $route  [/route/name]
+     *
+     * @return [array] the current route
+     */
     public static function method($method, $route){
         
         if(array_key_exists($route, self::$routes[$method])){
@@ -100,6 +127,16 @@ class Route {
         }
     }
     
+    /**
+     * check if the error page exists and return it.
+     *
+     * @method set_error
+     *
+     * @author [Agne Ødegaard]
+     *
+     * @param  [integer]    $error [404, 401, 503 etc..]
+     * @param  string    $route [url route]
+     */
     public static function set_error($error, $route = ''){
         
         return array_key_exists($error, self::$routes[ERROR]) ? self::$routes[ERROR][$error] : ['error' => "$error: Please set up a $error page", 'trace' => $route];

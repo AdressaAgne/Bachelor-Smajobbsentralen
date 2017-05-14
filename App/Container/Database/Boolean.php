@@ -4,6 +4,16 @@ namespace App\Container\Database;
 
 use DB;
 
+/**
+ * Return a new boolean row to table
+ *
+ * @method __construct
+ *
+ * @author [Agne Ødegaard]
+ *
+ * @param  [string]      $name    [row name]
+ * @param  string     $default    [default string value]
+ */
 class Boolean extends DB{
     
     function __construct($name, $default = 0){

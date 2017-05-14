@@ -2,6 +2,15 @@
 
 namespace App\Container\Interfaces;
     
+/**
+ * an interface for a CRUD controller
+ *
+ * @method index
+ *
+ * @author [Agne Ødegaard]
+ *
+ * @return [type] [description]
+ */
 interface StackController {
     
     public function index();

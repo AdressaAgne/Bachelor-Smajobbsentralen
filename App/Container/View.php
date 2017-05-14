@@ -5,12 +5,37 @@ use Render, BaseController, Account, Direct;
 
 class View {
 
+	/**
+	 * make a view, and render the code with Render class
+	 *
+	 * @method make
+	 *
+	 * @author [Agne Ødegaard]
+	 *
+	 * @param  [string] $url  [file]
+	 * @param  [array] $vars [variables to send to file]
+	 *
+	 * @return string of rendered code
+	 */
 	public static function make($url, $vars = null){
 		$url = preg_replace("/\\./uimx", "/", $url);
 
 		return self::includeFile("public/view/{$url}.php", $vars);
 	}
 
+	/**
+	 * return a view that requires authentication
+	 *
+	 * @method auth
+	 *
+	 * @author [Agne Ødegaard]
+	 *
+	 * @param  [string] $url    [file to render]
+	 * @param  string $direct [url to go to if user is not Authenticated]
+	 * @param  [array] $vars   [variables to send to file]
+	 *
+	 * @return [type]         [description]
+	 */
 	public static function auth($url, $direct = '/login', $vars = null){
 		if(Account::isLoggedIn()){
 			return self::make($url, $vars);

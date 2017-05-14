@@ -4,6 +4,14 @@ namespace App\Container\Database;
 
 use DB;
 
+/**
+ * Return a new row to table
+ *
+ * @method __construct
+ *
+ * @author [Agne Ødegaard]
+ *
+ */
 class Row extends DB{
     
     public $name;

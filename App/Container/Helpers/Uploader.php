@@ -33,6 +33,15 @@ class Uploader {
         $this->filepath = $file;
     }//Contstruct()
     
+    /**
+     * Upload a file to the user files folder and compress it.
+     *
+     * @method upload
+     *
+     * @author [Agne Ødegaard]
+     *
+     * @return [type] [description]
+     */
     public function upload(){
         $file = $this->filepath;
                 

@@ -41,10 +41,32 @@ class Render {
         $this->code = $this->render($code);
     }
 
+    /**
+     * static callable for this class.
+     *
+     * @method code
+     *
+     * @author [Agne Ødegaard]
+     *
+     * @param  [string] $code [file to convert]
+     *
+     * @return [string]       [converted file string]
+     */
     public static function code($code){
         return new Render($code);
     }
 
+    /**
+     * add a function for our fake php syntax
+     *
+     * @method addFunction
+     *
+     * @author [Agne Ødegaard]
+     *
+     * @param  [type]      $name        [description]
+     * @param  [type]      $regex       [description]
+     * @param  [type]      $replacement [description]
+     */
     private function addFunction($name, $regex, $replacement){
         $this->functions[$name] = [
             'regex' => $regex,
@@ -52,6 +74,17 @@ class Render {
         ];
     }
 
+    /**
+     * convert the fake php to real php
+     *
+     * @method render
+     *
+     * @author [Agne Ødegaard]
+     *
+     * @param  [type] $code [description]
+     *
+     * @return [type]       [description]
+     */
     private function render($code){
         foreach($this->functions as $key => $val){
              $code = preg_replace("/{$val['regex']}/{$this::$regex}", $val['replacement'], $code);
@@ -59,11 +92,29 @@ class Render {
 
         return $code;
     }
-
+    
+    /**
+     * when this class is called, return the contruct code.
+     *
+     * @method __toString
+     *
+     * @author [Agne Ødegaard]
+     *
+     * @return string     [description]
+     */
     public function __toString(){
         return $this->code;
     }
 
+    /**
+     * echo out the csrf token
+     *
+     * @method csrf
+     *
+     * @author [Agne Ødegaard]
+     *
+     * @return [string] [csrf token]
+     */
     public static function csrf(){
         echo $_SESSION['_token'];
     }
@@ -90,14 +141,47 @@ class Render {
         }
     }
 
+    /**
+     * if the user is logged in, call it with @isLoggedIn
+     *
+     * @method isLoggedIn
+     *
+     * @author [Agne Ødegaard]
+     *
+     * @return boolean    [is the user logged inn?]
+     */
     public static function isLoggedIn(){
         return Account::isLoggedIn();
     }
 
+    /**
+     * format text, adding a p tag for each new line \n
+     *
+     * @method format
+     *
+     * @author [Agne Ødegaard]
+     *
+     * @param  [string] $str [text]
+     *
+     * @return string text
+     */
     public static function format($str){
         echo "<p>".preg_replace('/\\n/', '</p><p>', $str)."</p>";
     }
 
+    /**
+     * echo out a form, with method, action and attributes
+     *
+     * @method form
+     *
+     * @author [Agne Ødegaard]
+     *
+     * @param  string $page   [action]
+     * @param  string $method [post, put, get, patch, delete]
+     * @param  [array] $attrs  [array of attributes]
+     *
+     * @return void
+     */
     public static function form($page = "", $method = "post", $attrs = null){
         $method = strtoupper($method);
         $token = $_SESSION['_token'];
@@ -120,17 +204,61 @@ class Render {
 
     }
 
+    /**
+     * echo end of form tag
+     *
+     * @method formend
+     *
+     * @author [Agne Ødegaard]
+     *
+     * @return void
+     */
     public static function formend(){
         echo "</form>";
     }
 
+    /**
+     * echo checked if condition $i is met
+     *
+     * @method checked
+     *
+     * @author [Agne Ødegaard]
+     *
+     * @param  [boolean]  $i [condition]
+     *
+     * @return void
+     */
     public static function checked($i){
         if($i) echo 'checked';
     }
+    
+    /**
+     * echo selected if condition $i is met
+     *
+     * @method selected
+     *
+     * @author [Agne Ødegaard]
+     *
+     * @param  [boolean]  $i [condition]
+     *
+     * @return void
+     */
     public static function selected($i){
         if($i) echo 'selected';
     }
     
+    /**
+     * get x sentences in a text
+     *
+     * @method sub
+     *
+     * @author [Agne Ødegaard]
+     *
+     * @param  [string]  $msg       [text]
+     * @param  integer $sentences [number of sentences]
+     *
+     * @return void
+     */
     public static function sub($msg, $sentences = 1){
     	echo implode(".", array_slice(explode('.', $msg), 0, $sentences));
     }    
