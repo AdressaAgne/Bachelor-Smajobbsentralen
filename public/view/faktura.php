@@ -35,6 +35,7 @@
                                 <td>Tid</td>
                                 <td>Merknad</td>
                                 <td>Pris</td>
+                                <td></td>
                             </tr>
                         </thead>
                         
@@ -48,6 +49,7 @@
                                 <td>{{$oppdrag['tid']}}</td>
                                 <td>{{$oppdrag['info']}}</td>
                                 <td>{{$oppdrag['pris']}},-</td>
+                                <td><button class="accent" data-id="{{$oppdrag['id']}}" id="delete-oppdrag-{{$oppdrag['id']}}">Slett</button></td>
                             </tr>
                         
                         @endforeach
@@ -59,6 +61,7 @@
                             <td></td>
                             <td>Sum: </td>
                             <td>{{$k_oppdrag['total']}},-</td>
+                            <td></td>
                         </tr>
                         
                     </table>
@@ -82,7 +85,7 @@
                     </div>
                     <div class="form-element col-4 col-m-6">    
                         <input type="checkbox" name="equipment" id="equipment-{{$kunde->name}}" class="checkbox">
-                        <label for="equipment-{{$kunde->name}}" class="checkbox">brukte du egent utstryt?</label>
+                        <label for="equipment-{{$kunde->name}}" class="checkbox">brukte du egent utstyr?</label>
                     </div>
                 </div>
                 <div class="col-12">
@@ -127,10 +130,40 @@
 @layout('layout.scripts')
 <script>
     
+    $('[id^=delete-oppdrag-]').click(function() {
+        var that = $(this);
+        showDialog('Vil du slette dette oppdraget?', {
+            Ja : function () {
+                $.ajax({
+                    url : "",
+                    method : 'post',
+                    data : {
+                        '_method' : 'post',
+                        '_token'  : '@csrf()',
+                        'id' 	  : that.data("id")
+                    },
+                    success : function(data){
+                        that.parent().parent().slideUp().remove();
+
+                    },
+                    error : function(){
+                        showDialog('Vi klarte ikke å seltte oppdraget. prøv igjen senere', {ok : ''})
+                    }
+                });//ajax
+            },
+            Nei : function () {
+                
+            }
+        });
+    });
+    
     $('input[name=print]').click(function(){
         newWin = window.open("");
         newWin.document.write($('#kunde-info-'+$(this).data('id'))[0].outerHTML);
-        newWin.document.write($('#kunde-priser-'+$(this).data('id'))[0].outerHTML);
+        
+        var priser = $('#kunde-priser-'+$(this).data('id')).clone();
+        priser.find('button').parent().remove();
+        newWin.document.write(priser[0].outerHTML);
         newWin.print();
         newWin.close();
     });

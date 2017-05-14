@@ -27,6 +27,9 @@
                 background-color: $theme-color
                 color: $theme-color-text
 
+        &:active
+            
+
         &--active a
             background: $theme-color
             &:hover
@@ -41,14 +44,18 @@
             margin-right: 5px
             display: inline-block
     &__item--burger
+        width: 100%
         display: none
     ul
         padding: 0px
         margin: 0px
+        li
+            margin: 0px
         &.nav--left
             float: left
         &.nav--right
             float: right
+
 
 @media (max-width: $iron-grid-breakpoint-medium)
     .nav .container

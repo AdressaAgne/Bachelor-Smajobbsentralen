@@ -59,6 +59,7 @@ Direct::put('/oppdragstaker/kunder', 'MembersController@new_member')->Auth();
 Direct::get('/oppdragstaker/faktura', 'MembersController@faktura')->Auth();
 Direct::put('/oppdragstaker/faktura', 'MembersController@new_faktura')->Auth();
 Direct::delete('/oppdragstaker/faktura', 'MembersController@delete_member')->Auth();
+Direct::post('/oppdragstaker/faktura', 'MembersController@oppdrag_delete')->Auth();
 
 // Admin - Applications
 Direct::get('/telefonvakt/soknader', 'ApplicationController@index')->Auth();

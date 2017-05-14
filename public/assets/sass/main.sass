@@ -1,7 +1,6 @@
 *
 	margin: 0px
 	padding: 0px
-	outline: none
 	box-sizing: border-box
 
 body, html
@@ -36,6 +35,8 @@ ul li
 h1, h2, h3, h4, h5, h6
 	font-family: 'Poppins', sans-serif
 	margin: 30px 0px 5px
+	&.no-space
+		margin: 0px 0px
 
 a
 	text-decoration: none
@@ -43,3 +44,7 @@ a
 	&:hover
 		color: $paper-color
 
+a[href^=tel]
+	color: $paper-color
+	&:hover
+		color: $paper-color

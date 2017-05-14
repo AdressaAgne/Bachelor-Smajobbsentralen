@@ -5,7 +5,7 @@
     </div>
     <div class="hero" style="background-image: url('{{$assets}}/img/home.jpg')">    
         <div class="container hero--header">
-            <div class="brick">
+            <div class="brick hidden-s">
                 <div class="row">
                     <?php $open = $global->opentimes(); ?>
                     <div class="col-12 border-bottom">
@@ -23,6 +23,16 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="row visible-s">
+                <div class="col-12">
+                    <div class="brick">
+                        <p class="font-medium"><strong><i class="fa fa-phone"></i> <a href="tel:{{$global->get_priser()['tlf']['value']}}">{{$global->get_priser()['tlf']['value']}}</a></strong></p>
+                        <p>{{$open['isOpen']}} nå</p>
+                    </div>
+                </div>
+            </div>
+            
         </div>
     </div>
 

@@ -13,6 +13,8 @@
 		transform: translateX(-50%)
 		bottom: 30px
 		z-index: 999
+		
+		
 ul.breadcrubs
 	li
 		display: inline-block
@@ -40,6 +42,15 @@ ul.breadcrubs
 
 .border-right
 	border-right: 1px solid $theme-color-700
+
+@media (max-width: $iron-grid-breakpoint-small)
+	.hero
+		height: 250px
+	.hero--header
+		bottom: 20px
+		
+	.font-big
+		font-size: 1.6em
 
 .menu
 	width: 100%
@@ -187,6 +198,11 @@ footer
 .vakttlf
 	strong
 		font-size: 2em
+		
+@media (max-width: $iron-grid-breakpoint-small)
+	.vakttlf
+		strong
+			font-size: 1.2em
 
 .category
 	margin: 5px 0px

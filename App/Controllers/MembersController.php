@@ -25,6 +25,10 @@ class MembersController extends Controller {
     ]);
     }
     
+    public function oppdrag_delete(Request $data){
+        return $this->deleteWhere('oppdrag', 'id', $data->post->id);
+    }
+    
     public function new_member($data){
         
         $id = $this->insert('users', [
@@ -56,10 +60,10 @@ class MembersController extends Controller {
         
         $this->insert('oppdrag', [[
             'user_id'         => $_SESSION['uuid'],
-            'cat_id'          => $data['cat_id'],
-            'tid'             => $data['time'],
+            'cat_id'          => isset($data['cat_id']) ? $data['cat_id'] : '1',
+            'tid'             => !empty($data['time']) ? $data['time'] : '60',
             'for_user_id'     => $data['for_user_id'],
-            'km'              => $data['km'],
+            'km'              => isset($data['km']) ? $data['km'] : '0',
             'hitch'           => isset($data['hitch']),
             'equipment'       => isset($data['equipment']),
             'info'            => $data['info'],

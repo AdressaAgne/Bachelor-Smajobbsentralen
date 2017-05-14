@@ -17,7 +17,7 @@
 				<div class="col-12">
 					<?php $open = $global->opentimes(); ?>
 					<h3>Telefon</h3>
-					<h1 class="vakttlf"><strong><i class="fa fa-phone"></i> {{$global->get_priser()['tlf']['value']}}</strong></h1>
+					<h1 class="vakttlf"><strong><i class="fa fa-phone"></i> <a href="tel:{{$global->get_priser()['tlf']['value']}}">{{$global->get_priser()['tlf']['value']}}</a></strong></h1>
 					
 					<h4><strong>Åpningstider:</strong> {{$open['isOpen']}} nå</h4>
 					@foreach($open['timeStr'] as $str)

@@ -20,7 +20,7 @@ class User extends DB {
     public function get_oppdrag(){
         
         if(empty($this->oppdrag)){
-            $this->oppdrag = $this->query('SELECT c.name, c.icon, o.tid, o.km, o.hitch, o.equipment, o.info, o.time FROM oppdrag AS o
+            $this->oppdrag = $this->query('SELECT c.name, c.icon, o.tid, o.km, o.hitch, o.equipment, o.info, o.time, o.id FROM oppdrag AS o
                                            JOIN kategorier AS c ON c.id = o.cat_id
                                             WHERE o.user_id = :user_id
                                            GROUP BY o.id',

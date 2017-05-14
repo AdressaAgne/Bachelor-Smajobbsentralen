@@ -5,7 +5,7 @@
     </div>
     <div class="hero" style="background-image: url('{{$assets}}/img/home.jpg')">    
         <div class="container hero--header">
-            <div class="brick">
+            <div class="brick hidden-s">
                 <div class="row">
                     <?php $open = $global->opentimes(); ?>
                     <div class="col-12 border-bottom">
@@ -13,7 +13,7 @@
                     </div>
                     <div class="col-6 col-m-12 border-right">
                         <p>{{$open['isOpen']}} nå</p>
-                        <p class="font-big"><strong><i class="fa fa-phone"></i> {{$global->get_priser()['tlf']['value']}}</strong></p>
+                        <p class="font-big"><strong><i class="fa fa-phone"></i> <a href="tel:{{$global->get_priser()['tlf']['value']}}">{{$global->get_priser()['tlf']['value']}}</a></strong></p>
                     </div>
                     <div class="col-6 col-m-12">
                         <small class="font-small">Åpningstider: </small>
@@ -23,10 +23,31 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="row visible-s">
+                <div class="col-12">
+                    <div class="brick">
+                        <p class="font-medium"><strong><i class="fa fa-phone"></i> <a href="tel:{{$global->get_priser()['tlf']['value']}}">{{$global->get_priser()['tlf']['value']}}</a></strong></p>
+                        <p>{{$open['isOpen']}} nå</p>
+                    </div>
+                </div>
+            </div>
+            
         </div>
     </div>
 
     <div class="container">
+        <div class="row visible-s">
+            <div class="col-12">
+                <h3 class="no-space"><strong>Vi formidler rimelig hjelp til eldre og uføre</strong></h3>
+                <div class="col-6 col-m-12">
+                    <span><strong>Åpningstider: </strong></span>
+                    @foreach($open['timeStr'] as $str)
+                        <p class="font-medium">{{ $str }}</p>
+                    @endforeach
+                </div>
+            </div>
+        </div>
         <article>
             <div class="row">
                 <h1>Hva kan vi hjelpe deg med?</h1>
