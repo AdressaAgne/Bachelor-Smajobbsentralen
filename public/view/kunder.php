@@ -2,12 +2,7 @@
 @layout('layout.telefonvakt_menu')
 <div class="tlf-panel">
 <div class="row">
-    @if(!empty($page->header))
-        <h1>{{$page->header}}</h1>
-    @endif
-    @if(!empty($page->content))
-        <h2>{{$page->content}}</h2>
-    @endif
+    <h1>Ny kunde</h1>
 </div>
 
 @form('', 'put')
