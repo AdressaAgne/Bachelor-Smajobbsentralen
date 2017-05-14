@@ -8,7 +8,7 @@ class SmajobberController extends Controller{
 
 	public function smajobbere(Request $data){
 		if(isset($data->get->id)) {
-			$smajobbere = $this->query("SELECT u.name, u.surname, u.mobile_phone AS mobil, u.private_phone AS tlf
+			$smajobbere = $this->query("SELECT u.name, u.surname, u.mobile_phone, u.private_phone AS tlf
 			FROM users AS u
 			INNER JOIN user_category AS uc ON u.id = uc.user_id
 			INNER JOIN kategorier AS k ON uc.category_id = k.id
@@ -30,7 +30,7 @@ class SmajobberController extends Controller{
 		return $this->query("SELECT *
 			FROM users WHERE visible = 1
 			AND approved = 1
-			ORDER BY rand()")->fetchAll();
+			ORDER BY rand()", 'User')->fetchAll();
 	}
 
 	public function post($data){
