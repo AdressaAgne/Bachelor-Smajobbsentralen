@@ -1,4 +1,5 @@
 @layout('layout.head', ['title' => 'Småjobbsentralen'])
+@layout('layout.telefonvakt_menu')
 <div class="tlf-panel">
 <div class="row">
 	@if(!empty($page->header))
@@ -8,20 +9,20 @@
 		<h1>{{$page->content}}</h1>
 	@endif
 </div>
-@layout('layout.telefonvakt_menu')
+
 <div class="row">
-	<div class="col-2" id="categories">
+	<div class="col-2 col-m-3" id="categories">
 		@foreach($global->categories() as $cat)
-			<button class="category" id="{{$cat['id']}}" value="{{$cat['name']}}">{{$cat['name']}}</button>
+			<button class="category" id="{{$cat['id']}}" value="{{$cat['name']}}"><i class="fa fa-lg fa-{{$cat['icon']}}"></i><br>{{$cat['name']}}</button>
 		@endforeach
 	</div>
-	<div class="col-10">
+	<div class="col-10 col-m-8">
 		<div id="smajobbere">
 			@foreach($smajobbere as $smajobber)
 				<div class="row smajobbere-list">
 					<div class="col-12">
-						<h1>{{$smajobber['name']}} {{$smajobber['surname']}}</h1>
-						<h1><strong><i class="fa fa-phone"></i> {{$global->format_phonenr($smajobber['mobile_phone'])}}</strong></h1>
+						<h1>{{$smajobber->full_name()}}</h1>
+						<h1><strong><i class="fa fa-phone"></i> {{$global->format_phonenr($smajobber->mobile_phone)}}</strong></h1>
 					</div>
 				</div>
 			@endforeach
@@ -40,7 +41,7 @@
 		loading.show();
 		$.ajax({
 			type: "POST",
-			url: "",
+			url: "/smajobbere",
 			datatype : 'json',
 			data: {
 				'_method' : 'POST',
@@ -61,10 +62,10 @@
 							"</div>"
 						).fadeIn(item);
 					})
-					$("#smajobbere").prepend("<h1>Følgende kan jobbe med \""+_this.val()+"\"</h1>").fadeIn();
+					$("#smajobbere").prepend("<h1 class='font-medium'>Følgende kan jobbe med \""+_this.find('i')[0].outerHTML+' '+_this.val()+"\"</h1>").fadeIn();
 				}else{
 					$("#smajobbere").append(
-						"<h1>Det er dessverre ingen som kan gjøre arbeeid av typen \""+_this.val()+"\"</h1>"
+						"<h1 class='font-medium'>Det er dessverre ingen som kan gjøre arbeeid av typen \""+_this.find('i')[0].outerHTML+' '+_this.val()+"\"</h1>"
 					).fadeIn();
 				}
 
