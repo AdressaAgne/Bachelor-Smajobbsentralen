@@ -10,7 +10,7 @@
 		menu.className = classes.join(' ');
 	});
 </script>
-	</div><!-- /container-fluid -->
+
 	<footer>
 		<div class="row">
 			<div class="container">

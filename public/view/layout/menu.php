@@ -7,7 +7,7 @@
 		<li class="nav__item @active_page('blismajobber')"><a href="{{$source}}/blismajobber">Bli Småjobber</a></li>
 		<li class="nav__item @active_page('om')"><a href="{{$source}}/om">Om Smajobbsentralen</a></li>
 	</ul>
-	<ul class="nav--right hidden-s">
+	<ul class="nav--right">
         @if(isset($user))
 		    <li class="nav__item"><a href="{{$source}}/admin">{{$user->name}}</a></li>
         @else    

@@ -1,5 +1,6 @@
 @layout('layout.head', ['title' => 'Småjobbsentralen'])
 @layout('layout.telefonvakt_menu')
+<div class="tlf-panel">
 <div class="row">
     @if(!empty($page->header))
         <h1>{{$page->header}}</h1>
@@ -55,4 +56,5 @@
     </div>
 </div>
 @formend()
+</div>
 @layout('layout.foot')

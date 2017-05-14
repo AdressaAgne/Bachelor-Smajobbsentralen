@@ -83,6 +83,11 @@
     .nav__item--burger
         display: block
 
+.tlf-panel
+    width: calc(100% - 200px)
+    margin-left: 200px
+    margin-top: 50px
+    @extend .clearfix
 
 .nav-tlfvakt
 	width: 200px
@@ -114,4 +119,32 @@
 				border-bottom: 1px solid $theme-color-700
 				border-top: 1px solid $theme-color-300
 				&:hover
-					background-color: $theme-color-700   
+					background-color: $theme-color-700  
+
+@media (max-width: $iron-grid-breakpoint-medium)
+    .tlf-panel
+        width: 100%
+        margin-left: 0px
+        margin-top: 50px
+    .nav-tlfvakt
+        z-index: 9999
+        width: 100vw
+        height: auto
+        ul
+            width: 100%
+            text-align: center
+            display: inline-block
+            li:left-of-type
+                border-right: 1px solid $theme-color-700
+            li
+                margin: 0px -3px
+                display: inline-block
+                border-left: 1px solid $theme-color-700
+                a
+                    display: inline-block
+                    text-align: center
+                    padding: 10px
+                &.header
+                    display: none
+            
+     

@@ -1,6 +1,6 @@
 @layout('layout.head', ['title' => 'Småjobbsentralen'])
 @layout('layout.telefonvakt_menu')
-
+<div class="tlf-panel">
 <!-- split up to åpningstider and arbeidstyper -->
 <div class="row">
 	<h1>Din Profil</h1>
@@ -165,4 +165,5 @@
     </div>
 </div>
 @formend()
+</div>
 @layout('layout.foot')

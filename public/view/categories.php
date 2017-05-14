@@ -1,6 +1,6 @@
 @layout('layout.head', ['title' => 'Småjobbsentralen'])
 @layout('layout.telefonvakt_menu')
-
+<div class="tlf-panel">
 <!-- split up to åpningstider and arbeidstyper -->
 <div class="row">
 	<h1>Arbeidstyper</h1>
@@ -139,4 +139,5 @@
 		});
 	});//eventlistener
 </script>
+</div>
 @layout('layout.foot')

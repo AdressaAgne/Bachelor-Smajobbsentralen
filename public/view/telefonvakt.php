@@ -1,5 +1,6 @@
 @layout('layout.head', ['title' => 'Småjobbsentralen'])
 @layout('layout.telefonvakt_menu')
+<div class="tlf-panel">
 <div class="row">
 	<h1>Telefonvakt Framside</h1>
 </div>
@@ -156,4 +157,5 @@
 			$('.calendar--edit').slideUp();
 		});
 	</script>
+</div>
 @layout('layout.foot')

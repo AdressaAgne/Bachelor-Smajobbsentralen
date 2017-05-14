@@ -1,5 +1,6 @@
 @layout('layout.head', ['title' => 'Småjobbsentralen'])
 @layout('layout.telefonvakt_menu')
+<div class="tlf-panel">
 <div class="row">
     <h1>Faktura</h1>
     <h2>Lag en fakura for en kunde</h2>
@@ -196,4 +197,5 @@
     });
     
 </script>
+</div>
 @layout('layout.foot')

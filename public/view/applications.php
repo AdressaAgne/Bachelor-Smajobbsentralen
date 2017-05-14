@@ -1,5 +1,6 @@
 @layout('layout.head', ['title' => 'Småjobbsentralen'])
 @layout('layout.telefonvakt_menu')
+<div class="tlf-panel">
 <div class="row">
     <h1>Søknader</h1>
     <h2>Søknader for å bli småjobber</h2>
@@ -117,4 +118,5 @@
     });//event decline
 
 </script>
+</div>
 @layout('layout.foot')

@@ -1,4 +1,5 @@
 @layout('layout.head', ['title' => 'Bli Småjobber'])
+<div class="container">
 <article>
 	<div class="row">
 	<h1>Bli Småjobber</h1>
@@ -144,5 +145,5 @@
 </article>
 @layout('layout.scripts')
 <script src="{{$assets}}/js/applicationval.js"></script>
-<!--script src="{{$assets}}/js/applicval.js"></script-->
+</div>
 @layout('layout.foot')

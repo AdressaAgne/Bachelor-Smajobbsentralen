@@ -1,4 +1,5 @@
 @layout('layout.head', ['title' => 'Småjobbsentralen'])
+<div class="container">
 <div class="row">
 	@if(!empty($page->header))
 		<h3>{{$page->header}}</h3>
@@ -81,4 +82,5 @@
 	}
 
 </script>
+</div>
 @layout('layout.foot')
