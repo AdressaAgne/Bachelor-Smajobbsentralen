@@ -27,7 +27,7 @@ class User extends DB {
             ['user_id' => $_SESSION['uuid']])->fetchAll();
         }
         
-        $priser = $this->all('pris');
+        $priser = $this->all('settings');
         $priser = array_combine(array_column($priser, 'item_key'), array_column($priser, 'value'));
         $total = 0;
         foreach ($this->oppdrag as $key => &$value) {
