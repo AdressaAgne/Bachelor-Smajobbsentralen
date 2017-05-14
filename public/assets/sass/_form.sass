@@ -1,0 +1,202 @@
+/* Placeholdfer
+
+\::-webkit-input-placeholder
+  color: #000
+  opacity: 0.5
+  -webkit-transition: opacity 0.35s ease-in-out
+  transition: opacity 0.35s ease-in-out
+
+\:hover
+  &::-webkit-input-placeholder
+    opacity: 0.75
+    -webkit-transition: opacity 0.35s ease-in-out
+    transition: opacity 0.35s ease-in-out
+
+\:focus
+  &::-webkit-input-placeholder
+    opacity: 0
+    -webkit-transition: opacity 0.35s ease-in-out
+    transition: opacity 0.35s ease-in-out
+
+.form-element
+    float: left
+    display: block
+    margin: 10px 0px
+    &--border
+        border-radius: 3px
+        border: 1px solid $theme-color
+    &--right
+        float: right
+        
+.errorMsg
+    visibility: hidden
+    color: $palette-red
+
+input[type='text'], input[type='password'], input[type='date'], textarea
+    box-sizing: border-box
+    appearance: none
+    width: 100%
+    border: none
+    margin: 2.5px 0px
+    border-bottom: 2px solid $theme-color
+    border-radius: 2px
+    font-size: 16px
+    padding: 4px
+    line-height: 20px
+    text-indent: 5px
+    border-radius: 3px
+    transition: border, box-shadow 0.2s ease-in-out
+    box-shadow: inset 0vw 0px 0px 0px $theme-color
+    &:focus
+        color: $theme-color-text
+        box-shadow: inset 100vw 0px 0px 0px $theme-color
+textarea
+    resize: none
+
+
+//Dropdown
+
+select.dropdown
+    appearance: none
+    border: none
+    border-radius: 3px
+    width: 100%
+    padding: 10px
+    background-color: $theme-color
+    color: $theme-color-text
+        
+
+
+
+// CheckBox and Radio
+//emmet: input[type=checkbox]#ball.checkbox+label[for=ball].checkbox{title}
+$checkbox: 'input[type="checkbox"].checkbox'
+$radio: 'input[type="radio"].radio'
+
+#{$checkbox}, #{$radio}
+    display: none
+    & + label.checkbox, & + label.radio
+        position: relative
+        padding-left: 30px
+        cursor: pointer
+        &:before
+            content: ''
+            position: absolute
+            width: 20px
+            height: 20px
+            left: 0px
+            transition: all .25s ease
+            border: 1px solid $theme-color
+            background: white
+            box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, .3)
+            
+    &:checked + label.checkbox:before, &:checked + label.radio:before
+        background-color: $theme-color
+        box-shadow: inset 0 0 0 3px white
+
+// Checkbox
+#{$checkbox} + label.checkbox:before
+    border-radius: 2px
+// Radio
+#{$radio} + label.radio:before 
+    border-radius: 50%
+    
+    
+
+// Button
+input[type='submit'], input[type='button'], button, .btn
+    text-align: center
+    font-size: 1em
+    font-weight: 300
+    
+    background-color: $theme-color
+    color: $accent-color-text
+    
+    width: 100%
+    
+    appearance: none
+    border: none
+    border-radius: 2px
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, .4)
+    padding: 6px
+    
+    cursor: pointer
+    &.danger
+        background-color: $palette-red
+        color: #f8f8f8
+        &:hover
+            background-color: darken($palette-red, 10%)
+    
+    &.warning
+        background-color: $palette-amber
+        color: #f8f8f8
+        &:hover
+            background-color: darken($palette-amber, 10%)
+    
+    &.accent
+        background-color: $accent-color
+        color: $accent-color-text
+        &:hover
+            background-color: $accent-color-700
+            
+    &:hover
+        background-color: $theme-color-700
+        
+    &:active
+        box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, .4)
+.btn
+    &--fixed
+        max-width: 100px
+    &--right
+        float: right
+
+@media (max-width: $iron-grid-breakpoint-small)
+    #categories button
+        width: 45%
+        margin: 2.5%
+        float: left
+    
+
+
+label.page-select
+    cursor: pointer
+    display: block
+    padding: 10px
+    background-color: $paper-devider-color
+    height: 250px
+    overflow: hidden
+[type='radio'].page-select
+    display: none
+[type='radio']:checked + label.page-select
+    background-color: $accent-color        
+    
+.overlay
+    position: fixed
+    left: 0px
+    top: 0px
+    width: 100vw
+    height: 100vh
+    background-color: rgba(0, 0, 0, .3) 
+    z-index: 1000
+    display: none
+    
+.dialog
+    display: none
+    z-index: 1001
+    width: 400px
+    position: fixed
+    top: 50%
+    left: 50%
+    transform: translateX(-50%) translateY(-50%)
+    background-color: $paper-color
+    border: 2px solid $theme-color
+    border-top-width: 25px
+    border-radius: 3px
+    .close
+        position: absolute
+        top: -30px
+        right: 0px
+        color: $theme-color-text
+        padding: 5px
+        cursor: pointer
+    

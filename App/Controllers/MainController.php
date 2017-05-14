@@ -8,17 +8,14 @@ class MainController extends Controller implements NormalController {
     use \MigrateTrait;
     
     public function index(){
-        $id = $this->getSetting('frontpage');
-        
-        $page = $this->select('pages', ['*'], ['id' => $id], 'page')->fetch();
-    
-        $controller = $this->callThemeController($page);
-        if($controller[0]){
-            return $controller[1];
-        }
-
-        return View::make('index', ['page' => $page]);
+        $cats = $this->all('kategorier');
+        return View::make('index', ['cats' => $cats]);
     }
+    
+    public function om(){
+        return View::make('om');
+    }
+    
     
     public function route(){
         return Direct::lists();

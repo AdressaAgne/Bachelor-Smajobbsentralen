@@ -1,1 +1,0 @@
-window.onscroll=function(){var e=window.scrollY,o=document.querySelector(".hero"),l=document.querySelector("#logo");e>500?o.className="hero fixed":o.className="hero",e<250?l.style.height=300-e+"px":l.style.height="50px"};

@@ -109,21 +109,39 @@ class Account extends DB{
 
         if(!password_verify($pw, $user->password)) return 'Old password is wrong';
 
-        $msg = DB::update(['password' => password_hash($newPw, PASSWORD_DEFAULT)], 'users', ['id' => $user->id]);
+        $msg = DB::updateWhere('users', ['password' => password_hash($newPw, PASSWORD_DEFAULT)], ['id' => $user->id]);
 
         return $msg;
     }
-
+    
     /**
-     * @TODO
-     * @author Agne *degaard
-     * @param  string $newMail
-     * @return boolean
+     * change password without having the old password, admin setting!!!
+     *
+     * @method changePasswordAdmin
+     *
+     * @author [Agne Ødegaard]
+     *
+     * @param  [integer]             $id  [user id]
+     * @param  [string]              $pw  [new password]
+     * @param  [string]              $pw2 [new password again]
+     *
+     * @return [string/boolean]           [true if success, error msg if false]
      */
-    public function changeEmail($newMail){
-      return 0;
+    public static function changePasswordAdmin($id, $pw, $pw2){
+        if($pw !== $pw2) return 'The new passwords does not match';
+        DB::updateWhere('users', ['password' => password_hash($pw, PASSWORD_DEFAULT)], ['id' => $id]);
     }
 
+    
+    /**
+     * get the logged inn users id
+     *
+     * @method get_id
+     *
+     * @author [Agne Ødegaard]
+     *
+     * @return [integer] [user id]
+     */
     public static function get_id(){
         return (isset($_SESSION['uuid']) ? $_SESSION['uuid'] : false);
     }

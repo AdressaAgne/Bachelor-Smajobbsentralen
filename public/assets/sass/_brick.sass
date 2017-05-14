@@ -1,0 +1,16 @@
+.brick
+    background-color: $theme-color
+    font-size: 28px
+    text-align: center
+    border-radius: 3px
+    color: $theme-color-text
+    border: 1px solid $theme-color-700
+    box-shadow: 0px 3px 5px 0px rgba(0, 0, 0, .4)
+    &--big
+        padding: 10px
+        line-height: 64px
+        
+@media (max-width: $iron-grid-breakpoint-small)
+    .brick--big
+        padding: 10px
+        line-height: 48px

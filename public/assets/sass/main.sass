@@ -1,0 +1,50 @@
+*
+	margin: 0px
+	padding: 0px
+	box-sizing: border-box
+
+body, html
+	width: 100vw
+	height: 100vh
+	font-size: 18px
+
+body
+	font-family: 'Open Sans', sans-serif
+	background-color: #f8f8f8
+	position: relative
+
+.menu + .container
+	padding-top: 70px
+
+ul li
+	margin-left: 25px
+	margin-bottom: 10px
+
+@import 'vars'
+@import 'grid'
+@import 'breakpoint_helpers'
+@import 'form'
+@import 'table'
+@import 'upload'
+@import 'layout'
+@import 'nav'
+@import 'typo'
+@import 'brick'
+@import 'calendar'
+
+h1, h2, h3, h4, h5, h6
+	font-family: 'Poppins', sans-serif
+	margin: 30px 0px 5px
+	&.no-space
+		margin: 0px 0px
+
+a
+	text-decoration: none
+	color: $theme-color
+	&:hover
+		color: $paper-color
+
+a[href^=tel]
+	color: $paper-color
+	&:hover
+		color: $paper-color
