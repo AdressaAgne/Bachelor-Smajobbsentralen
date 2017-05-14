@@ -14,7 +14,7 @@ class SmajobberController extends Controller{
 			INNER JOIN kategorier AS k ON uc.category_id = k.id
 			WHERE uc.category_id = :id AND u.approved = 1 AND u.visible = 1
 			GROUP BY u.id
-			ORDER BY u.name", [ 'id' => $data->get->id], 'User')->fetchAll();;
+			ORDER BY rand()", [ 'id' => $data->get->id], 'User')->fetchAll();;
 		} else {
 			$smajobbere = $this->get_smajobbere();
 		}	
@@ -30,7 +30,7 @@ class SmajobberController extends Controller{
 		return $this->query("SELECT *
 			FROM users WHERE visible = 1
 			AND approved = 1
-			ORDER BY name ASC")->fetchAll();
+			ORDER BY rand()")->fetchAll();
 	}
 
 	public function post($data){
@@ -42,7 +42,7 @@ class SmajobberController extends Controller{
 		INNER JOIN kategorier AS k ON uc.category_id = k.id
 		WHERE uc.category_id = :id AND u.approved = 1 AND u.visible = 1
 		GROUP BY u.id
-		ORDER BY u.name", [ 'id' => $data['_id']], 'User')->fetchAll();
+		ORDER BY rand()", [ 'id' => $data['_id']], 'User')->fetchAll();
 		//skal virke men får sålangt ingen ID input fra ajax req
 
 		return $smajobbere;

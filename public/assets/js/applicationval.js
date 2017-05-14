@@ -5,13 +5,13 @@ $(function(){
             $(this).css('box-shadow', "");
             $(this).css('borderColor', "");
         };
-    
-    $("[name=firstname]").on('click', removeError );
-    $("[name=lastname]").on('click', removeError );
-    $("[name=email]").on('click', removeError );
-    $("[name=address]").on('click', removeError );
-    $("[name=date]").on('click', removeError );
-    $("[name=mob]").on('click', removeError );
+    var eventSring = "click focus blur";
+    $("[name=firstname]").on(eventSring,removeError );
+    $("[name=lastname]").on(eventSring, removeError );
+    $("[name=email]").on(eventSring, removeError );
+    $("[name=address]").on(eventSring, removeError );
+    $("[name=date]").on(eventSring, removeError );
+    $("[name=mob]").on(eventSring, removeError );
     
 $("form").submit(function(e) {
     var numbersCheck = /[0-9]/;
@@ -31,14 +31,14 @@ $("form").submit(function(e) {
         if (fName == "") {
             emfn.css('visibility', "visible");
             emfn.html("Fornavn kan ikke være tomt");
-            ffn.css('box-shadow', "inset 100vw 0px 0px 0px #bd0000");
-            ffn.css('borderColor', "#d40000");
+            ffn.css('box-shadow', "inset 100vw 0px 0px 0px #F44336");
+            ffn.css('borderColor', "#F44336");
             return false;
         } else if (!fName.match(characterCheck)) {
             emfn.css('visibility', "visible");
             emfn.html("Dette navnet er ugyldig");
-            ffn.css('box-shadow', "inset 100vw 0px 0px 0px #bd0000");
-            ffn.css('borderColor', "#d40000");
+            ffn.css('box-shadow', "inset 100vw 0px 0px 0px #F44336");
+            ffn.css('borderColor', "#F44336");
             return false;
         } 
         return true;
@@ -53,14 +53,14 @@ $("form").submit(function(e) {
         if (lName == "") {
             emln.css('visibility', "visible");
             emln.html("Etternavn kan ikke være tomt");
-            fln.css('box-shadow', "inset 100vw 0px 0px 0px #bd0000");
-            fln.css('borderColor', "#d40000");
+            fln.css('box-shadow', "inset 100vw 0px 0px 0px #F44336");
+            fln.css('borderColor', "#F44336");
             return false;
         } else if (!lName.match(characterCheck)) {
             emln.css('visibility', "visible");
             emln.html("Dette navnet er ugyldig");
-            fln.css('box-shadow', "inset 100vw 0px 0px 0px #bd0000");
-            fln.css('borderColor', "#d40000");
+            fln.css('box-shadow', "inset 100vw 0px 0px 0px #F44336");
+            fln.css('borderColor', "#F44336");
             return false;
         }
         return true;
@@ -75,14 +75,14 @@ $("form").submit(function(e) {
         if (email == "") {
             eme.css('visibility', "visible");
             eme.html("E-post kan ikke være tomt");
-            fe.css('box-shadow', "inset 100vw 0px 0px 0px #bd0000");
-            fe.css('borderColor', "#d40000");
+            fe.css('box-shadow', "inset 100vw 0px 0px 0px #F44336");
+            fe.css('borderColor', "#F44336");
             return false;
         } else if (!email.match(emailCheck)) {
             eme.css('visibility', "visible");
             eme.html("Epostadressen er ugyldig");
-            fe.css('box-shadow', "inset 100vw 0px 0px 0px #bd0000");
-            fe.css('borderColor', "#d40000");
+            fe.css('box-shadow', "inset 100vw 0px 0px 0px #F44336");
+            fe.css('borderColor', "#F44336");
             return false;
         } 
         return true;
@@ -98,8 +98,8 @@ $("form").submit(function(e) {
         if (address == "") {
             ema.css('visibility', "visible");
             ema.html("Adresse kan ikke være tomt");
-            fa.css('box-shadow', "inset 100vw 0px 0px 0px #bd0000");
-            fa.css('borderColor', "#d40000");
+            fa.css('box-shadow', "inset 100vw 0px 0px 0px #F44336");
+            fa.css('borderColor', "#F44336");
             return false;
         }
         return true;
@@ -114,8 +114,8 @@ $("form").submit(function(e) {
         if (date == "") {
             emd.css('visibility', "visible");
             emd.html("Fødselsdato kan ikke være tomt");
-            fd.css('box-shadow', "inset 100vw 0px 0px 0px #bd0000");
-            fd.css('borderColor', "#d40000");
+            fd.css('box-shadow', "inset 100vw 0px 0px 0px #F44336");
+            fd.css('borderColor', "#F44336");
             return false;
         }
         return true;
@@ -131,14 +131,14 @@ $("form").submit(function(e) {
         if (mob == "") {
             emm.css('visibility', "visible");
             emm.html("Mobilnummer kan ikke være tomt");
-            fm.css('box-shadow', "inset 100vw 0px 0px 0px #bd0000");
-            fm.css('borderColor', "#d40000");
+            fm.css('box-shadow', "inset 100vw 0px 0px 0px #F44336");
+            fm.css('borderColor', "#F44336");
             return false;
         } else if (!mob.match(numbersCheck)) {
             emm.css('visibility', "visible");
             emm.html("Nummeret er ugyldig");
-            fm.css('box-shadow', "inset 100vw 0px 0px 0px #bd0000");
-            fm.css('borderColor', "#d40000");
+            fm.css('box-shadow', "inset 100vw 0px 0px 0px #F44336");
+            fm.css('borderColor', "#F44336");
             return false;
         } 
         return true;

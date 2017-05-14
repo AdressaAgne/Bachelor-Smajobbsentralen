@@ -207,8 +207,8 @@ class Migrations{
 			'type' => '3',
 		], ['id' => $adminId]);
 		$db->updateWhere('users',[
-			'name' => 'tlf',
-			'surname' => 'tellefonesen',
+			'name' => 'Per Bjarne',
+			'surname' => 'Tellefsen',
 			'approved' => '1',
 			'visible' => '0',
 			'dob' => '2017-03-16 20:16:28',
@@ -216,8 +216,8 @@ class Migrations{
 			'type' => '1',
 		], ['id' => $tlf]);
 		$db->updateWhere('users',[
-			'name' => 'smajobber',
-			'surname' => 'jobberson',
+			'name' => 'Ola',
+			'surname' => 'Normann',
 			'approved' => '1',
 			'visible' => '0',
 			'dob' => '2017-03-16 20:16:28',
