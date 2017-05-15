@@ -11,7 +11,7 @@
     
     @if(count($members) == 0)
         <h1>Ingen kunder enda</h1>
-        <p><a href="{{$source}}/oppdragstaker/kunder">Legg til kunde</a></p>
+        <p><a class="btn" href="{{$source}}/oppdragstaker/kunder">Legg til kunde</a></p>
     @endif
     
     @foreach($members as $kunde)
@@ -30,7 +30,7 @@
                     <table id='kunde-priser-{{$kunde->id}}' style="width: 100%;">
                         <thead>
                             <tr>
-                                <td>Dato:</td>
+                                <td>Dato</td>
                                 <td>Oppgave</td>
                                 <td>Kilometer</td>
                                 <td>Tid</td>
@@ -45,7 +45,7 @@
                             
                             <tr>
                                 <td>{{date('d/m/Y', $oppdrag['time'])}}</td>
-                                <td><i class="fa fa-{{$oppdrag['icon']}}"></i> {{$oppdrag['name']}}</td>
+                                <td><i class="fa fa-{{$oppdrag['icon']}}"></i> {{ucfirst($oppdrag['name'])}}</td>
                                 <td>{{$oppdrag['km']}}</td>
                                 <td>{{$oppdrag['tid']}}</td>
                                 <td>{{$oppdrag['info']}}</td>
@@ -86,7 +86,7 @@
                     </div>
                     <div class="form-element col-4 col-m-6">    
                         <input type="checkbox" name="equipment" id="equipment-{{$kunde->name}}" class="checkbox">
-                        <label for="equipment-{{$kunde->name}}" class="checkbox">brukte du egent utstyr?</label>
+                        <label for="equipment-{{$kunde->name}}" class="checkbox">Brukte du eget utstyr?</label>
                     </div>
                 </div>
                 <div class="col-12">
@@ -109,7 +109,7 @@
                     
                     <div class="form-element col-6">
                         <input type="hidden" name="for_user_id" value="{{$kunde->id}}">
-                        <input type="submit" value="legg til oppdrag">
+                        <input type="submit" value="Legg til oppdrag">
                     </div>
                 </div>    
                 @formend()

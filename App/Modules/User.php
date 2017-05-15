@@ -22,9 +22,11 @@ class User extends DB {
         if(empty($this->oppdrag)){
             $this->oppdrag = $this->query('SELECT c.name, c.icon, o.tid, o.km, o.hitch, o.equipment, o.info, o.time, o.id FROM oppdrag AS o
                                            JOIN kategorier AS c ON c.id = o.cat_id
-                                            WHERE o.user_id = :user_id
+                                           WHERE o.for_user_id = :id
                                            GROUP BY o.id',
-            ['user_id' => $_SESSION['uuid']])->fetchAll();
+            [
+                'id' => $this->id,
+            ])->fetchAll();
         }
         
         $priser = $this->all('settings');

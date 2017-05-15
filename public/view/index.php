@@ -5,15 +5,15 @@
     
     <div class="hero" style="background-image: url('{{$assets}}/img/home.jpg')">    
         <div class="container hero--header">
-            <div class="brick hidden-s">
-                <div class="row">
+            <div class="hidden-s">
+                <div class="brick clearfix">
                     <?php $open = $global->opentimes(); ?>
                     <div class="col-12 border-bottom">
                         <p>Vi formidler rimelig hjelp til eldre og uføre</p>
                     </div>
                     <div class="col-6 col-m-12 border-right">
-                        <p>{{$open['isOpen']}} nå</p>
                         <p class="font-big"><strong><i class="fa fa-phone"></i> <a href="tel:{{$global->get_priser()['tlf']['value']}}">{{$global->get_priser()['tlf']['value']}}</a></strong></p>
+                        <p>{{$open['isOpen']}} nå</p>
                     </div>
                     <div class="col-6 col-m-12">
                         <small class="font-small">Åpningstider: </small>

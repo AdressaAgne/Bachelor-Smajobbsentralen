@@ -18,14 +18,17 @@
 					<?php $open = $global->opentimes(); ?>
 					<h3>Telefon</h3>
 					<h1 class="vakttlf"><strong><i class="fa fa-phone"></i> <a href="tel:{{$global->get_priser()['tlf']['value']}}">{{$global->get_priser()['tlf']['value']}}</a></strong></h1>
-					
-					<h4><strong>Åpningstider:</strong> {{$open['isOpen']}} nå</h4>
-					@foreach($open['timeStr'] as $str)
-                        <p>{{ $str }}</p>
-                    @endforeach
-					<h4>Adresse:</h4>
-					<p>Øvre Torvgate 2</p>
-					<p>2815 Gjøvik</p>
+					<div class="col-12">
+    					<h4><strong>Åpningstider:</strong></h4>
+    					@foreach($open['timeStr'] as $str)
+                            <p>{{ $str }}</p>
+                        @endforeach
+                    </div>
+                    <div class="col-12">
+    					<h4>Adresse:</h4>
+    					<p>Øvre Torvgate 2</p>
+    					<p>2815 Gjøvik</p>
+                    </div>
 				</div>
 			</div>
 		</div>

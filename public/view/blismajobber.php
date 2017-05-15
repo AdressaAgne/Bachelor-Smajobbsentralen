@@ -48,14 +48,14 @@
 	<div class="row">
 		<h3>Telefon</h3>
 		<div class="form-element col-6 col-s-12">
-			<label> Mobil Telefon
-				<input type="text" name="mob" placeholder="Mobil">
+			<label> Mobiltelefon
+				<input type="text" name="mob" placeholder="Mobiltelefon">
 				<span class="errorMsg"></span>
 			</label>
 		</div>
 		<div class="form-element col-6 col-s-12">
-			<label> Privat Telefon
-				<input type="text" name="priv" placeholder="Privat Telefon">
+			<label> Privattelefon
+				<input type="text" name="priv" placeholder="Privattelefon">
 			</label>
 		</div>
 	</div>
@@ -74,7 +74,7 @@
 			<span id="errorMsgCar" class="errorMsg"></span>
 		</div>
 		<div class="form-element col-6 col-s-12" id="hashitch">
-			<p>Hengerfeste?</p>
+			<p>Hvis ja, har bilen hengerfeste?</p>
 			<div class="col-12">
 				<input class="radio"  type="radio" name="hitch" id="hitchyes" value="1">
 				<label class="radio" for="hitchyes">Ja</label><br>
@@ -88,24 +88,24 @@
 		<div class="form-element col-12" id="hasocc">
 			<p> Okkupasjon</p>
 			<div class="col-12">
-				<input class="radio"  type="radio" name="occupation" id="school" value="skoleelev">
-				<label class="radio" for="school">Skoleelev</label><br>
+				<input class="radio"  type="radio" name="occupation" id="school" value="Skoleelev">
+				<label class="radio" for="school">Skoleelev</label>
 			</div>
 			<div class="col-12">
-				<input class="radio"  type="radio" name="occupation" id="unemployed" value="unemployed">
-				<label class="radio" for="unemployed">Arbeidsledig</label><br>
+				<input class="radio"  type="radio" name="occupation" id="unemployed" value="Arbeidsledig">
+				<label class="radio" for="unemployed">Arbeidsledig</label>
 			</div>
 			<div class="col-12">
-				<input class="radio"  type="radio" name="occupation" id="pensioner" value="pensioner">
-				<label class="radio" for="pensioner">Pensjonist</label><br>
+				<input class="radio"  type="radio" name="occupation" id="pensioner" value="Pensjonist">
+				<label class="radio" for="pensioner">Pensjonist</label>
 			</div>
 			<div class="col-12">
-				<input class="radio"  type="radio" name="occupation" id="disabled" value="disabled">
-				<label class="radio" for="disabled">Uføre</label><br>
+				<input class="radio"  type="radio" name="occupation" id="disabled" value="Uføre">
+				<label class="radio" for="disabled">Uføre</label>
 			</div>
 			<div class="col-12">
-				<input class="radio"  type="radio" name="occupation" id="other" value="other">
-				<label class="radio" for="other">Annet</label><br>
+				<input class="radio"  type="radio" name="occupation" id="other" value="Annet">
+				<label class="radio" for="other">Annet</label>
 			</div>
 			<span id="errorMsgOcc" class="errorMsg"></span>
 		</div>

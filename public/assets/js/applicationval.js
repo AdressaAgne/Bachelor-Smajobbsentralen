@@ -216,7 +216,6 @@ $("form").submit(function(e) {
 
     if (!(validateFName() &
           validateLName() &
-          validateEmail() &
           validateAddress() &
           validateDate() &
           validateMob() &

@@ -24,8 +24,7 @@
                     @endif
                     <li>E-post: {{$user->mail}}</li>
                     <li>Adresse: {{$user->address}}</li>
-                    <li>Født: {{$user->dob}}</li>
-                    <li>Alder: {{$global->get_age($user->dob)}}</li>
+                    <li>Fødselsår: {{$user->dob}} ({{$global->get_age($user->dob) - 1}} eller {{$global->get_age($user->dob)}})</li>
                     <li>Okkupasjon: {{$user->occupation}}</li>
                 </ul>
             </p>
@@ -33,7 +32,7 @@
                 <strong>Kan jobbe med: </strong> {{ implode(', ', $user->get_work()) }}
             </p>
             <p>
-                <strong>annen info:</strong>
+                <strong>Annen info:</strong>
                 {{$user->other_info}}
             </p>
 

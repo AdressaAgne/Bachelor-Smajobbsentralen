@@ -8,10 +8,7 @@
 
 
 <div class="row">
-    <div class="col-12">
-        <h3>Åpningstider</h3>
-	</div>
-	<div class="row">
+	<div class="col-12">
         @form('', PATCH)
 			@for($i = 1; $i < 8; $i++)
 				<div class="cal-1 calendar calendar--header">
@@ -45,8 +42,10 @@
 					
 			@endfor
 			
-			<div class="form-element">
-				<input type="submit" value="Lagre">
+			<div class="row">
+				<div class="form-element">
+					<input type="submit" value="Lagre">
+				</div>
 			</div>
 			
         @formend()

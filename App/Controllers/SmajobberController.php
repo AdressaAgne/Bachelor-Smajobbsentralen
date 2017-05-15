@@ -8,7 +8,7 @@ class SmajobberController extends Controller{
 
 	public function smajobbere(Request $data){
 		if(isset($data->get->id)) {
-			$smajobbere = $this->query("SELECT u.name, u.surname, u.mobile_phone, u.private_phone AS tlf
+			$smajobbere = $this->query("SELECT u.name, u.surname, u.mobile_phone, u.private_phone AS tlf, k.name AS cat_name
 			FROM users AS u
 			INNER JOIN user_category AS uc ON u.id = uc.user_id
 			INNER JOIN kategorier AS k ON uc.category_id = k.id
@@ -19,7 +19,11 @@ class SmajobberController extends Controller{
 			$smajobbere = $this->get_smajobbere();
 		}	
 			
-		return View::make('smajobber', ['smajobbere' => $smajobbere]);
+		return View::make('smajobber', [
+			'smajobbere' => $smajobbere, 
+			'category' => isset($data->get->id) ? $data->get->id : 'nei',
+			'cat_name' => isset($data->get->id) ? $this->select('kategorier', ['name', 'icon'], ['id' => $data->get->id])->fetch() : false,
+		]);
 	}
 	
 	public function admin(){
@@ -71,6 +75,7 @@ class SmajobberController extends Controller{
                 if($key == 'otherinfo') continue;
                 if($key == 'work') continue;
                 if($key == 'priv') continue;
+                if($key == 'email') continue;
                 
                 if($key == 'car' || $key == 'hitch'){
                     if(!preg_match('/[0|1]/', $value)) {

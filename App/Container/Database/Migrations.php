@@ -152,27 +152,27 @@ class Migrations{
 		$db->insert('settings', [
 			[
 				'value' => 2.50,
-				'item'  => 'Killometer', 
+				'item'  => 'Kroner per kilometer', 
 				'item_key'   => 'km', 
 			],
 			[
 				'value' => 3,
-				'item'  => 'Killomter Med Tilhenger', 
+				'item'  => 'Kroner per kilometer med tilhenger', 
 				'item_key'   => 'km_hitch', 
 			],	
 			[
 				'value' => 100,
-				'item'  => 'Timespris', 
+				'item'  => 'Kroner per time', 
 				'item_key'   => 'hours', 
 			],	
 			[
 				'value' => 30,
-				'item'  => 'Eget Utstyr', 
+				'item'  => 'Kroner ekstra ved bruk av eget utstyr', 
 				'item_key'   => 'equipment', 
 			],		
 			[
 				'value' => '61 10 95 80',
-				'item'  => 'Telefon Nummer', 
+				'item'  => 'Telefonnummer', 
 				'item_key'   => 'tlf', 
 			],		
 		]);

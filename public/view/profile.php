@@ -7,9 +7,8 @@
 </div>
 <div class="row">
     @form('', PATCH)
-        <h3>{{$user->full_name()}}
-            <small>brukernavn: {{$user->username}}</small>
-        </h3>
+        <h3>{{$user->full_name()}}</h3>
+		<small>brukernavn: {{$user->username}}</small>
         
         <div class="col-12">
             <h2>Endre passord</h2>
@@ -28,7 +27,7 @@
         </div>
         <div class="form-element col-6">
             <input type="hidden" name="user_id" value="{{$user->id}}">
-            <input type="submit" name="edit" value="Endre Passord Og Rettigheter">
+            <input type="submit" name="edit" value="Endre Passord">
         </div>
     @formend()
 </div>
@@ -79,14 +78,14 @@
 <div class="row">
     <h3>Telefon</h3>
     <div class="form-element col-6 col-s-12">
-        <label> Mobil Telefon
-            <input type="text" name="mob" placeholder="Mobil"  value="{{$user->mobile_phone}}">
+        <label> Mobiltelefon
+            <input type="text" name="mob" placeholder="Mobiltelefon"  value="{{$user->mobile_phone}}">
             <span class="errorMsg"></span>
         </label>
     </div>
     <div class="form-element col-6 col-s-12">
-        <label> Privat Telefon
-            <input type="text" name="priv" placeholder="Privat Telefon"  value="{{$user->private_phone}}">
+        <label> Privattelefon
+            <input type="text" name="priv" placeholder="Privattelefon"  value="{{$user->private_phone}}">
         </label>
     </div>
 </div>
@@ -105,7 +104,7 @@
         <span id="errorMsgCar" class="errorMsg"></span>
     </div>
     <div class="form-element col-6 col-s-12" id="hashitch">
-        <p>Hengerfeste?</p>
+        <p>Hvis ja, har bilen hengerfeste?</p>
         <div class="col-12">
             <input class="radio"  type="radio" name="hitch" id="hitchyes" @checked($user->hitch == 1) value="1">
             <label class="radio" for="hitchyes">Ja</label><br>
@@ -119,23 +118,23 @@
     <div class="form-element col-12" id="hasocc">
         <p> Okkupasjon</p>
         <div class="col-12">
-            <input class="radio"  type="radio" name="occupation" id="school" @checked($user->occupation == 'skoleelev') value="skoleelev">
+            <input class="radio"  type="radio" name="occupation" id="school" @checked($user->occupation == 'Skoleelev') value="Skoleelev">
             <label class="radio" for="school">Skoleelev</label><br>
         </div>
         <div class="col-12">
-            <input class="radio"  type="radio" name="occupation" id="unemployed" @checked($user->occupation == 'unemployed') value="unemployed">
+            <input class="radio"  type="radio" name="occupation" id="unemployed" @checked($user->occupation == 'Arbeidsledig') value="Arbeidsledig">
             <label class="radio" for="unemployed">Arbeidsledig</label><br>
         </div>
         <div class="col-12">
-            <input class="radio"  type="radio" name="occupation" id="pensioner" @checked($user->occupation == 'pensioner') value="pensioner">
+            <input class="radio"  type="radio" name="occupation" id="pensioner" @checked($user->occupation == 'Pensjonist') value="Pensjonist">
             <label class="radio" for="pensioner">Pensjonist</label><br>
         </div>
         <div class="col-12">
-            <input class="radio"  type="radio" name="occupation" id="disabled" @checked($user->occupation == 'disabled') value="disabled">
+            <input class="radio"  type="radio" name="occupation" id="disabled" @checked($user->occupation == 'Uføre') value="Uføre">
             <label class="radio" for="disabled">Uføre</label><br>
         </div>
         <div class="col-12">
-            <input class="radio"  type="radio" name="occupation" id="other" @checked($user->occupation == 'other') value="other">
+            <input class="radio"  type="radio" name="occupation" id="other" @checked($user->occupation == 'Annet') value="Annet">
             <label class="radio" for="other">Annet</label><br>
         </div>
         <span id="errorMsgOcc" class="errorMsg"></span>

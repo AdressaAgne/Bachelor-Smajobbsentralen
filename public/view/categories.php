@@ -8,15 +8,15 @@
 
 <div class="row">
 	<div class="col-12">
-		<div class="col-6">
+		<div class="col-6 col-m-12">
 			<div class="row">
-				<h2 class="font-center">Arbeidstyper</h2>
+				<h2 class="font-center">Alle arbeidstyper</h2>
 			</div>
 			<div class="row form-element--border">
 			@foreach($global->categories() as $cat)
 				<div class="col-12">
 					<div class="form-element">
-						<p><i class="fa fa-lg fa-{{$cat['icon']}}"></i> {{$cat['name']}}</p>
+						<p class="category"><i class="fa fa-lg fa-{{$cat['icon']}}"></i> {{$cat['name']}}</p>
 					</div>
 					<div class="form-element form-element--right">
 						<input type="button" value="Fjern" class="accent" id="{{$cat['id']}}">
@@ -26,7 +26,7 @@
 			</div>
 		</div>
 
-		<div class="col-6">
+		<div class="col-6 col-m-12">
 			<div class="row">
 				<h2 class="font-center">Legg til arbeidstype</h2>
 			</div>
@@ -39,7 +39,7 @@
 						</label>
 					</div>
 					<div class="form-element col-12">
-						<h2>Velg arbeidstypebilde</h2>
+						<h2>Velg bilde</h2>
 						<div class="col-12">
 							<input class="radio" type="radio" name="arbeidstype_icon" id="icon-1" checked value="user">
 							<label class="radio" for="icon-1"><i class="fa fa-lg fa-user"></i> Person</label><br>
@@ -47,7 +47,7 @@
 						
 						<div class="col-12">
 							<input class="radio" type="radio" name="arbeidstype_icon" id="icon-2" value="snowflake-o">
-							<label class="radio" for="icon-2"><i class="fa fa-lg fa-snowflake-o"></i> Snøfnugg / Snømøking</label><br>
+							<label class="radio" for="icon-2"><i class="fa fa-lg fa-snowflake-o"></i> Snøfnugg / Snømåking</label><br>
 						</div>
 						
 						<div class="col-12">
@@ -82,7 +82,7 @@
 						
 						<div class="col-12">
 							<input class="radio" type="radio" name="arbeidstype_icon" id="icon-9" value="wrench">
-							<label class="radio" for="icon-9"><i class="fa fa-lg fa-wrench"></i> Skiftnøkkel / Småarbied</label><br>
+							<label class="radio" for="icon-9"><i class="fa fa-lg fa-wrench"></i> Skiftenøkkel / Småarbeid</label><br>
 						</div>
 						
 						<div class="col-12">
@@ -92,13 +92,13 @@
 						
 						<div class="col-12">
 							<input class="radio" type="radio" name="arbeidstype_icon" id="icon-11" value="shower">
-							<label class="radio" for="icon-11"><i class="fa fa-lg fa-shower"></i> vann / vasking</label><br>
+							<label class="radio" for="icon-11"><i class="fa fa-lg fa-shower"></i> Vann / Vasking</label><br>
 						</div>
 						
 						
 					</div>
 					<div class="form-element col-12">
-						<input type="submit" class="" value="legg til">
+						<input type="submit" class="" value="Legg til">
 					</div>
 				</div>
 				@formend()

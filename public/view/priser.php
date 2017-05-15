@@ -3,7 +3,7 @@
 <div class="tlf-panel">
 <!-- split up to åpningstider and arbeidstyper -->
 <div class="row">
-	<h1>Priser Og Telefon nummer</h1>
+	<h1>Priser og Telefonnummer</h1>
 </div>
 
 

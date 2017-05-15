@@ -24,14 +24,14 @@
     
     <div class="col-12">
         <div class="form-element col-6">
-            <label>Privat Telefon:
-                <input type="text" placeholder="Privat Telefon" name="private">
+            <label>Privattelefon:
+                <input type="text" placeholder="Privattelefon" name="private">
             </label>
         </div>
         
         <div class="form-element col-6">
-            <label>Mobil Telefon:
-                <input type="text" placeholder="Mobil Telefon" name="mobile">
+            <label>Mobiltelefon:
+                <input type="text" placeholder="Mobiltelefon" name="mobile">
             </label>
         </div>
     </div>

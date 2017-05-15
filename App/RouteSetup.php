@@ -22,15 +22,15 @@
 */
 
 
-Direct::get('/test', function(){
-    return '<h1>Denne siden er cachet</h1>'
-})->cache();
-
-Direct::post('/test', 'TestController@test');
-
-Direct::put('/test', function(Request $request){
-    return ['API' => $request];
-});
+// Direct::get('/test', function(){
+//     return '<h1>Denne siden er cachet</h1>'
+// })->cache();
+// 
+// Direct::post('/test', 'TestController@test');
+// 
+// Direct::put('/test', function(Request $request){
+//     return ['API' => $request];
+// });
 
 // Mainpage
 Direct::get("/", 'MainController@index');

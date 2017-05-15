@@ -8,7 +8,7 @@
 		<li><a href="{{$source}}/telefonvakt/soknader">Søknader</a></li>
 		<li><a href="{{$source}}/telefonvakt/opningstider">Åpningstider</a></li>
 		<li><a href="{{$source}}/telefonvakt/arbeidstyper">Arbeidstyper</a></li>
-		<li><a href="{{$source}}/telefonvakt/priser">Priser Og Telefon</a></li>
+		<li><a href="{{$source}}/telefonvakt/priser">Priser og Telefon</a></li>
 		@endif
 		@if($user->type == 0 || $user->type == 3)
 		<li class="header">Oppdragstaker</li>

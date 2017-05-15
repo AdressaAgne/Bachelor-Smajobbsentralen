@@ -39,8 +39,9 @@
             <div class="col-12">
                 <h1>Småjobbsentralen i Gjøvik</h1>
 
-                <p>Formidler lønnet hjelp til mindre oppdrag (inntil 3 timer)
-                Oppdrag utover det avtales spesielt.</p>
+                <p>Formidler lønnet hjelp til mindre oppdrag (inntil 3 timer).</p>
+                <p>Oppdrag utover det avtales spesielt.</p>
+                
                 <h3>Henvendelse:</h3>
                 @foreach($open['timeStr'] as $str)
                     <p>{{ $str }}</p>

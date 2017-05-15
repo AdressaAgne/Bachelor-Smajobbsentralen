@@ -25,14 +25,14 @@ class CalendarController extends Controller {
 	public function isHoly($day, $month){
 		$holy = [
 			1 => [
-				1 => 'første nyttårsdag',
+				1 => 'Første nyttårsdag',
 			],
 			2 => [],
 			3 => [],
 			4 => [],
 			5 => [
-				1 => 'arbeiderens dag',
-				17 => 'norges nasjonaldag',
+				1 => 'Arbeiderens dag',
+				17 => 'Norges nasjonaldag',
 			],
 			6 => [],
 			7 => [],
@@ -41,9 +41,9 @@ class CalendarController extends Controller {
 			10 => [],
 			11 => [],
 			12 => [
-				24 => 'julaften',
-				25 => 'først juledag',
-				26 => 'andre juledag',
+				24 => 'Julaften',
+				25 => 'Først juledag',
+				26 => 'Andre juledag',
 			],
 		];
 		//easter_days() returns days after march 21, wich is 80, but on a leap year its 81.
@@ -61,16 +61,16 @@ class CalendarController extends Controller {
 		$pins_1         = $this->days_to_date($easter_days + 49);
 		$pins_2         = $this->days_to_date($easter_days + 50);
 
-		$holy[$lang['month']][$lang['day']] = 'langfredag';
-		$holy[$skjer['month']][$skjer['day']] = 'skjærtorsdag';
+		$holy[$lang['month']][$lang['day']] = 'Langfredag';
+		$holy[$skjer['month']][$skjer['day']] = 'Skjærtorsdag';
 
-		$holy[$easter_aften['month']][$easter_aften['day']] = 'påskeaften';
-		$holy[$easter_1['month']][$easter_1['day']] = 'første påskedag';
-		$holy[$easter_2['month']][$easter_2['day']] = 'andre påskedag';
+		$holy[$easter_aften['month']][$easter_aften['day']] = 'Påskeaften';
+		$holy[$easter_1['month']][$easter_1['day']] = 'Første påskedag';
+		$holy[$easter_2['month']][$easter_2['day']] = 'Andre påskedag';
 
 		$holy[$skyfart['month']][$skyfart['day']] = 'Kristi himmelfartsdag';
-		$holy[$pins_1['month']][$pins_1['day']] = '	første pinsedag';
-		$holy[$pins_2['month']][$pins_2['day']] = 'andre pinsedag';
+		$holy[$pins_1['month']][$pins_1['day']] = 'Første pinsedag';
+		$holy[$pins_2['month']][$pins_2['day']] = 'Andre pinsedag';
 
 		return (array_key_exists($day, $holy[$month])) ? $holy[$month][$day] : false;
 
