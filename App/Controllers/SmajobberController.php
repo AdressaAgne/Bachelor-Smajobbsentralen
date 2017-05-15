@@ -83,7 +83,6 @@ class SmajobberController extends Controller{
                 }
                 
             }
-	
         
         if ($validateForm){
 			$username = strtolower(substr($data['firstname'], 0, 3) . substr($data['lastname'], 0, 3) . substr($data['date'], 2, 3));
@@ -93,8 +92,8 @@ class SmajobberController extends Controller{
                     'surname'       => $data['lastname'],
                     'mail'          => $data['email'],
                     'dob'           => $data['date'],
-                    'mobile_phone'  => $data['mob'],
-                    'private_phone' => $data['priv'],
+                    'mobile_phone'  => preg_replace('/\\s/us', '', $data['mob']),
+                    'private_phone' => preg_replace('/\\s/us', '', $data['priv']),
                     'car'           => $data['car'],
                     'hitch'         => $data['hitch'],
                     'occupation'    => $data['occupation'],

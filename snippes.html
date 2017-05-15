@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8"/>
+</head>
+<body>
+<h2 id="laravelbladeexample:">Laravel Blade example:</h2>
+
+<pre><code class="html">&lt;div class=&quot;row&quot;&gt;
+    &lt;h1&gt;Hva kan vi hjelpe deg med?&lt;/h1&gt;
+    @foreach($cats as $cat)
+    &lt;div class=&quot;col-4 col-m-6&quot;&gt;
+        &lt;a href=&quot;/smajobbere/{{$cat['id']}}&quot;&gt;
+            &lt;div class=&quot;col-12 brick brick--big&quot;&gt;
+                &lt;div&gt;{{ucfirst($cat['name'])}}&lt;/div&gt;
+                &lt;i class=&quot;fa fa-{{$cat['icon']}}&quot;&gt;&lt;/i&gt; 
+            &lt;/div&gt;
+        &lt;/a&gt;
+    &lt;/div&gt;
+    @endforeach
+&lt;/div&gt;
+</code></pre>
+
+<h2 id="controllersexample:">Controllers example:</h2>
+
+<pre><code class="php">public function index(){
+    return View::make('index', [
+        'cats' =&gt; $this-&gt;all('kategorier'),
+    ]);
+}
+</code></pre>
+
+<h2 id="controllersrequestmethodinjectionexample:">Controllers Request Method Injection example:</h2>
+
+<pre><code class="php">public function login(Request $data){
+    if($info = Account::login($data-&gt;post-&gt;username, $data-&gt;post-&gt;password, isset($data-&gt;post-&gt;rememberme))){
+        Direct::re('/admin');
+    } else {
+        View::make('login', ['info' =&gt; $info]);
+    }
+}
+</code></pre>
+
+<h2 id="routesetupexample:">Route Setup Example:</h2>
+
+<pre><code class="php">
+Direct::get('/test', function(){
+    return '&lt;h1&gt;Denne siden er cachet&lt;/h1&gt;'
+})-&gt;cache();
+
+Direct::post('/test', 'TestController@test');
+
+Direct::put('/test', function(Request $request){
+    return ['API' =&gt; $request];
+});
+
+</code></pre>
+
+<h2 id="dialogmoduleexample:">Dialog Module Example:</h2>
+
+<pre><code class="js">showDialog('Er du sikker på at du vil fjerne denne arbeidstypen?', {
+    Ja : function(){
+            $.post({
+                method : 'post',
+                url: &quot;&quot;,
+                data: {
+                    '_method' : 'DELETE',
+                    '_token'  : '@csrf()',
+                    'id'      : id
+                },
+                success : function(){
+                    _this.slideUp();
+                },
+                error : function(){
+                    showDialog('noe gikk dessverre galt under fjerning av arbeidstype. Prøv igjen senere', {ok : ''})
+                    console.log(&quot;fail&quot;);
+                }
+            });//ajax
+    },
+    Nei : function(){
+
+    }
+});
+</code></pre>
+
+<h2 id="gridframeworkexample:">Grid Framework Example:</h2>
+
+<pre><code class="sass">// Large
+@media (min-width: $iron-grid-breakpoint-large)
+    @for $i from 1 to $iron-grid-columns+1
+        .#{$iron-grid-col-name}-#{$iron-grid-breakpoint-large-name}-#{$i}
+            width: (100% / $iron-grid-columns) * $i
+
+
+// Normal
+@for $i from 1 to $iron-grid-columns+1
+    .#{$iron-grid-col-name}-#{$i}
+        width: (100% / $iron-grid-columns) * $i
+
+
+// Tablet
+@media (max-width: $iron-grid-breakpoint-medium)
+    @for $i from 1 to $iron-grid-columns+1
+        .#{$iron-grid-col-name}-#{$iron-grid-breakpoint-medium-name}-#{$i}
+            width: (100% / $iron-grid-columns) * $i
+
+// Phone
+@media (max-width: $iron-grid-breakpoint-small)
+    @for $i from 1 to $iron-grid-columns+1
+        .#{$iron-grid-col-name}-#{$i}
+            width: 100%
+
+        .#{$iron-grid-col-name}-#{$iron-grid-breakpoint-small-name}-#{$i}
+            width: (100% / $iron-grid-columns) * $i
+
+    .#{$iron-grid-col-name}--center
+        padding-left: 0px
+
+</code></pre>
+
+</body>
+</html>

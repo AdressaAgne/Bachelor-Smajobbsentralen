@@ -8,8 +8,9 @@ class MainController extends Controller implements NormalController {
     use \MigrateTrait;
     
     public function index(){
-        $cats = $this->all('kategorier');
-        return View::make('index', ['cats' => $cats]);
+        return View::make('index', [
+            'cats' => $this->all('kategorier'),
+        ]);
     }
     
     public function om(){
