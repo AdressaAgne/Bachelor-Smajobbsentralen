@@ -58,6 +58,50 @@ Direct::put('/test', function(Request $request){
 
 ```
 
+## SQL injection example:
+
+```php
+DB::query("SELECT name, username FROM users WHERE id = :id", ['id' => 3])->fetchAll();
+DB::select(['name', 'username'], 'users', ['id' => 3])->fetchAll();
+```
+
+
+## Froms and CSRF token example:
+
+```html
+@form('/login', 'put', ['class' => 'login'])
+   <input type="text" placeholder="username">   
+   <input type="password" placeholder="password"> 
+@formend()
+```
+
+
+
+```html
+<form action="/login" method="POST" class="login">
+   <input type="hidden" name="_method" value="PUT">
+   <input type="hidden" name="_token" value="ujbf23kd872niw9">
+   <input type="text" placeholder="username">   
+   <input type="password" placeholder="password"> 
+</form>
+```
+
+
+```html
+@csrf()
+```
+
+
+## SASS loop example:
+
+
+```sass
+@for $i from 1 to $iron-grid-columns+1
+	.#{$iron-grid-col-name}-#{$i}
+		width: (100% / $iron-grid-columns) * $i
+```
+
+
 
 ## Dialog Module Example:
 
@@ -85,6 +129,14 @@ showDialog('Er du sikker på at du vil fjerne denne arbeidstypen?', {
 
     }
 });
+```
+
+
+## Javascript RegEx Example:
+
+```js
+/^[a-zA-Z- æøåÆØÅ]+$/;
+
 ```
 
 ## Grid Framework Example:

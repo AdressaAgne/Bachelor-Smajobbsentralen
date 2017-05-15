@@ -56,6 +56,38 @@ Direct::put('/test', function(Request $request){
 
 </code></pre>
 
+<h2 id="sqlinjectionexample:">SQL injection example:</h2>
+
+<pre><code class="php">DB::query(&quot;SELECT name, username FROM users WHERE id = :id&quot;, ['id' =&gt; 3])-&gt;fetchAll();
+DB::select(['name', 'username'], 'users', ['id' =&gt; 3])-&gt;fetchAll();
+</code></pre>
+
+<h2 id="fromsandcsrftokenexample:">Froms and CSRF token example:</h2>
+
+<pre><code class="html">@form('/login', 'put', ['class' =&gt; 'login'])
+   &lt;input type=&quot;text&quot; placeholder=&quot;username&quot;&gt;   
+   &lt;input type=&quot;password&quot; placeholder=&quot;password&quot;&gt; 
+@formend()
+</code></pre>
+
+<pre><code class="html">&lt;form action=&quot;/login&quot; method=&quot;POST&quot; class=&quot;login&quot;&gt;
+   &lt;input type=&quot;hidden&quot; name=&quot;_method&quot; value=&quot;PUT&quot;&gt;
+   &lt;input type=&quot;hidden&quot; name=&quot;_token&quot; value=&quot;ujbf23kd872niw9&quot;&gt;
+   &lt;input type=&quot;text&quot; placeholder=&quot;username&quot;&gt;   
+   &lt;input type=&quot;password&quot; placeholder=&quot;password&quot;&gt; 
+&lt;/form&gt;
+</code></pre>
+
+<pre><code class="html">@csrf()
+</code></pre>
+
+<h2 id="sassloopexample:">SASS loop example:</h2>
+
+<pre><code class="sass">@for $i from 1 to $iron-grid-columns+1
+    .#{$iron-grid-col-name}-#{$i}
+        width: (100% / $iron-grid-columns) * $i
+</code></pre>
+
 <h2 id="dialogmoduleexample:">Dialog Module Example:</h2>
 
 <pre><code class="js">showDialog('Er du sikker på at du vil fjerne denne arbeidstypen?', {
@@ -81,6 +113,12 @@ Direct::put('/test', function(Request $request){
 
     }
 });
+</code></pre>
+
+<h2 id="javascriptregexexample:">Javascript RegEx Example:</h2>
+
+<pre><code class="js">/^[a-zA-Z- æøåÆØÅ]+$/;
+
 </code></pre>
 
 <h2 id="gridframeworkexample:">Grid Framework Example:</h2>
